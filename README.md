@@ -229,8 +229,8 @@ This will be accessible as `@ce:my-agent`.
     └── ce/
         ├── .claude-plugin/
         │   └── plugin.json       # Plugin metadata
-        ├── commands/             # 8 commands (/ce:test, /ce:explain, etc.)
-        ├── skills/               # 15 skills (ce:writing-tests, etc.)
+        ├── commands/             # 7 commands (/ce:test, /ce:explain, etc.)
+        ├── skills/               # 12 skills (ce:writing-tests, etc.)
         ├── agents/               # 3 agents (@ce:architect, etc.)
         ├── hooks/                # Session automation
         └── references/           # Document templates (ADR, PRD, Technical Design)

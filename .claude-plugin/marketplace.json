@@ -12,7 +12,7 @@
     {
       "name": "ce",
       "source": "./plugins/ce/",
-      "description": "Claude Essentials - Complete development toolkit with 8 commands, 15 skills, and 3 agents unified under ce namespace",
+      "description": "Claude Essentials - Complete development toolkit with 7 commands, 12 skills, and 3 agents unified under ce namespace",
       "version": "1.0.0",
       "author": {
         "name": "Riley Hilliard",
@@ -37,7 +37,6 @@
       "commands": [
         "./commands/test.md",
         "./commands/explain.md",
-        "./commands/quick-fix.md",
         "./commands/debug.md",
         "./commands/optimize.md",
         "./commands/refactor.md",
@@ -46,19 +45,16 @@
       ],
       "skills": [
         "./skills/writing-tests",
-        "./skills/testing-anti-patterns",
         "./skills/systematic-debugging",
         "./skills/refactoring-code",
         "./skills/optimizing-performance",
         "./skills/handling-errors",
-        "./skills/root-cause-tracing",
         "./skills/verification-before-completion",
         "./skills/writing-plans",
         "./skills/executing-plans",
         "./skills/condition-based-waiting",
         "./skills/creating-claude-skills",
         "./skills/dispatching-parallel-agents",
-        "./skills/subagent-driven-development",
         "./skills/visualizing-with-mermaid"
       ],
       "agents": [
