@@ -3,7 +3,7 @@ description: Comprehensive code review using the code-reviewer agent
 allowed-tools: Bash, Task, AskUserQuestion
 ---
 
-Invoke the ce:ode-reviewer agent to perform a comprehensive code review.
+Invoke the ce:code-reviewer agent to perform a comprehensive code review.
 
 **If `$ARGUMENTS` is provided:**
 
