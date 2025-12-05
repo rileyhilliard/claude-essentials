@@ -2,7 +2,7 @@
 
 A unified development plugin for Claude Code with essential commands, skills, and specialized agents, all accessible under the `ce` namespace.
 
-<img src="/assets/hackerman.gif" width="100%" alt="hackerman">
+![hackerman](/assets/hackerman.gif)
 
 ## What's Included
 
@@ -10,21 +10,20 @@ A unified development plugin for Claude Code with essential commands, skills, an
 
 Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
 
-<table width="100%">
-<tr><th>Command</th><th>Description</th></tr>
-<tr><td><a href="plugins/ce/commands/test.md">/ce:test</a></td><td>Run tests and analyze failures</td></tr>
-<tr><td><a href="plugins/ce/commands/explain.md">/ce:explain</a></td><td>Break down code or concepts</td></tr>
-<tr><td><a href="plugins/ce/commands/debug.md">/ce:debug</a></td><td>Launch systematic debugging</td></tr>
-<tr><td><a href="plugins/ce/commands/optimize.md">/ce:optimize</a></td><td>Find performance bottlenecks</td></tr>
-<tr><td><a href="plugins/ce/commands/refactor.md">/ce:refactor</a></td><td>Improve code quality</td></tr>
-<tr><td><a href="plugins/ce/commands/review.md">/ce:review</a></td><td>Get comprehensive code review</td></tr>
-<tr><td><a href="plugins/ce/commands/commit.md">/ce:commit</a></td><td>Generate semantic commit messages</td></tr>
-<tr><td><a href="plugins/ce/commands/deps.md">/ce:deps</a></td><td>Audit and upgrade dependencies</td></tr>
-<tr><td><a href="plugins/ce/commands/fix-issue.md">/ce:fix-issue</a></td><td>Fix a GitHub issue by number</td></tr>
-<tr><td><a href="plugins/ce/commands/pr.md">/ce:pr</a></td><td>Create a pull request with auto-generated description</td></tr>
-<tr><td><a href="plugins/ce/commands/document.md">/ce:document</a></td><td>Create or improve documentation</td></tr>
-<tr><td><a href="plugins/ce/commands/plan.md">/ce:plan</a></td><td>Create a detailed implementation plan</td></tr>
-</table>
+| Command                                           | Description                                           |
+| ------------------------------------------------- | ----------------------------------------------------- |
+| [/ce:test](plugins/ce/commands/test.md)           | Run tests and analyze failures                        |
+| [/ce:explain](plugins/ce/commands/explain.md)     | Break down code or concepts                           |
+| [/ce:debug](plugins/ce/commands/debug.md)         | Launch systematic debugging                           |
+| [/ce:optimize](plugins/ce/commands/optimize.md)   | Find performance bottlenecks                          |
+| [/ce:refactor](plugins/ce/commands/refactor.md)   | Improve code quality                                  |
+| [/ce:review](plugins/ce/commands/review.md)       | Get comprehensive code review                         |
+| [/ce:commit](plugins/ce/commands/commit.md)       | Generate semantic commit messages                     |
+| [/ce:deps](plugins/ce/commands/deps.md)           | Audit and upgrade dependencies                        |
+| [/ce:fix-issue](plugins/ce/commands/fix-issue.md) | Fix a GitHub issue by number                          |
+| [/ce:pr](plugins/ce/commands/pr.md)               | Create a pull request with auto-generated description |
+| [/ce:document](plugins/ce/commands/document.md)   | Create or improve documentation                       |
+| [/ce:plan](plugins/ce/commands/plan.md)           | Create a detailed implementation plan                 |
 
 ### Skills
 
