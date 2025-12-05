@@ -2,7 +2,7 @@
 
 A unified development plugin for Claude Code with essential commands, skills, and specialized agents, all accessible under the `ce` namespace.
 
-![hackerman](/assets/hackerman.gif)
+<img src="/assets/hackerman.gif" width="100%" alt="hackerman">
 
 ## What's Included
 
