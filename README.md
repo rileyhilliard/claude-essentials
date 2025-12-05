@@ -2,25 +2,112 @@
 
 A unified development plugin for Claude Code with essential commands, skills, and specialized agents, all accessible under the `ce` namespace.
 
-## What This Is
+![hackerman](/assets/hackerman.gif)
 
-This is a single, comprehensive plugin (`ce`) that provides:
+## What's Included
 
-- **11 Commands** - Quick workflows accessible as `/ce:test`, `/ce:explain`, `/ce:commit`, etc.
-- **14 Skills** - Reusable development patterns accessed via `ce:writing-tests`, `ce:systematic-debugging`, etc.
-- **5 Agents** - Expert AI personas invoked as `@ce:architect`, `@ce:code-reviewer`, `@ce:complex-doc-writer`
-- **Session Hooks** - Automatic project configuration on startup
-- **Reference Templates** - ADR, PRD, and technical design templates
+### Commands
 
-Everything unified under the `ce` namespace for clean, consistent developer experience.
+Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
 
-## Quick Start
+| Command                                           | Description                                           |
+| ------------------------------------------------- | ----------------------------------------------------- |
+| [/ce:test](plugins/ce/commands/test.md)           | Run tests and analyze failures                        |
+| [/ce:explain](plugins/ce/commands/explain.md)     | Break down code or concepts                           |
+| [/ce:debug](plugins/ce/commands/debug.md)         | Launch systematic debugging                           |
+| [/ce:optimize](plugins/ce/commands/optimize.md)   | Find performance bottlenecks                          |
+| [/ce:refactor](plugins/ce/commands/refactor.md)   | Improve code quality                                  |
+| [/ce:review](plugins/ce/commands/review.md)       | Get comprehensive code review                         |
+| [/ce:commit](plugins/ce/commands/commit.md)       | Generate semantic commit messages                     |
+| [/ce:deps](plugins/ce/commands/deps.md)           | Audit and upgrade dependencies                        |
+| [/ce:fix-issue](plugins/ce/commands/fix-issue.md) | Fix a GitHub issue by number                          |
+| [/ce:pr](plugins/ce/commands/pr.md)               | Create a pull request with auto-generated description |
+| [/ce:document](plugins/ce/commands/document.md)   | Create or improve documentation                       |
+| [/ce:plan](plugins/ce/commands/plan.md)           | Create a detailed implementation plan                 |
+
+### Skills
+
+Reusable development patterns, accessed with `ce:` prefix:
+
+**Testing & Quality:**
+
+| Skill                                                                                          | Description                                        |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [ce:writing-tests](plugins/ce/skills/writing-tests/SKILL.md)                                   | Testing Trophy methodology, behavior-focused tests |
+| [ce:verification-before-completion](plugins/ce/skills/verification-before-completion/SKILL.md) | Verify before claiming success                     |
+
+**Debugging & Problem Solving:**
+
+| Skill                                                                            | Description                                  |
+| -------------------------------------------------------------------------------- | -------------------------------------------- |
+| [ce:systematic-debugging](plugins/ce/skills/systematic-debugging/SKILL.md)       | Four-phase debugging framework               |
+| [ce:condition-based-waiting](plugins/ce/skills/condition-based-waiting/SKILL.md) | Replace race conditions with polling         |
+| [ce:reading-logs](plugins/ce/skills/reading-logs/SKILL.md)                       | Efficient log analysis using targeted search |
+
+**Code Quality:**
+
+| Skill                                                                          | Description                                                 |
+| ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| [ce:refactoring-code](plugins/ce/skills/refactoring-code/SKILL.md)             | Behavior-preserving code improvements                       |
+| [ce:optimizing-performance](plugins/ce/skills/optimizing-performance/SKILL.md) | Measurement-driven optimization                             |
+| [ce:handling-errors](plugins/ce/skills/handling-errors/SKILL.md)               | Error handling best practices                               |
+| [ce:migrating-code](plugins/ce/skills/migrating-code/SKILL.md)                 | Safe migration patterns for databases, APIs, and frameworks |
+
+**Planning & Execution:**
+
+| Skill                                                            | Description                          |
+| ---------------------------------------------------------------- | ------------------------------------ |
+| [ce:writing-plans](plugins/ce/skills/writing-plans/SKILL.md)     | Create detailed implementation plans |
+| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md) | Execute plans in controlled batches  |
+
+**Documentation:**
+
+| Skill                                                                                | Description                                             |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+| [ce:documenting-systems](plugins/ce/skills/documenting-systems/SKILL.md)             | Best practices for writing markdown documentation       |
+| [ce:documenting-code-comments](plugins/ce/skills/documenting-code-comments/SKILL.md) | Standards for self-documenting code and inline comments |
+
+**Meta Skills:**
+
+| Skill                                                                              | Description                            |
+| ---------------------------------------------------------------------------------- | -------------------------------------- |
+| [ce:visualizing-with-mermaid](plugins/ce/skills/visualizing-with-mermaid/SKILL.md) | Create professional technical diagrams |
+
+### Agents
+
+Expert AI personas for complex work, accessed with `@ce:` prefix:
+
+| Agent                                                             | Description                                             |
+| ----------------------------------------------------------------- | ------------------------------------------------------- |
+| [@ce:architect](plugins/ce/agents/architect.md)                   | System design and architectural planning with diagrams  |
+| [@ce:code-reviewer](plugins/ce/agents/code-reviewer.md)           | Comprehensive PR/MR reviews enforcing standards         |
+| [@ce:commit](plugins/ce/agents/commit.md)                         | Autonomous git specialist for semantic commit messages  |
+| [@ce:complex-doc-writer](plugins/ce/agents/complex-doc-writer.md) | Multi-file markdown documentation and architecture docs |
+| [@ce:code-commenter](plugins/ce/agents/code-commenter.md)         | Single-file code comment auditing and cleanup           |
+| [@ce:log-reader](plugins/ce/agents/log-reader.md)                 | Efficient log file analysis using targeted search       |
+
+### Reference Templates
+
+| Template                                                      | Description                   |
+| ------------------------------------------------------------- | ----------------------------- |
+| [ADR](plugins/ce/references/adr.md)                           | Architecture Decision Record  |
+| [PRD](plugins/ce/references/prd.md)                           | Product Requirements Document |
+| [Technical Design](plugins/ce/references/technical-design.md) | Technical Design Document     |
+
+### Hooks
+
+- **Session startup** - Loads user instructions and project context automatically
+- **Notifications** - Cross-platform alerts when Claude needs input (macOS + Linux)
+
+---
+
+## Installation
 
 ### Prerequisites
 
 You need Claude Code installed. If you don't have it yet, head to [claude.com/product/claude-code](https://www.claude.com/product/claude-code).
 
-### Installation
+### Setup
 
 1. Add this marketplace to Claude Code:
 
@@ -53,75 +140,6 @@ ce:writing-tests
 # Invoke an agent
 @ce:architect
 ```
-
-## What's Included
-
-### Commands
-
-Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
-
-- `/ce:test [command]` - Run tests and analyze failures
-- `/ce:explain <target>` - Break down code or concepts
-- `/ce:debug` - Launch systematic debugging
-- `/ce:optimize <target>` - Find performance bottlenecks
-- `/ce:refactor <target>` - Improve code quality
-- `/ce:review` - Get comprehensive code review
-- `/ce:commit` - Generate semantic commit messages
-- `/ce:deps [action]` - Audit and upgrade dependencies
-- `/ce:fix-issue <number>` - Fix a GitHub issue by number
-- `/ce:pr [base]` - Create a pull request with auto-generated description
-- `/ce:document <target>` - Create or improve documentation (routes to appropriate agent)
-
-### Skills
-
-Reusable development patterns, accessed with `ce:` prefix:
-
-**Testing & Quality:**
-- `ce:writing-tests` - Testing Trophy methodology, behavior-focused tests
-- `ce:verification-before-completion` - Verify before claiming success
-
-**Debugging & Problem Solving:**
-- `ce:systematic-debugging` - Four-phase debugging framework
-- `ce:condition-based-waiting` - Replace race conditions with polling
-- `ce:reading-logs` - Efficient log analysis using targeted search and filtering
-
-**Code Quality:**
-- `ce:refactoring-code` - Behavior-preserving code improvements
-- `ce:optimizing-performance` - Measurement-driven optimization
-- `ce:handling-errors` - Error handling best practices
-- `ce:migrating-code` - Safe migration patterns for databases, APIs, and frameworks
-
-**Planning & Execution:**
-- `ce:writing-plans` - Create detailed implementation plans
-- `ce:executing-plans` - Execute plans in controlled batches
-
-**Documentation:**
-- `ce:documenting-systems` - Best practices for writing markdown documentation
-- `ce:documenting-code-comments` - Standards for self-documenting code and inline comments
-
-**Meta Skills:**
-- `ce:visualizing-with-mermaid` - Create professional technical diagrams
-
-### Agents
-
-Expert AI personas for complex work, accessed with `@ce:` prefix:
-
-- `@ce:architect` - System design and architectural planning with diagrams
-- `@ce:code-reviewer` - Comprehensive PR/MR reviews enforcing standards
-- `@ce:complex-doc-writer` - Multi-file markdown documentation and architecture docs
-- `@ce:code-commenter` - Single-file code comment auditing and cleanup
-- `@ce:log-reader` - Efficient log file analysis using targeted search
-
-### Reference Templates
-
-- ADR (Architecture Decision Record)
-- PRD (Product Requirements Document)
-- Technical Design Document
-
-### Hooks
-
-- **Session startup** - Loads user instructions and project context automatically
-- **Notifications** - Cross-platform alerts when Claude needs input (macOS + Linux)
 
 ## Usage Examples
 
@@ -239,9 +257,9 @@ This will be accessible as `@ce:my-agent`.
     └── ce/
         ├── .claude-plugin/
         │   └── plugin.json       # Plugin metadata
-        ├── commands/             # 11 commands (/ce:test, /ce:explain, etc.)
+        ├── commands/             # 12 commands (/ce:test, /ce:plan, etc.)
         ├── skills/               # 14 skills (ce:writing-tests, etc.)
-        ├── agents/               # 5 agents (@ce:architect, etc.)
+        ├── agents/               # 6 agents (@ce:architect, @ce:commit, etc.)
         ├── hooks/                # Session automation
         └── references/           # Document templates (ADR, PRD, Technical Design)
 ```
