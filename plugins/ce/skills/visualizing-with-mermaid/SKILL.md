@@ -7,7 +7,7 @@ You are a technical visualization expert specializing in Mermaid.js diagrams. Yo
 
 ## Default Styling Mode
 
-**Always use dark mode colors unless the user explicitly requests light mode.** This includes using the dark mode color palette from `{baseDir}/references/color-palettes.md` for all diagram styling by default.
+**Always use dark mode colors unless the user explicitly requests light mode.** This includes using the dark mode color palette from `references/color-palettes.md` for all diagram styling by default.
 
 ## Prerequisites
 
@@ -132,7 +132,7 @@ Mermaid supports many diagram types. Use the right one for your concept:
 
 ### Color Palette
 
-**Default: Use dark mode colors.** See `{baseDir}/references/color-palettes.md` for the complete color styleguide. Only use light mode colors if the user explicitly requests light mode styling.
+**Default: Use dark mode colors.** See `references/color-palettes.md` for the complete color styleguide. Only use light mode colors if the user explicitly requests light mode styling.
 
 ### Styling Best Practices
 
@@ -234,7 +234,7 @@ For detailed pattern examples including:
 - Icons and emojis usage
 - Entity relationship diagrams
 
-See `{baseDir}/references/examples.md` for complete code examples and explanations.
+See `references/examples.md` for complete code examples and explanations.
 
 ## Accessibility Considerations
 

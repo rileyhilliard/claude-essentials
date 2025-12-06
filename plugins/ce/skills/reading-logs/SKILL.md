@@ -211,24 +211,24 @@ Apply these format-agnostic patterns when working with unfamiliar logs:
 
 ## Utility Scripts
 
-For complex operations, use the scripts in `@{baseDir}/scripts/`:
+For complex operations, use the scripts in `@scripts/`:
 
 **Parse JSON logs** (when logs are structured JSON):
 
 ```bash
-bash {baseDir}/scripts/parse-json-logs.sh app.log '.level == "error"'
+bash scripts/parse-json-logs.sh app.log '.level == "error"'
 ```
 
 **Extract and count stack traces**:
 
 ```bash
-bash {baseDir}/scripts/extract-stack-traces.sh app.log
+bash scripts/extract-stack-traces.sh app.log
 ```
 
 **Aggregate errors by frequency**:
 
 ```bash
-bash {baseDir}/scripts/aggregate-errors.sh app.log "ERROR" 20
+bash scripts/aggregate-errors.sh app.log "ERROR" 20
 ```
 
 ## Red Flags

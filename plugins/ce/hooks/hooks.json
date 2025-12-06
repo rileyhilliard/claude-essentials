@@ -1,16 +1,11 @@
 {
   "hooks": {
-    "SessionStart": [
+    "UserPromptSubmit": [
       {
-        "matcher": "startup|resume|clear|compact",
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh"
-          },
-          {
-            "type": "command",
-            "command": "echo '📦 Project: '$(basename \"$PWD\") '| 🌿 Branch: '$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo 'N/A') '| 📝 Latest: '$(git log -1 --pretty=format:'%s' 2>/dev/null | head -c 10 || echo 'No commits')"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/on-submit.sh"
           }
         ]
       }
@@ -21,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/notify.sh"
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/notify.sh ${CLAUDE_PLUGIN_ROOT}"
           }
         ]
       }

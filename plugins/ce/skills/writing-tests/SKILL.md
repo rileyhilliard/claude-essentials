@@ -238,9 +238,9 @@ mock_response = {
 
 For detailed framework and language-specific patterns:
 
-- **JavaScript/React**: See `{baseDir}/references/javascript-react.md` for React Testing Library queries, Jest/Vitest setup, Playwright E2E, and component testing patterns
-- **Python**: See `{baseDir}/references/python.md` for pytest fixtures, polyfactory, respx mocking, testcontainers, and FastAPI testing
-- **Go**: See `{baseDir}/references/go.md` for table-driven tests, testify/go-cmp assertions, testcontainers-go, and interface fakes
+- **JavaScript/React**: See `references/javascript-react.md` for React Testing Library queries, Jest/Vitest setup, Playwright E2E, and component testing patterns
+- **Python**: See `references/python.md` for pytest fixtures, polyfactory, respx mocking, testcontainers, and FastAPI testing
+- **Go**: See `references/go.md` for table-driven tests, testify/go-cmp assertions, testcontainers-go, and interface fakes
 
 ## Quality Checklist
 

@@ -5,6 +5,7 @@
 
 set -euo pipefail
 
+PLUGIN_ROOT="${1:-}"
 PROJECT=$(basename "$PWD")
 MESSAGE="Waiting for input in $PROJECT"
 TITLE="Claude Code"
@@ -26,12 +27,30 @@ notify_macos_terminal_notifier() {
         *)              app_id="com.apple.Terminal" ;;
     esac
 
+    # Get git branch if in a repo
+    local branch=""
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        branch=$(git branch --show-current 2>/dev/null)
+    fi
+
+    # Build subtitle with branch info if available
+    local subtitle="Click to focus"
+    [[ -n "$branch" ]] && subtitle="$branch"
+
+    # Use custom icon if available
+    local icon_args=()
+    local icon_path="${PLUGIN_ROOT}/hooks/assets/claude-icon.png"
+    [[ -n "$PLUGIN_ROOT" && -f "$icon_path" ]] && icon_args=(-appIcon "$icon_path")
+
     terminal-notifier \
         -title "$TITLE" \
+        -subtitle "$subtitle" \
         -message "$MESSAGE" \
         -sound "Glass" \
+        -group "claude-code-$PROJECT" \
         -activate "$app_id" \
         -ignoreDnD \
+        "${icon_args[@]}" \
         2>/dev/null
 }
 
