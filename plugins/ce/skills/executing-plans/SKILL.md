@@ -14,12 +14,14 @@ Load plan, analyze dependencies, execute in parallel waves, verify at completion
 Identify and parse the plan:
 
 **Custom plan files** (explicit path):
+
 - User provides path like `./YYYY-MM-DD-feature-PLAN.md`
 - Parse `### Task N:` sections
 - Extract `**Files:**` blocks for dependency analysis
 - Extract `Run:` commands for verification
 
 **Native plan-mode** (current session):
+
 - Plan is already in the conversation context from plan mode
 - No need to search `~/.claude/plans/` - that would risk loading stale plans from other sessions
 - Parse the plan content directly from context
@@ -33,17 +35,20 @@ Create TodoWrite with all parsed tasks before execution.
 Analyze file overlap to group tasks into execution waves.
 
 **Tasks are independent (same wave) when:**
+
 - No overlapping file paths (create/modify/test)
 - Different subsystems (different top-level directories)
 - No explicit ordering in plan
 
 **Tasks depend on each other (sequential waves) when:**
+
 - Task A modifies a file Task B creates
 - Task A imports from Task B's output
 - Task A tests functionality Task B implements
 - Plan explicitly states ordering
 
 **Example wave computation:**
+
 ```
 Task 1: Create src/utils/formatter.ts
 Task 2: Create src/utils/validator.ts
@@ -93,6 +98,7 @@ Task tool (general-purpose):
 Wait for all parallel tasks to complete. Mark completed in TodoWrite. Proceed to next wave.
 
 **Subagent prompt requirements:**
+
 - Specific scope (which files)
 - Clear constraints (stay in scope)
 - Expected report format
@@ -121,11 +127,49 @@ Not every multi-task situation benefits from parallel agents:
 - **Shared state:** Agents would interfere (editing same files, using same resources)
 - **Need full context:** Understanding requires seeing the entire system, not isolated pieces
 
+### Agent Selection
+
+Choose the right agent type based on task complexity:
+
+**Use `ce:easy` (Haiku) when:**
+
+- Task is purely mechanical with no judgment needed
+- Instructions are complete and unambiguous
+- Single file scope with clear inputs/outputs
+- Examples: creating boilerplate from a template, running predefined commands, simple additions with exact specs provided
+
+**Use `general-purpose` when:**
+
+- Task requires investigation or exploration
+- Implementation approach isn't fully specified
+- Task might encounter unexpected issues needing judgment
+- Multiple files with potential interdependencies
+- Examples: implementing features, fixing bugs, tasks requiring test verification
+
+```
+# Mixed agent example
+Task tool (ce:easy):
+  description: "Create config file"
+  prompt: |
+    Create src/config/defaults.ts with this exact content:
+    export const DEFAULTS = { timeout: 5000, retries: 3 };
+
+Task tool (general-purpose):
+  description: "Implement retry logic"
+  prompt: |
+    Implement retry logic in src/api/client.ts using the config.
+    Handle edge cases appropriately.
+    Write tests for retry behavior.
+```
+
+The heuristic: if the task needs thinking, use general-purpose. If it's copy-paste with a destination, use ce:easy.
+
 ## Auto-Recovery
 
 When a subagent reports failure, classify and respond:
 
 **Recoverable errors** - dispatch fix subagent:
+
 - Test failures
 - Type errors
 - Lint issues
@@ -148,6 +192,7 @@ Task tool (general-purpose):
 ```
 
 **True blockers** - stop and ask:
+
 - Missing dependencies that can't be inferred
 - Ambiguous instructions
 - Security concerns (secrets, unsafe operations)
@@ -165,6 +210,7 @@ After all waves complete:
 3. **Run linter** to catch remaining issues
 
 4. **Dispatch code-reviewer for comprehensive review:**
+
 ```
 Task tool (ce:code-reviewer):
   description: "Review complete implementation"
@@ -192,6 +238,7 @@ Task tool (ce:code-reviewer):
 ## When to Stop
 
 **Stop and ask for:**
+
 - Ambiguous plan instructions that can't be inferred
 - Security concerns (secrets in code, unsafe operations)
 - Circular dependencies that can't be resolved
@@ -199,6 +246,7 @@ Task tool (ce:code-reviewer):
 - Missing critical information (no test command, no build command)
 
 **Do NOT stop for:**
+
 - Fixable test failures (auto-recover)
 - Type errors (auto-recover)
 - Style/lint issues (auto-recover)
@@ -207,18 +255,20 @@ Task tool (ce:code-reviewer):
 
 ## Quick Reference
 
-| Aspect | Approach |
-|--------|----------|
-| Parallelization | Independent tasks in same wave |
-| Review timing | Single final review at completion |
-| Human checkpoints | None until final verification |
-| Plan formats | Custom PLAN.md files or current session plan-mode |
-| Error handling | Auto-recover, stop only for blockers |
+| Aspect            | Approach                                                                   |
+| ----------------- | -------------------------------------------------------------------------- |
+| Agent selection   | ce:easy for mechanical tasks, general-purpose for judgment-requiring tasks |
+| Parallelization   | Independent tasks in same wave                                             |
+| Review timing     | Single final review at completion                                          |
+| Human checkpoints | None until final verification                                              |
+| Plan formats      | Custom PLAN.md files or current session plan-mode                          |
+| Error handling    | Auto-recover, stop only for blockers                                       |
 
 ## Integration
 
-**Required:** `writing-plans` creates plans this skill executes
+**Required:** `Skill(ce:writing-plans)` creates plans this skill executes
 
 **Complementary:**
-- `writing-tests` for TDD during task execution
-- `verification-before-completion` for final verification patterns
+
+- `Skill(ce:writing-tests)` for TDD during task execution
+- `Skill(ce:verification-before-completion)` for final verification patterns
