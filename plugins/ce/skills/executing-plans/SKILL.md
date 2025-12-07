@@ -359,7 +359,7 @@ Task tool (ce:code-reviewer):
 
 ## Integration
 
-**Required:** `Skill(ce:writing-plans)` creates plans this skill executes
+**Prerequisite:** `Skill(ce:writing-plans)` creates plans this skill executes
 
 **Complementary:**
 
