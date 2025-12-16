@@ -24,6 +24,7 @@ Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
 | [/ce:pr](plugins/ce/commands/pr.md)               | Create a pull request with auto-generated description |
 | [/ce:document](plugins/ce/commands/document.md)   | Create or improve documentation                       |
 | [/ce:plan](plugins/ce/commands/plan.md)           | Create a detailed implementation plan                 |
+| [/ce:execute](plugins/ce/commands/execute.md)     | Execute an implementation plan from the plans folder  |
 
 ### Skills
 
@@ -55,10 +56,11 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 **Planning & Execution:**
 
-| Skill                                                            | Description                          |
-| ---------------------------------------------------------------- | ------------------------------------ |
-| [ce:writing-plans](plugins/ce/skills/writing-plans/SKILL.md)     | Create detailed implementation plans |
-| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md) | Execute plans in controlled batches  |
+| Skill                                                            | Description                                               |
+| ---------------------------------------------------------------- | --------------------------------------------------------- |
+| [ce:writing-plans](plugins/ce/skills/writing-plans/SKILL.md)     | Create detailed implementation plans                      |
+| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md) | Execute plans in controlled batches                       |
+| [ce:architect](plugins/ce/skills/architect/SKILL.md)             | Design scalable architectures and technical documentation |
 
 **Documentation:**
 
@@ -77,12 +79,11 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 Expert AI personas for complex work, accessed with `@ce:` prefix:
 
-| Agent                                                   | Description                                            |
-| ------------------------------------------------------- | ------------------------------------------------------ |
-| [@ce:architect](plugins/ce/agents/architect.md)         | System design and architectural planning with diagrams |
-| [@ce:code-reviewer](plugins/ce/agents/code-reviewer.md) | Comprehensive PR/MR reviews enforcing standards        |
-| [@ce:haiku](plugins/ce/agents/haiku.md)                 | Lightweight Haiku agent for simple delegated tasks     |
-| [@ce:log-reader](plugins/ce/agents/log-reader.md)       | Efficient log file analysis using targeted search      |
+| Agent                                                   | Description                                        |
+| ------------------------------------------------------- | -------------------------------------------------- |
+| [@ce:code-reviewer](plugins/ce/agents/code-reviewer.md) | Comprehensive PR/MR reviews enforcing standards    |
+| [@ce:haiku](plugins/ce/agents/haiku.md)                 | Lightweight Haiku agent for simple delegated tasks |
+| [@ce:log-reader](plugins/ce/agents/log-reader.md)       | Efficient log file analysis using targeted search  |
 
 ### Reference Templates
 

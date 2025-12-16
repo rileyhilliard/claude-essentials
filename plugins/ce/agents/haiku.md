@@ -3,6 +3,7 @@ name: haiku
 description: Lightweight Haiku agent for delegated tasks. Receives detailed instructions from commands like /ce:commit, /ce:test, and /ce:pr. Not typically invoked directly by users.
 tools: Bash, Read, Edit, Write, Grep, Glob, BashOutput
 model: claude-haiku-4-5
+skills: ce:verification-before-completion
 color: gray
 ---
 

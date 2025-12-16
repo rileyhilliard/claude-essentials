@@ -2,6 +2,7 @@
 name: code-reviewer
 description: Expert at comprehensive code review for merge requests and pull requests. Use this agent when the user has completed work on a feature branch and needs review before merging. Analyzes all changes between branches, enforces project standards, and provides structured feedback organized by severity.
 tools: Bash, Glob, Grep, Read, TodoWrite, mcp__ide__getDiagnostics
+skills: ce:documenting-code-comments, ce:handling-errors, ce:writing-tests
 color: red
 ---
 

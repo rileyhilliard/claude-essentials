@@ -12,7 +12,7 @@
     {
       "name": "ce",
       "source": "./plugins/ce/",
-      "description": "Claude Essentials - Complete development toolkit with 11 commands, 14 skills, and 4 agents unified under ce namespace",
+      "description": "Claude Essentials - Complete development toolkit with 13 commands, 15 skills, and 3 agents unified under ce namespace",
       "version": "1.1.0",
       "author": {
         "name": "Riley Hilliard",
@@ -45,7 +45,9 @@
         "./commands/deps.md",
         "./commands/fix-issue.md",
         "./commands/pr.md",
-        "./commands/document.md"
+        "./commands/document.md",
+        "./commands/plan.md",
+        "./commands/execute.md"
       ],
       "skills": [
         "./skills/writing-tests",
@@ -61,13 +63,13 @@
         "./skills/migrating-code",
         "./skills/reading-logs",
         "./skills/documenting-systems",
-        "./skills/documenting-code-comments"
+        "./skills/documenting-code-comments",
+        "./skills/architect"
       ],
       "agents": [
-        "./agents/architect.md",
         "./agents/code-reviewer.md",
-        "./agents/log-reader.md",
-        "./agents/haiku.md"
+        "./agents/haiku.md",
+        "./agents/log-reader.md"
       ],
       "hooks": "./hooks/hooks.json"
     }
