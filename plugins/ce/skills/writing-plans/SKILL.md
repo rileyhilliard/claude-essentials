@@ -1,6 +1,6 @@
 ---
 name: writing-plans
-description: Create implementation plans where each task is a complete unit of work for one agent. Tasks can parallelize; steps within a task cannot.
+description: Create implementation plans with tasks grouped by subsystem. Related tasks share agent context; groups parallelize across subsystems.
 ---
 
 # Writing Plans
@@ -73,15 +73,27 @@ A task includes **everything** to complete one logical unit:
 
 **Bundle trivial items:** Group small related changes (add export, update config, rename) into one task.
 
-## Parallelization
+## Parallelization & Grouping
 
-Tasks that touch **different subsystems** can run in parallel:
+During execution, tasks are **grouped by subsystem** to share agent context. Structure your plan to make grouping clear:
 
+```markdown
+## Authentication Tasks          ← These will run in one agent
+### Task 1: Add login
+### Task 2: Add logout
+
+## Billing Tasks                 ← These will run in another agent (parallel)
+### Task 3: Add billing API
+### Task 4: Add webhooks
+
+## Integration Tasks             ← Sequential (depends on above)
+### Task 5: Wire auth + billing
 ```
-Task 1: Add auth module (src/auth/)       ─┬─ parallel
-Task 2: Add billing module (src/billing/) ─┘
-Task 3: Integrate auth + billing          ← sequential (depends on 1 & 2)
-```
+
+**Execution model:**
+- Tasks under same `##` heading → grouped into one agent
+- Groups touching different subsystems → run in parallel
+- Max 3-4 tasks per group (split larger sections)
 
 Tasks in the **same subsystem** should be sequential or combined into one task.
 
