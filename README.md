@@ -40,11 +40,12 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 **Debugging & Problem Solving:**
 
-| Skill                                                                            | Description                                  |
-| -------------------------------------------------------------------------------- | -------------------------------------------- |
-| [ce:systematic-debugging](plugins/ce/skills/systematic-debugging/SKILL.md)       | Four-phase debugging framework               |
-| [ce:condition-based-waiting](plugins/ce/skills/condition-based-waiting/SKILL.md) | Replace race conditions with polling         |
-| [ce:reading-logs](plugins/ce/skills/reading-logs/SKILL.md)                       | Efficient log analysis using targeted search |
+| Skill                                                                            | Description                                      |
+| -------------------------------------------------------------------------------- | ------------------------------------------------ |
+| [ce:systematic-debugging](plugins/ce/skills/systematic-debugging/SKILL.md)       | Four-phase debugging framework                   |
+| [ce:fixing-flaky-tests](plugins/ce/skills/fixing-flaky-tests/SKILL.md)           | Diagnose and fix tests that fail concurrently    |
+| [ce:condition-based-waiting](plugins/ce/skills/condition-based-waiting/SKILL.md) | Replace race conditions with polling             |
+| [ce:reading-logs](plugins/ce/skills/reading-logs/SKILL.md)                       | Efficient log analysis using targeted search     |
 
 **Code Quality:**
 
