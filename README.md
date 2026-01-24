@@ -25,7 +25,6 @@ Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
 | [/ce:document](plugins/ce/commands/document.md)   | Create or improve documentation                       |
 | [/ce:plan](plugins/ce/commands/plan.md)           | Create a detailed implementation plan                 |
 | [/ce:execute](plugins/ce/commands/execute.md)     | Execute an implementation plan from the plans folder  |
-| [/ce:design](plugins/ce/commands/design.md)       | Start a design session                                |
 | [/ce:init](plugins/ce/commands/init.md)           | Bootstrap repo with .claude/ config (rules, permissions, settings) |
 
 ### Skills
