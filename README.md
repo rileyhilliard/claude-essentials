@@ -10,21 +10,21 @@ A unified development plugin for Claude Code with essential commands, skills, an
 
 Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
 
-| Command                                           | Description                                           |
-| ------------------------------------------------- | ----------------------------------------------------- |
-| [/ce:test](plugins/ce/commands/test.md)           | Run tests and analyze failures                        |
-| [/ce:explain](plugins/ce/commands/explain.md)     | Break down code or concepts                           |
-| [/ce:debug](plugins/ce/commands/debug.md)         | Launch systematic debugging                           |
-| [/ce:optimize](plugins/ce/commands/optimize.md)   | Find performance bottlenecks                          |
-| [/ce:refactor](plugins/ce/commands/refactor.md)   | Improve code quality                                  |
-| [/ce:review](plugins/ce/commands/review.md)       | Get comprehensive code review                         |
-| [/ce:commit](plugins/ce/commands/commit.md)       | Generate semantic commit messages                     |
-| [/ce:deps](plugins/ce/commands/deps.md)           | Audit and upgrade dependencies                        |
-| [/ce:fix-issue](plugins/ce/commands/fix-issue.md) | Fix a GitHub issue by number                          |
-| [/ce:pr](plugins/ce/commands/pr.md)               | Create a pull request with auto-generated description |
-| [/ce:document](plugins/ce/commands/document.md)   | Create or improve documentation                       |
-| [/ce:plan](plugins/ce/commands/plan.md)           | Create a detailed implementation plan                 |
-| [/ce:execute](plugins/ce/commands/execute.md)     | Execute an implementation plan from the plans folder  |
+| Command                                           | Description                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------------ |
+| [/ce:test](plugins/ce/commands/test.md)           | Run tests and analyze failures                                     |
+| [/ce:explain](plugins/ce/commands/explain.md)     | Break down code or concepts                                        |
+| [/ce:debug](plugins/ce/commands/debug.md)         | Launch systematic debugging                                        |
+| [/ce:optimize](plugins/ce/commands/optimize.md)   | Find performance bottlenecks                                       |
+| [/ce:refactor](plugins/ce/commands/refactor.md)   | Improve code quality                                               |
+| [/ce:review](plugins/ce/commands/review.md)       | Get comprehensive code review                                      |
+| [/ce:commit](plugins/ce/commands/commit.md)       | Generate semantic commit messages                                  |
+| [/ce:deps](plugins/ce/commands/deps.md)           | Audit and upgrade dependencies                                     |
+| [/ce:fix-issue](plugins/ce/commands/fix-issue.md) | Fix a GitHub issue by number                                       |
+| [/ce:pr](plugins/ce/commands/pr.md)               | Create a pull request with auto-generated description              |
+| [/ce:document](plugins/ce/commands/document.md)   | Create or improve documentation                                    |
+| [/ce:plan](plugins/ce/commands/plan.md)           | Create a detailed implementation plan                              |
+| [/ce:execute](plugins/ce/commands/execute.md)     | Execute an implementation plan from the plans folder               |
 | [/ce:init](plugins/ce/commands/init.md)           | Bootstrap repo with .claude/ config (rules, permissions, settings) |
 
 ### Skills
@@ -40,12 +40,12 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 **Debugging & Problem Solving:**
 
-| Skill                                                                            | Description                                      |
-| -------------------------------------------------------------------------------- | ------------------------------------------------ |
-| [ce:systematic-debugging](plugins/ce/skills/systematic-debugging/SKILL.md)       | Four-phase debugging framework                   |
-| [ce:fixing-flaky-tests](plugins/ce/skills/fixing-flaky-tests/SKILL.md)           | Diagnose and fix tests that fail concurrently    |
-| [ce:condition-based-waiting](plugins/ce/skills/condition-based-waiting/SKILL.md) | Replace race conditions with polling             |
-| [ce:reading-logs](plugins/ce/skills/reading-logs/SKILL.md)                       | Efficient log analysis using targeted search     |
+| Skill                                                                            | Description                                   |
+| -------------------------------------------------------------------------------- | --------------------------------------------- |
+| [ce:systematic-debugging](plugins/ce/skills/systematic-debugging/SKILL.md)       | Four-phase debugging framework                |
+| [ce:fixing-flaky-tests](plugins/ce/skills/fixing-flaky-tests/SKILL.md)           | Diagnose and fix tests that fail concurrently |
+| [ce:condition-based-waiting](plugins/ce/skills/condition-based-waiting/SKILL.md) | Replace race conditions with polling          |
+| [ce:reading-logs](plugins/ce/skills/reading-logs/SKILL.md)                       | Efficient log analysis using targeted search  |
 
 **Code Quality:**
 
@@ -62,23 +62,23 @@ Reusable development patterns, accessed with `ce:` prefix:
 | -------------------------------------------------------------------------- | --------------------------------------------------------- |
 | [ce:writing-plans](plugins/ce/skills/writing-plans/SKILL.md)               | Create detailed implementation plans                      |
 | [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md)           | Execute plans in controlled batches                       |
-| [ce:architecting-systems](plugins/ce/skills/architecting-systems/SKILL.md) | Design scalable architectures and technical documentation |
+| [ce:architecting-systems](plugins/ce/skills/architecting-systems/SKILL.md) | Clean, scalable system architecture for the build phase |
 | [ce:design](plugins/ce/skills/design/SKILL.md)                             | Frontend design skill                                     |
 
 **Documentation & Writing:**
 
-| Skill                                                                                | Description                                             |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| [ce:writer](plugins/ce/skills/writer/SKILL.md)                                       | Writing style guide with 6 personas (Engineer, PM, Marketer, Educator, Contributor, UX Writer) |
-| [ce:strategy-writer](plugins/ce/skills/strategy-writer/SKILL.md)                     | Executive-quality strategic documents in Economist/HBR style |
-| [ce:documenting-systems](plugins/ce/skills/documenting-systems/SKILL.md)             | Best practices for writing markdown documentation       |
-| [ce:documenting-code-comments](plugins/ce/skills/documenting-code-comments/SKILL.md) | Standards for self-documenting code and inline comments |
+| Skill                                                                                | Description                                                                                               |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| [ce:writer](plugins/ce/skills/writer/SKILL.md)                                       | Writing style guide with 7 personas (Architect, Engineer, PM, Marketer, Educator, Contributor, UX Writer) |
+| [ce:strategy-writer](plugins/ce/skills/strategy-writer/SKILL.md)                     | Executive-quality strategic documents in Economist/HBR style                                              |
+| [ce:documenting-systems](plugins/ce/skills/documenting-systems/SKILL.md)             | Best practices for writing markdown documentation                                                         |
+| [ce:documenting-code-comments](plugins/ce/skills/documenting-code-comments/SKILL.md) | Standards for self-documenting code and inline comments                                                   |
 
 **Data & Infrastructure:**
 
-| Skill                                                                              | Description                            |
-| ---------------------------------------------------------------------------------- | -------------------------------------- |
-| [ce:managing-databases](plugins/ce/skills/managing-databases/SKILL.md)             | PostgreSQL, DuckDB, Parquet, and PGVector architecture |
+| Skill                                                                  | Description                                            |
+| ---------------------------------------------------------------------- | ------------------------------------------------------ |
+| [ce:managing-databases](plugins/ce/skills/managing-databases/SKILL.md) | PostgreSQL, DuckDB, Parquet, and PGVector architecture |
 
 **Meta Skills:**
 
@@ -90,11 +90,11 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 Expert AI personas for complex work, accessed with `@ce:` prefix:
 
-| Agent                                                       | Description                                        |
-| ----------------------------------------------------------- | -------------------------------------------------- |
-| [@ce:code-reviewer](plugins/ce/agents/code-reviewer.md)     | Comprehensive PR/MR reviews enforcing standards    |
-| [@ce:haiku](plugins/ce/agents/haiku.md)                     | Lightweight Haiku agent for simple delegated tasks |
-| [@ce:log-reader](plugins/ce/agents/log-reader.md)           | Efficient log file analysis using targeted search  |
+| Agent                                                       | Description                                          |
+| ----------------------------------------------------------- | ---------------------------------------------------- |
+| [@ce:code-reviewer](plugins/ce/agents/code-reviewer.md)     | Comprehensive PR/MR reviews enforcing standards      |
+| [@ce:haiku](plugins/ce/agents/haiku.md)                     | Lightweight Haiku agent for simple delegated tasks   |
+| [@ce:log-reader](plugins/ce/agents/log-reader.md)           | Efficient log file analysis using targeted search    |
 | [@ce:devils-advocate](plugins/ce/agents/devils-advocate.md) | Rigorous critique to find flaws in plans and designs |
 
 ### Hooks
@@ -193,13 +193,14 @@ The `/ce:init` command sets up your repository with Claude Code configuration th
 
 The generated configuration:
 
-- **Progressive disclosure** - Rules stay concise (<100 lines), reference ce:* skills for depth, use `references/` subdirectories for domain-specific details
-- **Rules reference ce:* skills** - Don't duplicate content, point to proven patterns
+- **Progressive disclosure** - Rules stay concise (<100 lines), reference ce:\* skills for depth, use `references/` subdirectories for domain-specific details
+- **Rules reference ce:\* skills** - Don't duplicate content, point to proven patterns
 - **Permissions are stack-aware** - Python projects get `uv`, `pytest`; Node gets `npm`, `bun`, etc.
 - **Safety defaults included** - Blocks `rm -rf`, force pushes, hard resets
 - **Path-scoped rules** - Activate only when working in relevant files
 
 **Progressive disclosure structure:**
+
 ```
 rules/
 ├── testing.md              # ~50 lines, points to ce:writing-tests

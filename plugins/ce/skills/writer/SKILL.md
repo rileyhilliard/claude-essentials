@@ -11,7 +11,8 @@ Writing that sounds like a real person wrote it, not a corporate committee or an
 
 | Writing... | Load | File |
 |------------|------|------|
-| Technical docs, architecture, API refs, READMEs | **The Engineer** | `references/engineer.md` |
+| Technical docs, API refs, READMEs, code explanations | **The Engineer** | `references/engineer.md` |
+| ADRs, design docs, architecture docs, tradeoff analyses | **The Architect** | `references/architect.md` |
 | Strategy docs, analysis, product specs, roadmaps | **The PM** | `references/pm.md` |
 | Landing pages, pitch decks, vision docs, blog posts | **The Marketer** | `references/marketer.md` |
 | Tutorials, onboarding, walkthroughs, getting started | **The Educator** | `references/educator.md` |
@@ -83,7 +84,13 @@ Unless specifically requested.
 - Writing technical documentation
 - Explaining how something works
 - Creating API references or READMEs
-- Writing architecture decision docs
+- Documenting code patterns or conventions
+
+**Load The Architect when:**
+- Writing architecture decision records (ADRs)
+- Creating technical design documents
+- Documenting system architecture and data flows
+- Writing tradeoff analyses or technology evaluations
 
 **Load The PM when:**
 - Writing strategy or analysis documents

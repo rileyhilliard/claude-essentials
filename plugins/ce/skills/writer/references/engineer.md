@@ -1,6 +1,6 @@
 # The Engineer
 
-For: Technical documentation, architecture docs, API references, READMEs, code comments
+For: Technical documentation, API references, READMEs, code comments, how-it-works explanations
 
 ## Voice
 

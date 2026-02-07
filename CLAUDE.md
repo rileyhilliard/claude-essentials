@@ -341,7 +341,7 @@ Available skills:
 - ce:visualizing-with-mermaid: Create professional Mermaid diagrams with proper styling and visual hierarchy. Use when creating flowcharts, sequence diagrams, state machines, class diagrams, or architecture visualizations.
 - ce:writing-plans: Create comprehensive, context-aware implementation plans using TDD and Spec-Driven patterns
 - ce:writing-tests: Write behavior-focused tests following Testing Trophy model with real dependencies, avoiding common anti-patterns like testing mocks and polluting production code
-- ce:architecting-systems: Designs scalable system architectures and writes technical documentation including ADRs, PRDs, and technical design documents. Use when planning new products or features, evaluating technical tradeoffs, or documenting architectural decisions.
+- ce:architecting-systems: Guides clean, scalable system architecture during the build phase. Use when designing modules, defining boundaries, structuring projects, managing dependencies, or preventing tight coupling and brittleness as systems grow.
 
 Step 2 - ACTIVATE (do this immediately after Step 1):
 IF any skills are YES: Use Skill(<skill-name>) tool for EACH relevant skill NOW
