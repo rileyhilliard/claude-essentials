@@ -17,8 +17,8 @@ Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
 | [/ce:debug](plugins/ce/commands/debug.md)         | Launch systematic debugging                                        |
 | [/ce:optimize](plugins/ce/commands/optimize.md)   | Find performance bottlenecks                                       |
 | [/ce:refactor](plugins/ce/commands/refactor.md)   | Improve code quality                                               |
-| [/ce:review](plugins/ce/commands/review.md)       | Get comprehensive code review                                      |
-| [/ce:commit](plugins/ce/commands/commit.md)       | Generate semantic commit messages                                  |
+| [/ce:review](plugins/ce/commands/review.md)       | Code review with tracked findings and fix workflow                  |
+| [/ce:commit](plugins/ce/commands/commit.md)       | Preflight checks, semantic commit, auto-fix on hook failure        |
 | [/ce:deps](plugins/ce/commands/deps.md)           | Audit and upgrade dependencies                                     |
 | [/ce:fix-issue](plugins/ce/commands/fix-issue.md) | Fix a GitHub issue by number                                       |
 | [/ce:pr](plugins/ce/commands/pr.md)               | Create a pull request with auto-generated description              |
@@ -26,6 +26,7 @@ Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
 | [/ce:plan](plugins/ce/commands/plan.md)           | Create a detailed implementation plan                              |
 | [/ce:execute](plugins/ce/commands/execute.md)     | Execute an implementation plan from the plans folder               |
 | [/ce:init](plugins/ce/commands/init.md)           | Bootstrap repo with .claude/ config (rules, permissions, settings) |
+| [/ce:post-mortem](plugins/ce/commands/post-mortem.md) | Review a session to assess execution and extract improvements  |
 
 ### Skills
 
@@ -35,8 +36,9 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 | Skill                                                                                          | Description                                        |
 | ---------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| [ce:writing-tests](plugins/ce/skills/writing-tests/SKILL.md)                                   | Testing Trophy methodology, behavior-focused tests |
-| [ce:verification-before-completion](plugins/ce/skills/verification-before-completion/SKILL.md) | Verify before claiming success                     |
+| [ce:writing-tests](plugins/ce/skills/writing-tests/SKILL.md)                                   | Testing Trophy methodology, behavior-focused tests      |
+| [ce:verification-before-completion](plugins/ce/skills/verification-before-completion/SKILL.md) | Verify before claiming success                          |
+| [ce:preflight-checks](plugins/ce/skills/preflight-checks/SKILL.md)                             | Auto-detect and run project linters/formatters/checkers |
 
 **Debugging & Problem Solving:**
 
@@ -60,8 +62,8 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 | Skill                                                                      | Description                                               |
 | -------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [ce:writing-plans](plugins/ce/skills/writing-plans/SKILL.md)               | Create detailed implementation plans                      |
-| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md)           | Execute plans in controlled batches                       |
+| [ce:writing-plans](plugins/ce/skills/writing-plans/SKILL.md)               | Create implementation plans with devils-advocate review   |
+| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md)           | Execute plans with mandatory code review                  |
 | [ce:architecting-systems](plugins/ce/skills/architecting-systems/SKILL.md) | Clean, scalable system architecture for the build phase |
 | [ce:design](plugins/ce/skills/design/SKILL.md)                             | Frontend design skill                                     |
 
@@ -82,9 +84,10 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 **Meta Skills:**
 
-| Skill                                                                              | Description                            |
-| ---------------------------------------------------------------------------------- | -------------------------------------- |
-| [ce:visualizing-with-mermaid](plugins/ce/skills/visualizing-with-mermaid/SKILL.md) | Create professional technical diagrams |
+| Skill                                                                              | Description                                      |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------ |
+| [ce:visualizing-with-mermaid](plugins/ce/skills/visualizing-with-mermaid/SKILL.md) | Create professional technical diagrams            |
+| [ce:post-mortem](plugins/ce/skills/post-mortem/SKILL.md)                           | Review sessions to extract actionable improvements |
 
 ### Agents
 
@@ -99,7 +102,7 @@ Expert AI personas for complex work, accessed with `@ce:` prefix:
 
 ### Hooks
 
-- **Prompt submission** - Enforces skill evaluation before implementation to ensure relevant skills are activated
+- **Session start** - Auto-detects project tooling (linters, formatters, type checkers) and injects available skills
 - **Notifications** - Cross-platform alerts when Claude needs input, with git branch info (macOS + Linux)
 
 ---
@@ -241,7 +244,7 @@ ce:systematic-debugging
 
 ```bash
 /ce:review
-git add .
+# Review findings are tracked as a checklist, fix issues, then:
 /ce:commit
 ```
 
@@ -266,6 +269,13 @@ ce:writing-plans
 ```bash
 /ce:explain src/legacy/payment-processor.js
 ce:refactoring-code
+```
+
+**Review a session for improvements:**
+
+```bash
+/ce:post-mortem
+# Analyzes what happened, identifies friction, proposes concrete actions
 ```
 
 ### Understanding the System
@@ -341,8 +351,8 @@ This will be accessible as `@ce:my-agent`.
     └── ce/
         ├── .claude-plugin/
         │   └── plugin.json       # Plugin metadata
-        ├── commands/             # 14 commands (/ce:test, /ce:plan, /ce:init, etc.)
-        ├── skills/               # 20 skills (ce:writing-tests, etc.)
+        ├── commands/             # 15 commands (/ce:test, /ce:plan, /ce:post-mortem, etc.)
+        ├── skills/               # 22 skills (ce:writing-tests, ce:preflight-checks, etc.)
         ├── agents/               # 4 agents (@ce:code-reviewer, @ce:haiku, etc.)
         └── hooks/                # Session automation
 ```

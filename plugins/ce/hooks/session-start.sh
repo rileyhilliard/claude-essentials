@@ -92,6 +92,51 @@ build_example() {
     echo "[THEN and ONLY THEN start implementation]"
 }
 
+# Detect project tooling (lightweight file-existence checks only)
+detect_project_tools() {
+    local tools=""
+
+    # Package managers and runtimes
+    [ -f "package.json" ] && tools="${tools}node "
+    [ -f "go.mod" ] && tools="${tools}go "
+    [ -f "pyproject.toml" ] && tools="${tools}python "
+    [ -f "Cargo.toml" ] && tools="${tools}rust "
+
+    # TypeScript
+    [ -f "tsconfig.json" ] && tools="${tools}tsc "
+
+    # JavaScript linters/formatters
+    for f in .eslintrc .eslintrc.js .eslintrc.json .eslintrc.yml eslint.config.js eslint.config.mjs eslint.config.ts; do
+        if [ -f "$f" ]; then
+            tools="${tools}eslint "
+            break
+        fi
+    done
+    for f in .prettierrc .prettierrc.json .prettierrc.js .prettierrc.yml; do
+        if [ -f "$f" ]; then
+            tools="${tools}prettier "
+            break
+        fi
+    done
+
+    # Python tools (check pyproject.toml sections)
+    if [ -f "pyproject.toml" ]; then
+        grep -q '\[tool\.ruff\]' pyproject.toml 2>/dev/null && tools="${tools}ruff "
+        grep -q '\[tool\.mypy\]' pyproject.toml 2>/dev/null && tools="${tools}mypy "
+        grep -q '\[tool\.black\]' pyproject.toml 2>/dev/null && tools="${tools}black "
+        grep -q '\[tool\.pytest' pyproject.toml 2>/dev/null && tools="${tools}pytest "
+    fi
+    [ -f "mypy.ini" ] && ! echo "$tools" | grep -q "mypy" && tools="${tools}mypy "
+    [ -f ".flake8" ] && tools="${tools}flake8 "
+
+    # Pre-commit
+    [ -f ".pre-commit-config.yaml" ] && tools="${tools}pre-commit "
+
+    echo "$tools"
+}
+
+PROJECT_TOOLS=$(detect_project_tools)
+
 # Main logic to check, update, and notify
 if [ -n "$SKILLS_LIST" ]; then
     example_block=$(build_example)
@@ -123,6 +168,12 @@ The evaluation (Step 1) is WORTHLESS unless you ACTIVATE (Step 2) the skills.
 
 Example of correct sequence:
 ${example_block}
+$(if [ -n "$PROJECT_TOOLS" ]; then echo "
+## Project Tooling (Auto-Detected)
+
+Available tools in this project: ${PROJECT_TOOLS}
+
+When committing or verifying work, use the preflight-checks skill to run these tools."; fi)
 </INSTRUCTION>"
 
     # 2. Determine paths and flags

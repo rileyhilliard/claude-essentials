@@ -74,23 +74,38 @@ Task tool (general-purpose):
 
 All four checks must pass before marking complete:
 
-1. **Code review:** Use `ce:code-reviewer` to review all changes. Fix issues before proceeding. Poor DX/UX is a bug, treat it the same as a runtime error.
+1. **Automated tests:** Run the full test suite. All tests must pass.
 
-2. **Automated tests:** Run the full test suite. All tests must pass.
-
-3. **Manual verification:** Automated tests aren't sufficient. Actually exercise the changes:
+2. **Manual verification:** Automated tests aren't sufficient. Actually exercise the changes:
    - **API changes:** Curl endpoints with realistic payloads
    - **External integrations:** Test against real services to catch rate limiting, format drift, bot detection
    - **CLI changes:** Run actual commands, verify output
    - **Parser changes:** Feed real data, not just fixtures
 
-4. **DX quality:** During manual testing, watch for friction:
+3. **DX quality:** During manual testing, watch for friction:
    - Confusing error messages
    - Noisy output (telemetry spam, verbose logging)
    - Inconsistent behavior across similar endpoints
    - Rough edges that technically work but feel bad
 
    Fix DX issues inline or document for follow-up. Don't ship friction.
+
+4. **Code review (mandatory):** After tests pass and manual verification is done, dispatch the `ce:code-reviewer` agent via Task tool to review the full diff against the base branch. This step is not optional.
+
+   Load relevant domain skills into the agent based on what was implemented. Evaluate which apply and include them in the agent prompt:
+   - `Skill(ce:architecting-systems)` - system design, module boundaries
+   - `Skill(ce:managing-databases)` - database work
+   - `Skill(ce:handling-errors)` - error handling
+   - `Skill(ce:writing-tests)` - test quality
+   - `Skill(ce:migrating-code)` - migrations
+   - `Skill(ce:optimizing-performance)` - performance work
+   - `Skill(ce:refactoring-code)` - refactoring
+
+   Handle the review verdict:
+   - **Must fix:** Fix all Critical and Important issues before marking complete
+   - **Suggestions:** Fix these too unless there's a clear reason not to
+
+   Plan execution is not done until review findings are addressed.
 
 ## 5. Commit
 

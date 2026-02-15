@@ -1,7 +1,7 @@
 ---
 description: Create a well-formatted git commit for current changes
 argument-hint: "[context]"
-allowed-tools: Bash, Task
+allowed-tools: Bash, Task, Skill
 ---
 
 Create a git commit using the appropriate path based on your current knowledge.
@@ -20,20 +20,42 @@ Create a git commit using the appropriate path based on your current knowledge.
 
 ## Path A: Direct Commit (You Have Context)
 
-1. **Quick verification:**
+Load the preflight-checks skill: `Skill(ce:preflight-checks)`
+
+1. **Preflight checks:**
+   Run preflight checks on staged files before committing. Fix formatting/lint issues, re-stage fixed files.
+
+2. **Quick verification:**
    ```bash
    git diff --cached --name-only  # or git diff --name-only for unstaged
    ```
    Confirm the files match what you expect from your work.
 
-2. **Draft the message** following Conventional Commits (schema below).
+3. **Draft the message** following Conventional Commits (schema below).
 
-3. **Execute:**
+4. **Execute:**
    ```bash
    git commit -m "your_header" -m "your_body"
    ```
 
-4. **Handle failure:** If pre-commit hooks fail, report the error and stop. Don't auto-fix.
+5. **Handle pre-commit failure** (max 3 attempts):
+
+   If `git commit` fails (exit code != 0):
+
+   a. Parse the error output. Identify what failed: formatting, lint, type errors, or tests.
+
+   b. **Auto-fix if possible:**
+      - Formatters: run the formatter directly (`prettier --write`, `black`, `ruff format`, `gofmt -w`)
+      - Linters with auto-fix: `eslint --fix`, `ruff check --fix`
+      - Type errors / test failures: read the error, fix the code
+
+   c. Re-stage fixed files and retry the commit.
+
+   d. After 3 failed attempts, **escalate**:
+      - Status: FAILED (after 3 attempts)
+      - Attempts log: what was tried each round
+      - Remaining errors: current error output
+      - Drafted message: the commit message for when errors are resolved
 
 ## Path B: Delegate to Haiku Agent (Ambiguous)
 
@@ -62,13 +84,15 @@ Default context: staged (use "unstaged" only if user specifies)
 
 **Failure Handling (Pre-commit Hooks)**
 
-If `git commit` fails (exit code != 0):
-1. STOP. Do not attempt to fix linting or test errors
-2. REPORT with:
+If `git commit` fails (exit code != 0), try to fix it (max 3 attempts):
+1. Parse the error output to identify the failure type
+2. For formatting/lint errors: run the project's formatter/linter with --fix flag
+3. Re-stage changed files and retry the commit
+4. If still failing after 3 attempts, REPORT with:
    - Status: FAILED
-   - Error Output: The stderr from the git command
-   - Drafted Message: The message you tried to use
-   - Recommendation: "Please fix the errors listed above"
+   - Attempts: What was tried each round
+   - Error Output: Current errors
+   - Drafted Message: The commit message for when errors are resolved
 ```
 
 ## Commit Message Style

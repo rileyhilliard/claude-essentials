@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Essential Claude Code configuration with practical commands, specialized agents, and battle-tested development skills for daily workflows",
-    "version": "2.3.0"
+    "version": "2.4.0"
   },
   "plugins": [
     {
       "name": "ce",
       "source": "./plugins/ce/",
       "description": "Claude Essentials - Complete development toolkit with 14 commands, 20 skills, and 4 agents unified under ce namespace",
-      "version": "2.3.0",
+      "version": "2.4.0",
       "author": {
         "name": "Riley Hilliard",
         "url": "https://github.com/rileyhilliard"

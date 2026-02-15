@@ -20,11 +20,15 @@ Write step-by-step implementation plans for agentic execution. Each task should 
 
 ## Specification
 
-**Goal:** [What we're building and why]
+**Problem:** [What's broken, missing, or needed. Describe the current state and why it's insufficient. Be specific enough that someone unfamiliar with the codebase understands the issue.]
+
+**Goal:** [What the end state looks like after this work is done. Describe the user/developer experience, not the implementation.]
+
+**Scope:** [What's in and what's out. Explicit boundaries prevent scope creep.]
 
 **Success Criteria:**
 
-- [ ] Criterion 1
+- [ ] Criterion 1 (measurable/verifiable)
 - [ ] Criterion 2
 
 ## Context Loading
@@ -111,6 +115,25 @@ Tasks in the **same subsystem** should be sequential or combined into one task.
 2. **Context per task:** List files the agent should read first
 3. **Verify every task:** End with a command that proves it works
 4. **One agent per task:** All steps in a task are handled by the same agent
+
+## Before Presenting
+
+Before presenting the plan to the user, dispatch the `ce:devils-advocate` agent via Task tool to review it:
+
+- Pass the full drafted plan text to the agent
+- Load relevant domain skills based on what the plan involves. Evaluate which of these apply and include them in the agent prompt:
+  - `Skill(ce:architecting-systems)` - system design, module boundaries, dependencies
+  - `Skill(ce:managing-databases)` - database schemas, queries, migrations
+  - `Skill(ce:handling-errors)` - error handling patterns
+  - `Skill(ce:writing-tests)` - test strategy and quality
+  - `Skill(ce:migrating-code)` - code migrations, API versioning
+  - `Skill(ce:optimizing-performance)` - performance-sensitive work
+  - `Skill(ce:refactoring-code)` - structural refactoring
+- The agent will look for: unstated assumptions, missing edge cases, tasks that are too vague, missing dependencies between tasks, verification gaps
+- Incorporate valid feedback into the plan
+- Note what the review caught in a brief "Review notes" comment at the bottom of the plan
+
+Skip this step only if the plan is trivial (< 3 tasks, single subsystem, no architectural decisions).
 
 ## Large Plans
 
