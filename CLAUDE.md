@@ -93,7 +93,7 @@ The marketplace configuration in `.claude-plugin/marketplace.json` defines the c
 
 **Important**:
 
-- The `hooks` field must be a string path to a JSON file, not an array. Shell scripts are referenced within the JSON file itself.
+- The `hooks` field, if declared in marketplace.json, must be an **inline object** (not a string path). Alternatively, omit it and let Claude Code auto-discover the `hooks/hooks.json` file in the plugin directory.
 - The `references` field is NOT supported in marketplace.json.
 - File paths in `commands`, `skills`, and `agents` arrays must NOT include namespace prefixes (e.g., use `./skills/writing-tests` not `./skills/ce:writing-tests`).
 
@@ -281,7 +281,7 @@ Hooks output JSON to communicate with Claude Code:
 
 The marketplace validates:
 
-- **Hooks field**: Must be a string path to a `.json` file (e.g., `"hooks": "./hooks/hooks.json"`), NOT an array. Shell scripts are referenced within the JSON file itself.
+- **Hooks field**: If declared in marketplace.json, must be an inline object with the hook config (not a string path). Hooks are also auto-discovered from `hooks/hooks.json` in the plugin directory.
 - **No `references` field**: The `references` key is not allowed in marketplace.json plugin definitions. Reference files can exist in the directory structure but cannot be declared in plugin metadata.
 - Valid YAML frontmatter in all markdown files
 - JSON files must be valid
