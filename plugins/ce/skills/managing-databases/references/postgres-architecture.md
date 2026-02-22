@@ -1,113 +1,90 @@
 # PostgreSQL Architecture & Maintenance
 
-Configuration and maintenance patterns for PostgreSQL.
+Non-obvious configuration, maintenance gotchas, and operational patterns for PostgreSQL.
 
 ## Contents
 
 - Partitioning decisions
-- Indexing strategy
-- VACUUM and ANALYZE tuning
-- Memory configuration
-- Connection pooling
+- Indexing gotchas
+- VACUUM and autovacuum tuning
+- work_mem traps
 - Bloat management
 
 ## Partitioning decisions
 
 ### When to partition
 
-| Condition | Partition? |
-|-----------|------------|
-| Table >100M rows | Yes |
-| Time-based retention (delete old data) | Yes |
-| Queries always filter by a specific column | Yes |
-| Table <10M rows | No |
-| Queries scan full table anyway | No |
+| Condition | Partition? | Why |
+|-----------|------------|-----|
+| Table >100M rows | Yes | Partition pruning cuts scan scope |
+| Time-based retention (delete old data) | Yes | Drop partition instead of DELETE (instant, no bloat) |
+| Queries always filter by a specific column | Yes | Pruning eliminates irrelevant partitions |
+| Table <10M rows | No | Planning overhead outweighs pruning benefit |
+| Queries scan full table anyway | No | No pruning opportunity |
 
 ### Partition count guidelines
 
 - Aim for dozens to low hundreds of partitions
 - Each partition should have >10,000 rows
-- Too many partitions = planning overhead
+- Too many partitions = planning overhead (query planner evaluates every partition)
 - Too few = no pruning benefit
 
-### Implementation
+### Automate with pg_partman
+
+Manual partition creation is error-prone. Forgetting to create next month's partition causes insert failures.
 
 ```sql
--- Range partitioning by date (most common)
-CREATE TABLE events (
-    id BIGINT,
-    created_at TIMESTAMPTZ,
-    data JSONB
-) PARTITION BY RANGE (created_at);
-
--- Create partitions
-CREATE TABLE events_2024_01 PARTITION OF events
-    FOR VALUES FROM ('2024-01-01') TO ('2024-02-01');
-```
-
-**Automation:** Use `pg_partman` for automatic partition creation and retention.
-
-```sql
--- pg_partman setup
 SELECT partman.create_parent(
     p_parent_table := 'public.events',
     p_control := 'created_at',
     p_type := 'native',
     p_interval := 'monthly',
-    p_premake := 3
+    p_premake := 3  -- Create 3 future partitions
 );
 ```
 
-## Indexing strategy
+## Indexing gotchas
 
-### Index type selection
+### Partial indexes (the most underused PostgreSQL feature)
 
-| Use case | Index type |
-|----------|------------|
-| Equality/range on scalar | B-tree (default) |
-| Full-text search | GIN on tsvector |
-| JSONB containment (`@>`) | GIN |
-| JSONB key existence (`?`) | GIN |
-| Array containment | GIN |
-| Geometric/spatial | GiST or SP-GiST |
-| Low-cardinality column | BRIN (if data is clustered) |
-
-### Partial indexes
-
-Index only the rows you query:
+Index only the rows you actually query. Dramatically smaller, faster, and cheaper to maintain than full indexes.
 
 ```sql
--- Only index active users
+-- Only index active users (if 90% of queries filter on active)
 CREATE INDEX idx_users_active_email ON users(email)
     WHERE status = 'active';
 
--- Only index recent data
+-- Only index recent data (if old data is rarely queried)
 CREATE INDEX idx_events_recent ON events(type)
     WHERE created_at > '2024-01-01';
 ```
 
-### Covering indexes (INCLUDE)
+Claude tends to generate full indexes by default. Partial indexes should be the first consideration when the query workload consistently filters on a specific condition.
 
-Avoid heap lookups for common queries:
+### Covering indexes avoid heap lookups
 
 ```sql
--- Include columns needed by query
+-- INCLUDE adds columns to leaf pages without affecting index ordering
 CREATE INDEX idx_orders_user ON orders(user_id)
     INCLUDE (status, total);
 
--- Query can be index-only scan
+-- This query becomes an index-only scan (no table heap access)
 SELECT status, total FROM orders WHERE user_id = 123;
 ```
 
-### Index maintenance
+The gotcha: index-only scans require a recently vacuumed table (visibility map must be current). High heap fetches in `EXPLAIN ANALYZE` means you need to vacuum.
+
+### Finding wasted indexes
+
+Unused indexes slow writes and waste storage. Check periodically:
 
 ```sql
--- Find unused indexes
+-- Find indexes that have never been scanned
 SELECT schemaname, relname, indexrelname, idx_scan
 FROM pg_stat_user_indexes
 WHERE idx_scan = 0 AND indexrelname NOT LIKE '%_pkey';
 
--- Find duplicate indexes
+-- Find duplicate indexes (same columns, different names)
 SELECT pg_size_pretty(sum(pg_relation_size(idx))::bigint) as size,
        (array_agg(idx))[1] as idx1, (array_agg(idx))[2] as idx2
 FROM (SELECT indexrelid::regclass as idx, indrelid, indkey
@@ -115,91 +92,83 @@ FROM (SELECT indexrelid::regclass as idx, indrelid, indkey
 GROUP BY indrelid, indkey HAVING count(*) > 1;
 ```
 
-## VACUUM and ANALYZE tuning
+## VACUUM and autovacuum tuning
 
-### Autovacuum settings for high-churn tables
+### The default autovacuum threshold trap
+
+Default autovacuum triggers at 20% dead tuples. On a 100M row table, that means 20M dead tuples before autovacuum kicks in. This causes massive bloat on large, high-churn tables.
 
 ```sql
--- Aggressive autovacuum on hot tables
+-- Fix: aggressive autovacuum on hot tables
 ALTER TABLE events SET (
-    autovacuum_vacuum_scale_factor = 0.02,  -- vacuum at 2% dead (vs 20% default)
-    autovacuum_analyze_scale_factor = 0.01, -- analyze at 1% change
-    autovacuum_vacuum_cost_limit = 1000     -- work harder per run
+    autovacuum_vacuum_scale_factor = 0.02,  -- Vacuum at 2% dead (vs 20% default)
+    autovacuum_analyze_scale_factor = 0.01, -- Analyze at 1% change
+    autovacuum_vacuum_cost_limit = 1000     -- Work harder per run
 );
 ```
 
-### Manual vacuum for big cleanups
+### Checking if autovacuum is keeping up
 
 ```sql
--- Check dead tuple count
 SELECT relname, n_dead_tup, last_vacuum, last_autovacuum
 FROM pg_stat_user_tables
 WHERE n_dead_tup > 10000
 ORDER BY n_dead_tup DESC;
-
--- Manual vacuum if needed (non-blocking)
-VACUUM (VERBOSE) events;
 ```
 
-## Memory configuration
+If `n_dead_tup` is consistently high and `last_autovacuum` is recent, autovacuum is running but not keeping up. Increase `autovacuum_vacuum_cost_limit` or decrease the scale factor.
 
-### Key settings
+## work_mem traps
 
-| Setting | Guideline | Notes |
-|---------|-----------|-------|
-| `shared_buffers` | 25% of RAM, cap at 8GB | PostgreSQL's main cache |
-| `effective_cache_size` | 75% of RAM | Tells planner about OS cache |
-| `work_mem` | 32-256MB | Per-operation sort/hash memory |
-| `maintenance_work_mem` | 1-2GB | For VACUUM, CREATE INDEX |
+### Per-operation, not per-query
 
-### work_mem tuning
+`work_mem` is allocated **per sort/hash operation**, not per query. A complex query with 10 sorts uses 10x `work_mem`. Setting it to 256MB globally with 100 concurrent connections could use 256GB of RAM in the worst case.
+
+### Detecting disk spills
 
 ```sql
--- Check if sorts are spilling to disk
 EXPLAIN (ANALYZE, BUFFERS) SELECT ... ORDER BY ...;
--- Look for "Sort Method: external merge"
+-- Look for "Sort Method: external merge" = sort spilled to disk
+-- "Sort Method: quicksort" = fits in memory
+```
 
--- Increase for session if needed
+### Safe pattern: set per-session, not globally
+
+```sql
+-- Global: keep conservative (32-64MB)
+-- Per-session for heavy analytical queries:
 SET work_mem = '256MB';
+-- Runs your big query
+RESET work_mem;
 ```
-
-**Warning:** `work_mem` is per-operation, not per-query. A complex query with 10 sorts could use 10x work_mem.
-
-## Connection pooling
-
-### When to use
-
-- >50 concurrent connections
-- Short-lived connections (web requests)
-- Connection setup overhead matters
-
-### PgBouncer configuration
-
-```ini
-[databases]
-mydb = host=localhost dbname=mydb
-
-[pgbouncer]
-pool_mode = transaction        ; Release connection after each transaction
-max_client_conn = 1000         ; Accept many client connections
-default_pool_size = 20         ; But only 20 actual Postgres connections
-reserve_pool_size = 5          ; Extra for bursts
-```
-
-**Pool modes:**
-- `session`: Safest, least efficient (prepared statements work)
-- `transaction`: Good balance (prepared statements don't work across transactions)
-- `statement`: Most aggressive (no transactions)
 
 ## Bloat management
+
+### VACUUM FULL gotchas
+
+VACUUM FULL rewrites the entire table. Two things people don't expect:
+
+1. **Locks the table for the entire duration.** No reads, no writes. On a 500GB table, this can be hours.
+2. **Requires free disk space equal to the table size.** A 500GB bloated table needs 500GB free space to VACUUM FULL.
+
+### Better alternatives
+
+| Method | Locks? | Disk space needed | Speed |
+|--------|--------|-------------------|-------|
+| `VACUUM FULL` | Full table lock | Equal to table size | Slow |
+| `pg_repack` | No (online) | Equal to table size | Moderate |
+| Create new table + swap | Brief lock at swap | Equal to table size | Fast for extreme cases |
+
+```bash
+# pg_repack: online, no locks, preferred method
+pg_repack -d mydb -t events
+```
 
 ### Detecting bloat
 
 ```sql
--- Table bloat estimate
 SELECT schemaname, relname,
     pg_size_pretty(pg_total_relation_size(relid)) as total_size,
-    pg_size_pretty(pg_relation_size(relid)) as table_size,
     n_dead_tup,
     round(100.0 * n_dead_tup / nullif(n_live_tup + n_dead_tup, 0), 1) as dead_pct
 FROM pg_stat_user_tables
@@ -207,23 +176,4 @@ WHERE n_dead_tup > 1000
 ORDER BY n_dead_tup DESC;
 ```
 
-### Fixing bloat
-
-**Option 1: VACUUM FULL** (locks table, rewrites completely)
-```sql
-VACUUM FULL events;  -- Blocks all access
-```
-
-**Warning:** Requires disk space equal to table size. A 500GB bloated table needs 500GB free space to VACUUM FULL.
-
-**Option 2: pg_repack** (online, no locks)
-```bash
-pg_repack -d mydb -t events
-```
-
-**Option 3: Create new table** (for extreme cases)
-```sql
-CREATE TABLE events_new (LIKE events INCLUDING ALL);
-INSERT INTO events_new SELECT * FROM events;
--- Then swap tables in a transaction
-```
+Dead tuple percentage above 20% is a strong signal for bloat. Above 50% means autovacuum has fallen behind significantly.

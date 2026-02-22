@@ -1,212 +1,146 @@
 # DuckDB Architecture
 
-Understanding DuckDB's storage model and when it excels.
+Non-obvious constraints and configuration for DuckDB in production systems.
 
 ## Contents
 
-- Columnar storage tradeoffs
-- Vectorized execution
-- Thread configuration
+- Workload boundaries
+- Concurrency model
+- Thread configuration traps
 - Out-of-core processing
-- Persistence modes
 - pg_duckdb integration
 
-## Columnar storage tradeoffs
+## Workload boundaries
 
-### When DuckDB excels
+### Where DuckDB excels vs where it doesn't
 
-| Workload | DuckDB performance |
-|----------|-------------------|
-| Full table aggregations | Excellent (10-1000x vs row stores) |
-| Column subset scans | Excellent |
-| Filter + aggregate | Excellent |
-| Single row lookup by ID | Poor (use PostgreSQL) |
-| Many small transactions | Poor (use PostgreSQL) |
-| Heavy updates/deletes | Poor (append-only is fine) |
+| Workload | DuckDB | Why |
+|----------|--------|-----|
+| Full table aggregations | Excellent | Columnar + vectorized = 10-1000x vs row stores |
+| Column subset scans | Excellent | Only reads needed columns |
+| Filter + aggregate | Excellent | Predicate pushdown + vectorized filtering |
+| Single row lookup by ID | Poor | No row-level index seek. Use PostgreSQL |
+| Many small transactions | Poor | Optimized for analytical batch, not OLTP |
+| Heavy updates/deletes | Poor | Append-oriented storage. UPDATE rewrites segments |
 
-### Why columnar is fast for analytics
+The most common mistake is trying to use DuckDB for OLTP-style workloads. If your queries are mostly point lookups or single-row updates, stay in PostgreSQL.
 
-- Only reads columns needed by query
-- Same-type data compresses well (often 10x)
-- SIMD operations on column batches
-- No row reconstruction for aggregates
+## Concurrency model
 
-### Data layout implications
+**This is the most critical constraint to understand when designing systems with DuckDB.**
 
-```sql
--- This is fast: scans only 2 columns
-SELECT region, sum(sales) FROM orders GROUP BY region;
+DuckDB is single-writer, multiple-reader.
 
--- This is slower: must read all columns
-SELECT * FROM orders LIMIT 100;
+| Operation | Concurrent access |
+|-----------|------------------|
+| Multiple readers | Yes (with `read_only=True`) |
+| Single writer | Yes |
+| Multiple writers | No (will fail or corrupt data) |
+
+### Why this matters for system design
+
+If you design a system expecting DuckDB to handle concurrent writes like PostgreSQL, you'll hit lock contention errors or data corruption. There's no warning before corruption in some edge cases.
+
+```python
+# Safe: Multiple processes can read
+conn = duckdb.connect('db.duckdb', read_only=True)
+
+# Dangerous: Only ONE process should write
+conn = duckdb.connect('db.duckdb')  # Exclusive write lock
 ```
 
-## Vectorized execution
+### The standard hybrid pattern
 
-DuckDB processes data in vectors (typically 1024-2048 rows) that fit in CPU L1 cache.
+- PostgreSQL handles writes, metadata, and OLTP
+- DuckDB reads Parquet files for analytics
+- No concurrent write contention because DuckDB never writes
 
-### What this means in practice
+### In-process gotcha
 
-- Don't worry about row-by-row overhead
-- Batch operations are automatically vectorized
-- User-defined functions should be vectorized when possible
+DuckDB runs in-process (embedded). Each Python process gets its own DuckDB instance. Two processes opening the same `.duckdb` file for writing will conflict, and the error messages aren't always clear about what went wrong.
 
-### Checking execution
+## Thread configuration traps
 
-```sql
-EXPLAIN ANALYZE SELECT sum(amount) FROM transactions WHERE status = 'completed';
--- Shows operator timing and cardinalities
-```
+### Default is usually correct
 
-## Thread configuration
+DuckDB automatically uses all available CPU cores. Don't tune this unless you have a specific reason.
 
-### Default behavior
+### Remote data: increase threads beyond CPU count
 
-DuckDB automatically uses all available CPU cores. Usually this is optimal.
-
-### Remote data special case
-
-For queries over HTTP (Parquet files on S3, HTTP servers), increase threads beyond CPU count:
+For queries over HTTP/S3 (Parquet files on remote storage), threads spend most of their time waiting for network I/O. More threads = more concurrent requests = better bandwidth utilization.
 
 ```sql
--- Network-bound queries benefit from more threads
-SET threads = 32;  -- Even on 8-core machine
+-- Network-bound: more threads than cores is correct
+SET threads = 32;  -- Even on an 8-core machine
 
--- Why: threads spend time waiting for network I/O
--- More threads = more concurrent requests = better bandwidth utilization
+-- CPU-bound (local data): leave at default or match cores
+SET threads = 8;
 ```
 
-### Reducing parallelism
+### Resource-constrained environments
 
-For resource-constrained environments:
+When DuckDB runs alongside other services:
 
 ```sql
 SET threads = 2;  -- Limit CPU usage
 SET memory_limit = '2GB';  -- Limit memory
 ```
 
+Without memory limits, DuckDB will happily use all available RAM for hash tables and sorts, starving other processes.
+
 ## Out-of-core processing
 
-DuckDB handles datasets larger than RAM by spilling to disk.
+DuckDB handles datasets larger than RAM by spilling to disk. This is automatic but has gotchas.
 
-### How it works
+### Temp directory matters
 
-- Automatically spills hash tables and sorts to temp directory
-- Transparent to user (just slower)
-- No configuration needed for basic cases
-
-### Configuring temp storage
+Spilling goes to the system temp directory by default. On servers with small `/tmp` partitions, this silently fails when disk fills up.
 
 ```sql
--- Set temp directory for spilling
+-- Point to a fast SSD with enough space
 SET temp_directory = '/path/to/fast/ssd/duckdb_temp';
-
--- Check memory usage during query
-SELECT * FROM duckdb_memory();
 ```
 
-### Memory limits
+### Memory limits and spilling behavior
 
 ```sql
 -- Set explicit memory limit
 SET memory_limit = '8GB';
 
--- Check current setting
-SELECT current_setting('memory_limit');
+-- Monitor memory usage during a query
+SELECT * FROM duckdb_memory();
 ```
 
-## Concurrency model
-
-**Critical limitation:** DuckDB is single-writer, multiple-reader.
-
-| Operation | Concurrent access |
-|-----------|------------------|
-| Multiple readers | Yes (with `read_only=True`) |
-| Single writer | Yes |
-| Multiple writers | No (will fail or corrupt) |
-
-### For web applications
-
-Use DuckDB for reads only. Write through a different path (PostgreSQL, direct Parquet files).
-
-```python
-# Safe: Multiple processes can read
-conn = duckdb.connect('db.duckdb', read_only=True)
-
-# Unsafe: Only one process should write
-conn = duckdb.connect('db.duckdb')  # Exclusive write lock
-```
-
-### Why this matters
-
-If you design a system expecting DuckDB to handle concurrent writes like PostgreSQL, you'll hit lock contention errors or corruption. The common pattern is:
-- PostgreSQL for writes and metadata
-- DuckDB for analytical reads on Parquet files
-
-## Persistence modes
-
-### In-memory (default)
-
-```python
-import duckdb
-conn = duckdb.connect()  # In-memory, lost on close
-```
-
-### Persistent file
-
-```python
-conn = duckdb.connect('my_database.duckdb')
-```
-
-### Read-only mode
-
-```python
-conn = duckdb.connect('my_database.duckdb', read_only=True)
-# Multiple processes can read simultaneously
-```
-
-### Choosing persistence mode
-
-| Use case | Mode |
-|----------|------|
-| Ad-hoc analysis | In-memory |
-| Repeated queries on same data | Persistent |
-| Shared read access | Persistent + read_only |
-| ETL intermediate steps | In-memory |
+When memory limit is hit, DuckDB spills hash tables and sorts to disk. Performance degrades gracefully but can be 10-100x slower for hash joins that don't fit in memory. If a query is unexpectedly slow, check if it's spilling.
 
 ## pg_duckdb integration
 
-Run DuckDB queries inside PostgreSQL for analytics on Postgres data.
+Run DuckDB's analytical engine inside PostgreSQL. Avoid data movement for mixed OLTP/analytics workloads.
 
-### When to use pg_duckdb
+### When pg_duckdb is the right call
 
-- Analytical queries on PostgreSQL tables
-- Avoid data movement for mixed workloads
-- Query Parquet/CSV directly from PostgreSQL
+| Scenario | Use pg_duckdb? |
+|----------|---------------|
+| Analytical queries on existing PostgreSQL tables | Yes (avoids data export) |
+| Query Parquet/CSV from within PostgreSQL | Yes |
+| Simple OLTP queries (lookups, inserts) | No (PostgreSQL is faster) |
+| Queries using PostgreSQL-specific features (CTEs, lateral joins) | No (may not be supported) |
+| Need DuckDB-specific SQL extensions | Check compatibility |
 
-### Basic usage
+### Gotchas
+
+- Not all PostgreSQL features are supported in the DuckDB execution path
+- Write operations always go through PostgreSQL regardless of the setting
+- Some type conversions between PostgreSQL and DuckDB types may produce unexpected results (especially for timestamps and numeric precision)
+- `SET duckdb.execution = true` routes *supported* queries to DuckDB. If a query isn't supported, it silently falls back to PostgreSQL with no indication
 
 ```sql
--- Enable DuckDB execution
+-- Enable DuckDB execution for analytical queries
 SET duckdb.execution = true;
 
--- Query uses DuckDB engine automatically for supported queries
-SELECT region, sum(sales)
-FROM orders
-GROUP BY region;
+-- This may or may not use DuckDB depending on query features
+SELECT region, sum(sales) FROM orders GROUP BY region;
 
--- Query external Parquet
+-- Query external Parquet directly from PostgreSQL
 SELECT * FROM read_parquet('s3://bucket/data/*.parquet');
 ```
-
-### Limitations
-
-- Not all PostgreSQL features supported
-- Write operations still use PostgreSQL
-- Some type conversions may differ
-
-### When NOT to use pg_duckdb
-
-- Simple OLTP queries (PostgreSQL is faster)
-- Queries with PostgreSQL-specific features
-- When DuckDB's query semantics differ from PostgreSQL's

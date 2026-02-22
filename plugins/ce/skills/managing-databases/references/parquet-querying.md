@@ -1,6 +1,6 @@
 # Parquet Query Optimization
 
-How to write queries that leverage Parquet's structure for fast execution.
+Non-obvious query patterns that leverage Parquet's structure for fast execution.
 
 ## Contents
 
@@ -196,36 +196,7 @@ When queries filter by multiple columns equally, consider z-ordering (interleave
 
 ## Column projection
 
-Only read columns you need.
-
-### Impact of SELECT *
-
-```sql
--- Bad: reads all columns
-SELECT * FROM read_parquet('data.parquet') WHERE year = 2024;
-
--- Good: reads only needed columns
-SELECT id, name, amount FROM read_parquet('data.parquet') WHERE year = 2024;
-```
-
-### Quantifying the difference
-
-| Scenario | Data read |
-|----------|-----------|
-| 100 columns, SELECT * | 100% |
-| 100 columns, SELECT 3 columns | ~3% |
-| Plus predicate pushdown | Even less |
-
-### Remote data amplification
-
-For Parquet files on S3/HTTP, column projection is critical:
-
-```sql
--- Remote file: projection reduces network transfer
-SELECT id, status
-FROM read_parquet('s3://bucket/large_file.parquet')
-WHERE date = '2024-01-01';
-```
+Always project only needed columns. On remote files (S3/HTTP), this is the single biggest performance lever: a 100-column file where you SELECT 3 columns reads ~3% of the data. Combined with predicate pushdown, you may read <1%.
 
 ## Statistics limitations
 
