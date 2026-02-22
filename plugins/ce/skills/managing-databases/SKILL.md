@@ -1,11 +1,11 @@
 ---
 name: managing-databases
-description: Guides database architecture decisions for PostgreSQL, DuckDB, Parquet, and PGVector. Use when designing schemas, choosing storage strategies, optimizing queries, tuning maintenance, configuring vector search, or diagnosing performance issues across OLTP, OLAP, and similarity search workloads.
+description: Guides database architecture decisions for PostgreSQL, DuckDB, Parquet, PGVector, and Neo4j. Use when designing schemas, choosing storage strategies, optimizing queries, tuning maintenance, configuring vector search, modeling graph data, or diagnosing performance issues across OLTP, OLAP, similarity search, and graph workloads.
 ---
 
 # Database Management
 
-Decision guidance for PostgreSQL, DuckDB, and Parquet in hybrid storage architectures.
+Decision guidance for PostgreSQL, DuckDB, Parquet, and Neo4j in hybrid storage architectures.
 
 ## Contents
 
@@ -14,6 +14,7 @@ Decision guidance for PostgreSQL, DuckDB, and Parquet in hybrid storage architec
 - DuckDB quick reference
 - Parquet quick reference
 - PGVector quick reference
+- Neo4j quick reference
 - Cross-database conventions
 - Performance debugging checklist
 
@@ -30,6 +31,9 @@ Decision guidance for PostgreSQL, DuckDB, and Parquet in hybrid storage architec
 | Time-series analytics                 | DuckDB on Parquet         | Scan performance                    |
 | Vector similarity search              | PostgreSQL + PGVector     | HNSW/IVFFlat indexes, hybrid search |
 | RAG / semantic search                 | PostgreSQL + PGVector     | Embeddings + metadata in same DB    |
+| Graph traversals / relationships      | Neo4j                     | Native graph, index-free adjacency  |
+| Pattern matching / fraud detection    | Neo4j                     | Multi-hop traversal, path finding   |
+| Knowledge graphs / ontologies         | Neo4j                     | Flexible schema, relationship-first |
 
 **Hybrid pattern example:**
 
@@ -89,6 +93,21 @@ See [references/parquet-querying.md](references/parquet-querying.md) for query o
 See [references/pgvector-architecture.md](references/pgvector-architecture.md) for index configuration.
 See [references/pgvector-querying.md](references/pgvector-querying.md) for hybrid search and filtering.
 
+## Neo4j quick reference
+
+**Use for:** Graph traversals, relationship-heavy queries, pattern matching, knowledge graphs.
+
+**Key decisions:**
+
+- Model around your queries, not your source data
+- Promote properties to nodes when you need to traverse through shared values
+- Use specific relationship types to avoid supernode bottlenecks
+- Bound all variable-length paths (`[*1..5]`, never `[*]`)
+- Use parameters in Cypher for execution plan caching
+
+See [references/neo4j-architecture.md](references/neo4j-architecture.md) for data modeling, indexing, and maintenance.
+See [references/neo4j-querying.md](references/neo4j-querying.md) for Cypher optimization and anti-patterns.
+
 ## Cross-database conventions
 
 ### Naming
@@ -96,7 +115,9 @@ See [references/pgvector-querying.md](references/pgvector-querying.md) for hybri
 | Convention             | Example                  | Applies to    |
 | ---------------------- | ------------------------ | ------------- |
 | snake_case tables      | `dataset_jobs`           | All           |
-| snake_case columns     | `created_at`             | All           |
+| snake_case columns     | `created_at`             | PG, DuckDB, Parquet |
+| camelCase properties   | `createdAt`              | Neo4j         |
+| PascalCase labels      | `:UserAccount`           | Neo4j         |
 | Singular table names   | `dataset` not `datasets` | PostgreSQL    |
 | Plural for collections | `datasets/` directory    | Parquet files |
 
@@ -146,3 +167,12 @@ See [references/pgvector-querying.md](references/pgvector-querying.md) for hybri
 3. Enable iterative scan for filtered queries
 4. Check if IVFFlat recall degraded (rebuild index if heavily updated)
 5. Consider partial indexes for common filters
+
+### Neo4j slow query
+
+1. Run `PROFILE` on the query, read operators bottom-up
+2. Look for `AllNodesScan` or `NodeByLabelScan` (missing index)
+3. Check for `CartesianProduct` (disconnected MATCH patterns)
+4. Verify parameters are used instead of literals (plan caching)
+5. Check for unbounded variable-length paths
+6. Monitor `page_cache.hit_ratio` (below 98% = need more page cache memory)
