@@ -1,10 +1,12 @@
 ---
 description: Initialize or audit Claude Code configuration for a repository
 argument-hint: "[--audit | --force]"
-allowed-tools: Bash, Read, Write, Glob, Grep, AskUserQuestion
+allowed-tools: Bash, Read, Write, Glob, Grep, AskUserQuestion, Skill
 ---
 
 Initialize or audit `.claude/` configuration for this repository based on detected stack.
+
+**Before generating or auditing any files**, load `Skill(ce:configuring-claude)` for best practices on writing rules, CLAUDE.md, and skills. Load its `references/rules-and-memory.md` reference for rules and CLAUDE.md specifics, and `references/skills.md` if generating project-specific skills.
 
 Arguments:
 
@@ -20,44 +22,15 @@ Arguments:
 
 ---
 
-## Progressive Disclosure Principles
+## Configuration Best Practices
 
-Generated rules and skills follow progressive disclosure to minimize token usage while maintaining depth:
+All generated files (rules, CLAUDE.md, skills) must follow the principles from `ce:configuring-claude`. Key points:
 
-**Three-layer approach:**
-1. **Metadata** (scanned first) - Name and description only
-2. **Main file** (loaded if selected) - Concise patterns, under 500 lines
-3. **Reference files** (loaded on-demand) - Deep details in `references/` subdirectory
-
-**Key rules:**
-- Main files point to reference files, never duplicate content
-- References are always one level deep (no nested references)
-- Reference files include a table of contents for partial reads
 - Rules reference ce:* skills rather than duplicating skill content
+- Main files stay concise; split large content into `references/` subdirectories
+- References are always one level deep (no nested references)
 
-**When to use references/:**
-- Domain-specific schemas or configurations
-- Extensive code examples for different scenarios
-- API documentation that varies by context
-- Style guides with multiple personas
-
-**Example structure:**
-```
-rules/
-├── testing.md                    # Points to ce:writing-tests skill
-└── api/
-    ├── conventions.md            # Main file, ~100 lines
-    └── references/
-        ├── error-codes.md        # Loaded when handling errors
-        └── pagination.md         # Loaded when implementing pagination
-
-skills/
-└── my-project-connector/
-    ├── SKILL.md                  # Main instructions, <500 lines
-    └── references/
-        ├── auth-flows.md         # OAuth, API key, etc.
-        └── rate-limiting.md      # Retry strategies
-```
+See the skill and its references for full details on progressive disclosure, token efficiency, and file structure.
 
 ---
 
@@ -176,7 +149,7 @@ Write all files using the templates below.
 
 ### Step 2: Analyze Against Best Practices
 
-Check for:
+Use `ce:configuring-claude` principles (and its references) as the baseline for what "good" looks like. Check for:
 
 **Missing skill references in rules:**
 - Rules should reference ce:* skills for detailed guidance
@@ -193,7 +166,7 @@ Check for:
 - Python project without python/testing.md
 - TypeScript project without frontend/testing.md
 
-**Progressive disclosure violations:**
+**Progressive disclosure violations (per ce:configuring-claude):**
 - Files over 500 lines that should be split into references/
 - Nested references (references pointing to other references)
 - Duplicated content that should reference a ce:* skill instead
