@@ -78,16 +78,18 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 **Data & Infrastructure:**
 
-| Skill                                                                  | Description                                            |
-| ---------------------------------------------------------------------- | ------------------------------------------------------ |
-| [ce:managing-databases](plugins/ce/skills/managing-databases/SKILL.md) | PostgreSQL, DuckDB, Parquet, and PGVector architecture |
+| Skill                                                                      | Description                                                         |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [ce:managing-databases](plugins/ce/skills/managing-databases/SKILL.md)     | PostgreSQL, DuckDB, Parquet, and PGVector architecture              |
+| [ce:managing-pipelines](plugins/ce/skills/managing-pipelines/SKILL.md)     | GitHub Actions CI/CD security, performance, and deployment patterns |
 
 **Meta Skills:**
 
 | Skill                                                                              | Description                                      |
 | ---------------------------------------------------------------------------------- | ------------------------------------------------ |
-| [ce:visualizing-with-mermaid](plugins/ce/skills/visualizing-with-mermaid/SKILL.md) | Create professional technical diagrams            |
-| [ce:post-mortem](plugins/ce/skills/post-mortem/SKILL.md)                           | Review sessions to extract actionable improvements |
+| [ce:visualizing-with-mermaid](plugins/ce/skills/visualizing-with-mermaid/SKILL.md) | Create professional technical diagrams              |
+| [ce:post-mortem](plugins/ce/skills/post-mortem/SKILL.md)                           | Review sessions to extract actionable improvements  |
+| [ce:configuring-claude](plugins/ce/skills/configuring-claude/SKILL.md)             | Best practices for writing skills, rules, CLAUDE.md |
 
 ### Agents
 
@@ -352,7 +354,7 @@ This will be accessible as `@ce:my-agent`.
         ├── .claude-plugin/
         │   └── plugin.json       # Plugin metadata
         ├── commands/             # 15 commands (/ce:test, /ce:plan, /ce:post-mortem, etc.)
-        ├── skills/               # 22 skills (ce:writing-tests, ce:preflight-checks, etc.)
+        ├── skills/               # 23 skills (ce:writing-tests, ce:preflight-checks, etc.)
         ├── agents/               # 4 agents (@ce:code-reviewer, @ce:haiku, etc.)
         └── hooks/                # Session automation
 ```
