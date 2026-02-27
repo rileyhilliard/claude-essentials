@@ -25,6 +25,7 @@ Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
 | [/ce:fix-issue](plugins/ce/commands/fix-issue.md) | Fix a GitHub issue by number                                       |
 | [/ce:pr](plugins/ce/commands/pr.md)               | Create a pull request with auto-generated description              |
 | [/ce:document](plugins/ce/commands/document.md)   | Create or improve documentation                                    |
+| [/ce:draft-tsd](plugins/ce/commands/draft-tsd.md) | Draft technical specification documents from rough ideas or topics |
 | [/ce:plan](plugins/ce/commands/plan.md)           | Create a detailed implementation plan                              |
 | [/ce:execute](plugins/ce/commands/execute.md)     | Execute an implementation plan from the plans folder               |
 | [/ce:init](plugins/ce/commands/init.md)           | Bootstrap repo with .claude/ config (rules, permissions, settings) |
@@ -77,6 +78,7 @@ Reusable development patterns, accessed with `ce:` prefix:
 | [ce:strategy-writer](plugins/ce/skills/strategy-writer/SKILL.md)                     | Executive-quality strategic documents in Economist/HBR style                                              |
 | [ce:documenting-systems](plugins/ce/skills/documenting-systems/SKILL.md)             | Best practices for writing markdown documentation                                                         |
 | [ce:documenting-code-comments](plugins/ce/skills/documenting-code-comments/SKILL.md) | Standards for self-documenting code and inline comments                                                   |
+| [ce:drafting-tsds](plugins/ce/skills/drafting-tsds/SKILL.md)                         | Create draft technical specification documents exploring solution spaces before implementation            |
 
 **Data & Infrastructure:**
 
