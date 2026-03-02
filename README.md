@@ -2,6 +2,8 @@
 
 A unified development plugin for Claude Code with essential commands, skills, and specialized agents, all accessible under the `ce` namespace.
 
+NOTE: This is a fork, to customise my workflow. All credit for the original files goes to https://github.com/rileyhilliard
+
 <img src="/assets/hackerman.gif" width="100%" alt="hackerman">
 
 ## What's Included
@@ -120,7 +122,7 @@ You need Claude Code installed. If you don't have it yet, head to [claude.com/pr
 1. Add this marketplace to Claude Code:
 
 ```bash
-/plugin marketplace add https://github.com/rileyhilliard/claude-essentials
+/plugin marketplace add https://github.com/Broderick-Westrope/claude-essentials
 ```
 
 2. Install the ce plugin:
