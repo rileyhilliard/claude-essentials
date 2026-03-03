@@ -1,11 +1,14 @@
 ---
 name: optimizing-performance
 description: Measure-first performance optimization that balances gains against complexity. Use when addressing slow code, profiling issues, or evaluating optimization trade-offs.
+argument-hint: "[file-path-or-area]"
 ---
 
 # Optimizing Performance
 
 **Core principle:** Readable code that's "fast enough" beats complex code that's "optimal". Measure first.
+
+**Focus area:** If `$ARGUMENTS` is provided, use it as the optimization target. Otherwise, run `git diff` and focus on unstaged changes. If no unstaged changes exist, ask the user what to optimize.
 
 ## The Golden Rule
 

@@ -7,6 +7,15 @@ description: Analyzes logs efficiently through targeted search and iterative ref
 
 **IRON LAW:** Filter first, then read. Never open a large log file without narrowing it first.
 
+## Delegation
+
+For log files over a few hundred lines, delegate to the `@ce:log-reader` agent. It runs on haiku to keep costs low and context clean. Prompt it with:
+- What to investigate (error text, time window, correlation IDs)
+- Which log files or directories to search
+- The `scripts/` utilities available (see [Utility Scripts](#utility-scripts) below)
+
+The agent has this skill preloaded, so it already knows the methodology. Keep your prompt tight and specific - don't paste log contents into the delegation message.
+
 ## Core Principles
 
 1. **Filter first** - Search/filter before reading

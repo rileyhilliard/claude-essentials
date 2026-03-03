@@ -118,3 +118,7 @@ Before publishing strategy docs:
 - [ ] Recommendation with reasoning?
 - [ ] Tradeoffs acknowledged?
 - [ ] Risks identified with mitigations?
+
+## Executive and Strategy Documents
+
+For board-level strategy memos, market analysis, business cases, or customer research reports, use `Skill(ce:strategy-writer)` instead. It targets executive audiences with Economist/HBR-style narrative writing, evidence hierarchies, and dedicated templates.

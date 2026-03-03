@@ -1,8 +1,3 @@
----
-name: documenting-systems
-description: Creates task-oriented technical documentation with progressive disclosure. Use when writing READMEs, API docs, architecture docs, or markdown documentation.
----
-
 # Technical Documentation
 
 For writing style, tone, and voice guidance, use `Skill(ce:writer)` with **The Engineer** persona.
@@ -64,7 +59,7 @@ Every concept needs a concrete example.
 
 ## Templates
 
-For README, API endpoint, and file organization templates, see [references/templates.md](references/templates.md).
+For README, API endpoint, and file organization templates, see [templates.md](templates.md).
 
 ## Related Skills
 

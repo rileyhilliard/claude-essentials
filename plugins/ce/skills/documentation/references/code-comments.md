@@ -1,8 +1,3 @@
----
-name: documenting-code-comments
-description: Standards for self-documenting code and minimal comments. Use when auditing inline documentation or deciding when comments add value vs clutter.
----
-
 # Code Comments
 
 **Core principle:** The best comment is the one you didn't need to write.
@@ -62,8 +57,8 @@ const userMap = new Map(users.map(u => [u.id, u]));
 ## TODO Format
 
 ```typescript
-// ✅ TODO(JIRA-567): Replace with batch API when available Q1 2025
-// ❌ TODO: fix this later
+// TODO(JIRA-567): Replace with batch API when available Q1 2025
+// TODO: fix this later  <-- avoid: no ticket, no timeline
 ```
 
 ## Audit Checklist

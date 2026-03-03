@@ -1,11 +1,14 @@
 ---
 name: refactoring-code
 description: Improves code structure while preserving behavior through test verification. Use when cleaning up code, reducing duplication, simplifying complexity, or reorganizing modules.
+argument-hint: "<file-path-or-pattern>"
 ---
 
 # Refactoring Code
 
 **Core principle:** Refactoring changes structure, not functionality. If behavior changes, you're rewriting.
+
+**Target:** If `$ARGUMENTS` is provided, use it as the refactoring target. Otherwise, check for unstaged changes. If none, diff against main: `git diff --name-only $([ "$(git rev-parse --abbrev-ref HEAD)" = "main" ] && echo "HEAD^" || echo "main...HEAD")`
 
 ## The Five Phases
 

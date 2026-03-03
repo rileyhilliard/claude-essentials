@@ -7,6 +7,26 @@ description: Enforces precise, minimal design for dashboards and admin interface
 
 **Core philosophy:** Every interface should look designed by a team that obsesses over 1-pixel differences. Not stripped, _crafted_. And designed for its specific context.
 
+## Avoid AI Sameness
+
+AI-generated UIs have a recognizable "median of the internet" feel. Polished but generic, like everything was designed by the same committee. Break out of that by making deliberate choices instead of reaching for defaults.
+
+**AI default patterns to actively avoid:**
+
+| AI default | Why it happens | Do this instead |
+|---|---|---|
+| Indigo/purple gradients | Tailwind's `bg-indigo-500` saturated training data | Choose an accent color that fits the product's emotional job |
+| Inter or system fonts everywhere | Statistically safest choice | Pick typography that matches the product personality (see Choose Typography below) |
+| Three-column icon grid | Every SaaS landing page template uses this | Vary card layouts by content type. Metric cards, feature cards, and testimonial cards should look different from each other |
+| Centered hero + CTA button | The default starting point for every landing page | Consider what the user actually needs first. Maybe it's a dense dashboard, a split layout, or content-forward with no hero at all |
+| Uniform border-radius on everything | `rounded-lg` applied without thinking | Pick a radius system and vary it by component role (sharp for data, softer for interactive) |
+| White/light gray background + subtle shadow cards | The safest possible surface treatment | Commit to a depth strategy that matches the product (see Depth Strategy below) |
+| Decorative gradients on hero sections | Looks "modern" without communicating anything | If using gradients, make them functional (show hierarchy, direct attention) not decorative |
+
+**The test:** If you swapped your brand name with a competitor's and the design still works, it's too generic. Something about the color foundation, typography, spacing rhythm, or layout density should feel specific to _this_ product.
+
+**Controlled imperfection creates character.** Perfect symmetry and uniform spacing everywhere reads as machine-generated. Human-designed interfaces have intentional asymmetry: a sidebar slightly narrower than expected, a headline that breaks the grid for emphasis, whitespace that breathes unevenly to create visual rhythm. These are deliberate choices, not sloppiness.
+
 ## Design Direction (REQUIRED)
 
 **Before writing code, commit to a direction.** Don't default. Think about what this specific product needs to feel like.
@@ -167,4 +187,13 @@ Different products want different things. A dev tool wants precision and density
 
 **Same quality bar, context-driven execution.**
 
-For CSS values and implementation details, see [references/craft-details.md](references/craft-details.md).
+## Implementation
+
+Detect which styling approach the project uses, then load the matching reference:
+
+| Project uses | Load |
+|---|---|
+| Vanilla CSS, CSS Modules, styled-components, or no Tailwind | [references/craft-css.md](references/craft-css.md) |
+| Tailwind CSS | [references/craft-tailwind.md](references/craft-tailwind.md) |
+
+If unclear, check for `tailwind.config` or `@tailwind` directives in the project. Default to CSS if neither is found.
