@@ -7,34 +7,22 @@ description: Run verification commands before claiming work is complete or fixed
 
 **Core Principle:** No completion claims without fresh verification evidence.
 
+Unverified claims break trust and ship broken code: undefined functions that crash production, incomplete features missing requirements, lost time on rework after false completion. The cost of running one command is trivial compared to the cost of a wrong claim.
+
 ## The Verification Gate
 
-BEFORE any claim of success, completion, or satisfaction:
-
-Copy this checklist and track your progress:
-
-```
-Verification Checklist:
-- [ ] IDENTIFY: What command proves this claim?
-- [ ] RUN: Execute the verification command (fresh, complete)
-- [ ] READ: Check full output, exit code, failure counts
-- [ ] VERIFY: Does output confirm the claim?
-  - If NO → State actual status with evidence
-  - If YES → State claim WITH evidence
-```
+Before any claim of success, completion, or satisfaction:
 
 1. **IDENTIFY** - What command proves this claim?
 2. **RUN** - Execute the full verification command (fresh, complete)
 3. **READ** - Check full output, exit code, failure counts
 4. **VERIFY** - Does output confirm the claim?
-   - NO → State actual status with evidence
-   - YES → State claim WITH evidence from step 2-3
-
-Skip any step = invalid claim.
+   - NO - State actual status with evidence
+   - YES - State claim WITH evidence from step 2-3
 
 ## When This Applies
 
-ALWAYS before:
+Before:
 
 - Claiming "tests pass", "build succeeds", "linter clean", "bug fixed"
 - Expressing satisfaction ("Great!", "Done!", "Perfect!")
@@ -42,7 +30,6 @@ ALWAYS before:
 - Committing, creating PRs, marking tasks complete
 - Marking a multi-file implementation as complete (dispatch `ce:code-reviewer` agent)
 - Moving to next task or delegating work
-- ANY statement implying success or completion
 
 ## Common Verification Requirements
 
@@ -64,44 +51,26 @@ Stop and verify if you're about to:
 - Express satisfaction before running verification
 - Trust agent/tool success reports without independent verification
 - Rely on partial checks or previous runs
-- Think "just this once" or "I'm confident it works"
 
 ## Key Examples
 
 **Regression test (TDD Red-Green):**
 
 ```
-✅ Write test → Run (fail) → Fix code → Run (pass) → Revert fix → Run (MUST fail) → Restore → Run (pass)
-❌ "I've written a regression test" (without verifying red-green cycle)
+Write test → Run (fail) → Fix code → Run (pass) → Revert fix → Run (fail) → Restore → Run (pass)
+vs. "I've written a regression test" (without verifying red-green cycle)
 ```
 
 **Build vs Linter:**
 
 ```
-✅ Run `npm run build` → See "exit 0" → Claim "build passes"
-❌ Run linter → Claim "build will pass" (linter ≠ compiler)
+Run `npm run build` → See "exit 0" → Claim "build passes"
+vs. Run linter → Claim "build will pass" (linter ≠ compiler)
 ```
 
 **Agent delegation:**
 
 ```
-✅ Agent reports success → Check `git diff` → Verify changes → Report actual state
-❌ Trust agent's success message without verification
+Agent reports success → Check `git diff` → Verify changes → Report actual state
+vs. Trust agent's success message without verification
 ```
-
-## Why It Matters
-
-Unverified claims break trust and ship broken code:
-
-- Undefined functions that crash production
-- Incomplete features missing requirements
-- Lost time on rework after false completion
-- Partner distrust: "I don't believe you"
-
-Violating this skill violates core honesty requirements.
-
-## No Exceptions
-
-Run the command. Read the output. THEN claim the result.
-
-Evidence before assertions, always.

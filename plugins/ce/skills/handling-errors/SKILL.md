@@ -7,10 +7,10 @@ description: Prevents silent failures and context loss in error handling. Use wh
 
 ## Iron Laws
 
-1. **Never swallow errors** - Empty catch blocks hide bugs
-2. **Never convert errors to booleans** - Loses all context
-3. **Preserve error context** when wrapping or propagating
-4. **Log once where handled**, not at every layer
+1. **Never swallow errors** - Empty catch blocks hide bugs that surface later in unrelated places, making them much harder to trace
+2. **Never convert errors to booleans** - Loses all context and forces callers to guess what went wrong
+3. **Preserve error context** when wrapping or propagating - upstream handlers need the original cause to make good decisions
+4. **Log once where handled**, not at every layer - duplicate logs across layers create noise that obscures the real signal
 
 ## Error Messages
 
@@ -85,9 +85,9 @@ async function fetchData() {
 
 ## Language-Specific Patterns
 
-- **TypeScript/React**: See [reference/typescript-react.md](reference/typescript-react.md) for Error Boundaries, typed errors, Result pattern, UI display
-- **Python**: See [reference/python.md](reference/python.md) for EAFP, exception chaining, context managers
-- **Go**: See [reference/go.md](reference/go.md) for explicit error returns, wrapping with %w, sentinel errors
+- **TypeScript/React**: See [references/typescript-react.md](references/typescript-react.md) for Error Boundaries, typed errors, Result pattern, UI display
+- **Python**: See [references/python.md](references/python.md) for EAFP, exception chaining, context managers
+- **Go**: See [references/go.md](references/go.md) for explicit error returns, wrapping with %w, sentinel errors
 
 ## Anti-Patterns
 
