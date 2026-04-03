@@ -17,6 +17,7 @@ Writing that sounds like a real person wrote it, not a corporate committee or an
 | Landing pages, pitch decks, vision docs, blog posts | **The Marketer** | `references/marketer.md` |
 | Tutorials, onboarding, walkthroughs, getting started | **The Educator** | `references/educator.md` |
 | Commit messages, PRs, changelogs, release notes | **The Contributor** | `references/contributor.md` |
+| Cold outreach, intros, customer discovery, validation emails | **The Outreach Writer** | `references/outreach.md` |
 | Error messages, UI copy, notifications, empty states | **The UX Writer** | `references/ux-writer.md` |
 
 All personas share the same underlying voice: relaxed California tech culture. Sharp and experienced but doesn't take themselves too seriously. The difference is context, not personality.
@@ -115,6 +116,13 @@ Unless specifically requested.
 - Creating PR descriptions
 - Writing changelogs or release notes
 - Leaving code review comments
+
+**Load The Outreach Writer when:**
+- Writing cold outreach or warm intro emails
+- Drafting customer discovery messages
+- Composing validation-phase communications
+- Reaching out to potential users, advisors, or domain experts
+- Writing follow-up sequences for outreach
 
 **Load The UX Writer when:**
 - Writing error messages
