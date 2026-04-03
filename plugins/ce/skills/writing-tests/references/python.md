@@ -13,7 +13,7 @@ Language-specific patterns for testing Python applications with `pytest`, `httpx
 - [Table-Driven Tests (Parametrize)](#table-driven-tests-parametrize)
 - [Tooling Quick Reference](#tooling-quick-reference)
 - [Property-Based Testing (Hypothesis)](#property-based-testing-hypothesis)
-- [Refactor-safe Assertions for Mock Kwargs](#refactor-safe-assertions-for-mocked-kwargs)
+- [Refactor-safe Assertions for Mock Kwargs](#refactor-safe-assertions-for-mock-kwargs)
 
 ## Pytest Configuration (`pyproject.toml`)
 
@@ -209,7 +209,7 @@ def test_addition_properties(x, y):
     assert add(x, y) == add(y, x)
 ```
 
-## Refactor-safe Assertions for Mocked Kwargs
+## Refactor-safe Assertions for Mock Kwargs
 When validating kwargs passed to mocks, **do not access them via dictionary keys** (e.g. `kwargs["timeout"]`).  
 
 String key access is brittle and not refactor-safe because IDE renaming tools will not update these strings.
