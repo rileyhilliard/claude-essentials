@@ -13,6 +13,7 @@ Language-specific patterns for testing Python applications with `pytest`, `httpx
 - [Table-Driven Tests (Parametrize)](#table-driven-tests-parametrize)
 - [Tooling Quick Reference](#tooling-quick-reference)
 - [Property-Based Testing (Hypothesis)](#property-based-testing-hypothesis)
+- [Refactor-safe Assertions for Mock Kwargs](#refactor-safe-assertions-for-mocked-kwargs)
 
 ## Pytest Configuration (`pyproject.toml`)
 
@@ -207,3 +208,33 @@ def test_addition_properties(x, y):
     # Commutative property
     assert add(x, y) == add(y, x)
 ```
+
+## Refactor-safe Assertions for Mocked Kwargs
+When validating kwargs passed to mocks, **do not access them via dictionary keys** (e.g. `kwargs["timeout"]`).  
+
+String key access is brittle and not refactor-safe because IDE renaming tools will not update these strings.
+
+Instead, assert the call using `assert_called_with` or compare the full kwargs dictionary.
+
+#### ❌ Avoid
+
+```python
+kwargs = mock.call_args.kwargs
+assert kwargs["timeout"] == 10
+assert kwargs["retry_count"] == 3
+```
+
+#### ✅ Prefer
+
+```python
+mock.assert_called_once_with(timeout=10, retry_count=3)
+```
+
+or
+
+```python
+assert mock.call_args.kwargs == dict(timeout=10, retry_count=3)
+```
+
+These approaches are clearer, less brittle, and easier to maintain when function arguments change.
+
