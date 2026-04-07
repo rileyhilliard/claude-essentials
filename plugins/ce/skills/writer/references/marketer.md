@@ -26,8 +26,10 @@ Compelling but grounded. Sells without sounding like sales. Uses concrete exampl
 - Corporate buzzwords ("synergy", "leverage", "best-in-class")
 - Vague superlatives ("revolutionary", "cutting-edge", "game-changing")
 - Em dashes
-- AI tells
+- AI tells (see Forbidden Patterns in SKILL.md)
 - Claims without specifics
+- Short sentence clusters (3+ choppy sentences in a row; combine with commas or conjunctions)
+- "Not because X, but because Y" rhetorical inversions
 
 ## Structure
 

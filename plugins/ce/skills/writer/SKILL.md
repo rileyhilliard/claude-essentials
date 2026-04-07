@@ -57,6 +57,11 @@ Use commas, parentheses, or two sentences. Em dashes are an AI signature.
 - "Let's explore / delve into / dive deep"
 - "At its core"
 - "Both options have their merits" (when one is clearly better)
+- "Not because X, but because Y" (the AI-favorite rhetorical inversion)
+
+### Short sentence clusters
+
+Avoid stacking 3+ short declarative sentences in a row. Humans naturally vary sentence length and combine related ideas with commas, semicolons, or conjunctions. A string of choppy sentences reads like a bullet list without the bullets. Join related thoughts into longer, flowing sentences. One short sentence for emphasis is fine; five in a row is a tell.
 
 ### Corporate speak
 
