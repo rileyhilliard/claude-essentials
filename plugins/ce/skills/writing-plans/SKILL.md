@@ -1,6 +1,6 @@
 ---
 name: writing-plans
-description: Create implementation plans with tasks grouped by subsystem. Related tasks share agent context; groups parallelize across subsystems.
+description: "Creates structured implementation plans with tasks grouped by subsystem for parallel agent execution. Use when planning a feature build, breaking down a project into coding tasks, writing a step-by-step implementation plan, or decomposing multi-file changes into executable units."
 ---
 
 # Writing Plans
@@ -69,15 +69,13 @@ glob src/feature/**/*.ts
 
 ## Task Sizing
 
-A task includes **everything** to complete one logical unit:
+A task includes **everything** to complete one logical unit: implementation + tests + types + exports.
 
-- Implementation + tests + types + exports
-- All steps a single agent should do together
-
-**Right-sized:** "Add user authentication" - one agent does model, service, tests, types
-**Wrong:** Separate tasks for model, service, tests - these should be one task
-
-**Bundle trivial items:** Group small related changes (add export, update config, rename) into one task.
+| Sizing | Example |
+|--------|---------|
+| **Right** | "Add user authentication" — one agent does model, service, tests, types |
+| **Wrong** | Separate tasks for model, service, tests — these belong in one task |
+| **Bundle** | Group trivial related changes (add export, update config, rename) into one task |
 
 ## Parallelization & Grouping
 

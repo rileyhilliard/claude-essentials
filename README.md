@@ -83,7 +83,7 @@ Reusable development patterns, accessed with `ce:` prefix:
 | ---------------------------------------------------------------------------------- | ------------------------------------------------ |
 | [ce:visualizing-with-mermaid](plugins/ce/skills/visualizing-with-mermaid/SKILL.md) | Create professional technical diagrams              |
 | [ce:post-mortem](plugins/ce/skills/post-mortem/SKILL.md)                           | Review sessions to extract actionable improvements  |
-| [ce:configuring-claude](plugins/ce/skills/configuring-claude/SKILL.md)             | Best practices for writing skills, rules, CLAUDE.md |
+| [ce:authoring-instructions](plugins/ce/skills/authoring-instructions/SKILL.md)     | Best practices for writing skills, rules, CLAUDE.md |
 
 ### Agents
 

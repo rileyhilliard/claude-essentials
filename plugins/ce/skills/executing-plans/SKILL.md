@@ -1,6 +1,6 @@
 ---
 name: executing-plans
-description: Executes implementation plans with smart task grouping. Groups related tasks to share context, parallelizes across independent subsystems.
+description: "Orchestrates multi-step implementation plans by dispatching parallel sub-agents grouped by subsystem. Use when executing a coding plan, building features across multiple files, running grouped implementation tasks, or coordinating agents to implement changes from a plan file."
 ---
 
 # Executing Plans
@@ -62,7 +62,7 @@ Task tool (general-purpose):
     Commit after each task. Report: files changed, test results
 ```
 
-**Architectural fit:** Changes should integrate cleanly with existing patterns. If a change feels like it's fighting the architecture, that's a signal to refactor first rather than bolt something on. Don't reinvent wheels when battle-tested libraries exist, but don't reach for a dependency for trivial things either (no lodash just for `_.map`). The goal is zero tech debt, not "ship now, fix later."
+**Architectural fit:** If a change fights existing patterns, refactor first rather than bolt on. Use battle-tested libraries for real problems; skip dependencies for trivial operations.
 
 **Auto-recovery:**
 1. Agent attempts to fix failures (has context)
