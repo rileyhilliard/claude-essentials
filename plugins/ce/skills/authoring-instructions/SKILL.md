@@ -1,6 +1,6 @@
 ---
-name: configuring-claude
-description: Best practices for writing Claude Code skills, rules, and CLAUDE.md instructions. Use when creating SKILL.md files, authoring .claude/rules, writing CLAUDE.md project or user instructions, or configuring Claude behavior for a project or team.
+name: authoring-instructions
+description: "Teaches best practices for writing SKILL.md files, agent rules, and project-level instructions. Use when creating new skills, authoring .claude/rules, writing CLAUDE.md project instructions, or configuring agent behavior for a team or repository."
 ---
 
 # Configuring Claude

@@ -1,6 +1,6 @@
 ---
 name: architecting-systems
-description: Guides clean, scalable system architecture during the build phase. Use when designing modules, defining boundaries, structuring projects, managing dependencies, or preventing tight coupling and brittleness as systems grow.
+description: "Guides clean, scalable system architecture — module boundaries, folder structure, dependency management, and coupling reduction. Use when designing modules, organizing project structure, defining service boundaries, choosing separation patterns, or preventing tight coupling as systems grow."
 ---
 
 # Architecting Systems
@@ -40,12 +40,10 @@ Default to established patterns, standard libraries, and proven conventions. Nov
 
 ### State management
 
-State is where complexity hides. The more places state lives and the more things can mutate it, the harder the system is to reason about.
-
-- **Minimize mutable shared state.** If two modules need the same data, one should own it and the other should request it.
-- **Keep state close to where it's used.** Global state is almost never the answer.
-- **Make state changes explicit.** Whether that's through events, reducers, or explicit setter methods, the "what changed and why" should be traceable.
-- **Single source of truth.** Every piece of data should have one authoritative home. Derived data should be computed, not independently stored, unless there's a measured performance reason to cache or denormalize.
+- **Minimize mutable shared state.** One module owns the data; others request it.
+- **Keep state close to where it's used.** Avoid globals.
+- **Make state changes explicit.** Events, reducers, or explicit setters — the "what changed" should be traceable.
+- **Single source of truth.** Every piece of data has one authoritative home. Derive rather than duplicate.
 
 ### Design for change
 
@@ -56,8 +54,6 @@ State is where complexity hides. The more places state lives and the more things
 
 ### Complexity budget
 
-Every architectural decision has a complexity cost. Spend that budget where it matters.
-
 | Worth the complexity | Not worth it |
 |---------------------|--------------|
 | Separation between domains that change independently | Abstracting code that only has one implementation |
@@ -65,7 +61,7 @@ Every architectural decision has a complexity cost. Spend that budget where it m
 | Caching for measured performance bottlenecks | Caching "just in case" |
 | Microservices for teams that deploy independently | Microservices for a small team's monolith |
 
-**The rule:** Don't add indirection until you need it. Premature abstraction is as costly as premature optimization. Two similar code blocks are better than a wrong abstraction.
+Don't add indirection until you need it. Two similar code blocks are better than a wrong abstraction.
 
 ---
 
@@ -80,5 +76,13 @@ Every architectural decision has a complexity cost. Spend that budget where it m
 | "New devs take weeks to be productive" | Conventions are too weak or too novel |
 | "Every PR touches 10 files" | Feature code is scattered; colocate it |
 | "The shared folder keeps growing" | Boundaries are in the wrong place |
+
+## Workflow: Designing a New Module
+
+1. **Identify boundaries** — what changes together stays together; what changes independently gets its own module
+2. **Define interfaces** — public API surface only; hide internals behind contracts
+3. **Check coupling** — run `grep -r "import.*from" src/` to map dependency flow; circular imports signal wrong boundaries
+4. **Validate structure** — a new team member should find any file in under 30 seconds by following folder names
+5. **Load detailed reference** — pick the matching topic from the table above for implementation-specific patterns
 
 **Writing architecture documents?** This skill covers how to build. For how to write about it (ADRs, design docs, tradeoff analyses), load `Skill(ce:writer)` and use The Architect persona.

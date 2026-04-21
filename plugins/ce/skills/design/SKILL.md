@@ -1,6 +1,6 @@
 ---
 name: design
-description: Enforces precise, minimal design for dashboards and admin interfaces. Use when building SaaS UIs, data-heavy interfaces, or any product needing Jony Ive-level craft.
+description: "Enforces precise, context-driven UI design with consistent spacing systems, typography hierarchy, color foundations, and depth strategy. Use when building SaaS dashboards, styling admin panels, creating data-heavy interfaces, or establishing a design system for product UIs."
 ---
 
 # Design Principles
@@ -13,15 +13,15 @@ AI-generated UIs have a recognizable "median of the internet" feel. Polished but
 
 **AI default patterns to actively avoid:**
 
-| AI default | Why it happens | Do this instead |
-|---|---|---|
-| Indigo/purple gradients | Tailwind's `bg-indigo-500` saturated training data | Choose an accent color that fits the product's emotional job |
-| Inter or system fonts everywhere | Statistically safest choice | Pick typography that matches the product personality (see Choose Typography below) |
-| Three-column icon grid | Every SaaS landing page template uses this | Vary card layouts by content type. Metric cards, feature cards, and testimonial cards should look different from each other |
-| Centered hero + CTA button | The default starting point for every landing page | Consider what the user actually needs first. Maybe it's a dense dashboard, a split layout, or content-forward with no hero at all |
-| Uniform border-radius on everything | `rounded-lg` applied without thinking | Pick a radius system and vary it by component role (sharp for data, softer for interactive) |
-| White/light gray background + subtle shadow cards | The safest possible surface treatment | Commit to a depth strategy that matches the product (see Depth Strategy below) |
-| Decorative gradients on hero sections | Looks "modern" without communicating anything | If using gradients, make them functional (show hierarchy, direct attention) not decorative |
+| AI default | Do this instead |
+|---|---|
+| Indigo/purple gradients | Choose an accent color that fits the product's emotional job |
+| Inter or system fonts everywhere | Pick typography that matches the product personality (see Choose Typography below) |
+| Three-column icon grid | Vary card layouts by content type — metric, feature, and testimonial cards should look different |
+| Centered hero + CTA button | Consider what the user needs first — maybe a dense dashboard, split layout, or content-forward |
+| Uniform border-radius on everything | Pick a radius system and vary by component role (sharp for data, softer for interactive) |
+| White/light gray background + subtle shadow cards | Commit to a depth strategy that matches the product (see Depth Strategy below) |
+| Decorative gradients on hero sections | Make gradients functional (show hierarchy, direct attention) not decorative |
 
 **The test:** If you swapped your brand name with a competitor's and the design still works, it's too generic. Something about the color foundation, typography, spacing rhythm, or layout density should feel specific to _this_ product.
 
@@ -50,6 +50,10 @@ AI-generated UIs have a recognizable "median of the internet" feel. Polished but
 | Data & Analysis | Chart-optimized, technical but accessible | Analytics, metrics, business intelligence. |
 
 Pick one. Or blend two. But commit to a direction that fits the product.
+
+### Checkpoint
+
+Before proceeding to implementation, verify you have committed to: **ONE personality direction**, **ONE color foundation** (warm/cool/neutral/tinted), **ONE accent color**, and **ONE depth strategy**. If any of these are still "default", go back and make a deliberate choice.
 
 ### Choose Foundation
 

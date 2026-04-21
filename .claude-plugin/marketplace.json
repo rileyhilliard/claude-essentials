@@ -67,7 +67,7 @@
         "./skills/writer",
         "./skills/strategy-writer",
         "./skills/managing-databases",
-        "./skills/configuring-claude",
+        "./skills/authoring-instructions",
         "./skills/managing-pipelines",
         "./skills/planning-products",
         "./skills/writing-sql"

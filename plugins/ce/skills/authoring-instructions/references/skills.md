@@ -20,7 +20,7 @@ your-skill-name/
 
 | Rule | Example |
 |------|---------|
-| Gerund form preferred | `writing-tests`, `managing-databases`, `configuring-claude` |
+| Gerund form preferred | `writing-tests`, `managing-databases`, `authoring-instructions` |
 | Kebab-case only | `notion-project-setup` not `NotionProjectSetup` |
 | Max 64 characters | Keep it descriptive but concise |
 | No reserved words | Cannot contain "claude" or "anthropic" |
