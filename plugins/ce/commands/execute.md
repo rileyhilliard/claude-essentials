@@ -14,6 +14,7 @@ Load the skill first: `Skill(ce:executing-plans)`
 
 1. **Find available plans:**
    Search recursively for plan files regardless of folder structure:
+
    ```bash
    glob ./**/plans/**/*.md
    glob ./**/plans/**/README.md
@@ -22,6 +23,7 @@ Load the skill first: `Skill(ce:executing-plans)`
    ```
 
    Also check common alternative locations:
+
    ```bash
    glob ./**/*-PLAN.md
    glob ./**/*-plan.md
@@ -43,6 +45,7 @@ Load the skill first: `Skill(ce:executing-plans)`
    List incomplete plans with their status and a brief description (from the User Story or first line of spec).
 
    Use `AskUserQuestion` to let the user select which plan to execute:
+
    ```
    Which plan would you like to execute?
    - [plan-1-name] (APPROVED) - Brief description
@@ -94,6 +97,7 @@ Load the skill first: `Skill(ce:executing-plans)`
    - For large tasks: "This is a larger task. I'll create a git worktree on a feature branch, execute there, then merge back to main when complete. Ready to proceed?"
 
 5. **Set up worktree (if needed):**
+
    ```bash
    # Derive branch name from plan name (kebab-case)
    git worktree add ../worktree-<plan-name> -b feature/<plan-name>
@@ -115,6 +119,7 @@ Load the skill first: `Skill(ce:executing-plans)`
 If a worktree was created:
 
 1. **Merge back to main:**
+
    ```bash
    cd <original-repo>
    git merge feature/<plan-name> --no-ff -m "Merge feature/<plan-name>: <plan-summary>"
@@ -125,5 +130,3 @@ If a worktree was created:
    git worktree remove ../worktree-<plan-name>
    git branch -d feature/<plan-name>
    ```
-
-3. **Notify user:** "Plan complete. Changes merged to main and worktree cleaned up."

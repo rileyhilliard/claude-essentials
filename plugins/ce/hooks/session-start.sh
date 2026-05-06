@@ -137,7 +137,7 @@ detect_project_tools() {
 
 PROJECT_TOOLS=$(detect_project_tools)
 
-# Main logic to check, update, and notify
+# Main logic to check, and update
 if [ -n "$SKILLS_LIST" ]; then
     example_block=$(build_example)
 

@@ -50,9 +50,20 @@ Group A: Create shared types → Group B: Use those types
 
 Dispatch sub-agents to complete task groups. Monitor progress and handle issues.
 
+**Model selection:** Choose the right model for sub-agents based on task complexity:
+
+| Model | Use for | Examples |
+|-------|---------|----------|
+| `opus` | Complex coding, multi-file features, architectural work | New endpoints + route components, refactors spanning multiple subsystems |
+| `sonnet` | Moderate coding, straightforward features, writing | Simple CRUD endpoints, config changes, content updates |
+| `haiku` | Token-intensive non-coding work, simple mechanical tasks | Reading logs, generating commit messages, reading diffs for review summaries |
+
+Default to `opus` for coding tasks unless the work is clearly straightforward. `haiku` is not suitable for writing code — it's for lightweight tasks where expensive tokens would be wasted on simple reads and summaries.
+
 ```
-Task tool (general-purpose):
+Agent tool:
   description: "Auth tasks: login, logout"
+  model: opus  # or sonnet for simpler coding tasks
   prompt: |
     Execute these tasks from [plan-file] IN ORDER:
     - Task 1: Add login endpoint

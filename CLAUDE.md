@@ -59,8 +59,7 @@ plugins/ce/
 │   └── log-reader.md        # Accessed as @ce:log-reader
 └── hooks/                    # Session hooks
     ├── hooks.json           # Hook configuration
-    ├── session-start.sh     # Session startup hook
-    └── notify.sh            # Cross-platform notification hook
+    └── session-start.sh     # Session startup hook
 ```
 
 **Key principle**: Files and frontmatter use simple names (e.g., `architecting-systems`, `writing-tests`). Claude Code automatically adds the `ce:` namespace prefix based on the plugin name.
@@ -252,13 +251,6 @@ The `ce` plugin includes a `session-start.sh` hook that:
 - Loads user instructions from `~/.claude/CLAUDE.md` if present
 - Injects instructions as additional context via JSON output
 - Uses progressive disclosure (skills loaded on-demand via Skill tool)
-
-### Notification Hook
-
-The `ce` plugin includes a Notification hook that triggers alerts when Claude needs user input:
-
-- **macOS**: Uses `terminal-notifier` if available (click-to-focus support), falls back to `osascript`
-- **Linux**: Uses `notify-send`
 
 ### Hooks Output Format
 

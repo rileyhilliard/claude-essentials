@@ -17,7 +17,7 @@ This is the canonical IaC pipeline pattern. Everything else is a variation.
 
 ```
 PR opened/updated -> fmt/validate/plan -> Plan posted as PR comment -> Review
-PR merged to main -> apply (using saved plan artifact) -> Notify
+PR merged to main -> apply (using saved plan artifact)
 ```
 
 The critical rule: save the plan and apply that exact plan. Never run `terraform plan` followed by `terraform apply` without `-out`. The world changes between plan and apply. Another PR merges, an auto-scaler adjusts, someone click-ops a change. Applying without a saved plan means applying something you never reviewed.
@@ -28,10 +28,10 @@ The critical rule: save the plan and apply that exact plan. Never run `terraform
 name: Terraform
 on:
   pull_request:
-    paths: ['infra/**']
+    paths: ["infra/**"]
   push:
     branches: [main]
-    paths: ['infra/**']
+    paths: ["infra/**"]
 
 permissions: {}
 
@@ -75,7 +75,7 @@ jobs:
     environment: production
     concurrency:
       group: terraform-apply
-      cancel-in-progress: false  # Never cancel an in-progress apply
+      cancel-in-progress: false # Never cancel an in-progress apply
     steps:
       - uses: actions/checkout@SHA # v4
         with: { persist-credentials: false }
@@ -106,7 +106,7 @@ Run scheduled workflows that plan against your state and alert when reality does
 name: Drift Detection
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: "0 2 * * *"
 
 permissions: {}
 
@@ -137,35 +137,35 @@ jobs:
 
 Stack these in order. Each catches different problem classes.
 
-| Tool | What it catches |
-|------|----------------|
-| `terraform fmt -check` | Formatting consistency |
-| `terraform validate` | Syntax and provider schema validation |
-| Checkov | Misconfigurations (public S3, unencrypted EBS, open security groups) |
-| tfsec (now Trivy) | Security-specific static analysis |
-| Terrascan | Compliance violations (CIS benchmarks, SOC2, HIPAA) |
-| OPA/Conftest | Custom policy-as-code rules for your org |
+| Tool                   | What it catches                                                      |
+| ---------------------- | -------------------------------------------------------------------- |
+| `terraform fmt -check` | Formatting consistency                                               |
+| `terraform validate`   | Syntax and provider schema validation                                |
+| Checkov                | Misconfigurations (public S3, unencrypted EBS, open security groups) |
+| tfsec (now Trivy)      | Security-specific static analysis                                    |
+| Terrascan              | Compliance violations (CIS benchmarks, SOC2, HIPAA)                  |
+| OPA/Conftest           | Custom policy-as-code rules for your org                             |
 
 ### Layered scanning workflow
 
 ```yaml
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@SHA # v4
-      - uses: hashicorp/setup-terraform@SHA # v3
-      - name: Format and validate
-        working-directory: infra
-        run: |
-          terraform fmt -check -recursive
-          terraform init -input=false -backend=false
-          terraform validate
-      - uses: bridgecrewio/checkov-action@v12
-        with: { directory: infra, quiet: true, framework: terraform }
-      - name: Custom policies
-        run: |
-          terraform -chdir=infra show -json tfplan > plan.json
-          conftest test plan.json --policy policy/
+validate:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@SHA # v4
+    - uses: hashicorp/setup-terraform@SHA # v3
+    - name: Format and validate
+      working-directory: infra
+      run: |
+        terraform fmt -check -recursive
+        terraform init -input=false -backend=false
+        terraform validate
+    - uses: bridgecrewio/checkov-action@v12
+      with: { directory: infra, quiet: true, framework: terraform }
+    - name: Custom policies
+      run: |
+        terraform -chdir=infra show -json tfplan > plan.json
+        conftest test plan.json --policy policy/
 ```
 
 Conftest with OPA enforces org-specific rules: "no public subnets without approval," "all RDS must use encryption," "tags must include cost-center." Built-in scanners catch generic misconfigs; Conftest catches yours.
@@ -176,12 +176,12 @@ Conftest with OPA enforces org-specific rules: "no public subnets without approv
 
 Multiple CI runs against the same state will corrupt it. Not theoretical. Happens the first time two PRs merge close together.
 
-| Backend | Locking mechanism |
-|---------|-------------------|
-| S3 | DynamoDB table (must configure separately) |
-| GCS | Native object locking |
-| Azure Blob | Native blob leasing |
-| Terraform Cloud/HCP | Built-in |
+| Backend             | Locking mechanism                          |
+| ------------------- | ------------------------------------------ |
+| S3                  | DynamoDB table (must configure separately) |
+| GCS                 | Native object locking                      |
+| Azure Blob          | Native blob leasing                        |
+| Terraform Cloud/HCP | Built-in                                   |
 
 If you're on S3 without DynamoDB locking, stop reading and go set that up.
 
@@ -223,11 +223,11 @@ Unpinned modules are a supply chain risk. A force-push to `main` in the module r
 
 ## Anti-patterns
 
-| Anti-pattern | Why it's bad | Do this instead |
-|-------------|-------------|-----------------|
-| Secrets in Terraform variables | State stores them in plaintext | Inject from Vault, Secrets Manager, or `data` sources |
-| `apply -auto-approve` on PRs | Applies unreviewed changes | Only on merge to main, only with saved plan |
-| Approval before seeing plan | Rubber-stamp without knowing impact | Require approval after plan is posted |
-| No targeted planning | Every PR plans every module | Path filtering to plan only modified modules |
-| Click-ops alongside IaC | Drift guaranteed | All changes through code, drift detection enforces |
-| Monolithic root module | Blast radius is everything | Split by boundary with separate state per module |
+| Anti-pattern                   | Why it's bad                        | Do this instead                                       |
+| ------------------------------ | ----------------------------------- | ----------------------------------------------------- |
+| Secrets in Terraform variables | State stores them in plaintext      | Inject from Vault, Secrets Manager, or `data` sources |
+| `apply -auto-approve` on PRs   | Applies unreviewed changes          | Only on merge to main, only with saved plan           |
+| Approval before seeing plan    | Rubber-stamp without knowing impact | Require approval after plan is posted                 |
+| No targeted planning           | Every PR plans every module         | Path filtering to plan only modified modules          |
+| Click-ops alongside IaC        | Drift guaranteed                    | All changes through code, drift detection enforces    |
+| Monolithic root module         | Blast radius is everything          | Split by boundary with separate state per module      |

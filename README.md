@@ -14,7 +14,7 @@ Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
 | ------------------------------------------------- | ------------------------------------------------------------------ |
 | [/ce:test](plugins/ce/commands/test.md)           | Run tests and analyze failures                                     |
 | [/ce:explain](plugins/ce/commands/explain.md)     | Break down code or concepts                                        |
-| [/ce:review](plugins/ce/commands/review.md)       | Code review with tracked findings and fix workflow                  |
+| [/ce:review](plugins/ce/commands/review.md)       | Code review with tracked findings and fix workflow                 |
 | [/ce:commit](plugins/ce/commands/commit.md)       | Preflight checks, semantic commit, auto-fix on hook failure        |
 | [/ce:deps](plugins/ce/commands/deps.md)           | Audit and upgrade dependencies                                     |
 | [/ce:fix-issue](plugins/ce/commands/fix-issue.md) | Fix a GitHub issue by number                                       |
@@ -28,8 +28,8 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 **Testing & Quality:**
 
-| Skill                                                                                          | Description                                        |
-| ---------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Skill                                                                                          | Description                                             |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | [ce:writing-tests](plugins/ce/skills/writing-tests/SKILL.md)                                   | Testing Trophy methodology, behavior-focused tests      |
 | [ce:verification-before-completion](plugins/ce/skills/verification-before-completion/SKILL.md) | Verify before claiming success                          |
 | [ce:preflight-checks](plugins/ce/skills/preflight-checks/SKILL.md)                             | Auto-detect and run project linters/formatters/checkers |
@@ -54,33 +54,33 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 **Planning & Execution:**
 
-| Skill                                                                      | Description                                               |
-| -------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [ce:planning-products](plugins/ce/skills/planning-products/SKILL.md)       | Product feature definition from a PM perspective          |
-| [ce:writing-plans](plugins/ce/skills/writing-plans/SKILL.md)               | Create implementation plans with devils-advocate review   |
-| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md)           | Execute plans with mandatory code review                  |
-| [ce:architecting-systems](plugins/ce/skills/architecting-systems/SKILL.md) | Clean, scalable system architecture for the build phase   |
-| [ce:design](plugins/ce/skills/design/SKILL.md)                             | Frontend design skill                                     |
+| Skill                                                                      | Description                                             |
+| -------------------------------------------------------------------------- | ------------------------------------------------------- |
+| [ce:planning-products](plugins/ce/skills/planning-products/SKILL.md)       | Product feature definition from a PM perspective        |
+| [ce:writing-plans](plugins/ce/skills/writing-plans/SKILL.md)               | Create implementation plans with devils-advocate review |
+| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md)           | Execute plans with mandatory code review                |
+| [ce:architecting-systems](plugins/ce/skills/architecting-systems/SKILL.md) | Clean, scalable system architecture for the build phase |
+| [ce:design](plugins/ce/skills/design/SKILL.md)                             | Frontend design skill                                   |
 
 **Documentation & Writing:**
 
-| Skill                                                                                | Description                                                                                               |
-| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| [ce:writer](plugins/ce/skills/writer/SKILL.md)                                       | Writing style guide with 7 personas (Architect, Engineer, PM, Marketer, Educator, Contributor, UX Writer) |
-| [ce:strategy-writer](plugins/ce/skills/strategy-writer/SKILL.md)                     | Executive-quality strategic documents in Economist/HBR style                                              |
-| [ce:documentation](plugins/ce/skills/documentation/SKILL.md)                         | Route to the right documentation approach (code comments, system docs, templates)                         |
+| Skill                                                            | Description                                                                                               |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| [ce:writer](plugins/ce/skills/writer/SKILL.md)                   | Writing style guide with 7 personas (Architect, Engineer, PM, Marketer, Educator, Contributor, UX Writer) |
+| [ce:strategy-writer](plugins/ce/skills/strategy-writer/SKILL.md) | Executive-quality strategic documents in Economist/HBR style                                              |
+| [ce:documentation](plugins/ce/skills/documentation/SKILL.md)     | Route to the right documentation approach (code comments, system docs, templates)                         |
 
 **Data & Infrastructure:**
 
-| Skill                                                                      | Description                                                         |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [ce:managing-databases](plugins/ce/skills/managing-databases/SKILL.md)     | PostgreSQL, DuckDB, Parquet, and PGVector architecture              |
-| [ce:managing-pipelines](plugins/ce/skills/managing-pipelines/SKILL.md)     | GitHub Actions CI/CD security, performance, and deployment patterns |
+| Skill                                                                  | Description                                                         |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [ce:managing-databases](plugins/ce/skills/managing-databases/SKILL.md) | PostgreSQL, DuckDB, Parquet, and PGVector architecture              |
+| [ce:managing-pipelines](plugins/ce/skills/managing-pipelines/SKILL.md) | GitHub Actions CI/CD security, performance, and deployment patterns |
 
 **Meta Skills:**
 
-| Skill                                                                              | Description                                      |
-| ---------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Skill                                                                              | Description                                         |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------- |
 | [ce:visualizing-with-mermaid](plugins/ce/skills/visualizing-with-mermaid/SKILL.md) | Create professional technical diagrams              |
 | [ce:post-mortem](plugins/ce/skills/post-mortem/SKILL.md)                           | Review sessions to extract actionable improvements  |
 | [ce:configuring-claude](plugins/ce/skills/configuring-claude/SKILL.md)             | Best practices for writing skills, rules, CLAUDE.md |
@@ -99,7 +99,6 @@ Expert AI personas for complex work, accessed with `@ce:` prefix:
 ### Hooks
 
 - **Session start** - Auto-detects project tooling (linters, formatters, type checkers) and injects available skills
-- **Notifications** - Cross-platform alerts when Claude needs input, with git branch info (macOS + Linux)
 
 ---
 
