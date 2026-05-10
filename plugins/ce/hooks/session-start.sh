@@ -139,7 +139,6 @@ PROJECT_TOOLS=$(detect_project_tools)
 
 # Main logic to check, and update
 if [ -n "$SKILLS_LIST" ]; then
-    example_block=$(build_example)
 
     # 1. Prepare content strings
     START_MARKER="<!-- DYNAMIC_SKILLS_START -->"
@@ -149,31 +148,11 @@ if [ -n "$SKILLS_LIST" ]; then
     INJECTED_CONTENT="### Available Skills (Auto-Generated)
 
 <INSTRUCTION>
-MANDATORY SKILL ACTIVATION SEQUENCE
-
-Step 1 - EVALUATE (do this in your response):
-For each skill below, state: [skill-name] - YES/NO - [reason]
+Load a skill when the task clearly matches its description. Use Skill(<name>) immediately when you recognize a match — don't wait or evaluate all skills first.
 
 Available skills:
-${SKILLS_LIST}
-Step 2 - ACTIVATE (do this immediately after Step 1):
-IF any skills are YES: Use Skill(<skill-name>) tool for EACH relevant skill NOW
-IF no skills are YES: State \"No skills needed\" and proceed
-
-Step 3 - IMPLEMENT:
-Only after Step 2 is complete, proceed with implementation.
-
-CRITICAL: You MUST call Skill() tool in Step 2. Do NOT skip to implementation.
-The evaluation (Step 1) is WORTHLESS unless you ACTIVATE (Step 2) the skills.
-
-Example of correct sequence:
-${example_block}
-$(if [ -n "$PROJECT_TOOLS" ]; then echo "
-## Project Tooling (Auto-Detected)
-
-Available tools in this project: ${PROJECT_TOOLS}
-
-When committing or verifying work, use the preflight-checks skill to run these tools."; fi)
+${SKILLS_LIST}$(if [ -n "$PROJECT_TOOLS" ]; then echo "
+When committing or verifying work, use the preflight-checks skill to run these tools: ${PROJECT_TOOLS}"; fi)
 </INSTRUCTION>"
 
     # 2. Determine paths and flags

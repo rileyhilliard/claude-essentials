@@ -1,6 +1,6 @@
 # Claude Essentials
 
-A unified development plugin for Claude Code with essential commands, skills, and specialized agents, all accessible under the `ce` namespace.
+A unified development plugin for Claude Code with essential skills and specialized agents, all accessible under the `ce` namespace.
 
 <img src="/assets/hackerman.gif" width="100%" alt="hackerman">
 
@@ -8,18 +8,8 @@ A unified development plugin for Claude Code with essential commands, skills, an
 
 ### Commands
 
-Quick workflows for everyday development tasks, accessed with `/ce:` prefix:
-
 | Command                                           | Description                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------------ |
-| [/ce:test](plugins/ce/commands/test.md)           | Run tests and analyze failures                                     |
-| [/ce:explain](plugins/ce/commands/explain.md)     | Break down code or concepts                                        |
-| [/ce:review](plugins/ce/commands/review.md)       | Code review with tracked findings and fix workflow                 |
-| [/ce:commit](plugins/ce/commands/commit.md)       | Preflight checks, semantic commit, auto-fix on hook failure        |
-| [/ce:deps](plugins/ce/commands/deps.md)           | Audit and upgrade dependencies                                     |
-| [/ce:fix-issue](plugins/ce/commands/fix-issue.md) | Fix a GitHub issue by number                                       |
-| [/ce:pr](plugins/ce/commands/pr.md)               | Create a pull request with auto-generated description              |
-| [/ce:execute](plugins/ce/commands/execute.md)     | Execute an implementation plan from the plans folder               |
 | [/ce:init](plugins/ce/commands/init.md)           | Bootstrap repo with .claude/ config (rules, permissions, settings) |
 
 ### Skills
@@ -66,9 +56,8 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 | Skill                                                            | Description                                                                                               |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| [ce:writer](plugins/ce/skills/writer/SKILL.md)                   | Writing style guide with 7 personas (Architect, Engineer, PM, Marketer, Educator, Contributor, UX Writer) |
+| [ce:writer](plugins/ce/skills/writer/SKILL.md)                   | Writing style guide with 9 personas (Architect, Engineer, PM, Marketer, Educator, Contributor, Outreach, UX Writer, Poster) |
 | [ce:strategy-writer](plugins/ce/skills/strategy-writer/SKILL.md) | Executive-quality strategic documents in Economist/HBR style                                              |
-| [ce:documentation](plugins/ce/skills/documentation/SKILL.md)     | Route to the right documentation approach (code comments, system docs, templates)                         |
 
 **Data & Infrastructure:**
 
@@ -122,7 +111,7 @@ You need Claude Code installed. If you don't have it yet, head to [claude.com/pr
 /plugin install ce
 ```
 
-That's it! You now have access to all commands, skills, and agents under the `ce` namespace.
+That's it! You now have access to all skills and agents under the `ce` namespace.
 
 ### Verify Installation
 
@@ -132,8 +121,8 @@ Start Claude Code and try these:
 # Start Claude Code
 claude
 
-# Try a quick command
-/ce:explain README.md
+# Bootstrap a project
+/ce:init
 
 # Use a skill
 ce:writing-tests
@@ -230,17 +219,7 @@ cd my-project
 **Fix failing tests:**
 
 ```bash
-/ce:test
-# If complex, escalate:
 ce:systematic-debugging
-```
-
-**Review before merge:**
-
-```bash
-/ce:review
-# Review findings are tracked as a checklist, fix issues, then:
-/ce:commit
 ```
 
 **Plan and build a feature:**
@@ -251,45 +230,27 @@ ce:planning-products
 # Then create a technical plan:
 ce:writing-plans
 # Then execute:
-/ce:execute
+ce:executing-plans
 ```
 
 **Clean up legacy code:**
 
 ```bash
-/ce:explain src/legacy/payment-processor.js
 ce:refactoring-code
 ```
 
 ### Understanding the System
 
-**Commands vs Skills vs Agents:**
+**Skills vs Agents:**
 
-- **Commands** (`/ce:test`, `/ce:review`) are quick keyboard shortcuts for routine tasks
 - **Skills** (`ce:writing-tests`) are reusable workflows that guide specific development patterns
 - **Agents** (`@ce:code-reviewer`) are expert personas for complex, multi-step work
 
-Use commands for quick actions, skills for following proven patterns, and agents when you need specialized expertise.
+Use skills for following proven patterns, and agents when you need specialized expertise.
 
 ## Customization
 
 All components are just markdown files organized in directories. Want to customize? Edit them directly in `~/.claude/plugins/ce/`.
-
-### Creating Your Own Command
-
-Add a markdown file to `~/.claude/plugins/ce/commands/`:
-
-```markdown
----
-description: Your command description
-argument-hint: "[optional-arg]"
-allowed-tools: Bash, Read
----
-
-Your command instructions here.
-```
-
-This will be accessible as `/ce:your-command`.
 
 ### Creating Your Own Skill
 
@@ -334,20 +295,13 @@ This will be accessible as `@ce:my-agent`.
     └── ce/
         ├── .claude-plugin/
         │   └── plugin.json       # Plugin metadata
-        ├── commands/             # 9 commands (/ce:test, /ce:review, /ce:commit, etc.)
+        ├── commands/             # 1 command (/ce:init)
         ├── skills/               # 24 skills (ce:writing-tests, ce:planning-products, etc.)
         ├── agents/               # 4 agents (@ce:code-reviewer, @ce:haiku, etc.)
         └── hooks/                # Session automation
 ```
 
 ## Tips
-
-**Commands accept arguments:** Most commands work with optional parameters.
-
-```bash
-/ce:test pytest tests/unit
-/ce:explain AuthController
-```
 
 **Skills are for learning:** Invoke a skill to understand a pattern, then apply it.
 
@@ -366,8 +320,6 @@ ce:architecting-systems help with authentication
 ce:architecting-systems We need OAuth2 + JWT authentication for a React SPA with Node backend. 50k users.
 ```
 
-**Run tests first:** Use `/ce:test` before committing to catch issues early.
-
 ## Documentation
 
 - [Extending for Projects](docs/extending-for-projects.md) - How to wrap and extend ce for your specific codebase
@@ -383,7 +335,6 @@ Found a bug? Have an idea? Contributions welcome.
 
 Ideas for contributions:
 
-- New commands for common workflows
 - Additional skills for specific patterns
 - Specialized agents for other domains
 - Documentation improvements

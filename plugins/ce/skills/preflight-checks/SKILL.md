@@ -55,9 +55,9 @@ Filter to relevant extensions for each tool (e.g., only `.ts`/`.tsx` for tsc, on
 
 ## When to Run
 
-- Before `git commit` (used by `/ce:commit`)
+- Before `git commit`
 - Before claiming work is complete
-- Before creating a PR (used by `/ce:pr`)
+- Before creating a PR
 
 ## Failure Handling
 

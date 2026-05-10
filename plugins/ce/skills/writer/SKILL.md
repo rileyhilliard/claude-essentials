@@ -93,6 +93,8 @@ Unless specifically requested.
 - Explaining how something works
 - Creating API references or READMEs
 - Documenting code patterns or conventions
+- Auditing or writing code comments
+- Using documentation templates
 
 **Load The Architect when:**
 

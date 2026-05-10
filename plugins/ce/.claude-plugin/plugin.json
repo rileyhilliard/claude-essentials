@@ -1,7 +1,7 @@
 {
   "name": "ce",
-  "description": "Claude Essentials - Unified development plugin with 9 commands, 25 skills, and 4 specialized agents",
-  "version": "3.0.6",
+  "description": "Claude Essentials - Unified development plugin with 1 command, 24 skills, and 4 specialized agents",
+  "version": "3.1.0",
   "author": {
     "name": "Riley Hilliard"
   },
