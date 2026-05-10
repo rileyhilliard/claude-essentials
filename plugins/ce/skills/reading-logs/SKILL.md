@@ -16,56 +16,6 @@ For log files over a few hundred lines, delegate to the `@ce:log-reader` agent. 
 
 The agent has this skill preloaded, so it already knows the methodology. Keep your prompt tight and specific - don't paste log contents into the delegation message.
 
-## Core Principles
-
-1. **Filter first** - Search/filter before reading
-2. **Iterative narrowing** - Start broad (severity), refine with patterns/time
-3. **Small context windows** - Fetch 5-10 lines around matches, not entire files
-4. **Summaries over dumps** - Present findings concisely, not raw output
-
-## Tool Strategy
-
-### 1. Find Logs (Glob)
-
-```bash
-**/*.log
-**/logs/**
-**/*.log.*  # Rotated logs
-```
-
-### 2. Filter with Grep
-
-```bash
-# Severity search
-grep -Ei "error|warn" app.log
-
-# Exclude noise
-grep -i "ERROR" app.log | grep -v "known-benign"
-
-# Context around matches
-grep -C 5 "ERROR" app.log  # 5 lines before/after
-
-# Time window
-grep "2025-12-04T11:" app.log | grep "ERROR"
-
-# Count occurrences
-grep -c "connection refused" app.log
-```
-
-### 3. Chain with Bash
-
-```bash
-# Recent only
-tail -n 2000 app.log | grep -Ei "error"
-
-# Top recurring
-grep -i "ERROR" app.log | sort | uniq -c | sort -nr | head -20
-```
-
-### 4. Read Last
-
-Only after narrowing with Grep. Use context flags (`-C`, `-A`, `-B`) to grab targeted chunks.
-
 ## Investigation Workflows
 
 ### Single Incident

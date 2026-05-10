@@ -5,43 +5,6 @@ description: Prevents silent failures and context loss in error handling. Use wh
 
 # Handling Errors
 
-## Iron Laws
-
-1. **Never swallow errors** - Empty catch blocks hide bugs that surface later in unrelated places, making them much harder to trace
-2. **Never convert errors to booleans** - Loses all context and forces callers to guess what went wrong
-3. **Preserve error context** when wrapping or propagating - upstream handlers need the original cause to make good decisions
-4. **Log once where handled**, not at every layer - duplicate logs across layers create noise that obscures the real signal
-
-## Error Messages
-
-Every error message answers: **What happened? Why? How to recover?**
-
-**For logs (developers):**
-
-```typescript
-logger.error("Failed to save user: Connection timeout after 30s", {
-  userId: user.id,
-  dbHost: config.db.host,
-  error: error.stack,
-});
-```
-
-**For users:**
-
-For user-facing error copy, use `Skill(ce:writer)` with **The UX Writer** persona. Key principles:
-
-- Brief and specific (not "Something went wrong")
-- Actionable (tell them what to do next)
-- No blame (never "You entered invalid...")
-
-```typescript
-showError({
-  title: "Upload failed",
-  message: "File exceeds 10MB limit. Choose a smaller file.",
-  actions: [{ label: "Choose file", onClick: selectFile }],
-});
-```
-
 ## Error Categories
 
 | Type         | Examples                           | Handling                    |

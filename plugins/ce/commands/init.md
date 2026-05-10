@@ -103,7 +103,6 @@ Will create:
       ├── testing.md            # -> ce:writing-tests
       ├── error-handling.md     # -> ce:handling-errors
       ├── debugging.md          # -> ce:systematic-debugging
-      ├── verification.md       # -> ce:verification-before-completion
       └── python/
           └── testing.md        # pytest patterns
 ```
@@ -120,7 +119,6 @@ Will create:
       ├── testing.md            # -> ce:writing-tests
       ├── error-handling.md     # -> ce:handling-errors
       ├── debugging.md          # -> ce:systematic-debugging
-      ├── verification.md       # -> ce:verification-before-completion
       ├── frontend/
       │   ├── testing.md        # vitest + msw patterns
       │   └── react.md          # component patterns
@@ -314,23 +312,6 @@ Four-phase approach:
 2. Trace the code path
 3. Identify root cause
 4. Verify the fix
-```
-
-**rules/verification.md:**
-```markdown
----
-paths:
-  - "**/*"
----
-
-# Verification
-
-Before claiming work is complete, load the ce:verification-before-completion skill.
-
-Always verify:
-- Tests pass
-- Linting passes
-- The feature works end-to-end
 ```
 
 ### Stack-Specific Rule Templates

@@ -46,9 +46,9 @@ Ambitious framing is fine. Excitement about opportunity is fine. But ground it i
 
 ## Forbidden Patterns (All Personas)
 
-### Buzzword soup
+See [references/forbidden-patterns.md](references/forbidden-patterns.md) for shared patterns (em dashes, buzzwords, hedging, emojis).
 
-Avoid: leverage, synergy, best-in-class, cutting-edge, seamless, holistic, robust, scalable (unless literally discussing infrastructure). These words say nothing and signal AI or committee-written content.
+**Strategy-specific:**
 
 ### Technology-first framing
 
@@ -63,20 +63,6 @@ Wrong: "The market is ready for this."
 Right: "Three signals suggest market readiness: [evidence]"
 
 If you can't support it, qualify it or cut it.
-
-### Excessive hedging
-
-Wrong: "This could potentially be somewhat beneficial in certain circumstances."
-Right: "This works well for X use case. It's weaker for Y."
-
-Take a position. Acknowledge limits. Don't weasel.
-
-### Em dashes
-
-Avoid em dashes (—). They're an AI writing signature. Use commas, parentheses, colons, or split into two sentences instead.
-
-Wrong: "The market is growing — and fast."
-Right: "The market is growing, and fast." or "The market is growing. Fast."
 
 ---
 

@@ -108,34 +108,6 @@ See [references/pgvector-querying.md](references/pgvector-querying.md) for hybri
 See [references/neo4j-architecture.md](references/neo4j-architecture.md) for data modeling, indexing, and maintenance.
 See [references/neo4j-querying.md](references/neo4j-querying.md) for Cypher optimization and anti-patterns.
 
-## Cross-database conventions
-
-### Naming
-
-| Convention             | Example                  | Applies to    |
-| ---------------------- | ------------------------ | ------------- |
-| snake_case tables      | `dataset_jobs`           | All           |
-| snake_case columns     | `created_at`             | PG, DuckDB, Parquet |
-| camelCase properties   | `createdAt`              | Neo4j         |
-| PascalCase labels      | `:UserAccount`           | Neo4j         |
-| Singular table names   | `dataset` not `datasets` | PostgreSQL    |
-| Plural for collections | `datasets/` directory    | Parquet files |
-
-### Normalization decisions
-
-| Pattern             | When to normalize                 | When to denormalize             |
-| ------------------- | --------------------------------- | ------------------------------- |
-| Lookup tables       | PostgreSQL, changes frequently    | DuckDB/Parquet, static data     |
-| Repeated values     | PostgreSQL, storage matters       | Parquet, compression handles it |
-| Joins at query time | PostgreSQL, complex relationships | Parquet, pre-join for analytics |
-
-### Timestamps
-
-- Store as UTC always
-- PostgreSQL: `TIMESTAMPTZ`
-- Parquet: `TIMESTAMP` with `isAdjustedToUTC=true`
-- DuckDB: reads both correctly
-
 ## Performance debugging checklist
 
 ### PostgreSQL slow query

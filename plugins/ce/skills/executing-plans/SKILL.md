@@ -108,9 +108,7 @@ All four checks must pass before marking complete:
    - `Skill(ce:managing-databases)` - database work
    - `Skill(ce:handling-errors)` - error handling
    - `Skill(ce:writing-tests)` - test quality
-   - `Skill(ce:migrating-code)` - migrations
    - `Skill(ce:optimizing-performance)` - performance work
-   - `Skill(ce:refactoring-code)` - refactoring
 
    Handle the review verdict:
    - **Must fix:** Fix all Critical and Important issues before marking complete

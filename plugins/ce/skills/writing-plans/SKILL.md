@@ -126,9 +126,7 @@ Before presenting the plan to the user, dispatch the `ce:devils-advocate` agent 
   - `Skill(ce:managing-databases)` - database schemas, queries, migrations
   - `Skill(ce:handling-errors)` - error handling patterns
   - `Skill(ce:writing-tests)` - test strategy and quality
-  - `Skill(ce:migrating-code)` - code migrations, API versioning
   - `Skill(ce:optimizing-performance)` - performance-sensitive work
-  - `Skill(ce:refactoring-code)` - structural refactoring
 - The agent will look for: unstated assumptions, missing edge cases, tasks that are too vague, missing dependencies between tasks, verification gaps
 - Incorporate valid feedback into the plan
 - Note what the review caught in a brief "Review notes" comment at the bottom of the plan

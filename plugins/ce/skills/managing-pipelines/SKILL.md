@@ -112,35 +112,6 @@ See [references/infrastructure-pipelines.md](references/infrastructure-pipelines
 
 See [references/pipeline-observability.md](references/pipeline-observability.md) for instrumentation and metrics.
 
-## Cross-pipeline conventions
-
-### Workflow file naming
-
-| Convention | Example | When |
-| --- | --- | --- |
-| Trigger-based prefix | `ci-test.yml`, `ci-lint.yml` | CI workflows |
-| Deploy prefix | `deploy-staging.yml`, `deploy-prod.yml` | Deployment workflows |
-| Scheduled prefix | `scheduled-drift.yml`, `scheduled-cleanup.yml` | Cron jobs |
-| Reusable prefix | `_reusable-build.yml` | Shared workflow templates |
-
-### Permissions
-
-| Principle | Pattern |
-| --- | --- |
-| Default to read-only | Set at org/repo level, override per-job |
-| Scope per job, not workflow | Each job declares only what it needs |
-| OIDC over stored secrets | Short-lived tokens scoped to repo+branch+env |
-| Explicit secret passing | Name each secret, avoid `secrets: inherit` |
-
-### Branch protection
-
-| Rule | CI workflows | Deploy workflows |
-| --- | --- | --- |
-| Required status checks | Yes | Yes |
-| Require PR reviews | Yes | Yes (production) |
-| Dismiss stale reviews | Yes | Yes |
-| Restrict pushes | Optional | Yes (main/release branches) |
-
 ## Pipeline debugging checklist
 
 ### Slow CI builds

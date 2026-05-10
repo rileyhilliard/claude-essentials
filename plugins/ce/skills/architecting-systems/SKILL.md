@@ -25,35 +25,6 @@ Load multiple references when the task spans topics. For most greenfield work, s
 
 ## Core Principles (All Topics)
 
-### Convention over invention
-
-Default to established patterns, standard libraries, and proven conventions. Novel solutions carry hidden costs: documentation burden, onboarding friction, and maintenance surprises.
-
-| Prefer | Over |
-|--------|------|
-| Framework conventions | Custom project structures |
-| Standard library tools | Bespoke utilities for solved problems |
-| Established patterns (MVC, repository, etc.) | Clever abstractions |
-| Boring technology that works | Exciting technology that might |
-
-**The test:** If someone new joins the team, how quickly can they find things and understand the structure? If the answer involves a tour guide, the conventions aren't strong enough.
-
-### State management
-
-State is where complexity hides. The more places state lives and the more things can mutate it, the harder the system is to reason about.
-
-- **Minimize mutable shared state.** If two modules need the same data, one should own it and the other should request it.
-- **Keep state close to where it's used.** Global state is almost never the answer.
-- **Make state changes explicit.** Whether that's through events, reducers, or explicit setter methods, the "what changed and why" should be traceable.
-- **Single source of truth.** Every piece of data should have one authoritative home. Derived data should be computed, not independently stored, unless there's a measured performance reason to cache or denormalize.
-
-### Design for change
-
-- **Make the common path easy.** If doing the right thing requires extra effort, people will take shortcuts. Good defaults, templates, and guard rails beat documentation.
-- **Enforce with tooling, not docs.** Linting rules, CI checks, and architectural tests scale. Wiki pages and team agreements don't. If a convention matters, make violations fail the build.
-- **Isolate volatility.** Wrap external integrations in adapters. Isolate business rules in the domain layer. Keep presentation thin. Abstract storage behind repositories.
-- **Prefer composition over inheritance.** Combine small, focused pieces rather than extending complex base classes.
-
 ### Complexity budget
 
 Every architectural decision has a complexity cost. Spend that budget where it matters.

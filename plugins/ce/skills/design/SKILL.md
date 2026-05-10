@@ -77,49 +77,6 @@ Pick one. Or blend two. But commit to a direction that fits the product.
 - **Humanist sans** (SF Pro, Satoshi): warmer, more approachable
 - **Monospace influence**: technical, developer-focused, data-heavy
 
-## Core Craft (Non-Negotiable)
-
-### The 4px Grid
-
-All spacing uses 4px base: `4px` (micro), `8px` (tight), `12px` (standard), `16px` (comfortable), `24px` (generous), `32px` (major).
-
-### Symmetrical Padding
-
-TLBR must match. If top is 16px, all sides are 16px. Exception: when content naturally creates visual balance.
-
-### Border Radius
-
-Stick to 4px grid. Pick a system and commit:
-- Sharp: 4px, 6px, 8px
-- Soft: 8px, 12px
-- Minimal: 2px, 4px, 6px
-
-### Depth Strategy
-
-**Match depth to design direction.** Different products need different approaches:
-
-- **Borders-only (flat)**: Clean, technical. Linear, Raycast use almost no shadows.
-- **Subtle single shadow**: Soft lift without complexity.
-- **Layered shadows**: Rich, premium, dimensional. Stripe, Mercury.
-- **Surface color shifts**: Background tints establish hierarchy without shadows.
-
-**The craft is in the choice, not the complexity.** A flat interface with perfect spacing is more polished than shadow-heavy with sloppy details.
-
-### Typography Hierarchy
-
-- Headlines: 600 weight, -0.02em tracking
-- Body: 400-500 weight
-- Labels: 500 weight, positive tracking for uppercase
-- Scale: 11px, 12px, 13px, 14px (base), 16px, 18px, 24px, 32px
-
-Use **monospace** for numbers, IDs, codes, timestamps. Use `tabular-nums` for columns.
-
-**Font pairing:** Display font for headlines (one statement font) + neutral body font. Don't mix two display fonts.
-
-### Color for Meaning Only
-
-Gray builds structure. Color only appears when it communicates: status, action, error, success. Four-level contrast hierarchy: foreground → secondary → muted → faint.
-
 ## Card Layouts
 
 **Internal layouts should vary by content.** A metric card doesn't have to look like a plan card doesn't have to look like a settings card. One might have a sparkline, another an avatar stack, another a progress ring.
@@ -146,28 +103,6 @@ When building sidebars, consider using same background as main content. Linear, 
 - **Borders over shadows**: Shadows less visible on dark backgrounds
 - **Adjust semantic colors**: Desaturate for dark backgrounds
 - **Same hierarchy, inverted values**
-
-## Motion & Animation
-
-**Motion is communication, not decoration.** Every animation should have a reason.
-
-- **Timing:** 150-200ms for micro-interactions, 300-400ms for larger transitions
-- **Easing:** `ease-out` for entrances, `ease-in` for exits, `ease-in-out` for state changes
-- **Staggered reveals:** When loading multiple items, stagger by 50-75ms for polished feel
-- **Scroll-triggered:** Subtle fade-in on scroll for long pages (opacity + small translateY)
-
-Avoid: Spring physics, bouncy overshoots, parallax effects. Keep motion functional.
-
-## Texture & Atmosphere
-
-For products that need visual depth beyond shadows:
-
-- **Subtle gradients:** Background gradients (2-3% opacity shift) add dimension without distraction
-- **Noise overlay:** 1-2% noise on large surfaces prevents flatness (especially dark mode)
-- **Glass effects:** `backdrop-filter: blur()` for elevated surfaces, used sparingly
-- **Border gradients:** Subtle gradient borders on hero cards for premium feel
-
-Match to personality: Precision products stay flat. Sophisticated products layer depth.
 
 ## Anti-Patterns
 

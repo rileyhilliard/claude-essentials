@@ -3,7 +3,6 @@ name: haiku
 description: Lightweight Haiku agent for delegated tasks. Receives detailed instructions and executes them precisely. Not typically invoked directly by users.
 tools: Bash, Read, Edit, Write, Grep, Glob, BashOutput
 model: haiku
-skills: ce:verification-before-completion
 color: gray
 ---
 
