@@ -81,7 +81,7 @@ Expert AI personas for complex work, accessed with `@ce:` prefix:
 | Agent                                                       | Description                                          |
 | ----------------------------------------------------------- | ---------------------------------------------------- |
 | [@ce:code-reviewer](plugins/ce/agents/code-reviewer.md)     | Comprehensive PR/MR reviews enforcing standards      |
-| [@ce:haiku](plugins/ce/agents/haiku.md)                     | Lightweight Haiku agent for simple delegated tasks   |
+| [@ce:haiku](plugins/ce/agents/haiku.md)                     | Cheap reader for logs and large-file scans (not coding) |
 | [@ce:log-reader](plugins/ce/agents/log-reader.md)           | Efficient log file analysis using targeted search    |
 | [@ce:devils-advocate](plugins/ce/agents/devils-advocate.md) | Rigorous critique to find flaws in plans and designs |
 
