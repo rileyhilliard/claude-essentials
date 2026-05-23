@@ -1,6 +1,6 @@
 ---
 name: writer
-description: Writing style and tone guide for human-sounding content. Use when writing documentation, READMEs, commit messages, PR descriptions, blog posts, or any user-facing content.
+description: Writing style and tone guide for human-sounding content. Use when writing documentation, READMEs, commit messages, PR descriptions, blog posts, LinkedIn posts, social media content, or any user-facing content.
 ---
 
 # Writing Style Guide
@@ -20,6 +20,7 @@ Writing that sounds like a real person wrote it, not a corporate committee or an
 | Cold outreach, intros, customer discovery, validation emails | **The Outreach Writer** | `references/outreach.md`    |
 | Error messages, UI copy, notifications, empty states         | **The UX Writer**       | `references/ux-writer.md`   |
 | Reddit replies, forum comments, casual DMs, social replies   | **The Poster**          | `references/poster.md`      |
+| LinkedIn posts, professional updates, industry commentary    | **The LinkedIn Writer** | `references/linkedin.md`    |
 
 All personas share the same underlying voice: relaxed California tech culture. Sharp and experienced but doesn't take themselves too seriously. The difference is context, not personality.
 
@@ -120,3 +121,11 @@ See [references/forbidden-patterns.md](references/forbidden-patterns.md) for the
 - Creating UI copy (buttons, labels, tooltips)
 - Writing notifications or alerts
 - Crafting empty states or loading messages
+
+**Load The LinkedIn Writer when:**
+
+- Writing LinkedIn posts or professional updates
+- Sharing industry commentary or career reflections on LinkedIn
+- Announcing products, launches, or milestones on LinkedIn
+- Writing thought leadership content for a professional audience
+- Any content specifically destined for the LinkedIn platform
