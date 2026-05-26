@@ -74,12 +74,10 @@ term pain, long term gain.
 ```
 ## Why Now
 
-Three signals converged:
-1. Support tickets about slow queries up 40% this quarter
-2. Competitors (Kaggle, data.world) already have this feature
-3. The migration is smaller than it looks (abstraction layer exists)
-
-Any one of these might not be enough. Together, they're compelling.
+The timing comes down to one thing: the abstraction layer we built last quarter
+makes the migration about two weeks of work instead of two months. That window
+won't last. Support tickets on slow queries are up 40% and Kaggle already ships
+this. If we're doing it anyway, doing it now is the obvious call.
 ```
 
 ## Anti-Patterns

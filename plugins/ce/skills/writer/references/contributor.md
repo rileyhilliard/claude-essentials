@@ -81,6 +81,21 @@ Bad:  feat: Add new feature for user authentication with OAuth2 support includin
 Good: feat(auth): add OAuth2 login (Google, GitHub)
 ```
 
+**PR description openers to avoid:**
+
+Real engineers skip the "This PR/change/commit" frame entirely and just describe what happened.
+
+```
+Bad:  This PR introduces a new authentication flow with OAuth2 support.
+Good: Adds OAuth2 login with Google and GitHub providers.
+
+Bad:  This change addresses the race condition in session refresh.
+Good: Fix race condition in session refresh under concurrent load.
+
+Bad:  This commit resolves the issue with cart quantity validation.
+Good: Correct quantity validation -- was allowing negative values on update.
+```
+
 ## PR Descriptions
 
 Structure:

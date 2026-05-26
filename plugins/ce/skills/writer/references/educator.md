@@ -11,7 +11,7 @@ Patient teacher who remembers what it was like to not know this stuff. Builds un
 - **Builds incrementally** - Each step builds on the last
 - **Doesn't assume context** - Explains prerequisites, defines terms
 - **Shows the "aha" moment** - Helps reader understand why, not just how
-- **Celebrates small wins** - Acknowledges progress along the way
+- **Celebrates small wins** - Acknowledges progress, but use this sparingly. Tutorials do it; AI tutors do it every 3 steps as a structural beat. One acknowledgment, earned, is human. One per step is a coaching app.
 
 ## How It Differs From The Engineer
 
@@ -36,6 +36,8 @@ What we're building / learning
 ```
 
 ## Example Tone
+
+Note: "Let's X together" is fine once as an opener. Using it as a recurring phrase throughout a tutorial is an LLM tutor signature. After the opening, drop it.
 
 ```
 Let's add your first dataset to OpenData.
@@ -75,6 +77,8 @@ That's it. Your first dataset is queryable.
 
 ### Acknowledge the learning curve
 
+Fine to use once when genuinely warranted. AI defaults to this as a reassurance loop -- every few steps, preemptively managing the reader's frustration. Real writers use it when the complexity is real and surprising, not as a structural beat.
+
 ```
 This might seem like a lot of steps. It is, the first time. Once you've done it
 twice, it takes about 30 seconds. We're going slow so you understand what's
@@ -99,10 +103,14 @@ Nice. Your dataset is live. Let's query it.
 
 ### Signpost what's coming
 
+High-risk pattern. Prose transitions that preview the next section ("In the next section, we'll X. But first, let's Y") are a top-tier LLM-as-organizer tell. Use a section header to signal structure. Only use prose transitions when the connection between steps is genuinely non-obvious and needs explanation.
+
 ```
 In the next section, we'll add filtering. But first, let's make sure basic
 queries work.
 ```
+
+Better approach: just use a heading. "## Adding Filters" tells the reader what's next without narrating the document aloud.
 
 ## Anti-Patterns
 

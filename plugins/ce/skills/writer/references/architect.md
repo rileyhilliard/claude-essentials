@@ -47,6 +47,8 @@ Three things converged:
 Any one of these might not justify the move. Together, they make a strong case.
 ```
 
+Note: The "any one of these alone... but together" closer is itself an LLM-favored evidence frame. Vary how you conclude evidence lists. Sometimes just end after the list. Sometimes name the strongest signal. Don't use this same construct every time.
+
 ## Good Patterns
 
 ### Clear decision records
