@@ -21,7 +21,6 @@ Reusable development patterns, accessed with `ce:` prefix:
 | Skill                                                                                          | Description                                             |
 | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | [ce:writing-tests](plugins/ce/skills/writing-tests/SKILL.md)                                   | Testing Trophy methodology, behavior-focused tests      |
-| [ce:verification-before-completion](plugins/ce/skills/verification-before-completion/SKILL.md) | Verify before claiming success                          |
 | [ce:preflight-checks](plugins/ce/skills/preflight-checks/SKILL.md)                             | Auto-detect and run project linters/formatters/checkers |
 
 **Debugging & Problem Solving:**
@@ -37,10 +36,8 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 | Skill                                                                          | Description                                                 |
 | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
-| [ce:refactoring-code](plugins/ce/skills/refactoring-code/SKILL.md)             | Behavior-preserving code improvements                       |
 | [ce:optimizing-performance](plugins/ce/skills/optimizing-performance/SKILL.md) | Measurement-driven optimization                             |
 | [ce:handling-errors](plugins/ce/skills/handling-errors/SKILL.md)               | Error handling best practices                               |
-| [ce:migrating-code](plugins/ce/skills/migrating-code/SKILL.md)                 | Safe migration patterns for databases, APIs, and frameworks |
 
 **Planning & Execution:**
 
@@ -56,8 +53,9 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 | Skill                                                            | Description                                                                                               |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| [ce:writer](plugins/ce/skills/writer/SKILL.md)                   | Writing style guide with 9 personas (Architect, Engineer, PM, Marketer, Educator, Contributor, Outreach, UX Writer, Poster) |
-| [ce:strategy-writer](plugins/ce/skills/strategy-writer/SKILL.md) | Executive-quality strategic documents in Economist/HBR style                                              |
+| [ce:writer](plugins/ce/skills/writer/SKILL.md)                                         | Writing style guide with 9 personas (Architect, Engineer, PM, Marketer, Educator, Contributor, Outreach, UX Writer, Poster) |
+| [ce:structuring-articles](plugins/ce/skills/structuring-articles/SKILL.md)             | Professional journalistic story structures (WSJ Formula, Inverted Pyramid, Hourglass, etc.)               |
+| [ce:strategy-writer](plugins/ce/skills/strategy-writer/SKILL.md)                       | Executive-quality strategic documents in Economist/HBR style                                              |
 
 **Data & Infrastructure:**
 
@@ -84,6 +82,7 @@ Expert AI personas for complex work, accessed with `@ce:` prefix:
 | [@ce:haiku](plugins/ce/agents/haiku.md)                     | Cheap reader for logs and large-file scans (not coding) |
 | [@ce:log-reader](plugins/ce/agents/log-reader.md)           | Efficient log file analysis using targeted search    |
 | [@ce:devils-advocate](plugins/ce/agents/devils-advocate.md) | Rigorous critique to find flaws in plans and designs |
+| [@ce:copywriter](plugins/ce/agents/copywriter.md)           | Articles and long-form content using journalistic frameworks |
 
 ### Hooks
 
@@ -296,8 +295,8 @@ This will be accessible as `@ce:my-agent`.
         ├── .claude-plugin/
         │   └── plugin.json       # Plugin metadata
         ├── commands/             # 1 command (/ce:init)
-        ├── skills/               # 24 skills (ce:writing-tests, ce:planning-products, etc.)
-        ├── agents/               # 4 agents (@ce:code-reviewer, @ce:haiku, etc.)
+        ├── skills/               # 22 skills (ce:writing-tests, ce:planning-products, etc.)
+        ├── agents/               # 5 agents (@ce:code-reviewer, @ce:haiku, etc.)
         └── hooks/                # Session automation
 ```
 

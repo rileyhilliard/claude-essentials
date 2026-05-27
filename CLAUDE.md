@@ -9,15 +9,15 @@ This is a unified Claude Code plugin (`ce`) that provides development workflows,
 **The ce plugin provides:**
 
 - **1 Command** - Project initialization (init)
-- **24 Skills** - Reusable patterns for testing, debugging, refactoring, architecture, planning, writing, and more
-- **4 Agents** - Expert AI personas (code-reviewer, haiku, log-reader, devils-advocate)
+- **22 Skills** - Reusable patterns for testing, debugging, architecture, planning, writing, and more
+- **5 Agents** - Expert AI personas (code-reviewer, haiku, log-reader, devils-advocate, copywriter)
 - **Session Hooks** - Automatic project configuration on startup
 
 **Namespace conventions:**
 
 - Commands: `/ce:init`
 - Skills: `@skills/ce:writing-tests`, `@skills/ce:systematic-debugging`, `@skills/ce:architecting-systems`, etc.
-- Agents: `@ce:code-reviewer`, `@ce:haiku`, `@ce:log-reader`, `@ce:devils-advocate`
+- Agents: `@ce:code-reviewer`, `@ce:copywriter`, `@ce:haiku`, `@ce:log-reader`, `@ce:devils-advocate`
 
 The `ce:` prefix is automatically added by Claude Code based on the plugin name. Files and YAML frontmatter use simple names without the prefix.
 
@@ -33,14 +33,15 @@ plugins/ce/
 │   └── plugin.json          # Plugin metadata (name: "ce", description, version, author, license)
 ├── commands/                 # 1 slash command
 │   └── init.md              # Accessed as /ce:init
-├── skills/                   # 24 skills
+├── skills/                   # 22 skills
 │   ├── writing-tests/       # Accessed as @skills/ce:writing-tests
 │   │   └── SKILL.md         # name: writing-tests (no ce: prefix in file)
 │   ├── architecting-systems/    # Accessed as @skills/ce:architecting-systems
 │   │   └── SKILL.md             # System architecture and technical docs
 │   └── ...                  # Other skills follow same pattern
-├── agents/                   # 4 agents
+├── agents/                   # 5 agents
 │   ├── code-reviewer.md     # Accessed as @ce:code-reviewer
+│   ├── copywriter.md        # Accessed as @ce:copywriter
 │   ├── haiku.md             # Accessed as @ce:haiku
 │   ├── log-reader.md        # Accessed as @ce:log-reader
 │   └── devils-advocate.md   # Accessed as @ce:devils-advocate

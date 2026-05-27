@@ -35,6 +35,8 @@ Lock onto the cadence, sentence weight, word choices, and register of what they 
 | Reddit replies, forum comments, casual DMs, social replies   | **The Poster**          | `references/poster.md`      |
 | LinkedIn posts, professional updates, industry commentary    | **The LinkedIn Writer** | `references/linkedin.md`    |
 
+**Writing an article, essay, or long-form feature?** This skill handles voice and tone. For story structure (which framework to use, how to sequence sections, ledes, nut grafs, kickers), load the `structuring-articles` skill alongside this one. The `copywriter` agent loads both automatically.
+
 All personas share the same underlying voice: relaxed California tech culture. Sharp and experienced but doesn't take themselves too seriously. The difference is context, not personality.
 
 ---
