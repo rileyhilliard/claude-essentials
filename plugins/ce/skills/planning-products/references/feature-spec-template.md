@@ -1,6 +1,6 @@
 # Feature Spec Template
 
-Use this template for product feature definitions. The output feeds into `Skill(ce:writing-plans)` for technical task breakdown and `Skill(ce:design)` for UI implementation.
+Use this template for product feature definitions. The output feeds into `Skill(writing-plans)` for technical task breakdown and `Skill(design)` for UI implementation.
 
 **Save to:** `**/specs/YYYY-MM-DD-<feature-name>.md`
 

@@ -2,7 +2,7 @@
 
 Investigate cases where code was hard to understand, things were in unexpected places, or the overall system structure made the task harder than it needed to be.
 
-Load `Skill(ce:architecting-systems)` for guidance on structure, coupling, boundaries, concurrency, and observability patterns. Use its reference files for targeted architectural context.
+Load `Skill(architecting-systems)` for guidance on structure, coupling, boundaries, concurrency, and observability patterns. Use its reference files for targeted architectural context.
 
 ## What to Look For
 

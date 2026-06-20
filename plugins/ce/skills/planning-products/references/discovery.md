@@ -29,7 +29,7 @@ Don't need all of these. Pick the 2-3 most relevant for the product type.
 
 ## Competitive Analysis (Feature-Level)
 
-This is lightweight, feature-level competitive review, not the deep market analysis that `Skill(ce:strategy-writer)` handles.
+This is lightweight, feature-level competitive review, not the deep market analysis that `Skill(strategy-writer)` handles.
 
 | What to capture | Why |
 |----------------|-----|

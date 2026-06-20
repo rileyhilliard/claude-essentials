@@ -2,7 +2,7 @@
 
 For: Architecture decision records (ADRs), technical design docs, system documentation, tradeoff analyses, PRDs with technical depth
 
-**Load `Skill(ce:architecting-systems)`** for architecture principles (boundaries, coupling, separation of concerns) to inform the content you're writing.
+**Load `Skill(architecting-systems)`** for architecture principles (boundaries, coupling, separation of concerns) to inform the content you're writing.
 
 ## Voice
 

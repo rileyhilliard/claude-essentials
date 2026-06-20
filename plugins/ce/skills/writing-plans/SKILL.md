@@ -122,11 +122,11 @@ Before presenting the plan to the user, dispatch the `ce:devils-advocate` agent 
 
 - Pass the full drafted plan text to the agent
 - Load relevant domain skills based on what the plan involves. Evaluate which of these apply and include them in the agent prompt:
-  - `Skill(ce:architecting-systems)` - system design, module boundaries, dependencies
-  - `Skill(ce:managing-databases)` - database schemas, queries, migrations
-  - `Skill(ce:handling-errors)` - error handling patterns
-  - `Skill(ce:writing-tests)` - test strategy and quality
-  - `Skill(ce:optimizing-performance)` - performance-sensitive work
+  - `Skill(architecting-systems)` - system design, module boundaries, dependencies
+  - `Skill(managing-databases)` - database schemas, queries, migrations
+  - `Skill(handling-errors)` - error handling patterns
+  - `Skill(writing-tests)` - test strategy and quality
+  - `Skill(optimizing-performance)` - performance-sensitive work
 - The agent will look for: unstated assumptions, missing edge cases, tasks that are too vague, missing dependencies between tasks, verification gaps
 - Incorporate valid feedback into the plan
 - Note what the review caught in a brief "Review notes" comment at the bottom of the plan

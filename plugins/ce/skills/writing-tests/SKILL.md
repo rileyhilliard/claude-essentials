@@ -78,7 +78,7 @@ Everything else → Integration test
 - **Python**: See [references/python.md](references/python.md)
 - **Go**: See [references/go.md](references/go.md)
 
-For flaky tests with timing issues, use `Skill(ce:condition-based-waiting)`.
+For flaky tests with timing issues, use `Skill(condition-based-waiting)`.
 
 ---
 

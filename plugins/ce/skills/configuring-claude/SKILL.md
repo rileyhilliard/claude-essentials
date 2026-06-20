@@ -90,5 +90,5 @@ Skill descriptions and rule content get injected into system prompts. Inconsiste
 
 ## Cross-References
 
-- **Writing tone and style for config content:** Load `Skill(ce:writer)` with The Engineer persona for technical docs, or The Educator persona for tutorials and onboarding guides.
-- **Documentation:** Load `Skill(ce:writer)` with The Engineer persona when the config involves creating README files, API docs, architecture documentation, or auditing code comments.
+- **Writing tone and style for config content:** Load `Skill(writer)` with The Engineer persona for technical docs, or The Educator persona for tutorials and onboarding guides.
+- **Documentation:** Load `Skill(writer)` with The Engineer persona when the config involves creating README files, API docs, architecture documentation, or auditing code comments.

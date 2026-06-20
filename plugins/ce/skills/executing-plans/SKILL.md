@@ -104,11 +104,11 @@ All four checks must pass before marking complete:
 4. **Code review (mandatory):** After tests pass and manual verification is done, dispatch the `ce:code-reviewer` agent via Task tool to review the full diff against the base branch. This step is not optional.
 
    Load relevant domain skills into the agent based on what was implemented. Evaluate which apply and include them in the agent prompt:
-   - `Skill(ce:architecting-systems)` - system design, module boundaries
-   - `Skill(ce:managing-databases)` - database work
-   - `Skill(ce:handling-errors)` - error handling
-   - `Skill(ce:writing-tests)` - test quality
-   - `Skill(ce:optimizing-performance)` - performance work
+   - `Skill(architecting-systems)` - system design, module boundaries
+   - `Skill(managing-databases)` - database work
+   - `Skill(handling-errors)` - error handling
+   - `Skill(writing-tests)` - test quality
+   - `Skill(optimizing-performance)` - performance work
 
    Handle the review verdict:
    - **Must fix:** Fix all Critical and Important issues before marking complete

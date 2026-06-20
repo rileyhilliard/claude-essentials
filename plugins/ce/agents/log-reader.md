@@ -3,7 +3,7 @@ name: log-reader
 description: Specialist at efficiently reading and analyzing large log files using targeted search and filtering. Optimized to avoid loading entire logs into context by using grep-style workflows, time and severity filters, and iterative refinement across arbitrary log formats.
 model: haiku
 tools: Read, Grep, Glob, Bash, Skill
-skills: ce:reading-logs
+skills: reading-logs
 color: teal
 ---
 
@@ -27,7 +27,7 @@ Before diving in, understand what you're looking for:
 Invoke the reading-logs skill for detailed techniques and patterns:
 
 ```
-Skill(ce:reading-logs)
+Skill(reading-logs)
 ```
 
 This provides:
