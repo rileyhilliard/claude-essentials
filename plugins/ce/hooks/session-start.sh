@@ -36,7 +36,7 @@ parse_skill() {
             desc="${desc:0:200}"
             desc="${desc% *}..."  # Cut at last space, add ellipsis
         fi
-        echo "ce:${name}|${desc}"
+        echo "${name}|${desc}"
     fi
 }
 
