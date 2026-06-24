@@ -62,35 +62,6 @@ if [ -d "$SKILLS_DIR" ]; then
     done
 fi
 
-# Build example evaluation using actual skill names
-build_example() {
-    local count=${#SKILL_NAMES[@]}
-
-    if [ $count -eq 0 ]; then
-        echo "- No skills available"
-        return
-    fi
-
-    # Show 3 skills: first YES, others NO
-    local max=$((count < 3 ? count : 3))
-    for ((i=0; i<max; i++)); do
-        if [ $i -eq 0 ]; then
-            echo "- ${SKILL_NAMES[$i]}: YES - matches current task"
-        else
-            echo "- ${SKILL_NAMES[$i]}: NO - not relevant"
-        fi
-    done
-
-    # Show activation with multiple skills if available
-    echo ""
-    echo "[Then IMMEDIATELY use Skill() tool:]"
-    echo "> Skill(${SKILL_NAMES[0]})"
-    if [ $count -gt 1 ]; then
-        echo "> Skill(${SKILL_NAMES[1]})  // if also relevant"
-    fi
-    echo ""
-    echo "[THEN and ONLY THEN start implementation]"
-}
 
 # Detect project tooling (lightweight file-existence checks only)
 detect_project_tools() {

@@ -296,51 +296,23 @@ Install the unified ce plugin:
 Skills should focus on teaching patterns, not just executing tasks. Use imperative language and include practical examples with edge cases where relevant.
 
 <!-- DYNAMIC_SKILLS_START -->
-
 ### Available Skills (Auto-Generated)
 
 <INSTRUCTION>
-MANDATORY SKILL ACTIVATION SEQUENCE
-
-Step 1 - EVALUATE (do this in your response):
-For each skill below, state: [skill-name] - YES/NO - [reason]
+Load a skill when the task clearly matches its description. Use Skill(<name>) immediately when you recognize a match — don't wait or evaluate all skills first.
 
 Available skills:
 
-- ce:architecting-systems: Guides clean, scalable system architecture during the build phase. Use when designing modules, defining boundaries, structuring projects, managing dependencies, or preventing tight coupling and brittleness as systems grow.
-- ce:condition-based-waiting: Fixes flaky tests by replacing arbitrary timeouts with condition polling. Use when tests fail intermittently, have setTimeout delays, or involve async operations that need proper wait conditions.
-- ce:executing-plans: Executes implementation plans autonomously with wave-based parallel subagents. Analyzes task dependencies, parallelizes independent work, auto-recovers from errors, and verifies at completion.
-- ce:handling-errors: Error handling best practices - no hiding, no swallowing, no boolean returns. Use when implementing try-catch blocks, designing error propagation, or reviewing error handling patterns.
-- ce:optimizing-performance: Measure-first performance optimization - balance gains against complexity. Use when addressing slow code, profiling performance issues, or evaluating optimization trade-offs.
-- ce:reading-logs: Efficient log analysis using targeted search, filtering, and iterative refinement. Use when investigating errors, analyzing patterns, or debugging incidents through application logs.
-- ce:systematic-debugging: Four-phase debugging framework with root cause tracing - understand the source before proposing fixes. Use when investigating bugs, errors, unexpected behavior, or failed tests.
-- ce:visualizing-with-mermaid: Create professional Mermaid diagrams with proper styling and visual hierarchy. Use when creating flowcharts, sequence diagrams, state machines, class diagrams, or architecture visualizations.
-- ce:writer: Writing style and tone guide for human-sounding content. Use when writing documentation, READMEs, commit messages, PR descriptions, blog posts, or any user-facing content.
-- ce:writing-plans: Create comprehensive, context-aware implementation plans using TDD and Spec-Driven patterns
-- ce:writing-tests: Write behavior-focused tests following Testing Trophy model with real dependencies, avoiding common anti-patterns like testing mocks and polluting production code
-
-Step 2 - ACTIVATE (do this immediately after Step 1):
-IF any skills are YES: Use Skill(<skill-name>) tool for EACH relevant skill NOW
-IF no skills are YES: State "No skills needed" and proceed
-
-Step 3 - IMPLEMENT:
-Only after Step 2 is complete, proceed with implementation.
-
-CRITICAL: You MUST call Skill() tool in Step 2. Do NOT skip to implementation.
-The evaluation (Step 1) is WORTHLESS unless you ACTIVATE (Step 2) the skills.
-
-Example of correct sequence:
-
-- ce:condition-based-waiting: YES - matches current task
-- ce:writer: NO - not relevant
-- ce:writing-tests: NO - not relevant
-
-[Then IMMEDIATELY use Skill() tool:]
-
-> Skill(ce:condition-based-waiting)
-> Skill(ce:writer) // if also relevant
-
-[THEN and ONLY THEN start implementation]
+- architecting-systems: Guides clean, scalable system architecture during the build phase. Use when designing modules, defining boundaries, structuring projects, managing dependencies, or preventing tight coupling and brittleness as systems grow.
+- condition-based-waiting: Fixes flaky tests by replacing arbitrary timeouts with condition polling. Use when tests fail intermittently, have setTimeout delays, or involve async operations that need proper wait conditions.
+- executing-plans: Executes implementation plans autonomously with wave-based parallel subagents. Analyzes task dependencies, parallelizes independent work, auto-recovers from errors, and verifies at completion.
+- handling-errors: Error handling best practices - no hiding, no swallowing, no boolean returns. Use when implementing try-catch blocks, designing error propagation, or reviewing error handling patterns.
+- optimizing-performance: Measure-first performance optimization - balance gains against complexity. Use when addressing slow code, profiling performance issues, or evaluating optimization trade-offs.
+- reading-logs: Efficient log analysis using targeted search, filtering, and iterative refinement. Use when investigating errors, analyzing patterns, or debugging incidents through application logs.
+- systematic-debugging: Four-phase debugging framework with root cause tracing - understand the source before proposing fixes. Use when investigating bugs, errors, unexpected behavior, or failed tests.
+- visualizing-with-mermaid: Create professional Mermaid diagrams with proper styling and visual hierarchy. Use when creating flowcharts, sequence diagrams, state machines, class diagrams, or architecture visualizations.
+- writer: Writing style and tone guide for human-sounding content. Use when writing documentation, READMEs, commit messages, PR descriptions, blog posts, or any user-facing content.
+- writing-plans: Create comprehensive, context-aware implementation plans using TDD and Spec-Driven patterns.
+- writing-tests: Write behavior-focused tests following Testing Trophy model with real dependencies, avoiding common anti-patterns like testing mocks and polluting production code.
 </INSTRUCTION>
-
 <!-- DYNAMIC_SKILLS_END -->
