@@ -9,15 +9,15 @@ This is a unified Claude Code plugin (`ce`) that provides development workflows,
 **The ce plugin provides:**
 
 - **1 Command** - Project initialization (init)
-- **22 Skills** - Reusable patterns for testing, debugging, architecture, planning, writing, and more
-- **5 Agents** - Expert AI personas (code-reviewer, haiku, log-reader, devils-advocate, copywriter)
+- **18 Skills** - Reusable patterns for testing, debugging, architecture, writing, and more
+- **4 Agents** - Expert AI personas (code-reviewer, log-reader, devils-advocate, copywriter)
 - **Session Hooks** - Automatic project configuration on startup
 
 **Namespace conventions:**
 
 - Commands: `/ce:init`
 - Skills: `@skills/ce:writing-tests`, `@skills/ce:systematic-debugging`, `@skills/ce:architecting-systems`, etc.
-- Agents: `@ce:code-reviewer`, `@ce:copywriter`, `@ce:haiku`, `@ce:log-reader`, `@ce:devils-advocate`
+- Agents: `@ce:code-reviewer`, `@ce:copywriter`, `@ce:log-reader`, `@ce:devils-advocate`
 
 The `ce:` prefix is automatically added by Claude Code based on the plugin name. Files and YAML frontmatter use simple names without the prefix.
 
@@ -33,16 +33,15 @@ plugins/ce/
 │   └── plugin.json          # Plugin metadata (name: "ce", description, version, author, license)
 ├── commands/                 # 1 slash command
 │   └── init.md              # Accessed as /ce:init
-├── skills/                   # 22 skills
+├── skills/                   # 18 skills
 │   ├── writing-tests/       # Accessed as @skills/ce:writing-tests
 │   │   └── SKILL.md         # name: writing-tests (no ce: prefix in file)
 │   ├── architecting-systems/    # Accessed as @skills/ce:architecting-systems
 │   │   └── SKILL.md             # System architecture and technical docs
 │   └── ...                  # Other skills follow same pattern
-├── agents/                   # 5 agents
+├── agents/                   # 4 agents
 │   ├── code-reviewer.md     # Accessed as @ce:code-reviewer
 │   ├── copywriter.md        # Accessed as @ce:copywriter
-│   ├── haiku.md             # Accessed as @ce:haiku
 │   ├── log-reader.md        # Accessed as @ce:log-reader
 │   └── devils-advocate.md   # Accessed as @ce:devils-advocate
 └── hooks/                    # Session hooks
@@ -304,7 +303,6 @@ Load a skill when the task clearly matches its description. Use Skill(<name>) im
 Available skills:
 
 - architecting-systems: Guides clean, scalable system architecture during the build phase. Use when designing modules, defining boundaries, structuring projects, managing dependencies, or preventing tight coupling and brittleness as systems grow.
-- condition-based-waiting: Fixes flaky tests by replacing arbitrary timeouts with condition polling. Use when tests fail intermittently, have setTimeout delays, or involve async operations that need proper wait conditions.
 - executing-plans: Executes implementation plans autonomously with wave-based parallel subagents. Analyzes task dependencies, parallelizes independent work, auto-recovers from errors, and verifies at completion.
 - handling-errors: Error handling best practices - no hiding, no swallowing, no boolean returns. Use when implementing try-catch blocks, designing error propagation, or reviewing error handling patterns.
 - optimizing-performance: Measure-first performance optimization - balance gains against complexity. Use when addressing slow code, profiling performance issues, or evaluating optimization trade-offs.
@@ -312,7 +310,6 @@ Available skills:
 - systematic-debugging: Four-phase debugging framework with root cause tracing - understand the source before proposing fixes. Use when investigating bugs, errors, unexpected behavior, or failed tests.
 - visualizing-with-mermaid: Create professional Mermaid diagrams with proper styling and visual hierarchy. Use when creating flowcharts, sequence diagrams, state machines, class diagrams, or architecture visualizations.
 - writer: Writing style and tone guide for human-sounding content. Use when writing documentation, READMEs, commit messages, PR descriptions, blog posts, or any user-facing content.
-- writing-plans: Create comprehensive, context-aware implementation plans using TDD and Spec-Driven patterns.
 - writing-tests: Write behavior-focused tests following Testing Trophy model with real dependencies, avoiding common anti-patterns like testing mocks and polluting production code.
 </INSTRUCTION>
 <!-- DYNAMIC_SKILLS_END -->

@@ -8,7 +8,7 @@
 - [MSW for network mocking](#msw-for-network-mocking)
 - [Anti-patterns](#anti-patterns)
 
-**For waiting/timing patterns:** See [condition-based-waiting](../../condition-based-waiting/references/typescript.md).
+**For waiting/timing patterns:** See [writing-tests waiting-typescript](../../writing-tests/references/waiting-typescript.md).
 
 ---
 

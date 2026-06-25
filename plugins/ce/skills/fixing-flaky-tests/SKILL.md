@@ -1,6 +1,6 @@
 ---
 name: fixing-flaky-tests
-description: Diagnose and fix tests that pass in isolation but fail when run concurrently. Covers shared state isolation and resource conflicts. References condition-based-waiting for timing issues.
+description: Diagnose and fix tests that pass in isolation but fail when run concurrently. Covers shared state isolation, resource conflicts, and timing-based flakiness.
 ---
 
 # Fixing Flaky Tests
@@ -16,7 +16,7 @@ Test passes alone, fails with others?
     │   └─ Database, globals, files, singletons
     │
     ├─ Random/timing failures → Race condition
-    │   └─ Use `condition-based-waiting` skill
+    │   └─ See async waiting patterns in `writing-tests` skill
     │
     └─ Resource errors (port, file lock) → Resource conflict
         └─ Need unique resources per test/worker
@@ -71,7 +71,7 @@ See language-specific references for complete patterns.
 
 Tests don't wait for async operations to complete.
 
-**Use the `condition-based-waiting` skill** for detailed patterns on:
+**See the `writing-tests` skill** for async waiting patterns:
 - Framework-specific waiting (Testing Library `findBy`, Playwright auto-wait)
 - Custom polling helpers
 - When arbitrary timeouts are acceptable

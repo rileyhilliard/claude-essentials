@@ -1,6 +1,6 @@
 # Feature Spec Template
 
-Use this template for product feature definitions. The output feeds into `Skill(writing-plans)` for technical task breakdown and `Skill(design)` for UI implementation.
+Use this template for product feature definitions. The output feeds into Claude's plan mode for technical task breakdown and `Skill(design)` for UI implementation.
 
 **Save to:** `**/specs/YYYY-MM-DD-<feature-name>.md`
 
@@ -140,7 +140,7 @@ Add this section at the bottom of every spec. It maps the spec to what downstrea
 ```markdown
 ## Handoff
 
-### For Technical Planning (ce:writing-plans)
+### For Technical Planning
 
 Extract these fields for the implementation plan:
 

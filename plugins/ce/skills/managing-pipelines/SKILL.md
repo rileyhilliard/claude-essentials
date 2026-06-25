@@ -140,7 +140,7 @@ See [references/pipeline-observability.md](references/pipeline-observability.md)
 
 ### Flaky pipelines
 
-1. Check if tests have timing dependencies (see `condition-based-waiting` skill)
+1. Check if tests have timing dependencies (see async waiting patterns in `writing-tests` skill)
 2. Look for shared state between matrix jobs
 3. Verify caches aren't corrupted (clear and rebuild)
 4. Check for rate limiting from external services

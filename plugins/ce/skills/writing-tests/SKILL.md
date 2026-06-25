@@ -60,7 +60,7 @@ Everything else → Integration test
 | ------------------------------- | --------------------------- |
 | Testing mock calls              | Test actual outcome         |
 | Test-only methods in production | Move to test utilities      |
-| `sleep(500)`                    | Use condition-based waiting |
+| `sleep(500)`                    | Poll for actual condition   |
 | Asserting on internal state     | Assert on observable output |
 | Incomplete mocks                | Mirror real API completely  |
 
@@ -78,7 +78,27 @@ Everything else → Integration test
 - **Python**: See [references/python.md](references/python.md)
 - **Go**: See [references/go.md](references/go.md)
 
-For flaky tests with timing issues, use `Skill(condition-based-waiting)`.
+## Async Waiting
+
+Wait for the actual condition, not a guess about how long it takes.
+
+```typescript
+// Bad: arbitrary delay
+await new Promise(r => setTimeout(r, 2000));
+expect(element).toBeVisible();
+
+// Good: poll for condition
+await waitFor(() => expect(element).toBeVisible());
+```
+
+**Prefer framework built-ins:**
+- Testing Library: `findBy` queries, `waitFor`
+- Playwright: auto-waiting, `expect(locator).toBeVisible()`
+- pytest: `asyncio.wait_for`, tenacity
+
+**Language-specific waiting patterns:**
+- **TypeScript**: See [references/waiting-typescript.md](references/waiting-typescript.md)
+- **Python**: See [references/waiting-python.md](references/waiting-python.md)
 
 ---
 

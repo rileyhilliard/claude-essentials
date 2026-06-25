@@ -104,7 +104,7 @@ Every feature needs measurable success criteria before work begins. Not vanity m
 
 This skill's output feeds into other skills:
 
-- **Technical implementation:** `Skill(writing-plans)` takes the product spec and produces task breakdowns with agent grouping
+- **Technical implementation:** Use Claude's built-in plan mode to produce task breakdowns from the product spec
 - **UI/UX craft:** `Skill(design)` takes the experience requirements and produces the visual implementation
 - **Architecture decisions:** `Skill(architecting-systems)` takes the technical constraints from the spec and produces system design
 - **Strategy context:** `Skill(strategy-writer)` operates upstream, informing the "why this, why now" that feeds into discovery

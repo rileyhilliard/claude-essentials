@@ -6,7 +6,7 @@ allowed-tools: Bash, Read, Write, Glob, Grep, AskUserQuestion, Skill
 
 Initialize or audit `.claude/` configuration for this repository based on detected stack.
 
-**Before generating or auditing any files**, load `Skill(configuring-claude)` for best practices on writing rules, CLAUDE.md, and skills. Load its `references/rules-and-memory.md` reference for rules and CLAUDE.md specifics, and `references/skills.md` if generating project-specific skills.
+**Before generating or auditing any files**, review the project's existing `.claude/` structure and follow Claude Code best practices for writing rules, CLAUDE.md, and skills.
 
 Arguments:
 
@@ -24,13 +24,11 @@ Arguments:
 
 ## Configuration Best Practices
 
-All generated files (rules, CLAUDE.md, skills) must follow the principles from `ce:configuring-claude`. Key points:
+All generated files (rules, CLAUDE.md, skills) should follow these principles:
 
 - Rules reference ce:* skills rather than duplicating skill content
 - Main files stay concise; split large content into `references/` subdirectories
 - References are always one level deep (no nested references)
-
-See the skill and its references for full details on progressive disclosure, token efficiency, and file structure.
 
 ---
 
@@ -147,7 +145,7 @@ Write all files using the templates below.
 
 ### Step 2: Analyze Against Best Practices
 
-Use `ce:configuring-claude` principles (and its references) as the baseline for what "good" looks like. Check for:
+Use Claude Code best practices as the baseline for what "good" looks like. Check for:
 
 **Missing skill references in rules:**
 - Rules should reference ce:* skills for detailed guidance
@@ -164,7 +162,7 @@ Use `ce:configuring-claude` principles (and its references) as the baseline for 
 - Python project without python/testing.md
 - TypeScript project without frontend/testing.md
 
-**Progressive disclosure violations (per ce:configuring-claude):**
+**Progressive disclosure violations:**
 - Files over 500 lines that should be split into references/
 - Nested references (references pointing to other references)
 - Duplicated content that should reference a ce:* skill instead

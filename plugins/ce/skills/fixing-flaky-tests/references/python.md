@@ -7,7 +7,7 @@
 - [Fixture cleanup](#fixture-cleanup)
 - [Anti-patterns](#anti-patterns)
 
-**For waiting/timing patterns:** See [condition-based-waiting](../../condition-based-waiting/references/python.md).
+**For waiting/timing patterns:** See [writing-tests waiting-python](../../writing-tests/references/waiting-python.md).
 
 ---
 

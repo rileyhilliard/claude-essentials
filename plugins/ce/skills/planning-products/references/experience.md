@@ -2,7 +2,7 @@
 
 Define the experience *requirements* before the experience *implementation*. This isn't UI design (that's `Skill(design)`). This is what the user's journey looks like, what moments matter, and what qualities the feature needs to embody.
 
-The output here feeds into `Skill(design)` for visual implementation and `Skill(writing-plans)` for technical implementation.
+The output here feeds into `Skill(design)` for visual implementation and Claude's plan mode for technical implementation.
 
 ## User Journey Moments
 
@@ -78,4 +78,4 @@ The experience definition is ready to hand off when:
 - [ ] Experience qualities are chosen (2-3 from the table)
 - [ ] DX requirements are specified (if developer-facing)
 
-Hand off to `Skill(design)` for visual implementation. Hand off to `Skill(writing-plans)` for technical task breakdown.
+Hand off to `Skill(design)` for visual implementation. Use Claude's plan mode for technical task breakdown.

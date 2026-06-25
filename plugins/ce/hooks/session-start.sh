@@ -123,7 +123,7 @@ Load a skill when the task clearly matches its description. Use Skill(<name>) im
 
 Available skills:
 ${SKILLS_LIST}$(if [ -n "$PROJECT_TOOLS" ]; then echo "
-When committing or verifying work, use the preflight-checks skill to run these tools: ${PROJECT_TOOLS}"; fi)
+When committing or verifying work, run these tools: ${PROJECT_TOOLS}"; fi)
 </INSTRUCTION>"
 
     # 2. Determine paths and flags

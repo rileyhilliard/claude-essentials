@@ -83,7 +83,7 @@ When writing tests, load the ce:writing-tests skill for general patterns.
 
 ## Async Waiting
 
-When fixing flaky tests, load the ce:condition-based-waiting skill.
+When fixing flaky tests, see async waiting patterns in ce:writing-tests.
 ````
 
 This keeps rules lightweight while connecting to the deeper ce knowledge.
@@ -199,7 +199,7 @@ paths:
 # Testing
 
 Load ce:writing-tests for Testing Trophy patterns.
-Load ce:condition-based-waiting for async test fixes.
+See async waiting patterns in ce:writing-tests for test timing fixes.
 
 ## Project Specifics
 

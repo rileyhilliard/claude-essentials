@@ -140,7 +140,7 @@ await waitFor(() => {
 await expect(page.getByText("Done")).toBeVisible();
 ```
 
-For flaky test debugging, invoke `Skill(condition-based-waiting)`.
+For async waiting patterns (waitFor, findBy, Playwright auto-waiting), see [waiting-typescript.md](waiting-typescript.md).
 
 ## Tooling Quick Reference
 

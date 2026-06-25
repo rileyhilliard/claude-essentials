@@ -21,7 +21,6 @@ Reusable development patterns, accessed with `ce:` prefix:
 | Skill                                                                                          | Description                                             |
 | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | [ce:writing-tests](plugins/ce/skills/writing-tests/SKILL.md)                                   | Testing Trophy methodology, behavior-focused tests      |
-| [ce:preflight-checks](plugins/ce/skills/preflight-checks/SKILL.md)                             | Auto-detect and run project linters/formatters/checkers |
 
 **Debugging & Problem Solving:**
 
@@ -29,7 +28,6 @@ Reusable development patterns, accessed with `ce:` prefix:
 | -------------------------------------------------------------------------------- | --------------------------------------------- |
 | [ce:systematic-debugging](plugins/ce/skills/systematic-debugging/SKILL.md)       | Four-phase debugging framework                |
 | [ce:fixing-flaky-tests](plugins/ce/skills/fixing-flaky-tests/SKILL.md)           | Diagnose and fix tests that fail concurrently |
-| [ce:condition-based-waiting](plugins/ce/skills/condition-based-waiting/SKILL.md) | Replace race conditions with polling          |
 | [ce:reading-logs](plugins/ce/skills/reading-logs/SKILL.md)                       | Efficient log analysis using targeted search  |
 
 **Code Quality:**
@@ -44,7 +42,6 @@ Reusable development patterns, accessed with `ce:` prefix:
 | Skill                                                                      | Description                                             |
 | -------------------------------------------------------------------------- | ------------------------------------------------------- |
 | [ce:planning-products](plugins/ce/skills/planning-products/SKILL.md)       | Product feature definition from a PM perspective        |
-| [ce:writing-plans](plugins/ce/skills/writing-plans/SKILL.md)               | Create implementation plans with devils-advocate review |
 | [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md)           | Execute plans with mandatory code review                |
 | [ce:architecting-systems](plugins/ce/skills/architecting-systems/SKILL.md) | Clean, scalable system architecture for the build phase |
 | [ce:design](plugins/ce/skills/design/SKILL.md)                             | Frontend design skill                                   |
@@ -70,7 +67,6 @@ Reusable development patterns, accessed with `ce:` prefix:
 | ---------------------------------------------------------------------------------- | --------------------------------------------------- |
 | [ce:visualizing-with-mermaid](plugins/ce/skills/visualizing-with-mermaid/SKILL.md) | Create professional technical diagrams              |
 | [ce:post-mortem](plugins/ce/skills/post-mortem/SKILL.md)                           | Review sessions to extract actionable improvements  |
-| [ce:configuring-claude](plugins/ce/skills/configuring-claude/SKILL.md)             | Best practices for writing skills, rules, CLAUDE.md |
 
 ### Agents
 
@@ -79,7 +75,6 @@ Expert AI personas for complex work, accessed with `@ce:` prefix:
 | Agent                                                       | Description                                          |
 | ----------------------------------------------------------- | ---------------------------------------------------- |
 | [@ce:code-reviewer](plugins/ce/agents/code-reviewer.md)     | Comprehensive PR/MR reviews enforcing standards      |
-| [@ce:haiku](plugins/ce/agents/haiku.md)                     | Cheap reader for logs and large-file scans (not coding) |
 | [@ce:log-reader](plugins/ce/agents/log-reader.md)           | Efficient log file analysis using targeted search    |
 | [@ce:devils-advocate](plugins/ce/agents/devils-advocate.md) | Rigorous critique to find flaws in plans and designs |
 | [@ce:copywriter](plugins/ce/agents/copywriter.md)           | Articles and long-form content using journalistic frameworks |
@@ -226,8 +221,6 @@ ce:systematic-debugging
 ```bash
 # Define the product spec first:
 ce:planning-products
-# Then create a technical plan:
-ce:writing-plans
 # Then execute:
 ce:executing-plans
 ```
@@ -295,8 +288,8 @@ This will be accessible as `@ce:my-agent`.
         ├── .claude-plugin/
         │   └── plugin.json       # Plugin metadata
         ├── commands/             # 1 command (/ce:init)
-        ├── skills/               # 22 skills (ce:writing-tests, ce:planning-products, etc.)
-        ├── agents/               # 5 agents (@ce:code-reviewer, @ce:haiku, etc.)
+        ├── skills/               # 18 skills (ce:writing-tests, ce:planning-products, etc.)
+        ├── agents/               # 4 agents (@ce:code-reviewer, @ce:log-reader, etc.)
         └── hooks/                # Session automation
 ```
 
