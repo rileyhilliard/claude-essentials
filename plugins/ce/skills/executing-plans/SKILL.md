@@ -5,27 +5,19 @@ description: Executes implementation plans with smart task grouping. Groups rela
 
 # Executing Plans
 
-**You are an orchestrator.** Spawn and coordinate sub-agents to do the actual implementation. Group related tasks by subsystem (e.g., one agent for API routes, another for tests) rather than spawning per-task. Each agent re-investigates the codebase, so fewer agents with broader scope = faster execution.
+**You are an orchestrator.** Spawn and coordinate sub-agents to do the actual implementation. Group related tasks by subsystem (one agent for API routes, another for tests) rather than spawning per-task. Each agent re-investigates the codebase, so fewer agents with broader scope = faster execution.
 
 ## 1. Setup
 
-**Create a branch** for the work unless trivial. Consider git worktrees for isolated environments.
+**Create a worktree** using `EnterWorktree` before starting any work. This isolates changes from the main branch and makes cleanup safe. Skip only for trivial single-file changes that don't warrant isolation.
 
-**Clarify ambiguity upfront:** If the plan has unclear requirements or meaningful tradeoffs, use `AskUserQuestion` before starting. Present options with descriptions explaining the tradeoffs. Use `multiSelect: true` for independent features that can be combined; use single-select for mutually exclusive choices. Don't guess when the user can clarify in 10 seconds.
+**Clarify ambiguity upfront.** If the plan has unclear requirements or meaningful tradeoffs, ask before starting. Don't guess when the user can clarify in 10 seconds.
 
-**Track progress with tasks:** Use `TaskCreate` to create tasks for each major work item from the plan. Update status with `TaskUpdate` as work progresses (`in_progress` when starting, `completed` when done). This makes execution visible to the user and persists across context compactions.
+**Track progress with tasks.** Create tasks for each major work item from the plan. Set up dependency chains between tasks using `addBlocks`/`addBlockedBy` so blocked tasks don't start prematurely. Update task status as work progresses. This keeps execution visible to the user and persists across context compactions.
 
-## 2. Group Tasks by Subsystem
+## 2. Group and Execute
 
 Group related tasks to share agent context. One agent per subsystem, groups run in parallel.
-
-**Why grouping matters:**
-```
-Without: Task 1 (auth/login) → Agent 1 [explores auth/]
-         Task 2 (auth/logout) → Agent 2 [explores auth/ again]
-
-With:    Tasks 1-2 (auth/*) → Agent 1 [explores once, executes both]
-```
 
 | Signal | Group together |
 |--------|----------------|
@@ -33,102 +25,51 @@ With:    Tasks 1-2 (auth/*) → Agent 1 [explores once, executes both]
 | Same domain/feature | Auth tasks, billing tasks |
 | Plan sections | Tasks under same `##` heading |
 
-**Limits:** 3-4 tasks max per group. Split if larger.
+3-4 tasks max per group. Split if larger. Overloading a single agent causes context compactions that degrade output quality, so err toward splitting over cramming.
 
-**Parallel:** Groups touch different subsystems
-```
-Group A: src/auth/*    ─┬─ parallel
-Group B: src/billing/* ─┘
-```
-
-**Sequential:** Groups have dependencies
-```
-Group A: Create shared types → Group B: Use those types
-```
-
-## 3. Execute
-
-Dispatch sub-agents to complete task groups. Monitor progress and handle issues.
-
-**Model selection:** Choose the right model for sub-agents based on task complexity:
-
-| Model | Use for | Examples |
-|-------|---------|----------|
-| `opus` | Complex coding, multi-file features, architectural work | New endpoints + route components, refactors spanning multiple subsystems |
-| `sonnet` | Moderate coding, straightforward features, writing | Simple CRUD endpoints, config changes, content updates |
-| `haiku` | Token-intensive non-coding work, simple mechanical tasks | Reading logs, generating commit messages, reading diffs for review summaries |
-
-Default to `opus` for coding tasks unless the work is clearly straightforward. `haiku` is not suitable for writing code — it's for lightweight tasks where expensive tokens would be wasted on simple reads and summaries.
-
-```
-Agent tool:
-  description: "Auth tasks: login, logout"
-  model: opus  # or sonnet for simpler coding tasks
-  prompt: |
-    Execute these tasks from [plan-file] IN ORDER:
-    - Task 1: Add login endpoint
-    - Task 2: Add logout endpoint
-
-    Use skills: <relevant skills>
-    Commit after each task. Report: files changed, test results
-```
-
-**Architectural fit:** Changes should integrate cleanly with existing patterns. If a change feels like it's fighting the architecture, that's a signal to refactor first rather than bolt something on. Don't reinvent wheels when battle-tested libraries exist, but don't reach for a dependency for trivial things either (no lodash just for `_.map`). The goal is zero tech debt, not "ship now, fix later."
+**Parallel vs sequential:** Groups that touch different subsystems run in parallel. Groups with dependencies run sequentially (e.g., create shared types before using them). When parallel agents may touch overlapping files, use `isolation: "worktree"` on the Agent call.
 
 **Auto-recovery:**
 1. Agent attempts to fix failures (has context)
-2. If can't fix, report failure with error output
-3. Dispatch fix agent with context
-4. Same error twice → stop and ask user
+2. If it can't fix, report failure with error output
+3. Dispatch fix agent with context from the failure
+4. Same error twice: stop and ask user
 
-## 4. Verify
+## 3. Verify
 
-All four checks must pass before marking complete:
+Verification is a **gate**, not a checklist. Nothing proceeds to merge until all checks pass. If any check fails, fix and re-verify. This is a loop, not a one-shot.
 
-1. **Automated tests:** Run the full test suite. All tests must pass.
+**Automated tests.** Run the full test suite. All tests must pass.
 
-2. **Manual verification:** Automated tests aren't sufficient. Actually exercise the changes:
-   - **API changes:** Curl endpoints with realistic payloads
-   - **External integrations:** Test against real services to catch rate limiting, format drift, bot detection
-   - **CLI changes:** Run actual commands, verify output
-   - **Parser changes:** Feed real data, not just fixtures
+**Manual verification.** Automated tests aren't sufficient. Actually exercise the changes:
+- **API changes:** Curl endpoints with realistic payloads
+- **External integrations:** Test against real services to catch rate limiting, format drift, bot detection
+- **CLI changes:** Run actual commands, verify output
+- **UI changes:** Start the dev server and use the feature in a browser
+- **Parser changes:** Feed real data, not just fixtures
 
-3. **DX quality:** During manual testing, watch for friction:
-   - Confusing error messages
-   - Noisy output (telemetry spam, verbose logging)
-   - Inconsistent behavior across similar endpoints
-   - Rough edges that technically work but feel bad
+Watch for DX friction during manual testing: confusing error messages, noisy output, inconsistent behavior, rough edges that technically work but feel bad. Fix inline or document for follow-up. Don't ship friction.
 
-   Fix DX issues inline or document for follow-up. Don't ship friction.
+**Code review (mandatory).** After tests pass and manual verification is done, dispatch the `ce:code-reviewer` agent to review the full diff against the base branch. This step is not optional.
 
-4. **Code review (mandatory):** After tests pass and manual verification is done, dispatch the `ce:code-reviewer` agent via Task tool to review the full diff against the base branch. This step is not optional.
+Load relevant domain skills into the reviewer based on what was implemented. Evaluate which apply and include them in the agent prompt:
+- `Skill(architecting-systems)` - system design, module boundaries
+- `Skill(managing-databases)` - database work
+- `Skill(handling-errors)` - error handling
+- `Skill(writing-tests)` - test quality
+- `Skill(optimizing-performance)` - performance work
 
-   Load relevant domain skills into the agent based on what was implemented. Evaluate which apply and include them in the agent prompt:
-   - `Skill(architecting-systems)` - system design, module boundaries
-   - `Skill(managing-databases)` - database work
-   - `Skill(handling-errors)` - error handling
-   - `Skill(writing-tests)` - test quality
-   - `Skill(optimizing-performance)` - performance work
+Handle the review verdict:
+- **Must fix:** Fix all Critical and Important issues, then re-run the review
+- **Suggestions:** Fix these too unless there's a clear reason not to
 
-   Handle the review verdict:
-   - **Must fix:** Fix all Critical and Important issues before marking complete
-   - **Suggestions:** Fix these too unless there's a clear reason not to
+Plan execution is not done until review findings are addressed.
 
-   Plan execution is not done until review findings are addressed.
+## 4. Complete
 
-## 5. Commit
+Once verification passes:
 
-After verification passes, commit only the changes related to this plan:
-
-1. Run `git status` to see all changes
-2. **Stage files by name, not with `git add -A` or `git add .`** - only stage files you modified as part of this plan
-3. **Leave unrelated changes alone** - if there are pre-existing staged or unstaged changes that aren't part of this work, don't touch them
-4. Write a commit message that summarizes what was implemented, referencing the plan
-
-## 6. Cleanup
-
-After committing:
-- Merge branch to main (if using branches)
-- Remove worktree (if using worktrees)
-- Mark plan file as COMPLETED
-- Move to `./plans/done/` if applicable
+1. **Commit** the work with a message summarizing what was implemented
+2. **Merge to main** from the worktree branch
+3. **Exit worktree** using `ExitWorktree` with `action: "remove"` to clean up
+4. **Mark plan as COMPLETED** and move to `./plans/done/` if applicable
