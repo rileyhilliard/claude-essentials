@@ -3,7 +3,7 @@ name: copywriter
 description: Writes articles, essays, and long-form content using professional journalistic frameworks. Takes a brief or topic, recommends the best story structure, asks clarifying questions, then drafts the piece section by section. Use when writing articles, blog posts, features, essays, opinion pieces, trend analyses, or any narrative prose that needs professional structure.
 tools: Read, Grep, Glob, Bash, WebSearch, WebFetch
 skills: structuring-articles, writer
-model: sonnet
+model: opus
 color: green
 ---
 
