@@ -93,7 +93,7 @@ If no sample exists, ask for one before writing anything long. Even a rough para
 
 ## Forbidden Patterns (All Personas)
 
-See [references/forbidden-patterns.md](references/forbidden-patterns.md) for the full list of patterns to avoid (em dashes, AI tells, transition openers, corporate speak, structural patterns).
+See [references/forbidden-patterns.md](references/forbidden-patterns.md) for the full list. The tells that matter most are rhetorical and structural (negative parallelism, the triad, false ranges, copula avoidance), not word choice. Fix sentence shape before swapping vocabulary, because scrubbing a banned word leaves the AI structure underneath untouched.
 
 ---
 
