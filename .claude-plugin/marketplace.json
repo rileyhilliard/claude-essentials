@@ -34,7 +34,7 @@
       ],
       "category": "workflows",
       "strict": true,
-      "commands": ["./commands/init.md"],
+      "commands": ["./commands/setup.md"],
       "skills": [
         "./skills/writing-tests",
         "./skills/systematic-debugging",

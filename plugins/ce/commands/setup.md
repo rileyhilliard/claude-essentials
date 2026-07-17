@@ -1,10 +1,12 @@
 ---
-description: Initialize or audit Claude Code configuration for a repository
+description: Audit or bootstrap Claude Code configuration for a repository
 argument-hint: "[--audit | --force]"
 allowed-tools: Bash, Read, Write, Glob, Grep, AskUserQuestion, Skill
 ---
 
-Initialize or audit `.claude/` configuration for this repository based on detected stack.
+Audit an existing `.claude/` configuration, or bootstrap one for a repository that has none.
+
+**Audit-first:** Most repos this command runs in already have a `.claude/` setup. When the existing configuration is already developed (CLAUDE.md with real content plus rules or settings), bail out early with a short summary of what exists and at most 2-3 high-value suggestions — do NOT regenerate or restructure a working setup. Full generation only happens on repos with no `.claude/` or with `--force`.
 
 **Before generating or auditing any files**, review the project's existing `.claude/` structure and follow Claude Code best practices for writing rules, CLAUDE.md, and skills.
 
@@ -18,7 +20,10 @@ Arguments:
 
 1. Check if `.claude/` directory exists
 2. If exists AND no `--force`: Run **Audit Mode**
+   - If the config is developed (non-trivial CLAUDE.md and rules/ or settings.json), summarize and stop after Step 3's report — apply fixes only if the user asks
 3. If not exists OR `--force`: Run **Fresh Init Mode**
+
+> Note: this command was previously `/ce:init`. It was renamed to `/ce:setup` to avoid colliding with Claude Code's built-in `/init`.
 
 ---
 
@@ -557,7 +562,7 @@ For specific patterns, read the relevant reference file:
 
 | Command | Result |
 |---------|--------|
-| `/init` on new Python project | Creates .claude/ with Python rules |
-| `/init` on existing config | Runs audit, suggests improvements |
-| `/init --force` on existing config | Overwrites with fresh config |
-| `/init --audit` | Only reports issues, no changes |
+| `/ce:setup` on new Python project | Creates .claude/ with Python rules |
+| `/ce:setup` on developed config | Summarizes existing setup, bails with top suggestions |
+| `/ce:setup --force` on existing config | Overwrites with fresh config |
+| `/ce:setup --audit` | Only reports issues, no changes |

@@ -8,13 +8,13 @@ This is a unified Claude Code plugin (`ce`) that provides development workflows,
 
 **The ce plugin provides:**
 
-- **1 Command** - Project initialization (init)
+- **1 Command** - Config audit/bootstrap (setup)
 - **17 Skills** - Reusable patterns for testing, debugging, architecture, writing, and more
 - **4 Agents** - Expert AI personas (code-reviewer, log-reader, devils-advocate, copywriter)
 
 **Namespace conventions:**
 
-- Commands: `/ce:init`
+- Commands: `/ce:setup`
 - Skills: `@skills/ce:writing-tests`, `@skills/ce:systematic-debugging`, `@skills/ce:architecting-systems`, etc.
 - Agents: `@ce:code-reviewer`, `@ce:copywriter`, `@ce:log-reader`, `@ce:devils-advocate`
 
@@ -31,7 +31,7 @@ plugins/ce/
 ├── .claude-plugin/
 │   └── plugin.json          # Plugin metadata (name: "ce", description, version, author, license)
 ├── commands/                 # 1 slash command
-│   └── init.md              # Accessed as /ce:init
+│   └── setup.md             # Accessed as /ce:setup
 ├── skills/                   # 17 skills
 │   ├── writing-tests/       # Accessed as @skills/ce:writing-tests
 │   │   └── SKILL.md         # name: writing-tests (no ce: prefix in file)

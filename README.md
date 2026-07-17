@@ -10,7 +10,7 @@ A unified development plugin for Claude Code with essential skills and specializ
 
 | Command                                           | Description                                                        |
 | ------------------------------------------------- | ------------------------------------------------------------------ |
-| [/ce:init](plugins/ce/commands/init.md)           | Bootstrap repo with .claude/ config (rules, permissions, settings) |
+| [/ce:setup](plugins/ce/commands/setup.md)           | Bootstrap repo with .claude/ config (rules, permissions, settings) |
 
 ### Skills
 
@@ -111,7 +111,7 @@ Start Claude Code and try these:
 claude
 
 # Bootstrap a project
-/ce:init
+/ce:setup
 
 # Use a skill
 ce:writing-tests
@@ -124,7 +124,7 @@ ce:architecting-systems
 
 ## Bootstrapping Your Repository
 
-The `/ce:init` command sets up your repository with Claude Code configuration that follows best practices. This is the recommended first step when starting work on any project.
+The `/ce:setup` command (formerly `/ce:init`, renamed to avoid the built-in `/init`) sets up your repository with Claude Code configuration that follows best practices. On repos that already have a developed `.claude/`, it audits and summarizes instead of regenerating.
 
 ### What It Does
 
@@ -148,21 +148,21 @@ The `/ce:init` command sets up your repository with Claude Code configuration th
 **Existing configurations** (`.claude/` already exists):
 
 1. Audits your current setup against best practices
-2. Identifies missing skill references in rules
-3. Suggests permission and rule improvements
+2. If the config is already developed, summarizes it and stops with at most a few high-value suggestions
+3. Otherwise identifies missing skill references, permission gaps, and rule improvements
 4. Offers to apply fixes with your confirmation
 
 ### Quick Start
 
 ```bash
 # Initialize a new project
-/ce:init
+/ce:setup
 
 # Audit an existing configuration
-/ce:init --audit
+/ce:setup --audit
 
 # Force regenerate (overwrites existing)
-/ce:init --force
+/ce:setup --force
 ```
 
 ### Why This Matters
@@ -201,7 +201,7 @@ Based on [Claude platform best practices](https://platform.claude.com/docs/en/ag
 
 ```bash
 cd my-project
-/ce:init
+/ce:setup
 # Review the generated config, confirm, done
 ```
 
@@ -282,7 +282,7 @@ This will be accessible as `@ce:my-agent`.
     └── ce/
         ├── .claude-plugin/
         │   └── plugin.json       # Plugin metadata
-        ├── commands/             # 1 command (/ce:init)
+        ├── commands/             # 1 command (/ce:setup)
         ├── skills/               # 17 skills (ce:writing-tests, ce:planning-products, etc.)
         └── agents/               # 4 agents (@ce:code-reviewer, @ce:log-reader, etc.)
 ```
