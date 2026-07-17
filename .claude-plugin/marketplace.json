@@ -12,7 +12,7 @@
     {
       "name": "ce",
       "source": "./plugins/ce/",
-      "description": "Claude Essentials - Complete development toolkit with 1 command, 18 skills, and 4 agents unified under ce namespace",
+      "description": "Claude Essentials - Complete development toolkit with 1 command, 17 skills, and 4 agents unified under ce namespace",
       "version": "4.2.0",
       "author": {
         "name": "Riley Hilliard",
@@ -42,7 +42,6 @@
         "./skills/handling-errors",
         "./skills/executing-plans",
         "./skills/visualizing-with-mermaid",
-        "./skills/reading-logs",
         "./skills/post-mortem",
         "./skills/architecting-systems",
         "./skills/design",

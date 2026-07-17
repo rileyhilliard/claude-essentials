@@ -28,7 +28,6 @@ Reusable development patterns, accessed with `ce:` prefix:
 | -------------------------------------------------------------------------------- | --------------------------------------------- |
 | [ce:systematic-debugging](plugins/ce/skills/systematic-debugging/SKILL.md)       | Four-phase debugging framework                |
 | [ce:fixing-flaky-tests](plugins/ce/skills/fixing-flaky-tests/SKILL.md)           | Diagnose and fix tests that fail concurrently |
-| [ce:reading-logs](plugins/ce/skills/reading-logs/SKILL.md)                       | Efficient log analysis using targeted search  |
 
 **Code Quality:**
 
@@ -284,7 +283,7 @@ This will be accessible as `@ce:my-agent`.
         ├── .claude-plugin/
         │   └── plugin.json       # Plugin metadata
         ├── commands/             # 1 command (/ce:init)
-        ├── skills/               # 18 skills (ce:writing-tests, ce:planning-products, etc.)
+        ├── skills/               # 17 skills (ce:writing-tests, ce:planning-products, etc.)
         └── agents/               # 4 agents (@ce:code-reviewer, @ce:log-reader, etc.)
 ```
 

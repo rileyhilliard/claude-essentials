@@ -9,7 +9,7 @@ description: Debugging framework that finds root causes before proposing fixes. 
 
 **For multi-component systems:** Add diagnostic logging at each component boundary before proposing fixes. See [references/debugging-techniques.md](references/debugging-techniques.md) for instrumentation patterns (binary search, git bisect, minimal reproduction, strategic logging, differential analysis).
 
-**For log-heavy investigations:** Use `Skill(reading-logs)` for efficient analysis.
+**For log-heavy investigations:** Delegate to the `@ce:log-reader` agent for efficient analysis.
 
 ## Reporting Format
 

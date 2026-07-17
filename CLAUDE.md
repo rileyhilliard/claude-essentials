@@ -9,7 +9,7 @@ This is a unified Claude Code plugin (`ce`) that provides development workflows,
 **The ce plugin provides:**
 
 - **1 Command** - Project initialization (init)
-- **18 Skills** - Reusable patterns for testing, debugging, architecture, writing, and more
+- **17 Skills** - Reusable patterns for testing, debugging, architecture, writing, and more
 - **4 Agents** - Expert AI personas (code-reviewer, log-reader, devils-advocate, copywriter)
 
 **Namespace conventions:**
@@ -32,7 +32,7 @@ plugins/ce/
 │   └── plugin.json          # Plugin metadata (name: "ce", description, version, author, license)
 ├── commands/                 # 1 slash command
 │   └── init.md              # Accessed as /ce:init
-├── skills/                   # 18 skills
+├── skills/                   # 17 skills
 │   ├── writing-tests/       # Accessed as @skills/ce:writing-tests
 │   │   └── SKILL.md         # name: writing-tests (no ce: prefix in file)
 │   ├── architecting-systems/    # Accessed as @skills/ce:architecting-systems
@@ -289,7 +289,6 @@ Available skills:
 - executing-plans: Executes implementation plans autonomously with wave-based parallel subagents. Analyzes task dependencies, parallelizes independent work, auto-recovers from errors, and verifies at completion.
 - handling-errors: Error handling best practices - no hiding, no swallowing, no boolean returns. Use when implementing try-catch blocks, designing error propagation, or reviewing error handling patterns.
 - optimizing-performance: Measure-first performance optimization - balance gains against complexity. Use when addressing slow code, profiling performance issues, or evaluating optimization trade-offs.
-- reading-logs: Efficient log analysis using targeted search, filtering, and iterative refinement. Use when investigating errors, analyzing patterns, or debugging incidents through application logs.
 - systematic-debugging: Four-phase debugging framework with root cause tracing - understand the source before proposing fixes. Use when investigating bugs, errors, unexpected behavior, or failed tests.
 - visualizing-with-mermaid: Create professional Mermaid diagrams with proper styling and visual hierarchy. Use when creating flowcharts, sequence diagrams, state machines, class diagrams, or architecture visualizations.
 - writer: Writing style and tone guide for human-sounding content. Use when writing documentation, READMEs, commit messages, PR descriptions, blog posts, or any user-facing content.
