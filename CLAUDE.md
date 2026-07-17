@@ -11,7 +11,6 @@ This is a unified Claude Code plugin (`ce`) that provides development workflows,
 - **1 Command** - Project initialization (init)
 - **18 Skills** - Reusable patterns for testing, debugging, architecture, writing, and more
 - **4 Agents** - Expert AI personas (code-reviewer, log-reader, devils-advocate, copywriter)
-- **Session Hooks** - Automatic project configuration on startup
 
 **Namespace conventions:**
 
@@ -44,9 +43,8 @@ plugins/ce/
 │   ├── copywriter.md        # Accessed as @ce:copywriter
 │   ├── log-reader.md        # Accessed as @ce:log-reader
 │   └── devils-advocate.md   # Accessed as @ce:devils-advocate
-└── hooks/                    # Session hooks
-    ├── hooks.json           # Hook configuration
-    └── session-start.sh     # Session startup hook
+└── hooks/
+    └── hooks.json           # Hook configuration (currently empty)
 ```
 
 **Key principle**: Files and frontmatter use simple names (e.g., `architecting-systems`, `writing-tests`). Claude Code automatically adds the `ce:` namespace prefix based on the plugin name.
@@ -197,13 +195,6 @@ cat plugins/<plugin-name>/.claude-plugin/plugin.json | python -m json.tool
 cat plugins/ce/hooks/hooks.json | python -m json.tool
 ```
 
-**Test hook scripts:**
-
-```bash
-bash -n plugins/ce/hooks/session-start.sh  # Syntax check
-chmod +x plugins/ce/hooks/session-start.sh  # Ensure executable
-```
-
 **Validate YAML frontmatter in markdown files:**
 
 ```bash
@@ -230,14 +221,6 @@ Skills use three-level progressive disclosure to minimize token usage:
 3. **Referenced files** - Loaded only when needed during execution
 
 Keep main SKILL.md files under 4,000 words. Split larger content into `references/` directory.
-
-### Session Start Hook
-
-The `ce` plugin includes a `session-start.sh` hook that:
-
-- Loads user instructions from `~/.claude/CLAUDE.md` if present
-- Injects instructions as additional context via JSON output
-- Uses progressive disclosure (skills loaded on-demand via Skill tool)
 
 ### Hooks Output Format
 

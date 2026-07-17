@@ -79,10 +79,6 @@ Expert AI personas for complex work, accessed with `@ce:` prefix:
 | [@ce:devils-advocate](plugins/ce/agents/devils-advocate.md) | Rigorous critique to find flaws in plans and designs |
 | [@ce:copywriter](plugins/ce/agents/copywriter.md)           | Articles and long-form content using journalistic frameworks |
 
-### Hooks
-
-- **Session start** - Auto-detects project tooling (linters, formatters, type checkers) and injects available skills
-
 ---
 
 ## Installation
@@ -289,8 +285,7 @@ This will be accessible as `@ce:my-agent`.
         │   └── plugin.json       # Plugin metadata
         ├── commands/             # 1 command (/ce:init)
         ├── skills/               # 18 skills (ce:writing-tests, ce:planning-products, etc.)
-        ├── agents/               # 4 agents (@ce:code-reviewer, @ce:log-reader, etc.)
-        └── hooks/                # Session automation
+        └── agents/               # 4 agents (@ce:code-reviewer, @ce:log-reader, etc.)
 ```
 
 ## Tips
