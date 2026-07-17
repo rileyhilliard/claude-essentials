@@ -1,6 +1,6 @@
 ---
 name: managing-databases
-description: Guides database architecture decisions for PostgreSQL, DuckDB, Parquet, PGVector, and Neo4j. Use when designing schemas, choosing storage strategies, optimizing queries, tuning maintenance, configuring vector search, modeling graph data, or diagnosing performance issues across OLTP, OLAP, similarity search, and graph workloads.
+description: Guides database architecture for PostgreSQL, DuckDB, Parquet, PGVector, and Neo4j. Use when designing schemas, choosing storage strategies, optimizing queries, configuring vector or graph workloads, or diagnosing performance issues.
 ---
 
 # Database Management

@@ -1,6 +1,6 @@
 ---
 name: managing-pipelines
-description: Guides CI/CD pipeline architecture, security hardening, and deployment strategies for GitHub Actions. Use when designing workflows, securing supply chains, optimizing build performance, configuring deployments, managing infrastructure as code pipelines, or setting up pipeline observability.
+description: Guides GitHub Actions CI/CD architecture, security hardening, and deployment strategies. Use when designing workflows, securing supply chains, optimizing build performance, or configuring deployments.
 ---
 
 # Pipeline Management

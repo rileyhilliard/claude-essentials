@@ -1,6 +1,6 @@
 ---
 name: planning-products
-description: Defines product features from a PM perspective before technical planning begins. Use when scoping new features, writing product specs, defining user problems, choosing what to build, researching existing patterns, or bridging the gap between strategy and implementation. Covers JTBD analysis, competitive research, UX/DX experience definition, and scope negotiation for consumer, B2B, and developer tool products.
+description: Defines product features from a PM perspective (JTBD, competitive research, scope negotiation) before technical planning. Use when scoping features, writing product specs, defining user problems, or choosing what to build.
 ---
 
 # Planning Products

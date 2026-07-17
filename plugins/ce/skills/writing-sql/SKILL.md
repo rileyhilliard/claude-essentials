@@ -1,6 +1,6 @@
 ---
 name: writing-sql
-description: Trains Claude to write SQL at Staff+ DBA level by targeting the non-obvious patterns Claude's defaults miss. Covers multi-column statistics for correlated predicates, operator class selection for index usage, aggregate FILTER patterns, keyset pagination, and the query anti-patterns that silently destroy production performance. Use when writing complex SQL, reviewing a query for correctness or performance, adding indexes, or optimizing a slow query.
+description: Staff+ DBA SQL patterns targeting what Claude's defaults miss - multi-column statistics, operator classes, keyset pagination, silent performance anti-patterns. Use when writing complex SQL, reviewing queries, adding indexes, or optimizing slow queries.
 ---
 
 # Writing SQL

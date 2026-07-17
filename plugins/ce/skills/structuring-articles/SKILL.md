@@ -1,6 +1,6 @@
 ---
 name: structuring-articles
-description: Selects and applies professional journalistic story structures (WSJ Formula, Inverted Pyramid, Hourglass, Tick-Tock, etc.) based on the content being written. Use when writing articles, blog posts, features, essays, long-form content, news stories, trend pieces, investigative reports, profiles, or any narrative prose longer than a few paragraphs. Also use when the user asks for help structuring a piece, choosing a story framework, organizing a draft, outlining an article, or wants to know which article format fits their content. Trigger on requests like "help me structure this," "what format should I use," "write a feature about," "draft a blog post on," or any mention of story structure, article architecture, or narrative frameworks. Complements the writer skill (which handles tone and anti-AI rhetoric) by providing the structural blueprint.
+description: Selects and applies journalistic story structures (WSJ Formula, Inverted Pyramid, Hourglass, Tick-Tock). Use when writing or outlining articles, blog posts, essays, or any narrative prose longer than a few paragraphs.
 ---
 
 # Structuring Articles
