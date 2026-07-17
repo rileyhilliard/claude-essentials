@@ -3,6 +3,8 @@ name: systematic-debugging
 description: Debugging framework that finds root causes before proposing fixes. Use when investigating bugs, errors, unexpected behavior, failed tests, or when previous fixes haven't worked.
 ---
 
+If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence — apply this skill only where they're silent.
+
 # Systematic Debugging
 
 **If 3+ fixes have failed:** Stop fixing symptoms. Question the architecture. The bug may be a design problem, not a code problem.

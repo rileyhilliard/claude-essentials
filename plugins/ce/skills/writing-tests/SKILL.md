@@ -3,6 +3,8 @@ name: writing-tests
 description: Writes behavior-focused tests using Testing Trophy model with real dependencies. Use when writing tests, choosing test types, or avoiding anti-patterns like testing mocks.
 ---
 
+If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence — apply this skill only where they're silent.
+
 # Writing Tests
 
 **Core principle:** Test user-observable behavior with real dependencies. Tests should survive refactoring.

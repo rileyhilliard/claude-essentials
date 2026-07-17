@@ -3,6 +3,8 @@ name: handling-errors
 description: Prevents silent failures and context loss in error handling. Use when writing try-catch blocks, designing error propagation, reviewing catch blocks, or implementing Result patterns.
 ---
 
+If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence — apply this skill only where they're silent.
+
 # Handling Errors
 
 ## Error Categories
