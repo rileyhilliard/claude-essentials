@@ -1,11 +1,11 @@
 ---
 name: executing-plans
-description: Executes implementation plans with smart task grouping. Groups related tasks to share context, parallelizes across independent subsystems.
+description: Executes implementation plans directly with a verification gate and conditional code review. Use when carrying out a written plan step by step; delegates to subagents only for large, genuinely independent, parallelizable work.
 ---
 
 # Executing Plans
 
-**You are an orchestrator.** Spawn and coordinate sub-agents to do the actual implementation. Group related tasks by subsystem (one agent for API routes, another for tests) rather than spawning per-task. Each agent re-investigates the codebase, so fewer agents with broader scope = faster execution.
+**Default to implementing directly.** Delegation is the exception, not the default. Delegate to a subagent only for large tasks that are genuinely independent and parallelizable, such as a wide multi-file investigation. Do not delegate work you can finish yourself in a handful of tool calls, and do not use subagents to verify or double-check your own work. If one subagent can complete the task, use one rather than several, and keep spawn counts low.
 
 ## 1. Setup
 
@@ -15,9 +15,11 @@ description: Executes implementation plans with smart task grouping. Groups rela
 
 **Track progress with tasks.** Create tasks for each major work item from the plan. Set up dependency chains between tasks using `addBlocks`/`addBlockedBy` so blocked tasks don't start prematurely. Update task status as work progresses. This keeps execution visible to the user and persists across context compactions.
 
-## 2. Group and Execute
+## 2. Execute
 
-Group related tasks to share agent context. One agent per subsystem, groups run in parallel.
+Work through the plan's tasks directly, in order, updating task status as you go.
+
+**If delegation is warranted** (large, independent, parallelizable work identified in step 1), group related tasks by subsystem rather than spawning per-task, since each agent re-investigates the codebase.
 
 | Signal | Group together |
 |--------|----------------|
@@ -25,19 +27,15 @@ Group related tasks to share agent context. One agent per subsystem, groups run 
 | Same domain/feature | Auth tasks, billing tasks |
 | Plan sections | Tasks under same `##` heading |
 
-3-4 tasks max per group. Split if larger. Overloading a single agent causes context compactions that degrade output quality, so err toward splitting over cramming.
+Keep concurrent agents to a small handful. Claude Code hard-fails above 20 concurrent subagents, but that's not a target, stay well under it.
 
 **Parallel vs sequential:** Groups that touch different subsystems run in parallel. Groups with dependencies run sequentially (e.g., create shared types before using them). When parallel agents may touch overlapping files, use `isolation: "worktree"` on the Agent call.
 
-**Auto-recovery:**
-1. Agent attempts to fix failures (has context)
-2. If it can't fix, report failure with error output
-3. Dispatch fix agent with context from the failure
-4. Same error twice: stop and ask user
+**Recovery:** Fix failures inline yourself. If the same error recurs after a second attempt, stop and ask the user rather than keep retrying.
 
 ## 3. Verify
 
-Verification is a **gate**, not a checklist. Nothing proceeds to merge until all checks pass. If any check fails, fix and re-verify. This is a loop, not a one-shot.
+Verification is a **gate**, not a checklist. Nothing proceeds to merge until all checks pass.
 
 **Automated tests.** Run the full test suite. All tests must pass.
 
@@ -50,7 +48,7 @@ Verification is a **gate**, not a checklist. Nothing proceeds to merge until all
 
 Watch for DX friction during manual testing: confusing error messages, noisy output, inconsistent behavior, rough edges that technically work but feel bad. Fix inline or document for follow-up. Don't ship friction.
 
-**Code review (mandatory).** After tests pass and manual verification is done, dispatch the `ce:code-reviewer` agent to review the full diff against the base branch. This step is not optional.
+**Code review (conditional).** For large or risky diffs, dispatch the `ce:code-reviewer` agent to review the full diff against the base branch after tests pass and manual verification is done. Skip it for small or simple changes.
 
 Load relevant domain skills into the reviewer based on what was implemented. Evaluate which apply and include them in the agent prompt:
 - `Skill(architecting-systems)` - system design, module boundaries
@@ -60,10 +58,8 @@ Load relevant domain skills into the reviewer based on what was implemented. Eva
 - `Skill(optimizing-performance)` - performance work
 
 Handle the review verdict:
-- **Must fix:** Fix all Critical and Important issues, then re-run the review
+- **Must fix:** Fix all Critical and Important issues
 - **Suggestions:** Fix these too unless there's a clear reason not to
-
-Plan execution is not done until review findings are addressed.
 
 ## 4. Complete
 
@@ -73,3 +69,5 @@ Once verification passes:
 2. **Merge to main** from the worktree branch
 3. **Exit worktree** using `ExitWorktree` with `action: "remove"` to clean up
 4. **Mark plan as COMPLETED** and move to `./plans/done/` if applicable
+
+Match the length of written documents (commit messages, failure reports) to what the task needs: cover the substance, but do not pad with filler sections, redundant summaries, or boilerplate.

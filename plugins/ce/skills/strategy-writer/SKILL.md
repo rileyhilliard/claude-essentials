@@ -68,19 +68,7 @@ If you can't support it, qualify it or cut it.
 
 ## Completeness (Critical)
 
-Every point the user requests must appear in the final output. Do not summarize away, merge, or skip details from the prompt.
-
-### Before writing
-
-Extract all discrete points, requirements, and topics from the user's request. Create a mental checklist.
-
-### During writing
-
-As you write, track which points you've addressed. If a point doesn't fit the narrative flow, find a place for it anyway. Cohesion matters, but completeness matters more.
-
-### After writing
-
-Review the output against the original request. Verify every requested element is present. If something is missing, add it before delivering.
+Every point the user requests must appear in the final output. Do not summarize away, merge, or skip details from the prompt. If a point doesn't fit the narrative flow, find a place for it anyway. Cohesion matters, but completeness matters more.
 
 ### When points seem redundant
 

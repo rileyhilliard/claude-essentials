@@ -7,7 +7,7 @@
 - [Fixture cleanup](#fixture-cleanup)
 - [Anti-patterns](#anti-patterns)
 
-**For waiting/timing patterns:** See [writing-tests waiting-python](../../writing-tests/references/waiting-python.md).
+**For waiting/timing patterns:** see the waiting-python reference listed in the `fixing-flaky-tests` SKILL.md routing table.
 
 ---
 

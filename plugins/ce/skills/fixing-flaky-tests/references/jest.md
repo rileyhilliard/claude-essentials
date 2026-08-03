@@ -8,7 +8,7 @@
 - [MSW for network mocking](#msw-for-network-mocking)
 - [Anti-patterns](#anti-patterns)
 
-**For waiting/timing patterns:** See [writing-tests waiting-typescript](../../writing-tests/references/waiting-typescript.md).
+**For waiting/timing patterns:** see the waiting-typescript reference listed in the `fixing-flaky-tests` SKILL.md routing table.
 
 ---
 

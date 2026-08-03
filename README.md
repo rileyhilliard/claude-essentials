@@ -141,7 +141,6 @@ The `/ce:setup` command (formerly `/ce:init`, renamed to avoid the built-in `/in
     ├── testing.md          # References ce:writing-tests
     ├── error-handling.md   # References ce:handling-errors
     ├── debugging.md        # References ce:systematic-debugging
-    ├── verification.md     # References ce:verification-before-completion
     └── {stack}/            # Stack-specific rules (python/, frontend/, etc.)
 ```
 
@@ -265,11 +264,16 @@ Add a markdown file to `~/.claude/plugins/ce/agents/`:
 name: my-agent
 description: Expert at specific domain
 tools: Read, Grep, Glob, Bash
+model: sonnet
+effort: high
+skills: skill-name-one, skill-name-two
 color: blue
 ---
 
 Your agent personality and workflow here.
 ```
+
+Field order: `name, description, tools, model, effort, skills, color`. `model` is optional and, if omitted, the agent inherits the session model. `effort` (`low|medium|high|xhigh|max`) overrides session effort for the agent. `skills` lists skills the agent should have available.
 
 This will be accessible as `@ce:my-agent`.
 

@@ -2,7 +2,7 @@
 
 Investigate cases where documentation was wrong, incomplete, or misleading, causing the agent to take wrong approaches or waste time. "Documentation" here means any `.md` file: READMEs, code comments, API docs, architecture docs, and inline documentation.
 
-> **Note:** `.claude/` configuration files (CLAUDE.md, rules, skills, hooks) are also documentation, but they're actionable agent config. If the gap is in `.claude/` files, load `references/tooling-improvements.md` for guidance on fixing skills, hooks, commands, and agent configs.
+> **Note:** `.claude/` configuration files (CLAUDE.md, rules, skills, hooks) are also documentation, but they're actionable agent config. If the gap is in `.claude/` files, see the Tooling Improvements entry in the `post-mortem` SKILL.md routing table instead.
 
 ## What to Look For
 
@@ -31,7 +31,7 @@ For each gap:
 2. Was there a single source of truth, or did conflicting docs exist?
 3. If the docs were missing, where should they live? (README, docs/, inline comments, architecture doc)
 4. Would the agent have found the right answer faster by reading code instead of docs?
-5. Is this a documentation problem or an agent config problem? If the fix is updating `.claude/` files (skills, hooks, CLAUDE.md, rules), load `references/tooling-improvements.md` instead.
+5. Is this a documentation problem or an agent config problem? If the fix is updating `.claude/` files (skills, hooks, CLAUDE.md, rules), see the Tooling Improvements entry in the `post-mortem` SKILL.md routing table instead.
 
 ## Typical Actions
 
