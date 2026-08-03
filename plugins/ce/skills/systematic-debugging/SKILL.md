@@ -11,7 +11,7 @@ If the current repo has its own rules/skills covering this topic (check .claude/
 
 **For multi-component systems:** Add diagnostic logging at each component boundary before proposing fixes. See [references/debugging-techniques.md](references/debugging-techniques.md) for instrumentation patterns (binary search, git bisect, minimal reproduction, strategic logging, differential analysis).
 
-**For log-heavy investigations:** Delegate to the `@ce:log-reader` agent for efficient analysis.
+**For large or multi-file log investigations:** Delegate to the `@ce:log-reader` agent for efficient analysis. Not needed for a single short stack trace.
 
 ## Reporting Format
 
@@ -21,13 +21,11 @@ If the current repo has its own rules/skills covering this topic (check .claude/
 Located in: `file.ts:123`
 
 ## What Was Wrong
-[Specific problem - mutation, race condition, missing validation, etc.]
+[Specific problem - mutation, race condition, missing validation, etc. 1-3 sentences]
 
 ## The Fix
-[Changes made and why they address root cause]
+[Changes made and why they address root cause. 1-3 sentences]
 
 ## Verification
-- [x] Bug reproduced and confirmed fixed
-- [x] Existing tests pass
-- [x] Added regression test
+[How the fix was confirmed - e.g. reran the failing test, reproduced and retested manually]
 ```

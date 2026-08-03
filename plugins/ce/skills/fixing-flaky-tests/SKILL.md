@@ -127,6 +127,8 @@ def temp_dir():
 | Python (pytest, SQLAlchemy) | [references/python.md](references/python.md) |
 | Jest / Testing Library | [references/jest.md](references/jest.md) |
 | Playwright E2E | [references/playwright.md](references/playwright.md) |
+| Async waiting patterns (TypeScript) | [writing-tests waiting-typescript](../writing-tests/references/waiting-typescript.md) |
+| Async waiting patterns (Python) | [writing-tests waiting-python](../writing-tests/references/waiting-python.md) |
 
 ## Verification
 

@@ -70,7 +70,9 @@ If the repo you're reviewing has its own review rules or specialized review agen
 
 ## Output Format
 
-Every item in this review is a fix. No praise, no "what's working well," no optional tier. If it's not worth fixing, don't mention it.
+Every item in this review is a fix. No praise, no "what's working well," no optional tier.
+
+Report every issue you find, including ones you are uncertain about or consider low-severity. Do not filter for importance or confidence: your goal here is coverage, and it's better to surface a finding that later gets filtered out than to silently drop a real bug. Only omit pure nits like style or naming preferences. Report anything that could cause incorrect behavior, a test failure, or a misleading result.
 
 ```markdown
 # Code Review
@@ -113,6 +115,6 @@ Don't praise what's working. Don't summarize what the code does. The reader is a
 
 **Context Awareness**
 
-- Adapt review depth to change size (hotfix vs major feature)
-- Respect existing patterns even if not ideal - compare with codebase when uncertain
+- Change size limits time spent, not coverage. Every diff gets checked against all the criteria in step 3
+- Compare with the codebase when uncertain whether something is an existing pattern. Matching an existing pattern doesn't exempt it: flag deviations from best practices even when the codebase itself doesn't follow them
 - Your review prepares code for human review - catch issues early

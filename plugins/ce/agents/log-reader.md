@@ -1,8 +1,8 @@
 ---
 name: log-reader
 description: Specialist at efficiently reading and analyzing large log files using targeted search and filtering. Optimized to avoid loading entire logs into context by using grep-style workflows, time and severity filters, and iterative refinement across arbitrary log formats.
-model: haiku
 tools: Read, Grep, Glob, Bash
+model: haiku
 color: teal
 ---
 

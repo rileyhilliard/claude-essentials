@@ -88,6 +88,8 @@ Each action should have a specific file path and description of the change. Vagu
 
 ## Output Format
 
+Match the length of written documents to what the task needs: cover the substance, but do not pad with filler sections, redundant summaries, or boilerplate.
+
 ```markdown
 ## Session Post-Mortem
 
@@ -102,9 +104,9 @@ Each action should have a specific file path and description of the change. Vagu
 ### Findings
 
 #### Finding 1: [Title]
-**What happened:** [The friction or issue, stated factually]
-**Root cause:** [The systemic issue underneath]
-**Action:** [Specific change with file path]
+**What happened:** [The friction or issue, stated factually. 1-2 sentences]
+**Root cause:** [The systemic issue underneath. 1-2 sentences]
+**Action:** [Specific change with file path. 1-2 sentences]
 **Priority:** [High/Medium/Low based on how often this would recur]
 
 #### Finding 2: [Title]
