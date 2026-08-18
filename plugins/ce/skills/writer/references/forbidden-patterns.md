@@ -55,6 +55,59 @@ These are the highest-frequency tells and the hardest to unsee once you've spott
 - **"There are several reasons for this"** before a list. Just give the list.
 - **The hedged recommendation.** "The right approach depends on your use case, but..." before
   finally giving the recommendation. Pick a side first, then note where it breaks down.
+- **Windup paragraphs.** Two or three sentences of setup before the point lands. The reader has
+  to reach sentence three to learn what the paragraph is about.
+  - Bad: "The tempting conclusion is that COVID caused this. The data says something more
+    specific, and getting the distinction right matters. The trend predates the pandemic by a
+    decade."
+  - Fixed: "COVID accelerated this trend but did not start it. The trend predates the pandemic
+    by a decade."
+  - The test: find the sentence a reader would start at if they were skimming. That sentence is
+    the lead. Everything before it is windup; cut or move it after the lead.
+- **Every paragraph opens with its point.** This is the single most effective structural rule
+  against longform AI slop. If the point arrives in sentence two or later, move it to sentence
+  one. Supporting detail follows; it does not precede.
+
+## Longform tells (articles, reports, analyses)
+
+These show up in sustained writing where the model has room to build habits across sections. They
+survive sentence-level editing because each sentence reads fine in isolation; the tell is the
+repetition of the shape across the piece.
+
+- **Meta-narration.** The writer commenting on the writing instead of just writing. Naming the
+  article's own structure, thesis, or argument as if from outside it.
+  - Bad: "Up to here this has been a story about percentages." / "That is the whole thesis in
+    one county." / "the thing this whole article has been about" / "That is the mechanism."
+  - Fixed: cut. The reader is already inside the article; they don't need you to label what
+    section they're in or name what you just argued.
+- **Reader-directing imperatives.** Telling the reader what to feel or do with the information
+  instead of letting the information do it. Often appears as a short sentence before or after a
+  finding.
+  - Bad: "Hold that number against the record." / "That last number is the one to sit with." /
+    "That is worth sitting with before handing the blame to one tribe."
+  - Fixed: cut the directive; state the finding. "Measles killed three Americans in 2025. It
+    had killed three in the preceding 22 years." The comparison speaks without being told to.
+- **Section-ending kickers.** A dramatic one-liner closing every section, adding drama but no
+  information. Budget this device to zero or one per piece. If most of your sections end on a
+  punchy fragment, rewrite most of them as ordinary sentences.
+  - Bad: "It builds the kindling." / "The average will keep looking fine right up until it
+    doesn't." / "Their protection got spent on someone else's exemption form."
+  - Fixed: end on the last substantive sentence. If the section needs a closer, make it carry
+    a concrete fact or implication, not a restatement in dramatic clothing.
+- **Callback flourishes.** A sentence that names what the preceding paragraph just argued, as if
+  labeling its own thesis for the reader. Closely related to the summary closer, but appears
+  mid-article after individual sections rather than at the end.
+  - Bad: "That is the mechanism, and it repeats wherever the tail is thickest." / "This one
+    hid a public-health line getting crossed in more and more places at once."
+  - Fixed: cut, or replace with a concrete forward-looking sentence. If the argument was clear,
+    it does not need a label.
+- **The dramatic negation pair.** Two sentences where the first sets up a straw version and the
+  second knocks it down. A specific form of negative parallelism that appears in longform when
+  the model transitions between sections.
+  - Bad: "Those are serious arguments. Here is where they run out." / "That reading is what
+    makes the case surge look like it came out of nowhere. It did not come out of nowhere."
+  - Fixed: cut the setup sentence. Start with the substantive claim. "The trend predates the
+    pandemic by a decade" does not need "It did not come out of nowhere" in front of it.
 
 ## Transition openers
 
@@ -80,7 +133,11 @@ These start sentences in AI output at a rate no human matches. Ban them:
   - Bad: "Experts say," "Observers note," "Industry reports suggest," "many reviewers."
   - Fixed: name the source or cut the claim.
 - **Editorializing meta-commentary.** Telling the reader how to feel about the content instead of
-  just stating it. "It's important to note that," "It's worth mentioning," "Notably,".
+  just stating it. Includes both the obvious adverb form and the subtler imperative form.
+  - Obvious: "It's important to note that," "It's worth mentioning," "Notably,"
+  - Subtle: "so it is worth being careful about which one the data actually shows" /
+    "and getting the distinction right matters, because the overclaim is easy to knock down"
+  - Fixed: cut the editorial frame and state the content directly.
 - **Relentless positivity.** Press-release tone, "commitment to," everything "vibrant" and "rich."
   Describe what's true, including the parts that aren't great.
 
