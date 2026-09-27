@@ -1,6 +1,6 @@
 ---
 name: post-mortem
-description: Review a completed session to extract actionable improvements. Identifies DX friction, documentation gaps, architectural confusion, anti-patterns, process failures, and skill/config improvements. Uses progressive disclosure for targeted investigation types.
+description: Reviews a completed session, or many sessions, to find what caused friction and turns each finding into a concrete change with a file path (docs, CLAUDE.md, skills, hooks, tests, architecture). Use when the user asks for a post-mortem, retro, or lessons learned, asks what went wrong or what keeps going wrong in a repo, or wants to improve their Claude setup from how a session went.
 ---
 
 # Post-Mortem
@@ -30,7 +30,7 @@ Load the relevant reference based on what you're investigating:
 
 Load multiple references when the session spans investigation types.
 
-For a review across many sessions ("what keeps going wrong in this repo?"), run `scripts/extract-friction.py` first to build a transcript digest. See the Multi-Session Reviews section of `references/dx-friction.md`.
+For a review across many sessions ("what keeps going wrong in this repo?"), build a transcript digest first with `python3 ${CLAUDE_SKILL_DIR}/scripts/extract-friction.py --out <scratch dir>/friction`, then read the Multi-Session Reviews section of `references/dx-friction.md`.
 
 ## Core Process
 
@@ -90,6 +90,8 @@ Each action should have a specific file path and description of the change. Vagu
 
 ## Output Format
 
+Match the length to the findings. Cover the substance without filler sections or a summary that repeats the findings.
+
 ```markdown
 ## Session Post-Mortem
 
@@ -104,9 +106,9 @@ Each action should have a specific file path and description of the change. Vagu
 ### Findings
 
 #### Finding 1: [Title]
-**What happened:** [The friction or issue, stated factually]
-**Root cause:** [The systemic issue underneath]
-**Action:** [Specific change with file path]
+**What happened:** [The friction or issue, stated factually. 1-2 sentences]
+**Root cause:** [The systemic issue underneath. 1-2 sentences]
+**Action:** [Specific change with file path. 1-2 sentences]
 **Priority:** [High/Medium/Low based on how often this would recur]
 
 #### Finding 2: [Title]

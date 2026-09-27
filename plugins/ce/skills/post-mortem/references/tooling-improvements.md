@@ -1,6 +1,6 @@
 # Tooling Improvements Investigation
 
-Investigate whether skills, configs, hooks, commands, or agents need updating based on what was learned during the session. This is the primary reference for `.claude/` configuration improvements since those files directly control agent behavior and are the fastest path to self-improvement.
+Investigate whether skills, configs, hooks, or agents need updating based on what was learned during the session. This is the primary reference for `.claude/` configuration improvements since those files directly control agent behavior and are the fastest path to self-improvement.
 
 ## What to Look For
 
@@ -23,15 +23,19 @@ Investigate whether skills, configs, hooks, commands, or agents need updating ba
 - A PostToolUse hook could validate output before continuing
 - Notification hooks could alert on long-running operations
 
-**Command gaps** - A workflow should be codified:
-- The same multi-step process gets done manually every time
-- A custom command would save time and reduce errors
-- An existing command needs additional steps or options
+**Workflow gaps** - A recurring recipe should be codified:
+- The user restates the same multi-step instruction across sessions
+- An existing skill covers the recipe but its description doesn't match how the user phrases the request, so it never triggers
+- An existing workflow skill is missing a step the user keeps adding by hand
+
+Codify recipes as model-invocable skills whose descriptions quote the user's own phrasing, not as slash commands. Custom commands have been merged into skills, and users rarely type custom commands; a skill that triggers on the words they already use needs no new habit.
 
 **Agent gaps** - Review or analysis agents need updating:
 - Code reviewer missed an issue type it should catch
 - Devils-advocate didn't consider a category of risk
 - An agent's skill loading doesn't include relevant domain skills
+- A subagent came back with a report when it was supposed to change code (the dispatch prompt said "recommend" or "propose" instead of "fix directly")
+- A subagent ran on a model that didn't fit the work, because the dispatch didn't set `model`
 
 ## Root Cause Questions
 
@@ -47,6 +51,6 @@ For each tooling issue:
 - Add project-specific instructions to CLAUDE.md
 - Create new skill for a recurring pattern
 - Add hook to automate a manual step
-- Update command to include missing steps
+- Rewrite a skill description so it matches how the user asks for the workflow
 - Update agent descriptions to load relevant skills
 - Add session-start detection for project-specific tooling
