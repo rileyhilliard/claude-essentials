@@ -1,9 +1,13 @@
 {
   "name": "ce",
-  "description": "Claude Essentials - Unified development plugin with 1 command, 17 skills, and 4 specialized agents",
-  "version": "4.4.0",
+  "version": "5.0.0",
+  "description": "Claude Essentials: plan execution, code review, devil's advocate critique, writing style, design, testing, architecture and database skills, and session post-mortems",
   "author": {
-    "name": "Riley Hilliard"
+    "name": "Riley Hilliard",
+    "url": "https://github.com/rileyhilliard"
   },
-  "license": "MIT"
+  "homepage": "https://github.com/rileyhilliard/claude-essentials",
+  "repository": "https://github.com/rileyhilliard/claude-essentials",
+  "license": "MIT",
+  "keywords": ["skills", "agents", "code-review", "planning", "writing", "design", "testing", "post-mortem"]
 }

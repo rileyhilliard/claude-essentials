@@ -1,57 +1,16 @@
 {
   "name": "claude-essentials",
+  "description": "Riley Hilliard's Claude Code workflow plugin: plan execution, review agents, and writing and engineering skills",
   "owner": {
     "name": "Riley Hilliard",
     "url": "https://github.com/rileyhilliard"
   },
-  "metadata": {
-    "description": "Essential Claude Code configuration with practical commands, specialized agents, and battle-tested development skills for daily workflows",
-    "version": "4.4.0"
-  },
   "plugins": [
     {
       "name": "ce",
-      "source": "./plugins/ce/",
-      "description": "Claude Essentials - Complete development toolkit with 1 command, 17 skills, and 4 agents unified under ce namespace",
-      "version": "4.4.0",
-      "author": {
-        "name": "Riley Hilliard",
-        "url": "https://github.com/rileyhilliard"
-      },
-      "homepage": "https://github.com/rileyhilliard/claude-essentials",
-      "repository": "https://github.com/rileyhilliard/claude-essentials",
-      "license": "MIT",
-      "keywords": [
-        "commands",
-        "skills",
-        "agents",
-        "workflow",
-        "testing",
-        "debugging",
-        "refactoring",
-        "architecture",
-        "essential"
-      ],
-      "category": "workflows",
-      "strict": true,
-      "skills": [
-        "./skills/writing-tests",
-        "./skills/handling-errors",
-        "./skills/executing-plans",
-        "./skills/post-mortem",
-        "./skills/architecting-systems",
-        "./skills/design",
-        "./skills/writer",
-        "./skills/managing-databases",
-        "./skills/planning-products",
-        "./skills/structuring-articles"
-      ],
-      "agents": [
-        "./agents/code-reviewer.md",
-        "./agents/log-reader.md",
-        "./agents/devils-advocate.md",
-        "./agents/copywriter.md"
-      ]
+      "source": "./plugins/ce",
+      "description": "Plan execution with devil's advocate and code review, a writing style guide, design, testing, architecture and database skills, and session post-mortems",
+      "category": "workflows"
     }
   ]
 }
