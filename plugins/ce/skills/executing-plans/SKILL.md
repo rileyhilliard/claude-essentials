@@ -1,6 +1,6 @@
 ---
 name: executing-plans
-description: Executes implementation plans with smart task grouping. Groups related tasks to share context, parallelizes across independent subsystems.
+description: Executes implementation plans end to end - devils-advocate review of the plan, grouped parallel implementation, test gate, mandatory code review, commit, and merge to main. Use when asked to execute or implement a plan or RFC, or for requests like "dispatch a ce:devils-advocate agent to review, then proceed with execution, ce:code-reviewer and commit", "implement, commit, merge to main", or "make an RFC, have DA review, then implement".
 ---
 
 # Executing Plans
@@ -10,6 +10,8 @@ description: Executes implementation plans with smart task grouping. Groups rela
 ## 1. Setup
 
 **Create a worktree** using `EnterWorktree` before starting any work. This isolates changes from the main branch and makes cleanup safe. Skip only for trivial single-file changes that don't warrant isolation.
+
+**Devil's advocate the plan.** Before any implementation, dispatch the `ce:devils-advocate` agent on the plan and have it check the plan against the real code. Apply the findings that hold up (verify each against the code; drop pure framing or hedging), and update the plan file. Skip this when the plan was already reviewed: it says so, or a DA pass already ran on it this session.
 
 **Clarify ambiguity upfront.** If the plan has unclear requirements or meaningful tradeoffs, ask before starting. Don't guess when the user can clarify in 10 seconds.
 
@@ -39,7 +41,7 @@ Group related tasks to share agent context. One agent per subsystem, groups run 
 
 Verification is a **gate**, not a checklist. Nothing proceeds to merge until all checks pass. If any check fails, fix and re-verify. This is a loop, not a one-shot.
 
-**Automated tests.** Run the full test suite. All tests must pass.
+**Automated tests.** Run the project's documented test command (from CLAUDE.md or the README; scope it to the changed packages if the project documents scoped runs). Don't guess a runner. All tests must pass.
 
 **Manual verification.** Automated tests aren't sufficient. Actually exercise the changes:
 - **API changes:** Curl endpoints with realistic payloads
@@ -70,6 +72,7 @@ Plan execution is not done until review findings are addressed.
 Once verification passes:
 
 1. **Commit** the work with a message summarizing what was implemented
-2. **Merge to main** from the worktree branch
-3. **Exit worktree** using `ExitWorktree` with `action: "remove"` to clean up
-4. **Mark plan as COMPLETED** and move to `./plans/done/` if applicable
+2. **Merge to main** locally from the worktree branch
+3. **Push only if the user's request explicitly said push or deploy.** Otherwise stop at the local merge: pushing main often triggers CI deploys, and the user may want to QA from main first. Say in the final report that nothing was pushed.
+4. **Exit worktree** using `ExitWorktree` with `action: "remove"` to clean up
+5. **Mark plan as COMPLETED** and move to `./plans/done/` if applicable

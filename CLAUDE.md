@@ -286,7 +286,7 @@ Load a skill when the task clearly matches its description. Use Skill(<name>) im
 Available skills:
 
 - architecting-systems: Guides clean, scalable system architecture during the build phase. Use when designing modules, defining boundaries, structuring projects, managing dependencies, or preventing tight coupling and brittleness as systems grow.
-- executing-plans: Executes implementation plans autonomously with wave-based parallel subagents. Analyzes task dependencies, parallelizes independent work, auto-recovers from errors, and verifies at completion.
+- executing-plans: Executes implementation plans end to end - devils-advocate review, grouped parallel implementation, test gate, mandatory code review, commit, and local merge to main (push only on request).
 - handling-errors: Error handling best practices - no hiding, no swallowing, no boolean returns. Use when implementing try-catch blocks, designing error propagation, or reviewing error handling patterns.
 - optimizing-performance: Measure-first performance optimization - balance gains against complexity. Use when addressing slow code, profiling performance issues, or evaluating optimization trade-offs.
 - systematic-debugging: Four-phase debugging framework with root cause tracing - understand the source before proposing fixes. Use when investigating bugs, errors, unexpected behavior, or failed tests.

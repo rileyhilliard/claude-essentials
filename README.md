@@ -41,7 +41,7 @@ Reusable development patterns, accessed with `ce:` prefix:
 | Skill                                                                      | Description                                             |
 | -------------------------------------------------------------------------- | ------------------------------------------------------- |
 | [ce:planning-products](plugins/ce/skills/planning-products/SKILL.md)       | Product feature definition from a PM perspective        |
-| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md)           | Execute plans with mandatory code review                |
+| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md)           | Execute plans: DA review, code review, merge to main   |
 | [ce:architecting-systems](plugins/ce/skills/architecting-systems/SKILL.md) | Clean, scalable system architecture for the build phase |
 | [ce:design](plugins/ce/skills/design/SKILL.md)                             | Frontend design skill                                   |
 
