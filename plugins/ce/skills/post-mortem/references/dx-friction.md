@@ -2,6 +2,18 @@
 
 Investigate what makes the codebase harder to work in than it needs to be. This covers friction the agent hit, but also friction that any developer (or future agent session) would encounter. The goal is identifying things that could be smoother through better tooling, automation, refactoring, or conventions.
 
+## Multi-Session Reviews
+
+To find friction that recurs across many sessions (not just the current one), build a digest from the transcripts first:
+
+```bash
+python3 <post-mortem skill dir>/scripts/extract-friction.py --out /tmp/friction
+```
+
+It reads `~/.claude/projects/<slug>*` for the current directory (sibling roots cover subdirectory sessions, worktrees, and subagents; override with `--project-dir`), covers the last 21 days unless you pass `--since YYYY-MM-DD`, and writes `summary.txt`, `tool_errors.txt` (each error with the call that caused it), `user_messages.txt` (`*` marks likely corrections), `hook_events.txt` (failing hooks clustered, plus per-hook durations), `precommit_failures.txt`, and `edit_mismatch.txt`. Read `summary.txt` first.
+
+A cheap model (haiku, sonnet) can read the digest and cluster it. The counts are regex matches, so spot-check a sample of each cluster against the raw lines before quoting a number or ranking by it.
+
 ## What to Look For
 
 **Discovery friction** - Hard to find what you need:

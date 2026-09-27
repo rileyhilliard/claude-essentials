@@ -30,6 +30,8 @@ Load the relevant reference based on what you're investigating:
 
 Load multiple references when the session spans investigation types.
 
+For a review across many sessions ("what keeps going wrong in this repo?"), run `scripts/extract-friction.py` first to build a transcript digest. See the Multi-Session Reviews section of `references/dx-friction.md`.
+
 ## Core Process
 
 Every post-mortem follows four steps regardless of investigation type.
