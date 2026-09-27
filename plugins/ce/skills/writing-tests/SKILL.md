@@ -1,107 +1,54 @@
 ---
 name: writing-tests
-description: Writes behavior-focused tests using Testing Trophy model with real dependencies. Use when writing tests, choosing test types, or avoiding anti-patterns like testing mocks.
+description: Writes behavior-focused tests using the Testing Trophy model with real dependencies and minimal mocking. Use when writing or reviewing tests, choosing between unit, integration and E2E, deciding what to mock, replacing sleeps with proper waits, or fixing flaky tests that fail only alongside other tests.
 ---
 
-If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence — apply this skill only where they're silent.
+If the current repo has its own testing rules or skills (check .claude/rules/ and the repo CLAUDE.md), those take precedence. Apply this skill where they're silent.
 
 # Writing Tests
 
-**Core principle:** Test user-observable behavior with real dependencies. Tests should survive refactoring.
+Test what a user or caller can observe, using real dependencies, so tests survive refactoring and fail only when behavior breaks.
 
-> "The more your tests resemble the way your software is used, the more confidence they can give you." — Kent C. Dodds
+## Which kind of test
 
-**Why this matters:** Tests exist to give you confidence. The Testing Trophy prioritizes integration tests because they test real behavior across real modules — giving maximum confidence per test written. Unit tests in isolation often just test mocks, not your actual system.
+| Situation | Test type |
+| --- | --- |
+| Most code: several units working together | Integration, with a real test database and real internal modules |
+| A complete user workflow | E2E |
+| A pure function with no side effects | Unit |
 
-## Testing Trophy Model
+Integration is the default because it gives the most confidence per test. Isolated unit tests of code with dependencies usually end up testing the mocks.
 
-| Priority | Type        | When                                            |
-| -------- | ----------- | ----------------------------------------------- |
-| 1st      | Integration | Default - multiple units with real dependencies |
-| 2nd      | E2E         | Complete user workflows                         |
-| 3rd      | Unit        | Pure functions only (no dependencies)           |
+## Mocking
 
-## Mocking Guidelines
+Mock only what you don't own or can't control: external HTTP APIs, third-party services (payments, email), time and randomness. Use the real database, real internal modules and real business logic. When a mock is needed, make it match the real API's shape, including error responses.
 
-**Default: Don't mock. Use real dependencies.**
+## Assertions
 
-**Only mock:**
+| Context | Assert on | Not on |
+| --- | --- | --- |
+| UI | Visible text, roles, labels | CSS classes, component state |
+| API | Status and response body | Rows in the database behind it |
+| Library | Return values and raised errors | Private methods |
 
-- External HTTP/API calls
-- Time/randomness
-- Third-party services (payments, email)
+## Anti-patterns
 
-**Never mock:**
+| Pattern | Instead |
+| --- | --- |
+| Asserting a mock was called | Assert the outcome the call produced |
+| Test-only methods in production code | Put helpers in test utilities |
+| `sleep(500)` before an assertion | Wait for the condition (`findBy`, `waitFor`, Playwright auto-wait, polling helpers) |
+| Asserting internal state | Assert observable output |
 
-- Internal modules
-- Database queries (use test DB)
-- Business logic
-- Your own code calling your own code
+Name tests after the behavior they check, and cover the error paths as well as the happy path.
 
-**Before mocking, ask:** "What side effects does this have? Does my test need those?" If unsure, run with real implementation first, then add minimal mocking only where needed.
+## References
 
-## Test Type Decision
-
-```
-Complete user workflow? → E2E test
-Pure function (no side effects)? → Unit test
-Everything else → Integration test
-```
-
-## Assertion Strategy
-
-| Context | Assert On             | Avoid                       |
-| ------- | --------------------- | --------------------------- |
-| UI      | Visible text, roles   | CSS classes, internal state |
-| API     | Response body, status | Internal DB state           |
-| Library | Return values         | Private methods             |
-
-## Anti-Patterns
-
-| Pattern                         | Fix                         |
-| ------------------------------- | --------------------------- |
-| Testing mock calls              | Test actual outcome         |
-| Test-only methods in production | Move to test utilities      |
-| `sleep(500)`                    | Poll for actual condition   |
-| Asserting on internal state     | Assert on observable output |
-| Incomplete mocks                | Mirror real API completely  |
-
-## Quality Checklist
-
-- [ ] Happy path covered
-- [ ] Error conditions handled
-- [ ] Real dependencies used (minimal mocking)
-- [ ] Tests survive refactoring
-- [ ] Test names describe behavior
-
-## Language-Specific Patterns
-
-- **JavaScript/Typescript/React**: See [references/typescript-react.md](references/typescript-react.md)
-- **Python**: See [references/python.md](references/python.md)
-- **Go**: See [references/go.md](references/go.md)
-
-## Async Waiting
-
-Wait for the actual condition, not a guess about how long it takes.
-
-```typescript
-// Bad: arbitrary delay
-await new Promise(r => setTimeout(r, 2000));
-expect(element).toBeVisible();
-
-// Good: poll for condition
-await waitFor(() => expect(element).toBeVisible());
-```
-
-**Prefer framework built-ins:**
-- Testing Library: `findBy` queries, `waitFor`
-- Playwright: auto-waiting, `expect(locator).toBeVisible()`
-- pytest: `asyncio.wait_for`, tenacity
-
-**Language-specific waiting patterns:**
-- **TypeScript**: See [references/waiting-typescript.md](references/waiting-typescript.md)
-- **Python**: See [references/waiting-python.md](references/waiting-python.md)
-
----
-
-**Remember:** Behavior over implementation. Real over mocked. Outputs over internals.
+| Need | Read |
+| --- | --- |
+| TypeScript and React (Testing Library, MSW, Vitest/Jest) | [references/typescript-react.md](references/typescript-react.md) |
+| Python (pytest, fixtures, async) | [references/python.md](references/python.md) |
+| Go | [references/go.md](references/go.md) |
+| Async waiting in TypeScript | [references/waiting-typescript.md](references/waiting-typescript.md) |
+| Async waiting in Python | [references/waiting-python.md](references/waiting-python.md) |
+| Tests that pass alone and fail in the suite, or fail intermittently | [references/flaky-tests.md](references/flaky-tests.md) |
