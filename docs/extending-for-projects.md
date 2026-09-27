@@ -7,7 +7,7 @@ The `ce` plugin provides generic development patterns. Real projects need projec
 The `ce` plugin is intentionally generic. Your project's `.claude/` directory should:
 
 1. **Reference ce skills** in your rules (don't duplicate them)
-2. **Add project commands** that wrap your actual tooling
+2. **Add workflow skills** that wrap your actual tooling and recurring recipes
 3. **Create project skills** for domain-specific knowledge
 4. **Configure hooks** to enforce project conventions
 
@@ -18,11 +18,9 @@ your-project/
 └── .claude/
     ├── CLAUDE.md              # Project overview, architecture, quick commands
     ├── settings.json          # Permissions, hooks, environment
-    ├── commands/              # Project-specific slash commands
-    │   ├── myproject:test.md
-    │   ├── myproject:dev.md
-    │   └── myproject:deploy.md
-    ├── skills/                # Domain knowledge
+    ├── skills/                # Workflows and domain knowledge
+    │   ├── myproject-test/
+    │   │   └── SKILL.md
     │   └── myproject-models/
     │       └── SKILL.md
     ├── rules/                 # Auto-injected context by file path
@@ -88,17 +86,17 @@ When fixing flaky tests, see async waiting patterns in ce:writing-tests.
 
 This keeps rules lightweight while connecting to the deeper ce knowledge.
 
-## 3. Project Commands
+## 3. Workflow Skills
 
-Create commands that wrap your actual workflows. Namespace them to avoid conflicts:
+Claude Code merged custom slash commands into skills: `skills/<name>/SKILL.md` is invocable as `/<name>` and can also be loaded by the model on its own. Write recurring recipes as skills, and phrase the description the way you actually ask for the work. Most people rarely type custom slash commands, so a skill that triggers on the words you already use saves more time than one you have to remember to call.
 
 ````markdown
 ---
-description: Run tests on remote machine
-argument-hint: [target]
+name: myproject-test
+description: Runs this project's tests on the remote runner. Use when asked to run tests, check a change, or see whether the suite passes.
 ---
 
-Run tests using the remote runner (preferred over local).
+Run tests with the remote runner rather than locally:
 
 ```bash
 rr test              # All tests
@@ -111,10 +109,7 @@ For advanced usage, load the rr:rr skill.
 
 > *[rr](https://github.com/rileyhilliard/rr) is a distributed testing CLI for load balancing tests across multiple worker machines*
 
-Commands should be thin wrappers that show:
-- What to run
-- Common variations
-- Where to find more info (skills)
+Workflow skills should stay thin: what to run, common variations, and which skill has the details. Set `disable-model-invocation: true` only for workflows with side effects you want to trigger by hand, such as a deploy.
 
 ## 4. Project Skills
 
@@ -208,11 +203,11 @@ See async waiting patterns in ce:writing-tests for test timing fixes.
 - Always run tests via `make test-remote`
 ```
 
-**`.claude/commands/myproject:test.md`** - Wraps tooling:
+**`.claude/skills/myproject-test/SKILL.md`** - Wraps tooling:
 ````markdown
 ---
-description: Run project tests
-argument-hint: [area]
+name: myproject-test
+description: Runs this project's tests. Use when asked to run tests or check whether a change passes.
 ---
 
 ```bash
@@ -239,7 +234,7 @@ All routes in `src/api/routes/`. Thin handlers that delegate to services...
 ## Key Principles
 
 1. **Don't duplicate ce content** - Reference skills, don't copy them
-2. **Keep commands thin** - Show what to run, link to skills for details
+2. **Keep workflow skills thin** - Show what to run, link to other skills for details
 3. **Scope rules narrowly** - More specific paths = more relevant context
 4. **Use hooks for enforcement** - Block bad patterns, auto-fix on stop
 5. **Document the "why"** - Project CLAUDE.md explains architecture decisions
