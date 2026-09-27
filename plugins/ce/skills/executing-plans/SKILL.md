@@ -1,77 +1,69 @@
 ---
 name: executing-plans
-description: Executes implementation plans end to end - devils-advocate review of the plan, grouped parallel implementation, test gate, mandatory code review, commit, and merge to main. Use when asked to execute or implement a plan or RFC, or for requests like "dispatch a ce:devils-advocate agent to review, then proceed with execution, ce:code-reviewer and commit", "implement, commit, merge to main", or "make an RFC, have DA review, then implement".
+description: Executes an implementation plan or RFC end to end in a worktree, covering a devils-advocate review of the plan, grouped subagent implementation, the test gate, a code-reviewer pass with every finding fixed, a commit, and a local merge to main. Use when asked to execute, implement, or ship a plan, or for requests like "have DA review it, then implement", "run code review and commit", "implement, commit, merge to main", or "make an RFC, DA it, then build it".
 ---
 
 # Executing Plans
 
-**You are an orchestrator.** Spawn and coordinate sub-agents to do the actual implementation. Group related tasks by subsystem (one agent for API routes, another for tests) rather than spawning per-task. Each agent re-investigates the codebase, so fewer agents with broader scope = faster execution.
+The job is to take a written plan to a reviewed, committed, locally merged result without the user restating each step. Each stage below is part of the default flow; skip one only where this file says it can be skipped.
 
 ## 1. Setup
 
-**Create a worktree** using `EnterWorktree` before starting any work. This isolates changes from the main branch and makes cleanup safe. Skip only for trivial single-file changes that don't warrant isolation.
+Create a worktree with `EnterWorktree` before changing anything, so the work stays isolated from main. Skip it only for a trivial single-file change.
 
-**Devil's advocate the plan.** Before any implementation, dispatch the `ce:devils-advocate` agent on the plan and have it check the plan against the real code. Apply the findings that hold up (verify each against the code; drop pure framing or hedging), and update the plan file. Skip this when the plan was already reviewed: it says so, or a DA pass already ran on it this session.
+Run a devil's advocate pass on the plan. Dispatch the `ce:devils-advocate` agent and ask it to check the plan against the real code, not just read it. Verify each finding against the code yourself, apply the ones that hold up, drop pure framing or hedging, and update the plan file. Skip this when the plan says it was already reviewed or a DA pass already ran on it this session.
 
-**Clarify ambiguity upfront.** If the plan has unclear requirements or meaningful tradeoffs, ask before starting. Don't guess when the user can clarify in 10 seconds.
+If the plan leaves a real decision open (a tradeoff the user would want to make), ask before starting. Otherwise proceed.
 
-**Track progress with tasks.** Create tasks for each major work item from the plan. Set up dependency chains between tasks using `addBlocks`/`addBlockedBy` so blocked tasks don't start prematurely. Update task status as work progresses. This keeps execution visible to the user and persists across context compactions.
+Track the plan's work items with the task tool, with dependencies between them, so progress survives compaction and the user can see it.
 
-## 2. Group and Execute
+## 2. Implement
 
-Group related tasks to share agent context. One agent per subsystem, groups run in parallel.
+Hand implementation to subagents grouped by subsystem, and do small pieces (a handful of tool calls) yourself. Each subagent re-reads the codebase, so a few agents with coherent scope beat one agent per task.
 
 | Signal | Group together |
-|--------|----------------|
+| --- | --- |
 | Same directory prefix | `src/auth/*` tasks |
-| Same domain/feature | Auth tasks, billing tasks |
-| Plan sections | Tasks under same `##` heading |
+| Same feature or domain | Billing tasks |
+| Same plan section | Tasks under one `##` heading |
 
-3-4 tasks max per group. Split if larger. Overloading a single agent causes context compactions that degrade output quality, so err toward splitting over cramming.
+Groups on different subsystems run in parallel. Groups that depend on each other (shared types first, then their users) run in sequence. Pass `isolation: "worktree"` when parallel agents might touch the same files.
 
-**Parallel vs sequential:** Groups that touch different subsystems run in parallel. Groups with dependencies run sequentially (e.g., create shared types before using them). When parallel agents may touch overlapping files, use `isolation: "worktree"` on the Agent call.
+Write each dispatch prompt so the agent acts rather than reports:
 
-**Auto-recovery:**
-1. Agent attempts to fix failures (has context)
-2. If it can't fix, report failure with error output
-3. Dispatch fix agent with context from the failure
-4. Same error twice: stop and ask user
+- Say "implement" or "fix directly". Agents asked to "recommend" or "propose" tend to come back with a report and no changes.
+- Name the files, the plan section, and the test command it should run.
+- Set `model` on every dispatch. Use `opus` for work that needs judgment (design choices, cross-cutting changes, tricky debugging) and `sonnet` for mechanical bulk edits. Don't use haiku for implementation.
+- In an isolated worktree, tell it to run plain single commands from the worktree root, without `cd` chains, loops, or variable assignments around git. The harness refuses compound commands it can't verify.
+- Subagents commit on their own branch only. They never merge, push, or call `ExitWorktree`; those belong to you.
+- An agent that writes tests should edit test files only.
+
+When an agent fails, let it fix its own failure first, since it has the context. If the same error comes back after a second attempt, stop and ask the user instead of retrying.
 
 ## 3. Verify
 
-Verification is a **gate**, not a checklist. Nothing proceeds to merge until all checks pass. If any check fails, fix and re-verify. This is a loop, not a one-shot.
+Nothing merges until these pass.
 
-**Automated tests.** Run the project's documented test command (from CLAUDE.md or the README; scope it to the changed packages if the project documents scoped runs). Don't guess a runner. All tests must pass.
+Run the project's documented test command (from CLAUDE.md or the README, scoped to the changed packages if the project documents scoped runs). Don't guess a runner.
 
-**Manual verification.** Automated tests aren't sufficient. Actually exercise the changes:
-- **API changes:** Curl endpoints with realistic payloads
-- **External integrations:** Test against real services to catch rate limiting, format drift, bot detection
-- **CLI changes:** Run actual commands, verify output
-- **UI changes:** Start the dev server and use the feature in a browser
-- **Parser changes:** Feed real data, not just fixtures
+Then exercise the change the way a user would, because passing tests don't show that the feature works:
 
-Watch for DX friction during manual testing: confusing error messages, noisy output, inconsistent behavior, rough edges that technically work but feel bad. Fix inline or document for follow-up. Don't ship friction.
+- API: call the endpoints with realistic payloads.
+- External integrations: hit the real service to catch rate limits, format drift, and bot blocking.
+- CLI: run the commands and read the output.
+- UI: start the dev server and use the feature.
+- Parsers: feed real data, not only fixtures.
 
-**Code review (mandatory).** After tests pass and manual verification is done, dispatch the `ce:code-reviewer` agent to review the full diff against the base branch. This step is not optional.
+Fix rough edges you hit on the way (confusing errors, noisy output, inconsistent behavior) rather than shipping them.
 
-Load relevant domain skills into the reviewer based on what was implemented. Evaluate which apply and include them in the agent prompt:
-- `Skill(architecting-systems)` - system design, module boundaries
-- `Skill(managing-databases)` - database work
-- `Skill(handling-errors)` - error handling
-- `Skill(writing-tests)` - test quality
-
-Handle the review verdict:
-- **Must fix:** Fix all Critical and Important issues, then re-run the review
-- **Suggestions:** Fix these too unless there's a clear reason not to
-
-Plan execution is not done until review findings are addressed.
+Then dispatch the `ce:code-reviewer` agent on the full diff against the base branch. This step always runs. Name the domain skills that apply in its prompt (`architecting-systems`, `managing-databases`, `handling-errors`, `writing-tests`). Fix every finding it returns; its list has no optional tier. If the fixes were substantial, run the reviewer again on the new diff.
 
 ## 4. Complete
 
-Once verification passes:
+1. Commit with a message that says what was implemented and why.
+2. Merge to main locally from the worktree branch.
+3. Push only if the user's request said push or deploy. Pushing main often triggers CI deploys, and the usual flow is for the user to QA from main first. Say in the final report that nothing was pushed.
+4. Call `ExitWorktree` with `action: "remove"`.
+5. Mark the plan as completed and move it to `./plans/done/` if the project uses that folder.
 
-1. **Commit** the work with a message summarizing what was implemented
-2. **Merge to main** locally from the worktree branch
-3. **Push only if the user's request explicitly said push or deploy.** Otherwise stop at the local merge: pushing main often triggers CI deploys, and the user may want to QA from main first. Say in the final report that nothing was pushed.
-4. **Exit worktree** using `ExitWorktree` with `action: "remove"` to clean up
-5. **Mark plan as COMPLETED** and move to `./plans/done/` if applicable
+Keep the final report to what changed, what the review caught, and anything left for the user.
