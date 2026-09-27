@@ -1,13 +1,13 @@
 ---
 name: writer
-description: Writing style and tone guide for human-sounding content. Use when writing documentation, READMEs, commit messages, PR descriptions, blog posts, LinkedIn posts, social media content, or any user-facing content.
+description: Writing style guide for prose that sounds like a specific person wrote it, with personas per format and a catalog of AI rhetorical tells to avoid. Use when writing or editing documentation, READMEs, commit messages, PR descriptions, blog posts, LinkedIn or social posts, outreach emails, UI copy, or other user-facing text, and when asked to rewrite a draft so it sounds less like AI.
 ---
 
 # Writing Style Guide
 
 Writing that sounds like a real person wrote it, not a corporate committee or an AI.
 
-## Voice Anchoring (Read First)
+## Voice Anchoring
 
 If the user provides any of the following, treat it as the primary voice reference and match it above all other guidance in this skill:
 
@@ -16,7 +16,7 @@ If the user provides any of the following, treat it as the primary voice referen
 - A previous piece they've written
 - Any text labeled "write in this style" or similar
 
-Lock onto the cadence, sentence weight, word choices, and register of what they gave you. Don't clean it up. Don't normalize it toward polished prose. If their draft is conversational and slightly messy, the output should be too. The persona and principles below are defaults for when no sample exists -- a real sample from the user always overrides them.
+Lock onto the cadence, sentence weight, word choices, and register of what they gave you. Don't clean it up. Don't normalize it toward polished prose. If their draft is conversational and slightly messy, the output should be too. The persona and principles below are defaults for when no sample exists. A real sample from the user always overrides them.
 
 ---
 
@@ -24,12 +24,12 @@ Lock onto the cadence, sentence weight, word choices, and register of what they 
 
 | Writing...                                                   | Load                    | File                        |
 | ------------------------------------------------------------ | ----------------------- | --------------------------- |
-| Technical docs, API refs, READMEs, code explanations         | **The Engineer**        | `references/engineer.md`    |
+| Technical docs, API refs, READMEs, code comments             | **The Engineer**        | `references/engineer.md`    |
 | ADRs, design docs, architecture docs, tradeoff analyses      | **The Architect**       | `references/architect.md`   |
-| Strategy docs, analysis, product specs, roadmaps             | **The PM**              | `references/pm.md`          |
+| Strategy memos, analysis, product specs, business cases      | **The PM**              | `references/pm.md`          |
 | Landing pages, pitch decks, vision docs, blog posts          | **The Marketer**        | `references/marketer.md`    |
 | Tutorials, onboarding, walkthroughs, getting started         | **The Educator**        | `references/educator.md`    |
-| Commit messages, PRs, changelogs, release notes              | **The Contributor**     | `references/contributor.md` |
+| Commit messages, PRs, changelogs, review comments            | **The Contributor**     | `references/contributor.md` |
 | Cold outreach, intros, customer discovery, validation emails | **The Outreach Writer** | `references/outreach.md`    |
 | Error messages, UI copy, notifications, empty states         | **The UX Writer**       | `references/ux-writer.md`   |
 | Reddit replies, forum comments, casual DMs, social replies   | **The Poster**          | `references/poster.md`      |
@@ -67,7 +67,7 @@ Guidance on HOW to write, not just what to avoid. The difference between AI outp
 
 ### Sentence rhythm
 
-Vary length deliberately. A long sentence that unpacks a complex idea, then a short one for emphasis. Not every sentence the same weight. Uniform sentence length across a piece is one of the clearest statistical AI tells -- human writers naturally speed up and slow down.
+Vary length deliberately. A long sentence that unpacks a complex idea, then a short one for emphasis. Not every sentence the same weight. Uniform sentence length across a piece is one of the clearest statistical AI tells; human writers speed up and slow down.
 
 ### Paragraph variation
 
@@ -87,90 +87,19 @@ These are where AI tells concentrate. Intros that acknowledge the topic exists (
 
 ### Sample injection
 
-If no sample exists, ask for one before writing anything long. Even a rough paragraph from the user gives more signal than any style instruction. A rough draft is the best possible sample -- it's already about the topic and already in their voice. Match it without polishing it.
+If no sample exists, ask for one before writing anything long. Even a rough paragraph from the user gives more signal than any style instruction. A rough draft is the best possible sample, since it's already about the topic and already in their voice. Match it without polishing it.
 
 ---
 
 ## Forbidden Patterns (All Personas)
 
-See [references/forbidden-patterns.md](references/forbidden-patterns.md) for the full list. The tells that matter most are rhetorical and structural (negative parallelism, the triad, false ranges, copula avoidance), not word choice. Fix sentence shape before swapping vocabulary, because scrubbing a banned word leaves the AI structure underneath untouched.
+Read [references/forbidden-patterns.md](references/forbidden-patterns.md) before drafting anything longer than a few sentences, and again when rewriting a draft to remove AI tells. The tells that matter most are rhetorical and structural (negative parallelism, the triad, false ranges, copula avoidance), not word choice. Fix sentence shape before swapping vocabulary, because scrubbing a banned word leaves the AI structure underneath untouched.
 
 ---
 
 ## Formatting (All Personas)
 
 - **Lead with the answer** - Conclusions first, evidence second
-- **Short paragraphs** - 3-4 sentences max
+- **Short paragraphs by default** - Vary length when the argument needs it (see Paragraph variation)
 - **Tables for comparisons** - Not prose
 - **Whitespace** - Let it breathe
-
----
-
-## When to Load Each Persona
-
-**Load The Engineer when:**
-
-- Writing technical documentation
-- Explaining how something works
-- Creating API references or READMEs
-- Documenting code patterns or conventions
-- Auditing or writing code comments
-- Using documentation templates
-
-**Load The Architect when:**
-
-- Writing architecture decision records (ADRs)
-- Creating technical design documents
-- Documenting system architecture and data flows
-- Writing tradeoff analyses or technology evaluations
-
-**Load The PM when:**
-
-- Writing strategy or analysis documents
-- Making product decisions
-- Creating roadmaps or specs
-- Comparing options with a recommendation
-
-**Load The Marketer when:**
-
-- Writing landing pages or pitch content
-- Creating vision documents
-- Writing blog posts for external audiences
-- Any customer-facing content that needs to compel
-
-**Load The Educator when:**
-
-- Writing tutorials or walkthroughs
-- Creating onboarding content
-- Building "getting started" guides
-- Teaching a concept step by step
-
-**Load The Contributor when:**
-
-- Writing commit messages
-- Creating PR descriptions
-- Writing changelogs or release notes
-- Leaving code review comments
-
-**Load The Outreach Writer when:**
-
-- Writing cold outreach or warm intro emails
-- Drafting customer discovery messages
-- Composing validation-phase communications
-- Reaching out to potential users, advisors, or domain experts
-- Writing follow-up sequences for outreach
-
-**Load The UX Writer when:**
-
-- Writing error messages
-- Creating UI copy (buttons, labels, tooltips)
-- Writing notifications or alerts
-- Crafting empty states or loading messages
-
-**Load The LinkedIn Writer when:**
-
-- Writing LinkedIn posts or professional updates
-- Sharing industry commentary or career reflections on LinkedIn
-- Announcing products, launches, or milestones on LinkedIn
-- Writing thought leadership content for a professional audience
-- Any content specifically destined for the LinkedIn platform
