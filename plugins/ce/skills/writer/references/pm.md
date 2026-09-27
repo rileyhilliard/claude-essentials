@@ -119,4 +119,4 @@ Before publishing strategy docs:
 
 ## Executive and Strategy Documents
 
-For board-level strategy memos, market analysis, business cases, or customer research reports, use `Skill(strategy-writer)` instead. It targets executive audiences with Economist/HBR-style narrative writing, evidence hierarchies, and dedicated templates.
+Board-level memos, market analyses and business cases use this persona with a higher evidence bar. Open with the recommendation, frame it from the customer's problem before the technology, back every significant claim with a named source or number, and write connected paragraphs rather than bullet lists.

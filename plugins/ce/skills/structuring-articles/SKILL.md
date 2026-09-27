@@ -13,7 +13,7 @@ This skill handles **structure** — the bones of an article. It tells you what 
 
 For **voice, tone, and anti-AI rhetoric**, load the `writer` skill. These two skills are designed to work together: structure from here, style from there.
 
-For **executive/strategy documents** (board decks, business cases, market analysis), the `strategy-writer` skill is more appropriate — those follow their own conventions.
+For executive and strategy documents (business cases, market analysis), use the `writer` skill's PM persona instead.
 
 ---
 
@@ -91,5 +91,5 @@ Not everything is an article. Skip this skill for:
 - Technical documentation, READMEs, API docs → use the `writer` skill's Engineer persona
 - Commit messages, PRs, changelogs → use the `writer` skill's Contributor persona
 - UI copy, error messages → use the `writer` skill's UX Writer persona
-- Executive strategy documents → use the `strategy-writer` skill
+- Executive strategy documents → use the `writer` skill's PM persona
 - Quick social posts or comments → use the `writer` skill's Poster/LinkedIn persona

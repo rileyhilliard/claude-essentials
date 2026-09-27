@@ -59,7 +59,6 @@ Load relevant domain skills into the reviewer based on what was implemented. Eva
 - `Skill(managing-databases)` - database work
 - `Skill(handling-errors)` - error handling
 - `Skill(writing-tests)` - test quality
-- `Skill(optimizing-performance)` - performance work
 
 Handle the review verdict:
 - **Must fix:** Fix all Critical and Important issues, then re-run the review
