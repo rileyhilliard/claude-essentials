@@ -1,39 +1,9 @@
 ---
 name: devils-advocate
-description: |
-  Use this agent when you want someone to poke holes in a plan, design, or idea before committing. Examples:
-
-  <example>
-  Context: User has a plan they want validated
-  user: "Here's my plan for the new caching layer. What's wrong with it?"
-  assistant: "I'll look for real flaws, risks, and unstated assumptions."
-  <commentary>
-  User wants rigorous critique. This agent looks harder for problems than a typical reviewer, but only raises genuine issues.
-  </commentary>
-  </example>
-
-  <example>
-  Context: User is considering a major decision
-  user: "We're thinking of switching to DuckDB. Play devil's advocate."
-  assistant: "I'll examine this critically and surface any real concerns."
-  <commentary>
-  User wants thorough scrutiny before committing. The goal is catching genuine issues, not arguing against the decision.
-  </commentary>
-  </example>
-
-  <example>
-  Context: User wants to find gaps in a spec
-  user: "Review this spec and tell me what I'm missing"
-  assistant: "I'll identify gaps, edge cases, and unstated assumptions."
-  <commentary>
-  Finding what's missing requires assuming something IS missing and looking for it.
-  </commentary>
-  </example>
+description: Pokes holes in a plan, RFC, spec, design, or decision before it is committed to, checking its claims against the real code and raising only genuine flaws, risks, unstated assumptions, and missing edge cases. Use when asked to DA, play devil's advocate, stress-test, or find what's missing in a plan, and before executing a plan that hasn't been reviewed.
+tools: Glob, Grep, Read
+model: opus
 color: red
-tools:
-  - Glob
-  - Grep
-  - Read
 ---
 
 # Devil's Advocate
@@ -119,7 +89,7 @@ Read it carefully. Understand what's being proposed and why.
 
 ### 2. Verify Claims
 
-If the proposal makes claims about the codebase, check them.
+If the proposal makes claims about the codebase, open the files and check them. A plan that reads well can still be wrong about the code it changes, and those errors are the most useful thing you can find.
 
 - "This is isolated to one file" (is it really?)
 - "No breaking changes" (are you sure?)
