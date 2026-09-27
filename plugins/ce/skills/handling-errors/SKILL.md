@@ -3,7 +3,7 @@ name: handling-errors
 description: Prevents silent failures and context loss in error handling. Use when writing try-catch blocks, designing error propagation, reviewing catch blocks, or implementing Result patterns.
 ---
 
-If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence — apply this skill only where they're silent.
+If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence. Apply this skill where they're silent.
 
 # Handling Errors
 
@@ -33,13 +33,13 @@ const prefs = await loadPreferences(userId).catch(() => DEFAULT_PREFS);
 ## Log at the Right Layer
 
 ```typescript
-// ❌ Logging at every layer = same error 3x
+// Bad: logging at every layer writes the same error 3x
 async function fetchData() {
   try { return await fetch(url); }
   catch (e) { console.error("Fetch failed:", e); throw e; }
 }
 
-// ✅ Log once where handled
+// Good: log once where the error is handled
 async function fetchData() {
   const response = await fetch(url);
   if (!response.ok) throw new Error(`HTTP ${response.status}`);

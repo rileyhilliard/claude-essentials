@@ -1,9 +1,9 @@
 ---
 name: design
-description: Enforces precise, minimal design for dashboards and admin interfaces. Use when building SaaS UIs, data-heavy interfaces, or any product needing Jony Ive-level craft.
+description: Design direction and craft rules for product UIs (dashboards, admin tools, SaaS apps, data-heavy interfaces), with a list of AI-default styles to avoid and CSS or Tailwind implementation details. Use when building or restyling a page, component, layout, or theme, choosing color, type and spacing, or when a UI looks generic.
 ---
 
-If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence — apply this skill only where they're silent.
+If the current repo has its own design rules or skills (check .claude/rules/ and the repo CLAUDE.md), those take precedence. Apply this skill where they're silent.
 
 # Design Principles
 
@@ -24,12 +24,15 @@ AI-generated UIs have a recognizable "median of the internet" feel. Polished but
 | Uniform border-radius on everything | `rounded-lg` applied without thinking | Pick a radius system and vary it by component role (sharp for data, softer for interactive) |
 | White/light gray background + subtle shadow cards | The safest possible surface treatment | Commit to a depth strategy that matches the product (see Depth Strategy below) |
 | Decorative gradients on hero sections | Looks "modern" without communicating anything | If using gradients, make them functional (show hierarchy, direct attention) not decorative |
+| Cream or off-white page background | Current models' fallback when told to avoid the generic look | Choose the surface color from the product direction below |
+| Italic accent word in a headline, numbered "01 / 02 / 03" section labels, monospace eyebrow labels | Current editorial-style defaults | Plain headings; add labels only where they carry information |
+| Pill-shaped buttons everywhere | Default button shape in recent output | Match button radius to the radius system |
 
 **The test:** If you swapped your brand name with a competitor's and the design still works, it's too generic. Something about the color foundation, typography, spacing rhythm, or layout density should feel specific to _this_ product.
 
 **Controlled imperfection creates character.** Perfect symmetry and uniform spacing everywhere reads as machine-generated. Human-designed interfaces have intentional asymmetry: a sidebar slightly narrower than expected, a headline that breaks the grid for emphasis, whitespace that breathes unevenly to create visual rhythm. These are deliberate choices, not sloppiness.
 
-## Design Direction (REQUIRED)
+## Design Direction
 
 **Before writing code, commit to a direction.** Don't default. Think about what this specific product needs to feel like.
 
@@ -87,7 +90,7 @@ Pick one. Or blend two. But commit to a direction that fits the product.
 
 ## Isolated Controls
 
-**Never use native form elements for styled UI.** Native `<select>`, `<input type="date">` render OS-native elements that cannot be styled. Build custom components.
+**Don't use native `<select>` or `<input type="date">` where the design needs styled controls.** They render OS-native widgets that can't be styled; use the project's component library or build a custom control.
 
 Custom select triggers: `display: inline-flex` with `white-space: nowrap` to keep text and icons on same row.
 
@@ -108,7 +111,7 @@ When building sidebars, consider using same background as main content. Linear, 
 
 ## Anti-Patterns
 
-Never:
+Avoid:
 - Dramatic drop shadows (`0 25px 50px...`)
 - Large radius (16px+) on small elements
 - Asymmetric padding without reason
