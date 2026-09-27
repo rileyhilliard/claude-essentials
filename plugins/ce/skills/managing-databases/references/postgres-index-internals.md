@@ -1,6 +1,6 @@
 # Index Internals
 
-The sharp edges of PostgreSQL indexing - not the basics (those are in `managing-databases`), but the specific behaviors that silently break index usage in production.
+The sharp edges of PostgreSQL indexing - not the basics (see postgres-architecture.md), but the specific behaviors that silently break index usage in production.
 
 ## Operator Classes
 

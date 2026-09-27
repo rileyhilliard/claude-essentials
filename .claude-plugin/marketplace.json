@@ -51,7 +51,6 @@
         "./skills/managing-databases",
         "./skills/managing-pipelines",
         "./skills/planning-products",
-        "./skills/writing-sql",
         "./skills/structuring-articles"
       ],
       "agents": [
