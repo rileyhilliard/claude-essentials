@@ -20,7 +20,7 @@ Keep it to 25-35 words. Every word must be functional. If you can cut a word wit
 
 Explain the Why and How. Ground the breaking news in context: what caused this, what are the immediate consequences, what are the stakes. This is where you transform a fact into a story.
 
-The nut graf in an inverted pyramid is more analytical than in the WSJ Formula. You're not zooming out from an anecdote; you're deepening a fact.
+The nut graf in an inverted pyramid is more analytical than in the WSJ Formula, because it deepens a fact the reader already has.
 
 ### 3. Main Body (varies)
 

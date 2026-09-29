@@ -276,7 +276,7 @@ Install the unified ce plugin:
 
 ## Content Philosophy
 
-- **Commands**: Quick shortcuts for routine tasks (test, commit, review)
+- **Commands**: Repo setup and audit (`/ce:setup`)
 - **Skills**: Reusable workflows following proven patterns (testing, debugging, architecture)
 - **Agents**: Expert personas for complex multi-step work (code reviewer, log reader)
 

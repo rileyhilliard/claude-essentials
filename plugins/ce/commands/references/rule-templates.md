@@ -38,13 +38,19 @@ Templates for generating `.claude/` files during Fresh Init Mode (Step 5) or whe
       {stack_specific_permissions}
     ],
     "deny": [
+      "Bash(rm -rf /)",
       "Bash(rm -rf / *)",
+      "Bash(rm -rf ~)",
       "Bash(rm -rf ~ *)",
+      "Bash(rm -rf .)",
       "Bash(rm -rf . *)",
+      "Bash(git push --force)",
       "Bash(git push --force *)",
+      "Bash(git push -f)",
       "Bash(git push -f *)",
       "Bash(git push * --force)",
       "Bash(git push * -f)",
+      "Bash(git reset --hard)",
       "Bash(git reset --hard *)"
     ]
   }
@@ -101,11 +107,6 @@ Key principles:
 
 **rules/debugging.md:**
 ```markdown
----
-paths:
-  - "**/*"
----
-
 # Debugging
 
 When investigating bugs or unexpected behavior, load the ce:systematic-debugging skill.

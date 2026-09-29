@@ -3,7 +3,7 @@ name: fixing-flaky-tests
 description: Diagnose and fix tests that pass in isolation but fail when run concurrently. Covers shared state isolation, resource conflicts, and timing-based flakiness.
 ---
 
-If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence — apply this skill only where they're silent.
+If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence, and this skill applies only where they're silent.
 
 # Fixing Flaky Tests
 

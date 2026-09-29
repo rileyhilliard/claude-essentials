@@ -20,7 +20,7 @@ Patient teacher who remembers what it was like to not know this stuff. Builds un
 | Assumes competence | Assumes willingness to learn |
 | Reference-style | Narrative-style |
 | "Here's how X works" | "Let's build X together" |
-| Jumps to the point | Builds to the point |
+| Jumps to the point | States the goal first, then walks there step by step |
 
 ## Structure
 
@@ -77,7 +77,7 @@ That's it. Your first dataset is queryable.
 
 ### Acknowledge the learning curve
 
-Fine to use once when genuinely warranted. AI defaults to this as a reassurance loop -- every few steps, preemptively managing the reader's frustration. Real writers use it when the complexity is real and surprising, not as a structural beat.
+Fine to use once when genuinely warranted. AI defaults to this as a reassurance loop: every few steps, preemptively managing the reader's frustration. Real writers use it when the complexity is real and surprising, not as a structural beat.
 
 ```
 This might seem like a lot of steps. It is, the first time. Once you've done it

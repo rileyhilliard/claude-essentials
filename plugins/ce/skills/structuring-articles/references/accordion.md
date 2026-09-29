@@ -44,7 +44,7 @@ Think of the WSJ Formula as: here's a person → here's the data → here's the 
 
 The alternation keeps both kinds of material fresh. Data without story becomes a government report. Story without data becomes a profile. By cycling between them, each validates the other. The data proves the anecdote isn't an outlier; the anecdote proves the data isn't abstract.
 
-Stanford research found that stories are 22 times more memorable than statistics alone. The Accordion lets you have both.
+The Accordion lets you have both.
 
 ---
 

@@ -14,7 +14,7 @@ Best for: trend pieces, policy stories, systemic issues, any feature where you c
 
 Start with an anecdote, not data. Introduce a "poster child": a specific person, business, or micro-event heavily impacted by the trend you want to discuss. Use sensory details to put the reader in their shoes.
 
-The person should be representative, not exceptional. You're not profiling them; you're using their experience as a window into something bigger. The reader doesn't know that yet, and that's fine.
+The person should be representative, not exceptional. Their experience is a window into something bigger. The reader doesn't know that yet, and that's fine.
 
 **What makes it work:** concrete detail. Not "a small business owner struggling with costs" but "Maria Chen checks her vendor invoices every Tuesday at 6 AM, hoping the numbers have gotten better. They haven't."
 
@@ -47,7 +47,7 @@ This section is an act of intellectual honesty. It strengthens the piece by show
 
 Return to the person or scene from your soft lede. Give an update on their situation or use a final quote from them. The reader started with Maria Chen; they end with her too.
 
-The best circle kickers don't just revisit; they reveal. The reader now understands Maria's situation in a way they couldn't at the start. The same scene lands differently with the full context behind it.
+The best circle kickers reveal something: the reader now understands Maria's situation in a way they couldn't at the start. The same scene lands differently with the full context behind it.
 
 ---
 

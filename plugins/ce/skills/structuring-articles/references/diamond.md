@@ -20,7 +20,7 @@ Explain why the story matters. Bridge from the specific opening to the universal
 
 ### 3. Body (Widest Point; varies)
 
-Broaden to the full scope: detailed reporting, data, expert quotes, multiple sources, contextual information. This is the widest part of the diamond, maximum breadth.
+Broaden to the full scope: detailed reporting, data, expert quotes, multiple sources, contextual information. This is the widest part of the diamond.
 
 Unlike the WSJ Formula's topically organized body, the Diamond allows for more exploratory organization. You're building the reader's understanding progressively. Each paragraph can introduce a new facet of the issue, each one broader than the last.
 

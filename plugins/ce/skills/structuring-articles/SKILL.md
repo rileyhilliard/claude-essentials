@@ -5,7 +5,7 @@ description: Selects and applies journalistic story structures (WSJ Formula, Inv
 
 # Structuring Articles
 
-Professional journalists don't just write; they select a structure that serves their material. A trend piece about remote work demands a different architecture than a breaking news story about a policy change. This skill helps you match content to the right framework, then execute it.
+Professional journalists pick a structure that serves their material before they write. A trend piece about remote work demands a different architecture than a breaking news story about a policy change. This skill helps you match content to the right framework, then execute it.
 
 ## How This Skill Relates to Other Skills
 
@@ -48,7 +48,7 @@ Every framework shares a few building blocks. These apply regardless of which st
 
 The single most important paragraph in any article. It answers "so what?": why this story matters, why now, why the reader should care. If a reader skimmed only your headline and nut graf, they should grasp the central point.
 
-In the WSJ Formula, the nut graf appears after the opening anecdote. In the Inverted Pyramid, it's the second or third paragraph. In every other structure, find its natural home; but it must exist, and it must appear early.
+In the WSJ Formula, the nut graf appears after the opening anecdote. In the Inverted Pyramid, it's the second or third paragraph. In every other structure, find its natural home, but it must exist, and it must appear early.
 
 A nut graf that's missing or buried is the #1 reason a draft feels aimless.
 
@@ -70,7 +70,7 @@ See `references/prose-craft.md` for kicker guidance.
 
 ## Sentence and Paragraph Rhythm
 
-This is not about structure; it's about the texture of the prose within any structure. But it's so foundational it belongs here alongside framework selection.
+Rhythm is the texture of the prose inside any structure, and it's foundational enough to sit here next to framework selection.
 
 Vary sentence length deliberately. Short sentences punch. Long sentences build complexity and momentum. Uniform sentence length is one of the clearest signals of machine-generated prose. Gary Provost's famous demonstration:
 

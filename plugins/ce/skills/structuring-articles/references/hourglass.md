@@ -10,7 +10,7 @@ Best for: crime reports, court cases, disaster stories, any story that needs bot
 
 ### 1. The Top (Summary; 4-6 paragraphs)
 
-Deliver the news in a summary lede, answering the reader's most pressing questions. This section functions like a mini inverted pyramid, enough information that a time-pressed reader can leave satisfied.
+Deliver the news in a summary lede, answering the reader's most pressing questions. This section functions like a mini inverted pyramid: it gives a time-pressed reader enough to leave satisfied.
 
 Cover: what happened, who was involved, what the immediate consequences are. Don't hold back the headline.
 

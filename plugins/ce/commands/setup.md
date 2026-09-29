@@ -6,7 +6,7 @@ allowed-tools: Bash, Read, Write, Glob, Grep, AskUserQuestion, Skill
 
 Audit an existing `.claude/` configuration, or bootstrap one for a repository that has none.
 
-**Audit-first:** Most repos this command runs in already have a `.claude/` setup. When the existing configuration is already developed (CLAUDE.md with real content plus rules or settings), bail out early with a short summary of what exists and only the suggestions that are genuinely high-value — report what actually matters, don't pad the list — do NOT regenerate or restructure a working setup. Full generation only happens on repos with no `.claude/` or with `--force`.
+**Audit-first:** Most repos this command runs in already have a `.claude/` setup. When the existing configuration is already developed (CLAUDE.md with real content plus rules or settings), bail out early with a short summary of what exists and only the suggestions that are genuinely high-value. Don't regenerate or restructure a working setup. Full generation only happens on repos with no `.claude/` or with `--force`.
 
 **Before generating or auditing any files**, review the project's existing `.claude/` structure and follow Claude Code best practices for writing rules, CLAUDE.md, and skills.
 
@@ -20,7 +20,7 @@ Arguments:
 
 1. Check if `.claude/` directory exists
 2. If exists AND no `--force`: Run **Audit Mode**
-   - If the config is developed (non-trivial CLAUDE.md and rules/ or settings.json), summarize and stop after Step 3's report — apply fixes only if the user asks
+   - If the config is developed (non-trivial CLAUDE.md and rules/ or settings.json), summarize and stop after Step 3's report, and apply fixes only if the user asks
 3. If not exists OR `--force`: Run **Fresh Init Mode**
 
 ---

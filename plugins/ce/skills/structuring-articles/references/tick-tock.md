@@ -57,6 +57,6 @@ Columbia Journalism Review has noted that official sources (especially governmen
 
 ## Common Mistakes
 
-- **Insufficient sourcing.** If you're guessing at what happened behind closed doors, you don't have a tick-tock; you have historical fiction.
+- **Insufficient sourcing.** If you're guessing at what happened behind closed doors, you're writing historical fiction.
 - **Monotonous pacing.** Not every minute is equally important. Speed through the uneventful stretches and slow down for the pivotal moments.
 - **Missing stakes.** Without clear stakes established at the top, a chronological retelling is just a timeline. The reader needs to know why this sequence matters before they'll commit to following it.

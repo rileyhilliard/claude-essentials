@@ -35,7 +35,7 @@ Opens with a specific person's story. Creates empathy and a human entry point be
 
 ### Scene-Setting Lede
 
-Describes a physical environment to immerse the reader. Uses sensory detail: sounds, temperatures, textures: to drop the reader into the story's world before explaining what happened there.
+Describes a physical environment to immerse the reader. Uses sensory detail (sounds, temperatures, textures) to drop the reader into the story's world before explaining what happened there.
 
 *"The server room on the fourteenth floor hums at a pitch just below human hearing. It is always 64 degrees. On the night of March 12, someone turned the cooling off."*
 
@@ -136,7 +136,7 @@ Ends with a direct quote that encapsulates the theme. The most common type, and 
 
 ### Echo Kicker
 
-The ending echoes the beginning "in some essential but surprising way." Not a repeat: a rhyme. The echo must add new meaning.
+The ending echoes the beginning "in some essential but surprising way." The echo should rhyme with the opening and add new meaning.
 
 ### Future-Looking Kicker
 
@@ -148,7 +148,7 @@ The writer enters the story in the final scene. Aims at the reader's heart. Use 
 
 ### Surprise / Revelation Kicker
 
-Reserves a new piece of information for the very end. Generally risky; but when the revelation reinforces and deepens the story's theme, it can be the most powerful ending of all.
+Reserves a new piece of information for the very end. Generally risky, but when the revelation reinforces and deepens the story's theme, it can be the most powerful ending of all.
 
 ---
 
@@ -176,7 +176,7 @@ Don't tell readers someone is "passionate." Show what they do at 5 AM, how they 
 
 ## Data Integration
 
-Statistics serve the narrative, not the other way around. Stanford research found stories are 22 times more memorable than statistics alone.
+Statistics serve the narrative, not the other way around.
 
 ### Anchor numbers to human experience
 
@@ -225,7 +225,7 @@ Include a direct quote after every few paragraphs to break up the writer's voice
 
 ## Earned Turns
 
-A writer must build sufficient evidentiary or narrative foundation before making a claim, shifting topics, or asking the reader to accept a new premise. You cannot assert something the reader has no reason to believe.
+Before a section turns to a new topic or a larger claim, or asks the reader to accept a new premise, the reader needs enough evidence or narrative to follow. Within a body paragraph the point still comes first. You cannot assert something the reader has no reason to believe.
 
 ### How it manifests
 

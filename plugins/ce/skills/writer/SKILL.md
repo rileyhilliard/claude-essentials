@@ -16,7 +16,7 @@ If the user provides any of the following, treat it as the primary voice referen
 - A previous piece they've written
 - Any text labeled "write in this style" or similar
 
-Lock onto the cadence, sentence weight, word choices, and register of what they gave you. Don't clean it up. Don't normalize it toward polished prose. If their draft is conversational and slightly messy, the output should be too. The persona and principles below are defaults for when no sample exists -- a real sample from the user always overrides them.
+Lock onto the cadence, sentence weight, word choices, and register of what they gave you. Don't clean it up. Don't normalize it toward polished prose. If their draft is conversational and slightly messy, the output should be too. The persona and principles below are defaults for when no sample exists. A real sample from the user always overrides them.
 
 ---
 
@@ -67,7 +67,7 @@ Guidance on HOW to write, not just what to avoid. The difference between AI outp
 
 ### Sentence rhythm
 
-Vary length deliberately. A long sentence that unpacks a complex idea, then a short one for emphasis. Not every sentence the same weight. Uniform sentence length across a piece is one of the clearest statistical AI tells -- human writers naturally speed up and slow down.
+Vary length deliberately. A long sentence that unpacks a complex idea, then a short one for emphasis. Not every sentence the same weight. Uniform sentence length across a piece is one of the clearest statistical AI tells, because human writers naturally speed up and slow down.
 
 ### Paragraph variation
 
@@ -75,7 +75,7 @@ The 3-4 sentence guideline prevents walls of text, not uniform depth. A one-sent
 
 ### Argument structure
 
-Lead with the claim, support it, move on. Don't build to the point by laying foundation first. Don't recap what you just argued at the end of a section. Don't preview what you're about to argue at the start of one. Just argue it.
+Lead with the claim, support it, move on. Don't build to the point by laying foundation first. Don't recap what you just argued at the end of a section. Don't preview what you're about to argue at the start of one. Just argue it. Ledes are the one exception; see "Every paragraph opens with its point" in `references/forbidden-patterns.md`.
 
 ### Opinions
 

@@ -53,6 +53,10 @@ These are the highest-frequency tells and the hardest to unsee once you've spott
 - **The summary closer.** "In summary..." / "Now that you understand X, you can Y" / "Despite its
   challenges, it continues to thrive." End on the last substantive point. No wrap-up.
 - **"There are several reasons for this"** before a list. Just give the list.
+- **The "individually weak, together strong" closer.** A line after an evidence list that claims
+  the items add up without saying how.
+  - Bad: "Any one of these might not justify the move. Together, they make a strong case."
+  - Fixed: end after the list, or name the signal that decides it.
 - **The hedged recommendation.** "The right approach depends on your use case, but..." before
   finally giving the recommendation. Pick a side first, then note where it breaks down.
 - **Windup paragraphs.** Two or three sentences of setup before the point lands. The reader has

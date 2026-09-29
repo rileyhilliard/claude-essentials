@@ -22,7 +22,7 @@ AI-generated UIs have a recognizable "median of the internet" feel. Polished but
 | Three-column icon grid | Every SaaS landing page template uses this | Vary card layouts by content type. Metric cards, feature cards, and testimonial cards should look different from each other |
 | Centered hero + CTA button | The default starting point for every landing page | Consider what the user actually needs first. Maybe it's a dense dashboard, a split layout, or content-forward with no hero at all |
 | Uniform border-radius on everything | `rounded-lg` applied without thinking | Pick a radius system and vary it by component role (sharp for data, softer for interactive) |
-| White/light gray background + subtle shadow cards | The safest possible surface treatment | Commit to a depth strategy that matches the product (see Depth Strategy below) |
+| White/light gray background + subtle shadow cards | The safest possible surface treatment | Commit to a depth strategy that matches the product (see the craft reference's Depth Strategy section) |
 | Decorative gradients on hero sections | Looks "modern" without communicating anything | If using gradients, make them functional (show hierarchy, direct attention) not decorative |
 | Cream or off-white page background | Claude's default "tasteful" surface | Take the background from the color foundation you chose (see Choose Foundation below) |
 | Italic accent word inside a headline | Claude's default editorial flourish | Keep the headline in one type style; if it needs emphasis, use weight or placement |

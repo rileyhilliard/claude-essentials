@@ -6,7 +6,7 @@ Design philosophy from SKILL.md expressed through Tailwind primitives, showing h
 
 Tailwind's defaults are heavily represented in AI training data. Using them without customization produces the "AI slop" aesthetic: `bg-indigo-500` buttons, `text-gray-600` body text, `rounded-lg shadow-md` cards on `bg-gray-50`. Every AI-generated landing page looks like this.
 
-**Before writing any components**, customize the theme with your product's design tokens (`@theme` in CSS on Tailwind v4, `tailwind.config` on v3) (see Color Hierarchy and Border Radius sections below). The goal is that your Tailwind classes map to your design system, not Tailwind's generic defaults.
+**Before writing any components**, customize the theme with your product's design tokens: `@theme` in CSS on Tailwind v4, `tailwind.config` on v3. The Color Hierarchy and Border Radius sections below show how. The goal is that your Tailwind classes map to your design system, not Tailwind's generic defaults.
 
 Don't reach for: `bg-indigo-*`, `bg-violet-*`, `bg-purple-*` unless the product's design direction specifically calls for it. Don't default to `rounded-lg` on everything. Don't use `shadow-md` as your only elevation.
 
@@ -46,7 +46,7 @@ Commit to one approach per product. Don't mix.
 <div class="border border-black/[0.08] rounded-lg">
 ```
 
-**Subtle shadow:** Tailwind's `shadow-sm` is close but often too heavy. Prefer a custom shadow in `tailwind.config`:
+**Subtle shadow:** Tailwind's `shadow-sm` (renamed `shadow-xs` in v4) is close but often too heavy. Prefer a custom shadow in your theme:
 
 ```js
 // tailwind.config
@@ -57,6 +57,14 @@ theme: {
       'layered': '0 0 0 0.5px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.03), 0 4px 8px rgba(0,0,0,0.02)',
     }
   }
+}
+```
+
+```css
+/* Tailwind v4: in your main CSS file */
+@theme {
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-layered: 0 0 0 0.5px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.03), 0 4px 8px rgba(0,0,0,0.02);
 }
 ```
 
@@ -84,6 +92,19 @@ theme: {
       accent: 'var(--accent)',
     }
   }
+}
+```
+
+```css
+/* Tailwind v4: use @theme inline because these reference other variables */
+@theme inline {
+  --color-fg: var(--fg);
+  --color-fg-secondary: var(--fg-secondary);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-accent: var(--accent);
 }
 ```
 
@@ -122,7 +143,17 @@ borderRadius: { sm: '4px', DEFAULT: '6px', lg: '8px' }
 borderRadius: { sm: '6px', DEFAULT: '8px', lg: '12px' }
 ```
 
-Then stick to `rounded-sm`, `rounded`, `rounded-lg`. Don't freestyle with `rounded-2xl` or `rounded-3xl` on small elements.
+```css
+/* Tailwind v4 renamed the small steps: v3 rounded-sm is v4 rounded-xs, v3 rounded is v4 rounded-sm */
+
+/* Sharp product */
+@theme { --radius-xs: 4px; --radius-sm: 6px; --radius-lg: 8px; }
+
+/* Soft product */
+@theme { --radius-xs: 6px; --radius-sm: 8px; --radius-lg: 12px; }
+```
+
+Then stick to `rounded-sm`, `rounded`, `rounded-lg` on v3, or `rounded-xs`, `rounded-sm`, `rounded-lg` on v4. Don't freestyle with `rounded-2xl` or `rounded-3xl` on small elements.
 
 ## Dark Mode
 

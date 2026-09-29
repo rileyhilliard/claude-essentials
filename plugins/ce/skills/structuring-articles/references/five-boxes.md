@@ -34,7 +34,7 @@ A strong quote or image that leaves the reader with a lasting emotional impressi
 
 ## How to Use It
 
-This isn't a framework you think about in the abstract; it's a physical organizing tool.
+The Five Boxes is a physical organizing tool, meant to be drawn and filled.
 
 1. Look at your notes, quotes, and research.
 2. Draw five boxes on paper or in a doc.
@@ -47,7 +47,7 @@ The power is in the sorting. Once material is in boxes, the blank page isn't bla
 
 ## Why It Works
 
-The Five Boxes solves the most common problem in deadline writing: you have plenty of material but no idea where to start or what goes where. The boxes impose structure without being rigid. Unlike the WSJ Formula or Inverted Pyramid, there are no strict rules about what kind of material goes in each box: just a rough hierarchy from "strongest" to "supporting" to "closing."
+The Five Boxes solves the most common problem in deadline writing: you have plenty of material but no idea where to start or what goes where. The boxes impose structure without being rigid. Unlike the WSJ Formula or Inverted Pyramid, there are no strict rules about what kind of material goes in each box, only a rough hierarchy from "strongest" to "supporting" to "closing."
 
 ---
 

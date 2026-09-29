@@ -227,14 +227,14 @@ Bad:  Today I saw someone being rude to a barista. I walked up and said
 The LinkedIn algorithm rewards certain things. Use this knowledge to make good content travel further, not to manufacture engagement.
 
 **What actually helps distribution:**
-- Posts in your area of expertise (the algorithm checks your profile against your content)
+- Posts in your area of expertise; LinkedIn has been reported to weigh your profile against your content
 - Content that generates genuine comments, especially multi-reply threads
 - Document/carousel posts
-- Posts that hold attention through substance (dwell time matters)
+- Posts that hold attention through substance
 
 **What gets suppressed:**
 - Engagement bait phrases
-- External links (significant reach penalty)
+- External links, which LinkedIn has been reported to down-rank
 - Content outside your professional domain
 - Posting frequency over quality
 

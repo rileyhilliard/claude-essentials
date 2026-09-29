@@ -36,7 +36,7 @@ Ideas should flow logically from one to the next. The reader should feel the arg
 
 ### Logical progression
 
-Move from problem to insight to implication to recommendation. Don't jump around. Don't bury the lead, but do earn the conclusion.
+Move from problem to insight to implication to recommendation across sections, and lead with the recommendation in the executive summary. Don't jump around. Inside a paragraph, the point still comes first.
 
 ### Transformative without salesy
 
@@ -121,7 +121,7 @@ Long prompts are not invitations to summarize. They're specifications. A 10-poin
 ## Formatting (All Personas)
 
 - **Paragraphs over bullets** - Build connected arguments. Lists break narrative flow.
-- **Short paragraphs** - 3-4 sentences max. Let the page breathe.
+- **Short paragraphs** - Usually 3-4 sentences; vary the length when the reasoning needs room.
 - **Clear headers** - Guide the reader through your logic
 - **Tables for comparisons** - Side-by-side evaluation, not sequential prose
 - **Pull quotes for emphasis** - Highlight the insight, not the data
