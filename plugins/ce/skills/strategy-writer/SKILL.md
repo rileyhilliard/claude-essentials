@@ -66,7 +66,7 @@ If you can't support it, qualify it or cut it.
 
 ---
 
-## Completeness (Critical)
+## Completeness
 
 Every point the user requests must appear in the final output. Do not summarize away, merge, or skip details from the prompt. If a point doesn't fit the narrative flow, find a place for it anyway. Cohesion matters, but completeness matters more.
 

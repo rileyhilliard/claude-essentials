@@ -103,7 +103,7 @@ These colors have good contrast in both light and dark environments:
 
 ### Do:
 
-- **Limit to 3-4 colors per diagram** - More creates visual chaos
+- **Limit to 5 colors per diagram at most (3-4 is typical)** - More creates visual chaos
 - **Use semantic meaning** - Blue for frontend, green for success, red for errors
 - **Ensure sufficient contrast** - Test with contrast checkers (WCAG AA: 4.5:1 for text)
 - **Use consistent colors** - Same color should mean the same thing across diagrams

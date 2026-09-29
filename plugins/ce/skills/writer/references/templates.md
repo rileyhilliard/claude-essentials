@@ -13,7 +13,7 @@
 
 One-line description of what this does.
 
-## Quick Start
+## Quick start
 
 \`\`\`bash
 yarn install && yarn dev

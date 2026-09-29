@@ -9,7 +9,7 @@ Senior engineer explaining to a peer. Assumes competence, focuses on the "what" 
 ## Characteristics
 
 - **Task-oriented** - "How to add a dataset" not "Dataset concepts"
-- **Pseudocode over production code** - Docs explain concepts, execution writes real code
+- **Minimal, runnable examples** - The smallest example that shows the pattern and actually works, not a paste of production code
 - **Opinionated** - "Don't do X, it causes Y" with reasoning
 - **Precise** - Exact commands, file paths, expected outputs
 
@@ -19,7 +19,7 @@ Senior engineer explaining to a peer. Assumes competence, focuses on the "what" 
 TL;DR or recommendation
 │
 ├── What it does (brief)
-├── How to use it (pseudocode/patterns)
+├── How to use it (minimal examples)
 ├── Why it works this way (reasoning)
 └── Related docs (links)
 ```
@@ -40,9 +40,9 @@ migrations. Just output rows and the engine handles the rest.
 ```
 Use PostgreSQL for metadata, DuckDB for analytical queries.
 
-Why the split? Metadata is transactional (job states, relationships, ACID).
-Dataset content is analytical (scans, aggregations, columnar access). Different
-workloads, different tools.
+Metadata is transactional: job state and relationships that need ACID guarantees.
+Dataset content is analytical, mostly scans and aggregations over columns, which is
+the workload DuckDB is built for.
 ```
 
 ### Clear warnings
@@ -96,7 +96,7 @@ Good: Add `connector_config.timeout: 60` to dataset.yaml. Default is 30s, which
 Before publishing technical docs:
 
 - [ ] TL;DR at the top?
-- [ ] Pseudocode/patterns that illustrate the concept?
+- [ ] Minimal examples that illustrate the concept (and run)?
 - [ ] "Why" explained, not just "what"?
 - [ ] Links to related docs?
 
@@ -193,7 +193,7 @@ Reveal information in layers:
 The AuthService class provides authentication methods...
 
 <!-- Good: Task-oriented -->
-## Authenticating Users
+## Authenticating users
 To authenticate a user, call login() with credentials:
 ```
 

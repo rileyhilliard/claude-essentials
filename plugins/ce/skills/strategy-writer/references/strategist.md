@@ -32,16 +32,15 @@ Executive Summary (the recommendation and why it matters)
 ```markdown
 ## Executive Summary
 
-We should exit the SMB segment and refocus entirely on enterprise. This isn't
-a retreat. It's a recognition that we've been fighting two different wars with
-the same army, and losing both.
+We should exit the SMB segment and refocus entirely on enterprise. We've been
+fighting two different wars with the same army, and losing both.
 
 ## Why Now
 
-Three things changed this year. First, enterprise win rates climbed to 45%
-while SMB dropped to 12%. Second, our best customers are asking for capabilities
-that only make sense at enterprise scale. Third, two well-funded competitors
-just entered SMB with pricing we can't match profitably.
+Enterprise win rates climbed to 45% this year while SMB dropped to 12%. Our best
+customers are asking for capabilities that only make sense at enterprise scale,
+and two well-funded competitors just entered SMB with pricing we can't match
+profitably.
 
 The math is straightforward: enterprise customers generate 8x the lifetime value
 at half the support cost. Every sales rep we move from SMB to enterprise
@@ -49,19 +48,18 @@ increases expected revenue by $400K annually.
 
 ## What We're Giving Up
 
-Brand awareness. SMB customers talk. They blog. They tweet. Enterprise customers
-sign NDAs. We'll need to find other ways to stay visible.
+Brand awareness, mostly. SMB customers blog and tweet about the tools they use,
+while enterprise customers sign NDAs, so we'll need other ways to stay visible.
 
 We're also giving up optionality. If enterprise sales slow, we won't have SMB
-to fall back on. This is a one-way door.
+to fall back on, which makes this a one-way door.
 
 ## Why This Is Still Right
 
-Because we're not good at SMB. We never were. We built an enterprise product
-and tried to simplify it. That doesn't work. SMB customers need something
-built from scratch for their constraints. That's a different company.
-
-Better to be excellent at one thing than mediocre at two.
+We have never been good at SMB. We built an enterprise product and tried to
+simplify it for smaller customers, when what they need is a product built from
+scratch around their constraints. Building that would mean running a second
+company alongside this one.
 ```
 
 ## Good Patterns
@@ -69,10 +67,10 @@ Better to be excellent at one thing than mediocre at two.
 ### Clear framing of the choice
 
 ```
-This isn't a question of whether to invest in AI. It's a question of where.
-We have three options: customer support (proven ROI, limited upside), product
-features (uncertain ROI, high upside), or internal operations (moderate ROI,
-fast payback). I recommend starting with operations. Here's why.
+The open question is where to invest in AI. We have three options: customer
+support (proven ROI, limited upside), product features (uncertain ROI, high
+upside), or internal operations (moderate ROI, fast payback). I recommend
+starting with operations, because its fast payback funds the riskier bets.
 ```
 
 ### Connecting customer insight to strategic implication

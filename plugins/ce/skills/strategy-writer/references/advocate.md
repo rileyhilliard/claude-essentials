@@ -43,9 +43,9 @@ Support costs grew 34% last year while revenue grew 18%. That's unsustainable.
 We've been hiring to keep up, but labor markets are tight and training takes
 6 months. Meanwhile, customers wait longer and satisfaction scores are dropping.
 
-AI support isn't speculative technology anymore. Our top three competitors
-launched AI support this year. Two of them are seeing 50%+ deflection rates.
-We're already behind.
+Our top three competitors launched AI support this year, and two of them are
+seeing 50%+ deflection rates, which puts us behind on a technology that has
+already proven itself.
 
 ## The Opportunity
 
@@ -108,10 +108,10 @@ focused on documentation-answerable queries. Full rollout in month 9.
 ### ROI grounded in customer benefit
 
 ```
-The financial case is strong: $8M in annual savings. But the strategic case
-is stronger. Every minute a customer spends waiting for support is a minute
-they're considering alternatives. The real return isn't cost reduction. It's
-retention and expansion revenue from customers who feel supported.
+The $8M in annual savings is the smaller part of the case. Every minute a
+customer spends waiting for support is a minute they're considering
+alternatives, so the larger return is retention and expansion revenue from
+customers who feel supported.
 ```
 
 ### Honest uncertainty quantification

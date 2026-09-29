@@ -2,6 +2,8 @@
 
 This file contains detailed examples of common Mermaid diagram patterns referenced from the main skill.
 
+The examples use the light-mode palette. The skill's default is dark mode, so swap in the Dark Mode values from [color-palettes.md](color-palettes.md) unless the diagram will render on a light background.
+
 ## Contents
 
 - [Pattern 1: Three-Tier Architecture](#pattern-1-three-tier-architecture)

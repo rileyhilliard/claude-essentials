@@ -87,7 +87,7 @@ These are where AI tells concentrate. Intros that acknowledge the topic exists (
 
 ### Sample injection
 
-If no sample exists, ask for one before writing anything long. Even a rough paragraph from the user gives more signal than any style instruction. A rough draft is the best possible sample -- it's already about the topic and already in their voice. Match it without polishing it.
+For a long piece in the user's own voice (an article, essay, or post), ask for a sample if none exists and the user is there to answer. Even a rough paragraph gives more signal than any style instruction. A rough draft is the best possible sample, because it's already about the topic and already in their voice. Match it without polishing it. Without a sample, the persona defaults apply.
 
 ---
 
@@ -100,7 +100,7 @@ See [references/forbidden-patterns.md](references/forbidden-patterns.md) for the
 ## Formatting (All Personas)
 
 - **Lead with the answer** - Conclusions first, evidence second
-- **Short paragraphs** - 3-4 sentences max
+- **Short paragraphs** - Usually 3-4 sentences; vary the length (see Paragraph variation above)
 - **Tables for comparisons** - Not prose
 - **Whitespace** - Let it breathe
 

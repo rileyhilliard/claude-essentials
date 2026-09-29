@@ -66,7 +66,9 @@ These are the highest-frequency tells and the hardest to unsee once you've spott
     the lead. Everything before it is windup; cut or move it after the lead.
 - **Every paragraph opens with its point.** This is the single most effective structural rule
   against longform AI slop. If the point arrives in sentence two or later, move it to sentence
-  one. Supporting detail follows; it does not precede.
+  one. Supporting detail follows; it does not precede. Ledes and scene-setting openings are
+  exempt: an anecdotal or delayed lede (see the `structuring-articles` skill) holds the point back
+  by design, and the nut graf delivers it. Every body paragraph after the lede opens with its point.
 
 ## Longform tells (articles, reports, analyses)
 
@@ -168,9 +170,8 @@ swapping these for fixing the writing.
   giveaways.
 - **Unicode decoration.** Arrows, multiplication signs, and smart quotes where plain text belongs.
 
-## A note on em dashes
+## Em dashes
 
-Older guidance treated the em dash as a hard AI signature. That's now a weak signal: newer models
-suppress them and plenty of human writers love them. Don't lean on their presence or absence to
-judge whether something reads as AI. Use them if the sentence genuinely needs the break; if you're
-reaching for one to dodge a rewrite, that's the actual tell, not the dash itself.
+Don't use em dashes. Use a comma, a colon, parentheses, or two sentences instead. Readers treat
+the em dash as an AI signature, and a sentence that seems to need one usually reads better
+restructured.

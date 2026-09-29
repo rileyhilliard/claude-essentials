@@ -6,7 +6,7 @@ Design philosophy from SKILL.md expressed through Tailwind primitives. This isn'
 
 Tailwind's defaults are heavily represented in AI training data. Using them without customization produces the "AI slop" aesthetic: `bg-indigo-500` buttons, `text-gray-600` body text, `rounded-lg shadow-md` cards on `bg-gray-50`. Every AI-generated landing page looks like this.
 
-**Before writing any components**, customize `tailwind.config` with your product's design tokens (see Color Hierarchy and Border Radius sections below). The goal is that your Tailwind classes map to your design system, not Tailwind's generic defaults.
+**Before writing any components**, customize the theme with your product's design tokens (`@theme` in CSS on Tailwind v4, `tailwind.config` on v3) (see Color Hierarchy and Border Radius sections below). The goal is that your Tailwind classes map to your design system, not Tailwind's generic defaults.
 
 Don't reach for: `bg-indigo-*`, `bg-violet-*`, `bg-purple-*` unless the product's design direction specifically calls for it. Don't default to `rounded-lg` on everything. Don't use `shadow-md` as your only elevation.
 

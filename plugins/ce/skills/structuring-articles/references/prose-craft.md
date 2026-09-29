@@ -184,7 +184,7 @@ Don't present statistics in isolation. Tie them to individuals or communities. T
 
 ### Context before numbers
 
-Provide the timeframe, conditions, and significance before dropping a figure. "Since the program launched in 2018, enrollment has more than tripled — from 12,000 to 41,000" is better than starting with raw numbers.
+Provide the timeframe, conditions, and significance before dropping a figure. "Since the program launched in 2018, enrollment has more than tripled, from 12,000 to 41,000" is better than starting with raw numbers.
 
 ### Use comparison and proportion
 
@@ -231,8 +231,8 @@ A writer must build sufficient evidentiary or narrative foundation before making
 
 - **The nut graf is an earned turn.** The anecdotal lede earns the right to make a broader claim. Without the specific human story first, the generalization feels ungrounded.
 - **Section breaks require launch pads.** The sentence before a break must earn the reader's willingness to follow the story into new territory.
-- **Arguments escalate through evidence.** Each claim must be supported before the next one is introduced: evidence → claim → evidence → larger claim.
+- **Arguments escalate through evidence.** Support each claim before moving on to a larger one, so the argument climbs from paragraph to paragraph. Within a body paragraph the point comes first and its evidence follows. Ledes and scene-setting openings are the exception: they hold the point back by design, and the nut graf delivers it (the writer skill's forbidden-patterns reference states the same rule).
 
 ### The test
 
-Before any shift in topic, tone, or claim, ask: "Have I given the reader enough reason to follow me here?" If the answer is no, you need more evidence, more scene, or more context before the turn. Every assertion must be preceded by the reporting that supports it. Every emotional appeal must be preceded by the concrete detail that justifies it.
+Before any shift in topic, tone, or claim, ask: "Have I given the reader enough reason to follow me here?" If the answer is no, you need more evidence, more scene, or more context before the turn. Every assertion needs its supporting reporting on the page before the piece moves past it, and every emotional appeal needs the concrete detail that justifies it.

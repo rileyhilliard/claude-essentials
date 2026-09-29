@@ -26,7 +26,7 @@ Compelling but grounded. Sells without sounding like sales. Uses concrete exampl
 - Corporate buzzwords ("synergy", "leverage", "best-in-class")
 - Vague superlatives ("revolutionary", "cutting-edge", "game-changing")
 - Em dashes
-- AI tells (see Forbidden Patterns in SKILL.md)
+- AI tells (see [forbidden-patterns.md](forbidden-patterns.md))
 - Claims without specifics
 - Short sentence clusters (3+ choppy sentences in a row; combine with commas or conjunctions)
 - "Not because X, but because Y" rhetorical inversions
@@ -75,9 +75,9 @@ Good: Graduate students spend 80% of their time cleaning data, 20% analyzing it.
 ### Vision that's grounded
 
 ```
-We're building the infrastructure for evidence-based decision making. Not by
-inventing new technology, but by making existing public data actually usable.
-The data exists. The tools exist. The connection is missing.
+We're building the infrastructure for evidence-based decision making. The data
+is already public and the query engines already exist; what's missing is a way
+to find a dataset and query it without a week of cleanup first.
 ```
 
 ## Anti-Patterns

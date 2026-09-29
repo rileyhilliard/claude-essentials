@@ -32,9 +32,9 @@ Key Insights (3-5 findings that change how we think)
 ## Key Insights
 
 We interviewed 24 customers who churned in the last quarter. The headline
-finding: they didn't leave because our product was bad. They left because
-they never figured out how to use it properly. Onboarding isn't a nice-to-have.
-It's the whole game.
+finding: most of them never figured out how to use the product, and that
+weighed more in their decision to leave than any gap in the product itself.
+Onboarding is where we lose them.
 
 ## Research Context
 
@@ -65,7 +65,7 @@ reading documentation before reaching out to support or giving up.
 > around, it's not for me."
 > - Operations Manager, 200-person company
 
-This isn't a character flaw. It's reality. Our product needs to teach itself.
+Most of our customers work this way, so the product needs to teach itself.
 
 ### Finding 3: Trial length isn't the issue
 
@@ -79,13 +79,13 @@ car and told "good luck." They wanted a guided path.
 
 ## Why It Matters
 
-Churn isn't a retention problem. It's an activation problem. Customers who
-understand the value stick. Customers who don't, leave. Every dollar we
-spend on win-back campaigns is wasted if we don't fix onboarding first.
+Churn here is an activation problem: customers who understand the value stay,
+and the ones who never get there leave. Every dollar we spend on win-back
+campaigns is wasted if we don't fix onboarding first.
 
 The data supports this: customers who complete onboarding have 3x higher
-retention than those who don't. But only 23% of customers complete onboarding.
-That's the lever.
+retention than those who don't, and only 23% of customers complete it, so
+onboarding completion is the number to move.
 
 ## Recommended Actions
 
@@ -115,8 +115,7 @@ getting started. But the quotes tell the real story:
 
 "I felt stupid. Like everyone else must be getting this and I'm the idiot."
 
-That's not a product problem. It's an emotional experience we're creating.
-Nobody should feel stupid using our software.
+Our software is creating that feeling, and nobody should feel stupid using it.
 ```
 
 ### Quantifying qualitative

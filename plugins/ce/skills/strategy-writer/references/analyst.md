@@ -48,10 +48,10 @@ action for people who don't sit at desks all day.
 
 ## Competitive Landscape
 
-Microsoft and Google dominate through bundling. They're not winning on
-product quality. They're winning because IT departments want fewer vendors.
-This creates opportunity: specialized tools can win where bundled solutions
-are "good enough" but not actually good.
+Microsoft and Google dominate through bundling, because IT departments want
+fewer vendors more than they want the best product. That leaves room for
+specialized tools wherever the bundled option is "good enough" but not
+actually good.
 
 | Competitor | Strength | Weakness | Threat Level |
 |------------|----------|----------|--------------|

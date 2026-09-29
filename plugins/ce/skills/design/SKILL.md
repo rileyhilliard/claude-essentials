@@ -24,12 +24,17 @@ AI-generated UIs have a recognizable "median of the internet" feel. Polished but
 | Uniform border-radius on everything | `rounded-lg` applied without thinking | Pick a radius system and vary it by component role (sharp for data, softer for interactive) |
 | White/light gray background + subtle shadow cards | The safest possible surface treatment | Commit to a depth strategy that matches the product (see Depth Strategy below) |
 | Decorative gradients on hero sections | Looks "modern" without communicating anything | If using gradients, make them functional (show hierarchy, direct attention) not decorative |
+| Cream or off-white page background | Claude's default "tasteful" surface | Take the background from the color foundation you chose (see Choose Foundation below) |
+| Italic accent word inside a headline | Claude's default editorial flourish | Keep the headline in one type style; if it needs emphasis, use weight or placement |
+| Numbered section labels ("01 / 02 / 03") | Claude's default way to signal structure | Use plain headings, and number sections only when their order matters to the user |
+| Monospace eyebrow labels above headings | Claude's default "technical" accent | Drop the eyebrow or make it real navigation (breadcrumb, category); keep monospace for data |
+| Pill-shaped buttons (`rounded-full`) | Claude's default button shape | Use the radius system from the craft reference's Border Radius section |
 
 **The test:** If you swapped your brand name with a competitor's and the design still works, it's too generic. Something about the color foundation, typography, spacing rhythm, or layout density should feel specific to _this_ product.
 
 **Controlled imperfection creates character.** Perfect symmetry and uniform spacing everywhere reads as machine-generated. Human-designed interfaces have intentional asymmetry: a sidebar slightly narrower than expected, a headline that breaks the grid for emphasis, whitespace that breathes unevenly to create visual rhythm. These are deliberate choices, not sloppiness.
 
-## Design Direction (REQUIRED)
+## Design Direction
 
 **Before writing code, commit to a direction.** Don't default. Think about what this specific product needs to feel like.
 
@@ -133,4 +138,4 @@ Detect which styling approach the project uses, then load the matching reference
 | Vanilla CSS, CSS Modules, styled-components, or no Tailwind | [references/craft-css.md](references/craft-css.md) |
 | Tailwind CSS | [references/craft-tailwind.md](references/craft-tailwind.md) |
 
-If unclear, check for `tailwind.config` or `@tailwind` directives in the project. Default to CSS if neither is found.
+If unclear, check for a `tailwindcss` dependency in package.json, or `@import "tailwindcss"` / `@theme` in the project's CSS. Tailwind v4 uses those and has no `tailwind.config` by default; v3 uses a `tailwind.config` file and `@tailwind` directives. Default to CSS if none of these is found.
