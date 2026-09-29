@@ -23,8 +23,6 @@ Arguments:
    - If the config is developed (non-trivial CLAUDE.md and rules/ or settings.json), summarize and stop after Step 3's report — apply fixes only if the user asks
 3. If not exists OR `--force`: Run **Fresh Init Mode**
 
-> Note: this command was previously `/ce:init`. It was renamed to `/ce:setup` to avoid colliding with Claude Code's built-in `/init`.
-
 ---
 
 ## Configuration Best Practices
@@ -132,7 +130,7 @@ Will create:
               └── endpoints.md  # Endpoint patterns
 ```
 
-Use `AskUserQuestion` to confirm before writing files.
+Unless `--force` was passed, use `AskUserQuestion` to confirm before writing files.
 
 ### Step 5: Generate Files
 

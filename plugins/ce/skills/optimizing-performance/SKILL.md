@@ -12,25 +12,11 @@ description: Measure-first performance optimization that balances gains against 
 ## The Golden Rule
 
 ```
-IF optimization reduces complexity AND improves performance → ALWAYS DO IT
+IF optimization reduces complexity AND improves performance → Do it
 IF optimization increases complexity → Only if 10x faster OR fixes critical UX (>16ms UI, >100ms input)
 ```
 
-## Win-Win Optimizations (Always Do)
-
-**Multiple loops → Single loop:**
-```javascript
-// ❌ Three passes
-const ids = users.map(u => u.id);
-const active = users.filter(u => u.active);
-
-// ✅ One pass
-const { ids, active } = users.reduce((acc, u) => {
-  acc.ids.push(u.id);
-  if (u.active) acc.active.push(u);
-  return acc;
-}, { ids: [], active: [] });
-```
+## Win-Win Optimizations
 
 **Nested loops → Hash map (O(n²) → O(n)):**
 ```javascript

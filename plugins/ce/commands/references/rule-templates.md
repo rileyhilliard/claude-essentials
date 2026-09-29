@@ -38,12 +38,14 @@ Templates for generating `.claude/` files during Fresh Init Mode (Step 5) or whe
       {stack_specific_permissions}
     ],
     "deny": [
-      "Bash(rm -rf /)",
-      "Bash(rm -rf ~)",
-      "Bash(rm -rf .)",
-      "Bash(git push --force)",
-      "Bash(git push -f)",
-      "Bash(git reset --hard)"
+      "Bash(rm -rf / *)",
+      "Bash(rm -rf ~ *)",
+      "Bash(rm -rf . *)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git push * --force)",
+      "Bash(git push * -f)",
+      "Bash(git reset --hard *)"
     ]
   }
 }
@@ -108,11 +110,7 @@ paths:
 
 When investigating bugs or unexpected behavior, load the ce:systematic-debugging skill.
 
-Four-phase approach:
-1. Reproduce the issue
-2. Trace the code path
-3. Identify root cause
-4. Verify the fix
+Find the root cause before proposing a fix. If three fixes have failed, question the design instead of trying a fourth.
 ```
 
 ## Stack-Specific Rule Templates

@@ -76,7 +76,7 @@ Tests don't wait for async operations to complete.
 **See the `writing-tests` skill** for async waiting patterns:
 - Framework-specific waiting (Testing Library `findBy`, Playwright auto-wait)
 - Custom polling helpers
-- When arbitrary timeouts are acceptable
+- Fake timers
 
 **Quick summary:** Wait for conditions, not time:
 

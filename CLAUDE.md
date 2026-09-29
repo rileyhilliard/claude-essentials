@@ -89,7 +89,6 @@ Commands in `commands/*.md` use YAML frontmatter:
 ---
 description: What the command does
 argument-hint: "[optional-args]"
-model: sonnet
 allowed-tools: Bash, Read, Grep
 ---
 
@@ -204,7 +203,7 @@ cat plugins/ce/hooks/hooks.json | python -m json.tool
 **Validate YAML frontmatter in markdown files:**
 
 ```bash
-head -20 plugins/ce/commands/test.md  # Check frontmatter structure
+head -20 plugins/ce/commands/setup.md  # Check frontmatter structure
 ```
 
 ### File Naming Conventions
@@ -236,7 +235,7 @@ Hooks output JSON to communicate with Claude Code:
 {
   "hookSpecificOutput": {
     "hookEventName": "SessionStart",
-    "additionalContext": "<CRITICAL_USER_INSTRUCTIONS>\n...\n</CRITICAL_USER_INSTRUCTIONS>"
+    "additionalContext": "This repo deploys from the release branch; run make lint before committing."
   }
 }
 ```
@@ -282,31 +281,3 @@ Install the unified ce plugin:
 - **Agents**: Expert personas for complex multi-step work (code reviewer, log reader)
 
 Skills should focus on teaching patterns, not just executing tasks. Use imperative language and include practical examples with edge cases where relevant.
-
-<!-- DYNAMIC_SKILLS_START -->
-### Available Skills (Auto-Generated)
-
-<INSTRUCTION>
-Load a skill when the task clearly matches its description. Use Skill(<name>) immediately when you recognize a match — don't wait or evaluate all skills first.
-
-Available skills:
-
-- architecting-systems: Guides clean, scalable system architecture during the build phase. Use when designing modules, defining boundaries, structuring projects, managing dependencies, or preventing tight coupling and brittleness as systems grow.
-- design: Enforces precise, minimal design for dashboards and admin interfaces. Use when building SaaS UIs, data-heavy interfaces, or any product needing Jony Ive-level craft.
-- executing-plans: Executes implementation plans. Implements directly by default and delegates only for large, genuinely independent tracks of work.
-- fixing-flaky-tests: Diagnose and fix tests that pass in isolation but fail when run concurrently. Covers shared state isolation, resource conflicts, and timing-based flakiness.
-- handling-errors: Prevents silent failures and context loss in error handling. Use when writing try-catch blocks, designing error propagation, reviewing catch blocks, or implementing Result patterns.
-- managing-databases: Guides database architecture for PostgreSQL, DuckDB, Parquet, PGVector, and Neo4j. Use when designing schemas, choosing storage strategies, optimizing queries, configuring vector or graph workloads, or diagnosing performance issues.
-- managing-pipelines: Guides GitHub Actions CI/CD architecture, security hardening, and deployment strategies. Use when designing workflows, securing supply chains, optimizing build performance, or configuring deployments.
-- optimizing-performance: Measure-first performance optimization that balances gains against complexity. Use when addressing slow code, profiling issues, or evaluating optimization trade-offs.
-- planning-products: Defines product features from a PM perspective (JTBD, competitive research, scope negotiation) before technical planning. Use when scoping features, writing product specs, defining user problems, or choosing what to build.
-- post-mortem: Review a completed session to extract actionable improvements. Identifies DX friction, documentation gaps, architectural confusion, anti-patterns, process failures, and skill/config improvements. Uses progressive disclosure for targeted investigation types.
-- strategy-writer: Produces executive-quality strategic documents in The Economist/HBR style. Use when writing strategy memos, market analysis, business cases, customer research reports, or any document for Product, Design, and Business leaders. Customer-led, evidence-based, narrative-driven.
-- structuring-articles: Selects and applies journalistic story structures (WSJ Formula, Inverted Pyramid, Hourglass, Tick-Tock). Use when writing or outlining articles, blog posts, essays, or any narrative prose longer than a few paragraphs.
-- systematic-debugging: Debugging framework that finds root causes before proposing fixes. Use when investigating bugs, errors, unexpected behavior, failed tests, or when previous fixes haven't worked.
-- visualizing-with-mermaid: Creates professional Mermaid diagrams with semantic styling and visual hierarchy. Use when creating flowcharts, sequence diagrams, state machines, class diagrams, or architecture visualizations.
-- writer: Writing style and tone guide for human-sounding content. Use when writing documentation, READMEs, commit messages, PR descriptions, blog posts, LinkedIn posts, social media content, or any user-facing content.
-- writing-sql: Staff+ DBA SQL patterns targeting what Claude's defaults miss - multi-column statistics, operator classes, keyset pagination, silent performance anti-patterns. Use when writing complex SQL, reviewing queries, adding indexes, or optimizing slow queries.
-- writing-tests: Writes behavior-focused tests using Testing Trophy model with real dependencies. Use when writing tests, choosing test types, or avoiding anti-patterns like testing mocks.
-</INSTRUCTION>
-<!-- DYNAMIC_SKILLS_END -->

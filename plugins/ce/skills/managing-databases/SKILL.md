@@ -15,7 +15,6 @@ Decision guidance for PostgreSQL, DuckDB, Parquet, and Neo4j in hybrid storage a
 - Parquet quick reference
 - PGVector quick reference
 - Neo4j quick reference
-- Cross-database conventions
 - Performance debugging checklist
 
 ## When to use which database

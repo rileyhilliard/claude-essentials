@@ -5,7 +5,7 @@ description: Executes implementation plans directly with a verification gate and
 
 # Executing Plans
 
-**Default to implementing directly.** Delegation is the exception, not the default. Delegate to a subagent only for large tasks that are genuinely independent and parallelizable, such as a wide multi-file investigation. Do not delegate work you can finish yourself in a handful of tool calls, and do not use subagents to verify or double-check your own work. If one subagent can complete the task, use one rather than several, and keep spawn counts low.
+**Default to implementing directly.** Delegation is the exception, not the default. Delegate to a subagent only for large tasks that are genuinely independent and parallelizable, such as a wide multi-file investigation. Do not delegate work you can finish yourself in a handful of tool calls, and do not use subagents to verify or double-check your own work. The step 3 code review is the one exception. If one subagent can complete the task, use one rather than several, and keep spawn counts low.
 
 ## 1. Setup
 
@@ -57,9 +57,7 @@ Load relevant domain skills into the reviewer based on what was implemented. Eva
 - `Skill(writing-tests)` - test quality
 - `Skill(optimizing-performance)` - performance work
 
-Handle the review verdict:
-- **Must fix:** Fix all Critical and Important issues
-- **Suggestions:** Fix these too unless there's a clear reason not to
+Fix every item in the reviewer's **Fixes** list. The list is flat, with no severity tiers and no optional items. For an item the reviewer tagged `(unconfirmed)`, check that the problem is real before changing code, and drop it with a one-line reason if it isn't.
 
 ## 4. Complete
 

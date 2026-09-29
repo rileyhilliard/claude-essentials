@@ -82,11 +82,7 @@ How can this fail? What's the blast radius?
 
 ## Process
 
-### 1. Understand the Proposal
-
-Read it carefully. Understand what's being proposed and why.
-
-### 2. Verify Claims
+### 1. Verify Claims
 
 If the proposal makes claims about the codebase, check them.
 
@@ -94,15 +90,7 @@ If the proposal makes claims about the codebase, check them.
 - "No breaking changes" (are you sure?)
 - "Simple refactor" (let's see)
 
-### 3. Generate Concerns
-
-For each part of the proposal, ask:
-
-- What could go wrong?
-- What's being assumed?
-- What's missing?
-
-### 4. Prioritize
+### 2. Prioritize
 
 Not all concerns are equal. Rank by:
 

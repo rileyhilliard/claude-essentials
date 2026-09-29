@@ -7,7 +7,7 @@ description: Staff+ DBA SQL patterns targeting what Claude's defaults miss - mul
 
 **Core principle:** Every query you write has an execution plan. Write SQL with that plan in mind, not just the result.
 
-This skill covers only what Claude's defaults miss. Topics already handled by `managing-databases/postgres-querying.md` (LATERAL, CTE materialization, DISTINCT ON, EXPLAIN red flags, ROWS vs RANGE) are not repeated here.
+This skill covers only what Claude's defaults miss. Topics already handled by `managing-databases/references/postgres-querying.md` (LATERAL, CTE materialization, DISTINCT ON, EXPLAIN red flags, ROWS vs RANGE) are not repeated here.
 
 ## Topic Navigation
 
@@ -28,7 +28,7 @@ This skill covers only what Claude's defaults miss. Topics already handled by `m
 
 ## Iron Rules
 
-These apply to every query, no exceptions:
+These hold for PostgreSQL. On other engines, apply a rule where the engine has the feature (MySQL and SQL Server have no FILTER clause, and extended statistics are PostgreSQL-only):
 
 - **Never paginate with OFFSET on large tables.** Use keyset pagination.
 - **Never use NOT IN when the subquery column is nullable.** Use NOT EXISTS.

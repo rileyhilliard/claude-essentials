@@ -17,14 +17,14 @@ If the current repo has its own rules/skills covering this topic (check .claude/
 
 ```markdown
 ## Root Cause
-[1-3 sentences explaining underlying issue]
+[The underlying issue, briefly]
 Located in: `file.ts:123`
 
 ## What Was Wrong
-[Specific problem - mutation, race condition, missing validation, etc. 1-3 sentences]
+[Specific problem - mutation, race condition, missing validation, etc.]
 
 ## The Fix
-[Changes made and why they address root cause. 1-3 sentences]
+[Changes made and why they address root cause]
 
 ## Verification
 [How the fix was confirmed - e.g. reran the failing test, reproduced and retested manually]

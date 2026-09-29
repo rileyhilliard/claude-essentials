@@ -26,7 +26,7 @@ Reusable development patterns, accessed with `ce:` prefix:
 
 | Skill                                                                            | Description                                   |
 | -------------------------------------------------------------------------------- | --------------------------------------------- |
-| [ce:systematic-debugging](plugins/ce/skills/systematic-debugging/SKILL.md)       | Four-phase debugging framework                |
+| [ce:systematic-debugging](plugins/ce/skills/systematic-debugging/SKILL.md)       | Root-cause-first debugging framework          |
 | [ce:fixing-flaky-tests](plugins/ce/skills/fixing-flaky-tests/SKILL.md)           | Diagnose and fix tests that fail concurrently |
 
 **Code Quality:**

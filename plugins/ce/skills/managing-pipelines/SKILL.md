@@ -16,7 +16,6 @@ Decision guidance for GitHub Actions CI/CD pipelines, deployment strategies, and
 - Deployment quick reference
 - Infrastructure as code quick reference
 - Observability quick reference
-- Cross-pipeline conventions
 - Pipeline debugging checklist
 
 ## When to use which pattern
