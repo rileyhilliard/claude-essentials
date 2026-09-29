@@ -9,9 +9,9 @@ If the current repo has its own rules/skills covering this topic (check .claude/
 
 **Core principle:** Test user-observable behavior with real dependencies. Tests should survive refactoring.
 
-> "The more your tests resemble the way your software is used, the more confidence they can give you." — Kent C. Dodds
+> "The more your tests resemble the way your software is used, the more confidence they can give you." (Kent C. Dodds)
 
-**Why this matters:** Tests exist to give you confidence. The Testing Trophy prioritizes integration tests because they test real behavior across real modules — giving maximum confidence per test written. Unit tests in isolation often just test mocks, not your actual system.
+**Why this matters:** Tests exist to give you confidence. The Testing Trophy prioritizes integration tests because they test real behavior across real modules, which gives the most confidence per test written. Unit tests in isolation often just test mocks, not your actual system.
 
 ## Testing Trophy Model
 
