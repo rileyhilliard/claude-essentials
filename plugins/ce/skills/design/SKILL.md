@@ -3,7 +3,7 @@ name: design
 description: Enforces precise, minimal design for dashboards and admin interfaces. Use when building SaaS UIs, data-heavy interfaces, or any product needing Jony Ive-level craft.
 ---
 
-If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence — apply this skill only where they're silent.
+If the current repo has its own rules/skills covering this topic (check .claude/rules/ and repo CLAUDE.md), those take precedence, and this skill applies only where they're silent.
 
 # Design Principles
 

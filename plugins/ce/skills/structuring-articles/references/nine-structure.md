@@ -10,21 +10,21 @@ Best for: narrative journalism with a strong dramatic moment. Stories where ther
 
 ### 1. Find the Cliffhanger
 
-Lay out the full story on a timeline. Identify the most gripping moment — ideally no more than a third of the way down the timeline. This is where the reader will enter the story.
+Lay out the full story on a timeline. Identify the most gripping moment, ideally no more than a third of the way down the timeline. This is where the reader will enter the story.
 
-### 2. Open with the Cliffhanger — 2-4 paragraphs
+### 2. Open with the Cliffhanger (2-4 paragraphs)
 
-Write the dramatic moment first. Stop at or just before the "all-is-lost" moment, before the outcome is revealed. You're stretching the rubber band of tension — the reader wants to know both how the character got here AND what happens next.
+Write the dramatic moment first. Stop at or just before the "all-is-lost" moment, before the outcome is revealed. You're stretching the rubber band of tension; the reader wants to know both how the character got here AND what happens next.
 
-### 3. Rewind — 1 transition paragraph
+### 3. Rewind (1 transition paragraph)
 
 Signal the flashback clearly: "It had started three months earlier," or "To understand what brought her to that ledge, go back to February." The reader needs to know you're rewinding intentionally.
 
-### 4. Build Forward Chronologically — varies
+### 4. Build Forward Chronologically (varies)
 
 Write from the true beginning up to the point where the opening scene occurred. Fill in the backstory, character development, and context that the reader now craves because they already saw the climax.
 
-### 5. Continue Past the Opening — varies
+### 5. Continue Past the Opening (varies)
 
 Push through the moment you opened with and continue to resolution. The reader has been waiting for this since paragraph one.
 

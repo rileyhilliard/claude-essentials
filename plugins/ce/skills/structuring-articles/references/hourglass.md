@@ -8,15 +8,15 @@ Best for: crime reports, court cases, disaster stories, any story that needs bot
 
 ## Structure
 
-### 1. The Top (Summary) — 4-6 paragraphs
+### 1. The Top (Summary; 4-6 paragraphs)
 
-Deliver the news in a summary lede, answering the reader's most pressing questions. This section functions like a mini inverted pyramid — enough information that a time-pressed reader can leave satisfied.
+Deliver the news in a summary lede, answering the reader's most pressing questions. This section functions like a mini inverted pyramid, enough information that a time-pressed reader can leave satisfied.
 
 Cover: what happened, who was involved, what the immediate consequences are. Don't hold back the headline.
 
-### 2. The Turn — 1 sentence or short paragraph
+### 2. The Turn (1 sentence or short paragraph)
 
-A transitional phrase containing attribution that signals a shift from summary to narrative. This is the waist of the hourglass — the pinch point where the mode changes.
+A transitional phrase containing attribution that signals a shift from summary to narrative. This is the waist of the hourglass, the pinch point where the mode changes.
 
 **Examples of turns:**
 - "According to police, the events unfolded this way:"
@@ -25,13 +25,13 @@ A transitional phrase containing attribution that signals a shift from summary t
 
 The turn needs attribution because you're about to tell a story. The reader needs to know whose account they're getting.
 
-### 3. The Narrative — varies
+### 3. The Narrative (varies)
 
 A chronological retelling complete with detail, dialogue, and background. Unlike the inverted pyramid's taper, this section builds. It rewards the reader who stayed.
 
 This is where you deploy scene-building, sensory detail, and reconstructed dialogue. The summary section gave them the facts; this section gives them the experience.
 
-End with a real ending — a strong quote, a revealing detail, a circle back to the opening. Don't just trail off. The hourglass earns a kicker.
+End with a real ending: a strong quote, a revealing detail, a circle back to the opening. Don't just trail off. The hourglass earns a kicker.
 
 ---
 

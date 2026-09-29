@@ -1,6 +1,6 @@
 # Craft Details (Tailwind)
 
-Design philosophy from SKILL.md expressed through Tailwind primitives. This isn't a Tailwind tutorial. It's how to make the design principles concrete in a Tailwind codebase.
+Design philosophy from SKILL.md expressed through Tailwind primitives, showing how to make the design principles concrete in a Tailwind codebase.
 
 ## Tailwind's Default Bias
 

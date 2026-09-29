@@ -5,15 +5,15 @@ description: Selects and applies journalistic story structures (WSJ Formula, Inv
 
 # Structuring Articles
 
-Professional journalists don't just write — they select a structure that serves their material. A trend piece about remote work demands a different architecture than a breaking news story about a policy change. This skill helps you match content to the right framework, then execute it.
+Professional journalists don't just write; they select a structure that serves their material. A trend piece about remote work demands a different architecture than a breaking news story about a policy change. This skill helps you match content to the right framework, then execute it.
 
 ## How This Skill Relates to Other Skills
 
-This skill handles **structure** — the bones of an article. It tells you what goes where and why.
+This skill handles **structure**: the bones of an article. It tells you what goes where and why.
 
 For **voice, tone, and anti-AI rhetoric**, load the `writer` skill. These two skills are designed to work together: structure from here, style from there.
 
-For **executive/strategy documents** (board decks, business cases, market analysis), the `strategy-writer` skill is more appropriate — those follow their own conventions.
+For **executive/strategy documents** (board decks, business cases, market analysis), the `strategy-writer` skill is more appropriate; those follow their own conventions.
 
 ---
 
@@ -24,11 +24,11 @@ Match the content to a framework before writing. The decision depends on three t
 | You're writing about... | Strongest material | Framework | Reference |
 |---|---|---|---|
 | A systemic trend or issue, and you have a compelling person affected by it | A character whose experience illustrates the bigger picture | **WSJ Formula** | `references/wsj-formula.md` |
-| Breaking news, a new report, or a policy announcement | The headline fact — what just happened and why it matters | **Inverted Pyramid** | `references/inverted-pyramid.md` |
+| Breaking news, a new report, or a policy announcement | The headline fact: what just happened and why it matters | **Inverted Pyramid** | `references/inverted-pyramid.md` |
 | A news event that also needs narrative depth | Both the headline fact AND a rich chronological story behind it | **Hourglass** | `references/hourglass.md` |
 | A sequential news event you want to narrate after the headline | The headline fact AND a chronological sequence of what happened | **Martini Glass** | `references/martini-glass.md` |
 | A complex topic you want to ease readers into gradually | A specific person or scene AND broad research/data | **Diamond** | `references/diamond.md` |
-| A major event and you want to reconstruct how it unfolded | Detailed sourcing on what happened when — timestamps, scenes, dialogue | **Tick-Tock** | `references/tick-tock.md` |
+| A major event and you want to reconstruct how it unfolded | Detailed sourcing on what happened when: timestamps, scenes, dialogue | **Tick-Tock** | `references/tick-tock.md` |
 | A story with a dramatic climax moment | A gripping scene you can open with before rewinding | **Nine Structure** | `references/nine-structure.md` |
 | Two parallel storylines that illuminate each other | Multiple characters or threads that intersect | **Braided Narrative** | `references/braided-narrative.md` |
 | A data-driven story with a central human character | Both quantitative data AND a compelling personal story | **Accordion** | `references/accordion.md` |
@@ -46,9 +46,9 @@ Every framework shares a few building blocks. These apply regardless of which st
 
 ### The Nut Graf
 
-The single most important paragraph in any article. It answers "so what?" — why this story matters, why now, why the reader should care. If a reader skimmed only your headline and nut graf, they should grasp the central point.
+The single most important paragraph in any article. It answers "so what?": why this story matters, why now, why the reader should care. If a reader skimmed only your headline and nut graf, they should grasp the central point.
 
-In the WSJ Formula, the nut graf appears after the opening anecdote. In the Inverted Pyramid, it's the second or third paragraph. In every other structure, find its natural home — but it must exist, and it must appear early.
+In the WSJ Formula, the nut graf appears after the opening anecdote. In the Inverted Pyramid, it's the second or third paragraph. In every other structure, find its natural home; but it must exist, and it must appear early.
 
 A nut graf that's missing or buried is the #1 reason a draft feels aimless.
 
@@ -56,7 +56,7 @@ See `references/prose-craft.md` for detailed guidance on writing nut grafs, plus
 
 ### The Lede
 
-The opening that earns the reader's attention. Seven major types exist (summary, anecdotal, scene-setting, question, contrast, staccato, delayed) — each suited to different material. The framework you choose often implies the lede type: WSJ Formula calls for an anecdotal lede, Inverted Pyramid calls for a summary lede. But these aren't rigid rules.
+The opening that earns the reader's attention. Seven major types exist (summary, anecdotal, scene-setting, question, contrast, staccato, delayed), each suited to different material. The framework you choose often implies the lede type: WSJ Formula calls for an anecdotal lede, Inverted Pyramid calls for a summary lede. But these aren't rigid rules.
 
 See `references/prose-craft.md` for the full lede taxonomy.
 
@@ -70,7 +70,7 @@ See `references/prose-craft.md` for kicker guidance.
 
 ## Sentence and Paragraph Rhythm
 
-This is not about structure — it's about the texture of the prose within any structure. But it's so foundational it belongs here alongside framework selection.
+This is not about structure; it's about the texture of the prose within any structure. But it's so foundational it belongs here alongside framework selection.
 
 Vary sentence length deliberately. Short sentences punch. Long sentences build complexity and momentum. Uniform sentence length is one of the clearest signals of machine-generated prose. Gary Provost's famous demonstration:
 
@@ -80,7 +80,7 @@ Vary sentence length deliberately. Short sentences punch. Long sentences build c
 
 Read your work aloud. If everything sounds the same length, it will feel monotonous regardless of content.
 
-Paragraph length works the same way. Short paragraphs accelerate. Long paragraphs slow the reader for reflection. A one-sentence paragraph carries enormous weight — the white space around it says "this matters."
+Paragraph length works the same way. Short paragraphs accelerate. Long paragraphs slow the reader for reflection. A one-sentence paragraph carries enormous weight: the white space around it says "this matters."
 
 ---
 

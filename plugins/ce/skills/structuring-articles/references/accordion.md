@@ -8,15 +8,15 @@ Best for: data-driven stories with a compelling central character, long-form fea
 
 ## Structure
 
-### 1. Opening Anecdote — 2-3 paragraphs
+### 1. Opening Anecdote (2-3 paragraphs)
 
 A strong scene from a central character. Establish who they are, what they're facing, and why the reader should care.
 
-### 2. Nut Graf — 1-2 paragraphs
+### 2. Nut Graf (1-2 paragraphs)
 
 Broaden to the big picture. Connect the individual to the trend.
 
-### 3. Alternating Zoom-In / Zoom-Out Cycles — varies
+### 3. Alternating Zoom-In / Zoom-Out Cycles (varies)
 
 For each major aspect of the story:
 
@@ -24,9 +24,9 @@ For each major aspect of the story:
 
 **Zoom out:** Contextualize with data, expert quotes, broader trends. This is where you deliver the research that proves this facet matters beyond the individual.
 
-Repeat for each major facet. Typically 3-4 cycles — enough to be thorough without becoming repetitive.
+Repeat for each major facet. Typically 3-4 cycles: enough to be thorough without becoming repetitive.
 
-### 4. Closing Anecdote — 1-2 paragraphs
+### 4. Closing Anecdote (1-2 paragraphs)
 
 Return to the central character. Show where they are now, or use a final quote that encapsulates the story's theme.
 
