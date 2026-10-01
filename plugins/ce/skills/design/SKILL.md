@@ -22,11 +22,13 @@ AI-generated UIs have a recognizable "median of the internet" feel. Polished but
 | Three-column icon grid | Every SaaS landing page template uses this | Vary card layouts by content type. Metric cards, feature cards, and testimonial cards should look different from each other |
 | Centered hero + CTA button | The default starting point for every landing page | Consider what the user actually needs first. Maybe it's a dense dashboard, a split layout, or content-forward with no hero at all |
 | Uniform border-radius on everything | `rounded-lg` applied without thinking | Pick a radius system and vary it by component role (sharp for data, softer for interactive) |
-| White/light gray background + subtle shadow cards | The safest possible surface treatment | Commit to a depth strategy that matches the product (see Depth Strategy below) |
+| White/light gray background + subtle shadow cards | The safest possible surface treatment | Commit to a depth strategy that matches the product (see the craft reference's Depth Strategy section) |
 | Decorative gradients on hero sections | Looks "modern" without communicating anything | If using gradients, make them functional (show hierarchy, direct attention) not decorative |
-| Cream or off-white page background | Current models' fallback when told to avoid the generic look | Choose the surface color from the product direction below |
-| Italic accent word in a headline, numbered "01 / 02 / 03" section labels, monospace eyebrow labels | Current editorial-style defaults | Plain headings; add labels only where they carry information |
-| Pill-shaped buttons everywhere | Default button shape in recent output | Match button radius to the radius system |
+| Cream or off-white page background | Claude's default "tasteful" surface | Take the background from the color foundation you chose (see Choose Foundation below) |
+| Italic accent word inside a headline | Claude's default editorial flourish | Keep the headline in one type style; if it needs emphasis, use weight or placement |
+| Numbered section labels ("01 / 02 / 03") | Claude's default way to signal structure | Use plain headings, and number sections only when their order matters to the user |
+| Monospace eyebrow labels above headings | Claude's default "technical" accent | Drop the eyebrow or make it real navigation (breadcrumb, category); keep monospace for data |
+| Pill-shaped buttons (`rounded-full`) | Claude's default button shape | Use the radius system from the craft reference's Border Radius section |
 
 **The test:** If you swapped your brand name with a competitor's and the design still works, it's too generic. Something about the color foundation, typography, spacing rhythm, or layout density should feel specific to _this_ product.
 
@@ -136,4 +138,4 @@ Detect which styling approach the project uses, then load the matching reference
 | Vanilla CSS, CSS Modules, styled-components, or no Tailwind | [references/craft-css.md](references/craft-css.md) |
 | Tailwind CSS | [references/craft-tailwind.md](references/craft-tailwind.md) |
 
-If unclear, check for `tailwind.config` or `@tailwind` directives in the project. Default to CSS if neither is found.
+If unclear, check for a `tailwindcss` dependency in package.json, or `@import "tailwindcss"` / `@theme` in the project's CSS. Tailwind v4 uses those and has no `tailwind.config` by default; v3 uses a `tailwind.config` file and `@tailwind` directives. Default to CSS if none of these is found.

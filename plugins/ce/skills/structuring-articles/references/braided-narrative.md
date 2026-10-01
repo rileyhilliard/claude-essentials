@@ -17,9 +17,9 @@ Find two (or occasionally three) storylines that can almost stand alone but reso
 - A policy and its human consequence, told in parallel
 - Two investigations converging on the same discovery
 
-The threads don't need to connect literally — thematic resonance is enough.
+The threads don't need to connect literally; thematic resonance is enough.
 
-### 2. Open with One Thread — 2-4 paragraphs
+### 2. Open with One Thread (2-4 paragraphs)
 
 Establish the first storyline. Give the reader enough to be invested in this character or situation before you cut away.
 
@@ -35,7 +35,7 @@ The threads should build toward a point where they intersect, collide, or illumi
 
 ### 5. Resolve
 
-The threads can merge into a single closing, or each can get its own ending. What matters is that the reader feels the combined meaning — the whole is greater than the sum of the parts.
+The threads can merge into a single closing, or each can get its own ending. What matters is that the reader feels the combined meaning: the whole is greater than the sum of the parts.
 
 ---
 
@@ -50,4 +50,4 @@ The braided structure creates meaning through juxtaposition. When you show a pol
 - **Threads that don't resonate.** If the reader can't feel why these two stories belong in the same article, the structure falls apart. The connection can be subtle, but it must exist.
 - **Unequal investment.** If one thread is dramatically more interesting than the other, the reader will resent every cut away from it. Both threads need to pull their weight.
 - **Too many threads.** Two is standard. Three is possible with discipline. Four is almost always a mess. Each additional thread reduces the time you can spend in any one, weakening all of them.
-- **Arbitrary switching.** Don't alternate mechanically (Thread A, Thread B, Thread A, Thread B). Switch when the story demands it — when a scene in one thread has reached a moment of tension, revelation, or pause that creates energy for cutting to the other.
+- **Arbitrary switching.** Don't alternate mechanically (Thread A, Thread B, Thread A, Thread B). Switch when the story demands it: when a scene in one thread has reached a moment of tension, revelation, or pause that creates energy for cutting to the other.

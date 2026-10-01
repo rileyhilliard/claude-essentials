@@ -72,7 +72,7 @@ Good: We almost ran out of money in Q3 last year. The mistake was
 
 ### Engagement bait closers
 
-LinkedIn's algorithm actively penalizes these now, so they don't even work as a growth hack anymore. They just make you look like you're fishing.
+LinkedIn's feed has penalized these, so they may not even work as a growth hack. They mostly make you look like you're fishing.
 
 ```
 Forbidden:
@@ -189,11 +189,10 @@ Bad:  3 years ago, I was broke and sleeping on a friend's couch.
       (Every sentence is a paragraph. The lessons are generic.
       The closer is engagement bait. This is a LinkedIn Mad Lib.)
 
-Good: Three years ago I was freelancing and barely covering rent. The
-      thing that actually changed my trajectory wasn't hustle or mindset.
-      It was picking one niche (Shopify migration for DTC brands) and
-      saying no to everything else for a full year. Revenue went from
-      $3K/month to $25K/month. Referrals compound fast when people can
+Good: Three years ago I was freelancing and barely covering rent. What
+      changed my trajectory was picking one niche (Shopify migration for
+      DTC brands) and saying no to everything else for a full year. Revenue
+      went from $3K/month to $25K/month. Referrals compound fast when people can
       describe what you do in one sentence.
 ```
 
@@ -228,14 +227,14 @@ Bad:  Today I saw someone being rude to a barista. I walked up and said
 The LinkedIn algorithm rewards certain things. Use this knowledge to make good content travel further, not to manufacture engagement.
 
 **What actually helps distribution:**
-- Posts in your area of expertise (the algorithm checks your profile against your content)
+- Posts in your area of expertise; LinkedIn has been reported to weigh your profile against your content
 - Content that generates genuine comments, especially multi-reply threads
-- Document/carousel posts (highest engagement rates of any format)
-- Posts that hold attention through substance (dwell time matters)
+- Document/carousel posts
+- Posts that hold attention through substance
 
 **What gets suppressed:**
-- Engagement bait phrases (penalized ~60%)
-- External links (significant reach penalty)
+- Engagement bait phrases
+- External links, which LinkedIn has been reported to down-rank
 - Content outside your professional domain
 - Posting frequency over quality
 

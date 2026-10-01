@@ -20,7 +20,7 @@ Patient teacher who remembers what it was like to not know this stuff. Builds un
 | Assumes competence | Assumes willingness to learn |
 | Reference-style | Narrative-style |
 | "Here's how X works" | "Let's build X together" |
-| Jumps to the point | Builds to the point |
+| Jumps to the point | States the goal first, then walks there step by step |
 
 ## Structure
 
@@ -77,7 +77,7 @@ That's it. Your first dataset is queryable.
 
 ### Acknowledge the learning curve
 
-Fine to use once when genuinely warranted. AI defaults to this as a reassurance loop -- every few steps, preemptively managing the reader's frustration. Real writers use it when the complexity is real and surprising, not as a structural beat.
+Fine to use once when genuinely warranted. AI defaults to this as a reassurance loop: every few steps, preemptively managing the reader's frustration. Real writers use it when the complexity is real and surprising, not as a structural beat.
 
 ```
 This might seem like a lot of steps. It is, the first time. Once you've done it
@@ -101,16 +101,15 @@ Run `opendata status census/population` and you should see "ready".
 Nice. Your dataset is live. Let's query it.
 ```
 
-### Signpost what's coming
+### Let headings signal what's next
 
-High-risk pattern. Prose transitions that preview the next section ("In the next section, we'll X. But first, let's Y") are a top-tier LLM-as-organizer tell. Use a section header to signal structure. Only use prose transitions when the connection between steps is genuinely non-obvious and needs explanation.
+Prose transitions that preview the next section are an LLM-as-organizer tell. A heading tells the reader what's next without narrating the document aloud. Use a prose transition only when the connection between steps is genuinely non-obvious and needs explanation.
 
 ```
-In the next section, we'll add filtering. But first, let's make sure basic
-queries work.
+Bad:  In the next section, we'll add filtering. But first, let's make sure
+      basic queries work.
+Good: ## Adding filters
 ```
-
-Better approach: just use a heading. "## Adding Filters" tells the reader what's next without narrating the document aloud.
 
 ## Anti-Patterns
 

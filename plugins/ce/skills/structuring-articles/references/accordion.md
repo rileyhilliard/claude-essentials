@@ -8,15 +8,15 @@ Best for: data-driven stories with a compelling central character, long-form fea
 
 ## Structure
 
-### 1. Opening Anecdote — 2-3 paragraphs
+### 1. Opening Anecdote (2-3 paragraphs)
 
 A strong scene from a central character. Establish who they are, what they're facing, and why the reader should care.
 
-### 2. Nut Graf — 1-2 paragraphs
+### 2. Nut Graf (1-2 paragraphs)
 
 Broaden to the big picture. Connect the individual to the trend.
 
-### 3. Alternating Zoom-In / Zoom-Out Cycles — varies
+### 3. Alternating Zoom-In / Zoom-Out Cycles (varies)
 
 For each major aspect of the story:
 
@@ -24,9 +24,9 @@ For each major aspect of the story:
 
 **Zoom out:** Contextualize with data, expert quotes, broader trends. This is where you deliver the research that proves this facet matters beyond the individual.
 
-Repeat for each major facet. Typically 3-4 cycles — enough to be thorough without becoming repetitive.
+Repeat for each major facet. Typically 3-4 cycles: enough to be thorough without becoming repetitive.
 
-### 4. Closing Anecdote — 1-2 paragraphs
+### 4. Closing Anecdote (1-2 paragraphs)
 
 Return to the central character. Show where they are now, or use a final quote that encapsulates the story's theme.
 
@@ -44,7 +44,7 @@ Think of the WSJ Formula as: here's a person → here's the data → here's the 
 
 The alternation keeps both kinds of material fresh. Data without story becomes a government report. Story without data becomes a profile. By cycling between them, each validates the other. The data proves the anecdote isn't an outlier; the anecdote proves the data isn't abstract.
 
-Stanford research found that stories are 22 times more memorable than statistics alone. The Accordion lets you have both.
+The Accordion lets you have both.
 
 ---
 

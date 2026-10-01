@@ -75,7 +75,7 @@ The 3-4 sentence guideline prevents walls of text, not uniform depth. A one-sent
 
 ### Argument structure
 
-Lead with the claim, support it, move on. Don't build to the point by laying foundation first. Don't recap what you just argued at the end of a section. Don't preview what you're about to argue at the start of one. Just argue it.
+Lead with the claim, support it, move on. Don't build to the point by laying foundation first. Don't recap what you just argued at the end of a section. Don't preview what you're about to argue at the start of one. Just argue it. Ledes are the one exception; see "Every paragraph opens with its point" in `references/forbidden-patterns.md`.
 
 ### Opinions
 
@@ -87,7 +87,7 @@ These are where AI tells concentrate. Intros that acknowledge the topic exists (
 
 ### Sample injection
 
-If no sample exists, ask for one before writing anything long. Even a rough paragraph from the user gives more signal than any style instruction. A rough draft is the best possible sample, since it's already about the topic and already in their voice. Match it without polishing it.
+For a long piece in the user's own voice (an article, essay, or post), ask for a sample if none exists and the user is there to answer. Even a rough paragraph gives more signal than any style instruction. A rough draft is the best possible sample, because it's already about the topic and already in their voice. Match it without polishing it. Without a sample, the persona defaults apply.
 
 ---
 

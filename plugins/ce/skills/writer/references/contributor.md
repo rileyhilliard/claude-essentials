@@ -93,7 +93,7 @@ Bad:  This change addresses the race condition in session refresh.
 Good: Fix race condition in session refresh under concurrent load.
 
 Bad:  This commit resolves the issue with cart quantity validation.
-Good: Correct quantity validation -- was allowing negative values on update.
+Good: Correct quantity validation that allowed negative values on update.
 ```
 
 ## PR Descriptions

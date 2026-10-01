@@ -44,10 +44,10 @@ Three things converged:
 2. PCI audit scope keeps expanding because payment logic touches shared tables
 3. The team is big enough now (4 engineers) to own a service independently
 
-Any one of these might not justify the move. Together, they make a strong case.
+The PCI scope is the one that sets the timing: the next audit cycle starts in Q3.
 ```
 
-Note: The "any one of these alone... but together" closer is itself an LLM-favored evidence frame. Vary how you conclude evidence lists. Sometimes just end after the list. Sometimes name the strongest signal. Don't use this same construct every time.
+Note: vary how you conclude evidence lists. Sometimes just end after the list; sometimes name the strongest signal, as above.
 
 ## Good Patterns
 

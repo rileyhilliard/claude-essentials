@@ -35,7 +35,7 @@ Opens with a specific person's story. Creates empathy and a human entry point be
 
 ### Scene-Setting Lede
 
-Describes a physical environment to immerse the reader. Uses sensory detail — sounds, temperatures, textures — to drop the reader into the story's world before explaining what happened there.
+Describes a physical environment to immerse the reader. Uses sensory detail (sounds, temperatures, textures) to drop the reader into the story's world before explaining what happened there.
 
 *"The server room on the fourteenth floor hums at a pitch just below human hearing. It is always 64 degrees. On the night of March 12, someone turned the cooling off."*
 
@@ -67,14 +67,14 @@ Sets a scene or tells a story without immediately revealing the Who or What. Bui
 
 ## Writing the Nut Graf
 
-The nut graf is the paragraph that tells the reader what the whole story is about and why they should care. It's the kernel — the single paragraph that, combined with the headline, would let a reader walk away understanding the piece.
+The nut graf is the paragraph that tells the reader what the whole story is about and why they should care. It's the kernel: the single paragraph that, combined with the headline, would let a reader walk away understanding the piece.
 
 ### What it must do
 
 - Justify the story by telling readers why they should care
 - Connect the lede to the rest of the story
-- Answer the "why now" question — what makes this timely
-- Declare the story's angle — the lens through which you're approaching the issue
+- Answer the "why now" question: what makes this timely
+- Declare the story's angle: the lens through which you're approaching the issue
 
 ### Placement
 
@@ -102,7 +102,7 @@ Place a word or concept in the first sentence of a new paragraph that echoes the
 
 ### Echo / Concept Repetition
 
-Same idea as head-to-tail, but using synonyms or oblique references rather than the same word. "Old assumptions" in one paragraph echoed by "for decades" in the next — conceptual, not lexical.
+Same idea as head-to-tail, but using synonyms or oblique references rather than the same word. "Old assumptions" in one paragraph echoed by "for decades" in the next: conceptual, not lexical.
 
 ### Contrast Transition
 
@@ -110,7 +110,7 @@ Summarize what is established, then throw in a twist. "While the trees have carv
 
 ### Section Break Transitions
 
-For longer pieces. What matters isn't the visual break but the sentences bracketing it. The last sentence before a break creates a "launch pad" — hinting at what comes next without giving it away. The first sentence after anchors the reader with specific details (date, location, character name).
+For longer pieces. What matters isn't the visual break but the sentences bracketing it. The last sentence before a break creates a "launch pad", hinting at what comes next without giving it away. The first sentence after anchors the reader with specific details (date, location, character name).
 
 ### Functional Connectors
 
@@ -118,7 +118,7 @@ Words like "but," "next," "in fact," "meanwhile," "still." Use sparingly. Overus
 
 ### When to use which
 
-Reserve head-to-tail transitions for passages where the reader might get confused — dense background or technical material. In cinematic, narrative passages, transitions can be looser. Don't use the same technique in every paragraph.
+Reserve head-to-tail transitions for passages where the reader might get confused: dense background or technical material. In cinematic, narrative passages, transitions can be looser. Don't use the same technique in every paragraph.
 
 ---
 
@@ -128,15 +128,15 @@ The ending that lands. John McPhee's advice: if your planned ending isn't workin
 
 ### Circle Kicker
 
-Returns to the opening scene, image, or character. The most satisfying when executed well — it creates closure while revealing that the reader's understanding has deepened. The same scene lands differently with full context behind it.
+Returns to the opening scene, image, or character. The most satisfying when executed well; it creates closure while revealing that the reader's understanding has deepened. The same scene lands differently with full context behind it.
 
 ### Quote Kicker
 
-Ends with a direct quote that encapsulates the theme. The most common type — and the most overused. Use only when the quote is genuinely memorable and says something better than you could. Weak quote kickers feel like the writer ran out of things to say.
+Ends with a direct quote that encapsulates the theme. The most common type, and the most overused. Use only when the quote is genuinely memorable and says something better than you could. Weak quote kickers feel like the writer ran out of things to say.
 
 ### Echo Kicker
 
-The ending echoes the beginning "in some essential but surprising way." Not a repeat — a rhyme. The echo must add new meaning.
+The ending echoes the beginning "in some essential but surprising way." The echo should rhyme with the opening and add new meaning.
 
 ### Future-Looking Kicker
 
@@ -148,7 +148,7 @@ The writer enters the story in the final scene. Aims at the reader's heart. Use 
 
 ### Surprise / Revelation Kicker
 
-Reserves a new piece of information for the very end. Generally risky — but when the revelation reinforces and deepens the story's theme, it can be the most powerful ending of all.
+Reserves a new piece of information for the very end. Generally risky, but when the revelation reinforces and deepens the story's theme, it can be the most powerful ending of all.
 
 ---
 
@@ -176,7 +176,7 @@ Don't tell readers someone is "passionate." Show what they do at 5 AM, how they 
 
 ## Data Integration
 
-Statistics serve the narrative, not the other way around. Stanford research found stories are 22 times more memorable than statistics alone.
+Statistics serve the narrative, not the other way around.
 
 ### Anchor numbers to human experience
 
@@ -184,7 +184,7 @@ Don't present statistics in isolation. Tie them to individuals or communities. T
 
 ### Context before numbers
 
-Provide the timeframe, conditions, and significance before dropping a figure. "Since the program launched in 2018, enrollment has more than tripled — from 12,000 to 41,000" is better than starting with raw numbers.
+Provide the timeframe, conditions, and significance before dropping a figure. "Since the program launched in 2018, enrollment has more than tripled, from 12,000 to 41,000" is better than starting with raw numbers.
 
 ### Use comparison and proportion
 
@@ -219,20 +219,20 @@ Paraphrase dry facts. Quote emotions, opinions, and newsworthy expressions. The 
 
 ### Structural role
 
-Include a direct quote after every few paragraphs to break up the writer's voice. But never let a quote stand without context — the paragraph before sets it up, the paragraph after explains its significance.
+Include a direct quote after every few paragraphs to break up the writer's voice. But never let a quote stand without context; the paragraph before sets it up, the paragraph after explains its significance.
 
 ---
 
 ## Earned Turns
 
-A writer must build sufficient evidentiary or narrative foundation before making a claim, shifting topics, or asking the reader to accept a new premise. You cannot assert something the reader has no reason to believe.
+Before a section turns to a new topic or a larger claim, or asks the reader to accept a new premise, the reader needs enough evidence or narrative to follow. Within a body paragraph the point still comes first. You cannot assert something the reader has no reason to believe.
 
 ### How it manifests
 
 - **The nut graf is an earned turn.** The anecdotal lede earns the right to make a broader claim. Without the specific human story first, the generalization feels ungrounded.
 - **Section breaks require launch pads.** The sentence before a break must earn the reader's willingness to follow the story into new territory.
-- **Arguments escalate through evidence.** Each claim must be supported before the next one is introduced: evidence → claim → evidence → larger claim.
+- **Arguments escalate through evidence.** Support each claim before moving on to a larger one, so the argument climbs from paragraph to paragraph. Within a body paragraph the point comes first and its evidence follows. Ledes and scene-setting openings are the exception: they hold the point back by design, and the nut graf delivers it (the writer skill's forbidden-patterns reference states the same rule).
 
 ### The test
 
-Before any shift in topic, tone, or claim, ask: "Have I given the reader enough reason to follow me here?" If the answer is no, you need more evidence, more scene, or more context before the turn. Every assertion must be preceded by the reporting that supports it. Every emotional appeal must be preceded by the concrete detail that justifies it.
+Before any shift in topic, tone, or claim, ask: "Have I given the reader enough reason to follow me here?" If the answer is no, you need more evidence, more scene, or more context before the turn. Every assertion needs its supporting reporting on the page before the piece moves past it, and every emotional appeal needs the concrete detail that justifies it.

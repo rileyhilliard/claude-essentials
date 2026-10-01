@@ -54,9 +54,8 @@ work on the hosted platform. That's where value accumulates.
 ```
 Recommendation: Use DuckDB for dataset queries.
 
-Not because it's trendy. Because our workload is analytical (scans, aggregations)
-and DuckDB is purpose-built for that. PostgreSQL would work but we'd fight it
-constantly.
+Our workload is analytical (scans and aggregations), and DuckDB is purpose-built
+for that. PostgreSQL would work, but we'd fight it constantly.
 ```
 
 ### Honest tradeoffs
@@ -65,8 +64,7 @@ constantly.
 ## Tradeoffs
 
 This approach is slower to implement (2 sprints vs 1). We're choosing it anyway
-because the alternative creates tech debt we'd pay for over the next year. Short
-term pain, long term gain.
+because the alternative creates tech debt we'd pay for over the next year.
 ```
 
 ### Evidence-based reasoning

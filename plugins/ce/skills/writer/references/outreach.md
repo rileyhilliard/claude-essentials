@@ -36,7 +36,7 @@ Subject line (2-4 words, their name or project, a question)
 
 ## Example Tone
 
-Note: the email below has one run-on paragraph and a slightly casual sign-off -- intentional. Real emails aren't four perfectly calibrated paragraphs each serving exactly one purpose. Let at least one sentence go a little long. Let the register slip slightly casual in at least one place. If every paragraph is the same length and every sentence pulls its weight perfectly, it reads like a textbook example, not a real email.
+Note: the email below has one run-on paragraph and a slightly casual sign-off on purpose. Real emails aren't four perfectly calibrated paragraphs each serving exactly one purpose. Let at least one sentence go a little long. Let the register slip slightly casual in at least one place. If every paragraph is the same length and every sentence pulls its weight perfectly, it reads like a textbook example, not a real email.
 
 ```
 Subject: Austin permitting data question
@@ -44,7 +44,7 @@ Subject: Austin permitting data question
 Hi Sarah,
 
 I saw your talk at the Open Austin meetup about the permitting data gaps
-in the city portal -- you mentioned spending two weeks reconciling formats
+in the city portal. You mentioned spending two weeks reconciling formats
 between APD and Travis County, which is the exact thing I've been banging
 my head against for the past month on a project that's supposed to be about
 analysis, not data wrangling.

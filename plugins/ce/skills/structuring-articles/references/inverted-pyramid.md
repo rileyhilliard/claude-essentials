@@ -8,7 +8,7 @@ Best for: breaking news, policy announcements, reports, analyses, any piece wher
 
 ## Structure
 
-### 1. The Hard Lede — 1-2 sentences
+### 1. The Hard Lede (1-2 sentences)
 
 The most critical information in the fewest words. Answer the essential Who, What, Where, When. This is not a place for scene-setting or narrative. It's the headline expanded into a sentence.
 
@@ -16,13 +16,13 @@ Keep it to 25-35 words. Every word must be functional. If you can cut a word wit
 
 **Example:** "The Federal Reserve raised interest rates by a quarter point Wednesday, its tenth consecutive increase, pushing borrowing costs to the highest level in 22 years."
 
-### 2. The Nut Graf — 1-2 paragraphs
+### 2. The Nut Graf (1-2 paragraphs)
 
 Explain the Why and How. Ground the breaking news in context: what caused this, what are the immediate consequences, what are the stakes. This is where you transform a fact into a story.
 
-The nut graf in an inverted pyramid is more analytical than in the WSJ Formula. You're not zooming out from an anecdote — you're deepening a fact.
+The nut graf in an inverted pyramid is more analytical than in the WSJ Formula, because it deepens a fact the reader already has.
 
-### 3. Main Body — varies
+### 3. Main Body (varies)
 
 Direct quotes from primary sources, crucial supporting statistics, and a narrative play-by-play of the event. Each paragraph should be able to stand alone. Each should be less essential than the one before it.
 
@@ -43,7 +43,7 @@ Minor details, administrative information, forward-looking quotes from secondary
 The pure inverted pyramid can feel mechanical. Modern practitioners (especially at the Times and Washington Post) often hybridize it:
 
 - **Add a scene or anecdote after the hard lede** to give the reader something human to hold onto, then continue with the pyramid structure below.
-- **Use the "nut graf duo"** — a hard lede paired with a nut graf that reframes the significance, creating a 1-2 punch at the top before the descent.
+- **Use the "nut graf duo"**: a hard lede paired with a nut graf that reframes the significance, creating a 1-2 punch at the top before the descent.
 - **End with a strong quote or forward-looking paragraph** rather than trailing off into minor details.
 
 These tweaks preserve the front-loading discipline while making the reading experience less like a government report.
