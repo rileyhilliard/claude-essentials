@@ -1,0 +1,23 @@
+{
+  "name": "ce",
+  "version": "5.1.0",
+  "description": "Claude Essentials: plan execution, writing style, design, testing, architecture, database and Effect skills, and session post-mortems",
+  "author": {
+    "name": "Riley Hilliard",
+    "url": "https://github.com/rileyhilliard"
+  },
+  "homepage": "https://github.com/rileyhilliard/claude-essentials",
+  "repository": "https://github.com/rileyhilliard/claude-essentials",
+  "license": "MIT",
+  "keywords": ["skills", "planning", "writing", "design", "testing", "effect", "post-mortem"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Claude Essentials",
+    "shortDescription": "Engineering and writing skills",
+    "longDescription": "The skills from the claude-essentials Claude Code plugin, shared as-is: plan execution, writing style, design, testing, architecture, databases, Effect 4 and session post-mortems.",
+    "developerName": "Riley Hilliard",
+    "category": "Developer Tools",
+    "capabilities": [],
+    "websiteURL": "https://github.com/rileyhilliard/claude-essentials"
+  }
+}

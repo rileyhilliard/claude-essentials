@@ -6,6 +6,8 @@
 !/docs/
 !/plugins/
 !/.claude-plugin/
+!/.agents/
+!/scripts/
 !/CLAUDE.md
 
 # And these files

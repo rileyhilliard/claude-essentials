@@ -1,6 +1,6 @@
 # Claude Essentials
 
-A Claude Code plugin with the skills and agents I use every day: executing plans with a devil's advocate pass and a code review, writing that doesn't read like AI, and a handful of engineering skills. Everything lives under the `ce` namespace.
+A Claude Code plugin with the skills and agents I use every day: executing plans with a devil's advocate pass and a code review, writing that doesn't read like AI, and a handful of engineering skills. Everything lives under the `ce` namespace. The skills also install in Codex from the same files.
 
 <img src="/assets/hackerman.gif" width="100%" alt="hackerman">
 
@@ -22,6 +22,7 @@ Skills load on their own when a request matches their description, and each one 
 | [ce:writing-tests](plugins/ce/skills/writing-tests/SKILL.md) | Testing Trophy with real dependencies, async waiting, and diagnosing flaky tests |
 | [ce:handling-errors](plugins/ce/skills/handling-errors/SKILL.md) | Error handling that doesn't swallow failures or lose context |
 | [ce:managing-databases](plugins/ce/skills/managing-databases/SKILL.md) | PostgreSQL, DuckDB, Parquet, PGVector and Neo4j architecture, plus SQL and indexing patterns |
+| [ce:effect](plugins/ce/skills/effect/SKILL.md) | Effect 4 code checked against the installed release: Effect 3 names that no longer exist, where the installed docs live, and references for errors, layers, resources, schema, tests, HTTP, SQL, CLI and config |
 
 ### Agents
 
@@ -39,6 +40,13 @@ You need [Claude Code](https://www.claude.com/product/claude-code).
 ```bash
 /plugin marketplace add https://github.com/rileyhilliard/claude-essentials
 /plugin install ce
+```
+
+For [Codex](https://developers.openai.com/codex), which gets the skills (the agents are Claude Code only):
+
+```bash
+codex plugin marketplace add rileyhilliard/claude-essentials
+codex plugin add ce@claude-essentials
 ```
 
 ## Usage

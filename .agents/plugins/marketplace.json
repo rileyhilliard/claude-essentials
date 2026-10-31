@@ -1,0 +1,20 @@
+{
+  "name": "claude-essentials",
+  "interface": {
+    "displayName": "Claude Essentials"
+  },
+  "plugins": [
+    {
+      "name": "ce",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ce"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

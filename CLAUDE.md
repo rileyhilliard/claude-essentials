@@ -1,21 +1,24 @@
 # CLAUDE.md
 
-Guidance for working in this repository, the `claude-essentials` marketplace that ships one Claude Code plugin, `ce`.
+Guidance for working in this repository, the `claude-essentials` marketplace that ships one plugin, `ce`, to Claude Code and to Codex from the same files.
 
 ## Layout
 
 ```
-.claude-plugin/marketplace.json     # Marketplace catalog: one entry, source ./plugins/ce
+.claude-plugin/marketplace.json     # Claude Code marketplace catalog: one entry, source ./plugins/ce
+.agents/plugins/marketplace.json    # Codex marketplace catalog: the same entry
 docs/
   claude-code-best-practices.md     # Current schema and authoring guidance, with source URLs
   extending-for-projects.md         # How a project layers its own .claude/ on top of ce
 plugins/ce/
-  .claude-plugin/plugin.json        # name, version, description, author, license
-  skills/<name>/SKILL.md            # 10 skills, each with optional references/ and scripts/
-  agents/<name>.md                  # 4 agents
+  .claude-plugin/plugin.json        # Claude Code manifest: name, version, description, author, license
+  .codex-plugin/plugin.json         # Codex manifest: same name and version, "skills": "./skills/", interface
+  skills/<name>/SKILL.md            # 11 skills, each with optional references/, scripts/ and agents/openai.yaml
+  agents/<name>.md                  # 4 agents (Claude Code only)
+scripts/check-manifests.sh          # Fails when the two manifests' name or version differ
 ```
 
-Claude Code auto-discovers `skills/` and `agents/`, so the manifests don't list components. The plugin name adds the `ce:` prefix; file names and frontmatter use bare names (`writing-tests`, not `ce:writing-tests`), including cross-references inside skills and in an agent's `skills:` field.
+Both agents read the same `skills/` tree; only the manifests are per agent. Claude Code auto-discovers `skills/` and `agents/`, so the manifests don't list components. Codex reads `skills/` through its manifest and ignores `agents/`, whose frontmatter is Claude Code's; a Codex delegate can still run an agent's body as a plain prompt. A skill's optional `agents/openai.yaml` holds Codex-only settings: `policy: allow_implicit_invocation: false` keeps a workflow with side effects (`executing-plans`, `post-mortem`) from loading on its own in Codex, where a delegate must not commit or merge. The plugin name adds the `ce:` prefix; file names and frontmatter use bare names (`writing-tests`, not `ce:writing-tests`), including cross-references inside skills and in an agent's `skills:` field.
 
 ## Inventory
 
@@ -31,6 +34,7 @@ Claude Code auto-discovers `skills/` and `agents/`, so the manifests don't list 
 | writing-tests | Testing Trophy, waiting patterns, flaky-test diagnosis |
 | handling-errors | Error propagation and logging without silent failures |
 | managing-databases | Postgres, DuckDB, Parquet, PGVector, Neo4j, SQL and index patterns |
+| effect | Effect 4 against the installed release: old-major renames, where the installed docs live, and per-topic references |
 
 | Agent | Model | Purpose |
 | --- | --- | --- |
@@ -69,7 +73,7 @@ color: red                   # red, blue, green, yellow, purple, orange, pink, c
 
 Plugin agents ignore `hooks`, `mcpServers` and `permissionMode`.
 
-Versioning: `version` lives only in `plugins/ce/.claude-plugin/plugin.json`. Bump it on every change that should reach installed copies, and bump the major version when a skill, agent or command is removed or renamed.
+Versioning: `version` lives in both `plugins/ce/.claude-plugin/plugin.json` and `plugins/ce/.codex-plugin/plugin.json`, and `scripts/check-manifests.sh` fails when they differ. Bump both on every change that should reach installed copies, and bump the major version when a skill, agent or command is removed or renamed.
 
 ## Writing skills
 
@@ -78,6 +82,8 @@ Versioning: `version` lives only in `plugins/ce/.claude-plugin/plugin.json`. Bum
 - Include only what the model wouldn't do unaided: the user's taste, process, and project-specific gotchas. Generic engineering advice costs context and changes nothing.
 - Explain the reason behind a rule instead of emphasizing it. ALL-CAPS, "CRITICAL" and "MUST" over-trigger on current models, and self-verification checklists cause over-verification.
 - Opinionated skills open with a line deferring to the repo's own `.claude/rules/` and CLAUDE.md.
+- Write skills so either agent can follow them: say what to do ("read the file", "search for the declaration"), not which Claude Code tool to call, and put agent-specific settings in frontmatter the other agent ignores or in `agents/openai.yaml`.
+- Point at sources that stay current (installed package docs, the vendor's own guides) instead of copying details that change with each release, and mark any remaining version-specific behavior as observed in a named release.
 - Prose in this repo follows the writer skill: plain and specific, no marketing language, no emoji, and no em dashes.
 
 ## Verifying changes
@@ -85,6 +91,7 @@ Versioning: `version` lives only in `plugins/ce/.claude-plugin/plugin.json`. Bum
 ```bash
 claude plugin validate --strict .            # marketplace.json
 claude plugin validate --strict plugins/ce   # plugin.json and components
+scripts/check-manifests.sh                   # Claude Code and Codex manifests agree
 ```
 
 Also check that each SKILL.md and agent has valid YAML frontmatter with `name` matching its file or directory, and grep for references to anything removed. Invalid skill frontmatter fails silently: the skill loads with no description and never triggers.
@@ -94,4 +101,11 @@ Also check that each SKILL.md and agent has valid YAML frontmatter with `name` m
 ```bash
 /plugin marketplace add https://github.com/rileyhilliard/claude-essentials
 /plugin install ce
+```
+
+Codex:
+
+```bash
+codex plugin marketplace add rileyhilliard/claude-essentials
+codex plugin add ce@claude-essentials
 ```
