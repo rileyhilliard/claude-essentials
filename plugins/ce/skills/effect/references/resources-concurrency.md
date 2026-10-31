@@ -20,6 +20,8 @@ Acquisition is uninterruptible by default, so keep it short; `acquireRelease(acq
 
 Release runs on every exit. Rollback is a release that reads `exit` and undoes only on failure or interruption; a successful commit must not trigger it.
 
+A rollback step can fail too. Keep the original failure as the operation's result, keep attempting the other undo steps, and make each one that couldn't finish visible (a warning, a field in the error report) so the caller doesn't assume the old state survived. Wrapping each undo in `Effect.ignore` hides exactly that.
+
 ## Fibers: lifetime versus observation
 
 Prefer combinators that own their fibers: `Effect.all`, `Effect.forEach` with `{ concurrency }`, `Effect.race`, `raceAll`. Fork only for work that runs alongside the current fiber.
@@ -32,7 +34,7 @@ Prefer combinators that own their fibers: `Effect.all`, `Effect.forEach` with `{
 | `Effect.forkDetach` | nobody; needs a deliberate application-level owner |
 | `FiberSet.run`, `FiberMap.run(key)`, `FiberHandle.run` | a scoped collection; `FiberMap` and `FiberHandle` replace the previous fiber for the same key |
 
-Ending a fiber's scope stops it from leaking. It does not make its failure reach anyone: a forked fiber that fails while its owner stays alive fails silently. `Fiber.join` re-raises the failure in the joiner; `Fiber.await` returns the `Exit` for the owner to inspect. A background worker ends in a cause-level handler that reports the failure and decides whether to stop or restart. Work that outlives an HTTP response is forked into an application scope, not the request's.
+Ending a fiber's scope stops it from leaking. It does not make its failure reach anyone: a forked fiber that fails while its owner stays alive fails silently. `Fiber.join` re-raises the failure in the joiner; `Fiber.await` returns the `Exit` for the owner to inspect. A background worker ends in a cause-level handler that reports the failure and decides whether to stop or restart. Give background work both a lifetime owner (its scope) and a failure owner: join when the result is required, inspect the `Exit` when handling it explicitly, or report at the worker's owner, and don't join a long-running worker just to observe it when that would block the operation that owns it. Work that outlives an HTTP response is forked into an application scope, not the request's.
 
 ## State and caching
 
