@@ -55,7 +55,7 @@ Review one lane before its phase lands: `git diff <landing branch>...<lane branc
 
 <lane brief>
 
-Check only: behavior that contradicts the brief, edge cases in the brief that the code gets wrong, contract signatures used differently from the brief's interface, errors that are swallowed or lose context, and code a new reader couldn't follow (files over about 250 lines or functions over about 40 doing more than one job, logic mixed with I/O, comments that restate the code or narrate the change). Skip formatting preferences and anything the brief marks out of scope. Don't run lint, typecheck or tests; the gate covers them.
+Check only: behavior that contradicts the brief, edge cases in the brief that the code gets wrong, contract signatures used differently from the brief's interface, errors that are swallowed or lose context, and code a new reader couldn't follow (files over about 250 lines or functions over about 40 doing more than one job, logic mixed with I/O, exports missing a JSDoc-style doc block or `@throws`, comments that restate the code or narrate the change). Skip formatting preferences and anything the brief marks out of scope. Don't run lint, typecheck or tests; the gate covers them.
 
 Return at most five findings, most severe first, each with file:line and the input or state that breaks, instead of your default template. If the lane is sound, say so in one line.
 ```
@@ -67,7 +67,7 @@ Dispatch `code-reviewer` with `model: opus`.
 ```
 Review the diff `git diff <scaffold parent>..HEAD` on branch <branch>. Read <plan path> for the agreed scope; anything listed as out of scope is not a finding.
 
-Focus only on correctness against the spec, gaps in the tests for in-scope behavior, type safety, bugs at lane boundaries (code from different lanes that disagrees about a contract), and maintainability: files or functions that hold more than one responsibility, logic in entry points or catch-all helper files, modules reaching into each other's internals, swallowed errors, and comments that restate the code or narrate the change instead of explaining why. Skip project-standards discovery, documentation, UX and accessibility sections. Don't run lint, typecheck or tests; the gate already ran them.
+Focus only on correctness against the spec, gaps in the tests for in-scope behavior, type safety, bugs at lane boundaries (code from different lanes that disagrees about a contract), and maintainability: files or functions that hold more than one responsibility, logic in entry points or catch-all helper files, modules reaching into each other's internals, swallowed errors, exports missing a JSDoc-style doc block or `@throws` for errors callers can see, and comments that restate the code or narrate the change instead of explaining why. Skip project-standards discovery, documentation, UX and accessibility sections. Don't run lint, typecheck or tests; the gate already ran them.
 
 Return at most eight findings, most severe first, each with file:line and the concrete input or state that breaks (for a maintainability finding, the split or rewrite that fixes it), instead of your default template. Skip formatting preferences.
 ```

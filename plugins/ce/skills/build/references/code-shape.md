@@ -33,6 +33,7 @@ Add this to the inline check in SKILL.md section 5. Send a lane back when any of
 - Logic placed in the entry point, or a new `utils`-style file.
 - A module reaching into another module's internals instead of its exported contract.
 - A catch block that swallows an error, returns a default in its place, or drops the original cause.
+- An exported declaration or module file without a JSDoc-style doc block, a function that can throw with no `@throws`, or JSDoc that repeats TypeScript types.
 - Comments that restate the code, narrate the change ("added", "now", "fixed"), or refer to the task.
 - Names that need a comment to be understood (`data`, `tmp`, `handle`, `process`, single letters outside tiny loops).
 
@@ -57,8 +58,21 @@ Errors
 - Follow the handling-errors skill and the plan's error model. Catch only where you can recover or add context, wrap with the original cause attached, and never return a default or an empty value in place of a failure.
 
 Comments
-- Default to none. Names and types carry the what. Write a comment only for something the code can't say: why this approach, a constraint from outside the code, a surprising edge case, or a unit.
-- Write comments as a colleague would explain it across the desk: plain, specific, one or two sentences, no hype and no em dashes. Say what is true now, not what you changed or what the task was.
-- Each exported function or type gets a one-line summary only when its name and signature leave a question open.
+- Doc comments are JSDoc style: a `/** ... */` block directly above the declaration. In other languages use the equivalent doc-comment form (Python docstrings, Rust and C# `///`, Go comments starting with the name).
+- Every exported function, class, type and constant gets one, opening with a one-sentence summary of what it does or represents. Each module file opens with a short block saying what the module is responsible for.
+- Add `@throws` (or the language's equivalent) for every error a caller can see, naming the error type and when it happens. Add `@param` and `@returns` only when the name and type leave a question open, such as units, ranges, or what an empty value means. In TypeScript never repeat the type inside JSDoc braces; the signature already has it.
+- Inside function bodies, use plain `//` line comments, and only for what the code can't say: why this approach, a constraint from outside the code, a surprising edge case.
+- Write every comment as a colleague would explain it across the desk: plain, specific, no hype and no em dashes. Say what is true now, not what you changed or what the task was.
 - No commented-out code, and no TODO without a reason and an owner.
+
+Example:
+
+    /**
+     * Applies the customer's discount tier to an order subtotal.
+     * Tiers stack with promo codes, but the total discount is capped at 50%.
+     *
+     * @param subtotalCents - Pre-tax subtotal in cents.
+     * @throws {UnknownTierError} When the customer's tier isn't in the pricing table.
+     */
+    export function applyDiscount(subtotalCents: number, customer: Customer): number {
 ```
