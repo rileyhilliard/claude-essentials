@@ -52,7 +52,9 @@ Stop after the round that settles phase 1, usually two rounds and at most three.
 
 ## 2. Plan
 
-Load the `architecting-systems`, `writing-tests` and `handling-errors` skills before writing the plan. They set the house style for module boundaries, the contracts lanes build against, what the tests check, and how errors propagate, and those decisions are cheapest to make here, before any lane depends on them. The plan's contracts section is where the architecture shows up, and its spec should state the error model (what fails, how it's reported, what a caller sees).
+Load the `architecting-systems`, `writing-tests`, `handling-errors` and `writer` skills before writing the plan, and read [references/code-shape.md](references/code-shape.md). They set the house style for module boundaries, the contracts lanes build against, what the tests check, how errors propagate, and how code comments read, and those decisions are cheapest to make here, before any lane depends on them. The plan's contracts section is where the architecture shows up: it lists every module path with its single responsibility, and its spec states the error model (what fails, how it's reported, what a caller sees).
+
+Lanes pass their tests by the shortest route, which is usually one large file. They can only split work across files the plan gave them, so the module layout is decided here, not discovered during the build. A plan whose contracts section names a single implementation file for more than one responsibility isn't ready to show the user.
 
 Write the plan to `plans/build-<slug>.md` using [references/plan-template.md](references/plan-template.md), and show the user the phase list in a few lines. The user approves the phases, not the prose. Write full lane briefs and test-case lists for phase 1 only; later phases get one-line lane rows now and their briefs while the phase before them runs, so planning stays inside its budget.
 
@@ -109,6 +111,7 @@ While it runs, create the landing branch and commit the scaffold:
 
 - The plan file.
 - Shared types and interfaces that lanes import.
+- The full folder layout from the plan's contracts section, with the entry point limited to wiring.
 - A stub at every planned module path that exports its contract signatures and throws "not implemented", so typecheck passes at the scaffold commit and only the tests fail. Empty files would fail every lane's typecheck on modules it doesn't own.
 - The phase 1 tests, written from the test-case list and read by you before committing, with a test for every edge case the spec names, since a lane implements what its tests check and skips what they don't.
 - Anything the gate needs to run.
@@ -121,7 +124,7 @@ When the DA returns, check each finding against the plan. Apply the ones that ch
 
 Phases after the first start with their own scaffold commit: that phase's stubs and tests, merged from the test-writing lane if one wrote them. Never merge a later phase's tests during the current phase, since the gate would fail on tests nobody is meant to pass yet.
 
-Dispatch all lanes of the phase in one message as background `builder` agents, each in its own worktree, using the lane prompt in [references/dispatch-prompts.md](references/dispatch-prompts.md). They must run in the background so you can check and merge each as it reports. The prompt has each lane confirm it started from the current scaffold commit and run the setup command first. The `builder` agent preloads the same three skills, so lanes follow the conventions the plan was written against. Its default model is sonnet; pass `model: opus` for lanes that fail the checks in "Choosing a lane's model". If the user asked for Codex delegation and the `foreman` skill is installed, a lane can go to it with the same brief, plus a line telling it to follow the ce `architecting-systems`, `writing-tests` and `handling-errors` skills, and a `--budget` that ends before the phase's checkpoint.
+Dispatch all lanes of the phase in one message as background `builder` agents, each in its own worktree, using the lane prompt in [references/dispatch-prompts.md](references/dispatch-prompts.md). They must run in the background so you can check and merge each as it reports. The prompt has each lane confirm it started from the current scaffold commit and run the setup command first. The `builder` agent preloads the same three skills, and the lane prompt carries the code-shape block from [references/code-shape.md](references/code-shape.md) (structure, naming, errors, comments), so lanes follow the conventions the plan was written against. Its default model is sonnet; pass `model: opus` for lanes that fail the checks in "Choosing a lane's model". If the user asked for Codex delegation and the `foreman` skill is installed, a lane can go to it with the same brief and code-shape block, plus a line telling it to follow the ce `architecting-systems`, `writing-tests` and `handling-errors` skills, and a `--budget` that ends before the phase's checkpoint.
 
 While lanes run, do the inline work: the phase's inline lane if there is one, then the next phase's briefs and test-case lists. Commit inline work whenever it compiles, because lane merges land in the same checkout.
 
@@ -148,6 +151,7 @@ Do the check yourself, inline, as soon as the lane reports. Spawning a reviewer 
 
 1. Mechanical, against `git diff <landing branch>...<lane branch>`: every changed path is in the lane's owned files; no test file changed unless the lane is a test-writing lane; no `.skip`, `.only` or `todo` was added; no manifest or lockfile changed; no new type or lint suppressions. Any hit sends the lane back.
 2. Read the diff against the brief: nothing outside the brief was added, and each choice the lane reported is one you accept. Log accepted choices in the plan. This takes a minute or two.
+3. Read the diff for shape using the list in "Checking a lane diff" in [references/code-shape.md](references/code-shape.md): oversized files or functions, logic in the entry point, catch-all helper files, cross-module reach-ins, swallowed errors, and comments that restate code or narrate the change. Passing tests don't cover any of these, and each one compounds when the next phase builds on it, so send the lane back.
 
 For lanes that ran on opus because they needed judgment, also dispatch the `code-reviewer` agent in the background with the lane-check prompt in [references/dispatch-prompts.md](references/dispatch-prompts.md), scoped to that lane's diff and brief. It runs while other lanes are still working, so it delays the phase only when it belongs to the last lane to report. The phase's tag waits for any lane review still running, and its findings are fixed before the tag.
 
@@ -162,6 +166,8 @@ When a lane is past its checkpoint, land the phase without it. Its work either f
 ## 6. Review once, then finish
 
 At the 80% checkpoint, or when the last phase lands, stop starting work. Dispatch the `code-reviewer` agent in the background with `model: opus` and the final-review prompt in [references/dispatch-prompts.md](references/dispatch-prompts.md), against the diff from the scaffold's parent to HEAD. While it runs, go through the demo yourself and fix rough edges.
+
+The review includes readability: file and function size, module boundaries and comment quality. A finding there counts like any other, so split the file or rewrite the comment before the final tag.
 
 Check each finding against the code, fix the ones that hold, run the full gate, commit, and move the last phase tag or add a `final` tag. This is the only full review. Findings left unfixed because time ran out go in the final report.
 

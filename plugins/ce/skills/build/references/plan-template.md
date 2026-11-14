@@ -24,6 +24,14 @@ Error model: what fails, how it's reported, what a caller sees.
 
 Shared types, interfaces and file layout that lanes build against, and the stub at each module path (exports the contract signatures, throws "not implemented"). Anything two lanes both need lives here.
 
+Layout: the folder tree, with one line per module giving its single responsibility, and the entry point marked as wiring only. Example:
+
+    src/
+      main.ts              wires config, routes and server; no logic
+      orders/parse.ts      validates a raw order request into an Order
+      orders/pricing.ts    computes totals and discounts; pure
+      orders/store.ts      reads and writes orders; the only module that touches the database
+
 ## Phases
 
 ### Phase 1: <capability> (MVP)
