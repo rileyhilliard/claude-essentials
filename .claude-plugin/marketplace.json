@@ -9,7 +9,7 @@
     {
       "name": "ce",
       "source": "./plugins/ce",
-      "description": "Plan execution with devil's advocate and code review, a writing style guide, design, testing, architecture and database skills, and session post-mortems",
+      "description": "Timeboxed phased builds with parallel lanes, plan execution with devil's advocate and code review, a writing style guide, design, testing, architecture and database skills, and session post-mortems",
       "category": "workflows"
     }
   ]
