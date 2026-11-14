@@ -13,17 +13,18 @@ docs/
 plugins/ce/
   .claude-plugin/plugin.json        # Claude Code manifest: name, version, description, author, license
   .codex-plugin/plugin.json         # Codex manifest: same name and version, "skills": "./skills/", interface
-  skills/<name>/SKILL.md            # 11 skills, each with optional references/, scripts/ and agents/openai.yaml
-  agents/<name>.md                  # 4 agents (Claude Code only)
+  skills/<name>/SKILL.md            # 12 skills, each with optional references/, scripts/ and agents/openai.yaml
+  agents/<name>.md                  # 5 agents (Claude Code only)
 scripts/check-manifests.sh          # Fails when the two manifests' name or version differ
 ```
 
-Both agents read the same `skills/` tree; only the manifests are per agent. Claude Code auto-discovers `skills/` and `agents/`, so the manifests don't list components. Codex reads `skills/` through its manifest and ignores `agents/`, whose frontmatter is Claude Code's; a Codex delegate can still run an agent's body as a plain prompt. A skill's optional `agents/openai.yaml` holds Codex-only settings: `policy: allow_implicit_invocation: false` keeps a workflow with side effects (`executing-plans`, `post-mortem`) from loading on its own in Codex, where a delegate must not commit or merge. The plugin name adds the `ce:` prefix; file names and frontmatter use bare names (`writing-tests`, not `ce:writing-tests`), including cross-references inside skills and in an agent's `skills:` field.
+Both agents read the same `skills/` tree; only the manifests are per agent. Claude Code auto-discovers `skills/` and `agents/`, so the manifests don't list components. Codex reads `skills/` through its manifest and ignores `agents/`, whose frontmatter is Claude Code's; a Codex delegate can still run an agent's body as a plain prompt. A skill's optional `agents/openai.yaml` holds Codex-only settings: `policy: allow_implicit_invocation: false` keeps a workflow with side effects (`build`, `executing-plans`, `post-mortem`) from loading on its own in Codex, where a delegate must not commit or merge. The plugin name adds the `ce:` prefix; file names and frontmatter use bare names (`writing-tests`, not `ce:writing-tests`), including cross-references inside skills and in an agent's `skills:` field.
 
 ## Inventory
 
 | Skill | Purpose |
 | --- | --- |
+| build | Prompt to demo-ready branch fast: grill, phased plan, quick DA, parallel lanes checked and landed per phase, one final review |
 | executing-plans | Plan to merged result: DA review, grouped subagents, tests, code review, local merge |
 | post-mortem | Session and multi-session reviews; `scripts/extract-friction.py` builds the transcript digest |
 | writer | Voice guide, ten personas, AI-tell catalog in `references/forbidden-patterns.md` |
@@ -38,6 +39,7 @@ Both agents read the same `skills/` tree; only the manifests are per agent. Clau
 
 | Agent | Model | Purpose |
 | --- | --- | --- |
+| builder | sonnet | One build-skill lane from a complete brief, background worktree, owned files only; preloads architecting-systems, writing-tests, handling-errors |
 | code-reviewer | opus | Flat fix list for a branch diff; preloads handling-errors, writing-tests, architecting-systems |
 | devils-advocate | opus | Plan and design critique checked against the code |
 | copywriter | opus | Long-form drafting; preloads structuring-articles and writer |
