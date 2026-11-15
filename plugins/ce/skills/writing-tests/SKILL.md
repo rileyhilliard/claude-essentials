@@ -11,13 +11,18 @@ Test what a user or caller can observe, using real dependencies, so tests surviv
 
 ## Which kind of test
 
-| Situation | Test type |
-| --- | --- |
-| Most code: several units working together | Integration, with a real test database and real internal modules |
-| A complete user workflow | E2E |
-| A pure function with no side effects | Unit |
+Most tests should be integration tests written as behavior tests (the Testing Trophy: integration is the widest layer, with fewer unit and E2E tests around it). Enter through an interface a user or caller really uses, such as an HTTP route, a CLI command, a rendered component or a service's public function. Run it against the real database and real internal modules, then assert on the observable result. Name each test for the behavior ("rejects a duplicate email"), not the function it calls.
 
-Integration is the default because it gives the most confidence per test. Isolated unit tests of code with dependencies usually end up testing the mocks.
+Integration is the default because it covers the wiring between units, which is where most bugs live, and it survives refactoring because it knows nothing about internals. Isolated unit tests of code with dependencies mostly end up testing the mocks.
+
+Reach for another type only when it fits:
+
+| Type | Use it for | Don't use it for |
+| --- | --- | --- |
+| Unit | Pure logic with no I/O or dependencies: parsers, calculations, formatters, validators, state machines. It pays off when many input combinations are cheap to run | Anything that needs a mock of your own module to run. Write an integration test instead |
+| E2E / acceptance | A handful of critical journeys (sign-up, checkout, login) through the deployed stack in a real browser, and behavior only the full stack shows: browser quirks, deployment wiring, third-party redirects | Edge cases and error branches. Cover those at the integration level, where tests are faster and less flaky |
+
+When unsure, write the integration test.
 
 ## Mocking
 
