@@ -19,7 +19,7 @@ Reach for another type only when it fits:
 
 | Type | Use it for | Don't use it for |
 | --- | --- | --- |
-| Unit | Pure logic with no I/O or dependencies: parsers, calculations, formatters, validators, state machines. It pays off when many input combinations are cheap to run | Anything that needs a mock of your own module to run. Write an integration test instead |
+| Unit | Edge cases a behavior test can't reach, and pure logic (parsers, calculations, validators, state machines) whose input combinations are too many to run through the interface | Cases a behavior test already covers, and anything that needs a mock of your own module to run. Write an integration test instead |
 | E2E / acceptance | A handful of critical journeys (sign-up, checkout, login) through the deployed stack in a real browser, and behavior only the full stack shows: browser quirks, deployment wiring, third-party redirects | Edge cases and error branches. Cover those at the integration level, where tests are faster and less flaky |
 
 When unsure, write the integration test.
@@ -47,9 +47,13 @@ Mock only what you don't own or can't control: external HTTP APIs, third-party s
 
 Name tests after the behavior they check, and cover the error paths as well as the happy path.
 
-## Size tests to the behavior
+## Cover behavior realistically
 
-Write one test per rule, branch or contract, with realistic input, plus one near miss per kind of false positive the code must not commit. Rows that run another spelling of the same input down the same path, or repeat every case across an independent dimension, add cost and make the behavior expensive to change. Before trimming a suite, prove each deleted test is redundant by breaking the code and its config one rule at a time and checking something still fails; [references/test-value.md](references/test-value.md) has the method.
+A behavior test is not only the happy path. Drive the real entry point through the combinations and edge cases real use produces: inputs in the order and shapes callers send them, chained and mixed operations, state left over from an earlier step, failures of the things it depends on, and the near misses it must not get wrong. One realistic flow often exercises what several contrived single-function tests would, and it keeps doing so through a refactor. Give each realistic case its own row so a failure names it.
+
+Reach for a unit-style test only when a behavior test can't reach the edge case, or when the combinations of a pure function are too many to run through the interface. Don't add one to repeat what a flow already covers.
+
+Size the suite to the behaviors, not the inputs: one case per rule, branch or contract, plus one near miss per kind of false positive. Rows that run another spelling of the same input down the same path, or repeat every case across an independent dimension, add cost and make the behavior expensive to change. Before trimming a suite, prove each deleted test is redundant by breaking the code and its config one rule at a time and checking something still fails; [references/test-value.md](references/test-value.md) has the method.
 
 ## Keep tests fast
 

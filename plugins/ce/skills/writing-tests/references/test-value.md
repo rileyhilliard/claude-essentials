@@ -2,7 +2,7 @@
 
 For deciding how many tests a behavior needs, trimming a suite whose tests repeat each other, and checking that a rewrite of a suite didn't lose coverage.
 
-A test is worth its cost when it guards a behavior no other test guards: a rule, a branch, an error path, an output contract. A row that runs the same code path to the same outcome as another row adds runtime and upkeep, and no protection.
+A test is worth its cost when it guards a behavior no other test guards: a rule, a branch, an error path, an output contract. A row that runs the same code path to the same outcome as another row adds runtime and upkeep, and no protection. Realistic combinations are not repetition: a chained command, an operation on state an earlier step left behind, or a failure partway through each reach a different path and keep their rows. Trimming removes the contrived copies, not the realistic cases.
 
 ## Patterns that inflate a suite
 
