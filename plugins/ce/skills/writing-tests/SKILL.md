@@ -47,11 +47,17 @@ Mock only what you don't own or can't control: external HTTP APIs, third-party s
 | `sleep(500)` before an assertion | Wait for the condition (`findBy`, `waitFor`, Playwright auto-wait, polling helpers) |
 | Asserting internal state | Assert observable output |
 
-Name tests after the behavior they check, and cover the error paths as well as the happy path.
-
 ## Cover behavior realistically
 
 A behavior test is not only the happy path. Drive the real entry point through the combinations and edge cases real use produces: inputs in the order and shapes callers send them, chained and mixed operations, state left over from an earlier step, failures of the things it depends on, and the near misses it must not get wrong. One realistic flow often exercises what several contrived single-function tests would, and it keeps doing so through a refactor. Give each realistic case its own row so a failure names it.
+
+Find the cases by asking what real users, machines and data will throw at the code, not only the cases you had in mind while writing it. Bugs cluster in a few places:
+
+- Boundaries: empty, one, many, the limit and one past it, very large input.
+- State already there: existing records, a duplicate, a half-finished earlier run, data from an older version.
+- Dependencies failing: errors, timeouts, retries, a slow or partial response.
+- Order and timing: concurrent requests, repeated or out-of-order actions, an interruption partway through a write.
+- Text and environment: unicode, quotes and newlines in input, paths with spaces or symlinks, time zones and locales, missing permissions or tools.
 
 There are two ways to get a test to the state an edge case starts from:
 
@@ -63,6 +69,13 @@ Prefer the first. It survives a refactor of anything between the entry point and
 Reach for a unit-style test only when a behavior test can't reach the edge case either way, or when the combinations of a pure function are too many to run through the interface. Don't add one to repeat what a flow already covers.
 
 Size the suite to the behaviors, not the inputs: one case per rule, branch or contract, plus one near miss per kind of false positive. Rows that run another spelling of the same input down the same path, or repeat every case across an independent dimension, add cost and make the behavior expensive to change. Before trimming a suite, prove each deleted test is redundant by breaking the code and its config one rule at a time and checking something still fails; [references/test-value.md](references/test-value.md) has the method.
+
+## Make each test able to fail
+
+A test that passes whether or not the behavior works protects nothing, and it reads exactly like one that does.
+
+- Watch every new test fail once. Break the behavior it covers (revert the fix, delete the rule, invert the condition), run the test, confirm it fails with the message you expect, then restore the code. A test that stays green isn't testing the change.
+- Assert the whole observable result, not just the part you expected: the full response or decoded output, the exact set of findings or errors, both output streams and the exit status. Check that nothing extra happened too: no unexpected output, writes or calls to the outside. A substring or a single field passes when the rest is wrong.
 
 ## Keep tests fast
 
