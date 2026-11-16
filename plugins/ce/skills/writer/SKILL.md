@@ -28,7 +28,7 @@ Lock onto the cadence, sentence weight, word choices, and register of what they 
 | ADRs, design docs, architecture docs, tradeoff analyses      | **The Architect**       | `references/architect.md`   |
 | Strategy memos, analysis, product specs, business cases      | **The PM**              | `references/pm.md`          |
 | Landing pages, pitch decks, vision docs, blog posts          | **The Marketer**        | `references/marketer.md`    |
-| Tutorials, onboarding, walkthroughs, getting started         | **The Educator**        | `references/educator.md`    |
+| Tutorials, walkthroughs, explainers, articles that teach a general reader an unfamiliar subject | **The Educator** | `references/educator.md` |
 | Commit messages, PRs, changelogs, review comments            | **The Contributor**     | `references/contributor.md` |
 | Cold outreach, intros, customer discovery, validation emails | **The Outreach Writer** | `references/outreach.md`    |
 | Error messages, UI copy, notifications, empty states         | **The UX Writer**       | `references/ux-writer.md`   |
