@@ -47,6 +47,19 @@ Mock only what you don't own or can't control: external HTTP APIs, third-party s
 
 Name tests after the behavior they check, and cover the error paths as well as the happy path.
 
+## Keep tests fast
+
+A slow test is a flaky test waiting for a busy machine: the suite runs in parallel on small CI runners, and a test that takes seconds alone times out there. Write each test so its cost is what it asserts and nothing more:
+
+- Set up only what the test reads. Share read-only fixtures across tests; copy a fixture only when the test mutates it.
+- Make fakes return valid responses unless the test is about the failure, so the code's retry and backoff never run by accident.
+- Call code in-process; spawn a process only when the process boundary is the behavior under test.
+- Test a shared artifact (a template, a wrapper, a config shape) once, not once per consumer of it.
+- Give each slow case its own row, and size any explicit timeout from the work it covers.
+- Wait for every child process and server a test starts before its cleanup runs.
+
+Check the cost when you add tests: run the file with per-test durations shown and look at the slowest. [references/slow-tests.md](references/slow-tests.md) has the patterns in detail and how to catch them in the suite.
+
 ## References
 
 | Need | Read |

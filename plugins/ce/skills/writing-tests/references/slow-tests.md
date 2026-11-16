@@ -19,6 +19,16 @@ A test that takes 2 seconds alone can take 15 inside a parallel suite on a small
 | Cleanup that deletes a temp directory while a child process is still writing | Intermittent `ENOTEMPTY` or missing-file errors in teardown | Track every child the test starts and wait for it to exit before cleanup |
 | A process under test that exits before reading its stdin while the test writes to it | Intermittent `EPIPE` in the test's write, worse with large payloads | Have the program drain stdin on every exit path; test it with an input larger than a pipe buffer (256 KiB) |
 
+## Catching them before they flake
+
+Slow tests rarely fail on the day they're written; they fail weeks later on a loaded runner. Make cost visible so it's caught when the test lands:
+
+- Show per-test durations in the normal run and read the slowest few after adding tests: Vitest flags tests over `slowTestThreshold` (set it, e.g. 300 ms, in the config), Jest has `--verbose` and `slowTestThreshold`, pytest has `--durations=10`, Go has `go test -v` timings.
+- Keep the default per-test timeout short (5 s or less) so an expensive test has to declare its timeout and its reason, rather than hiding inside a generous global default.
+- When adding a test file, compare the suite's wall time before and after. A file that adds more than a few seconds needs the patterns above checked.
+- In review, treat a raised timeout, a `beforeAll` that copies a large tree, a fake with retries enabled, or a test that spawns a process per case as a finding to justify, the same as a skipped assertion.
+- For the inherently slow tests, assert a budget where the cost is the point (a CPU or wall-time budget derived from the input size), so growth fails a named test instead of turning into timeouts elsewhere.
+
 ## When a long timeout is right
 
 Some tests are slow by nature: a full build, a real database migration, an end-to-end run. Keep them, give each an explicit timeout sized from a measurement under load (about three times the loaded duration), and say in a one-line comment what it runs and why it takes that long. A bare raised timeout with no measurement hides the next regression.
