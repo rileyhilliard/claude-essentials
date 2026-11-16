@@ -17,6 +17,7 @@ A test that takes 2 seconds alone can take 15 inside a parallel suite on a small
 | Many slow operations in a loop inside one test | One timeout shared by all of them; the failure doesn't say which case broke | One row per case (`test.each`, `pytest.mark.parametrize`), so each has its own timeout and a failure names its case |
 | A fixed timeout unrelated to the work, on a test whose cost grows with its data | It passes until the data grows past it, then fails as a "flake" | Derive the timeout from the work: if the test allows a budget per run and runs it three times, its timeout is three budgets plus slack |
 | Cleanup that deletes a temp directory while a child process is still writing | Intermittent `ENOTEMPTY` or missing-file errors in teardown | Track every child the test starts and wait for it to exit before cleanup |
+| A fixture tool that leaves background work running (a `git commit` that starts detached auto-maintenance, a package manager's post-install task, a daemon a CLI spawns) | A snapshot or cleanup that sees a lock file appear or vanish, only on a slow machine | Turn the background work off in fixtures (`git -c maintenance.auto=false -c gc.auto=0`, offline or no-daemon flags), or wait for it to finish before taking the snapshot |
 | A process under test that exits before reading its stdin while the test writes to it | Intermittent `EPIPE` in the test's write, worse with large payloads | Have the program drain stdin on every exit path; test it with an input larger than a pipe buffer (256 KiB) |
 
 ## Catching them before they flake
