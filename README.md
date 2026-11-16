@@ -20,7 +20,7 @@ Skills load on their own when a request matches their description, and each one 
 | [ce:design](plugins/ce/skills/design/SKILL.md) | Design direction and craft rules for product UIs, with CSS and Tailwind references |
 | [ce:planning-products](plugins/ce/skills/planning-products/SKILL.md) | Product definition before technical planning: discovery, jobs to be done, experience, scope |
 | [ce:architecting-systems](plugins/ce/skills/architecting-systems/SKILL.md) | Module structure, boundaries, coupling, concurrency and observability |
-| [ce:writing-tests](plugins/ce/skills/writing-tests/SKILL.md) | Testing Trophy with real dependencies, async waiting, and diagnosing flaky tests |
+| [ce:writing-tests](plugins/ce/skills/writing-tests/SKILL.md) | Testing Trophy with real dependencies, async waiting, and diagnosing flaky and slow tests |
 | [ce:handling-errors](plugins/ce/skills/handling-errors/SKILL.md) | Error handling that doesn't swallow failures or lose context |
 | [ce:managing-databases](plugins/ce/skills/managing-databases/SKILL.md) | PostgreSQL, DuckDB, Parquet, PGVector and Neo4j architecture, plus SQL and indexing patterns |
 | [ce:effect](plugins/ce/skills/effect/SKILL.md) | Effect 4 code checked against the installed release: Effect 3 names that no longer exist, where the installed docs live, and references for errors, layers, resources, schema, tests, HTTP, SQL, CLI and config |

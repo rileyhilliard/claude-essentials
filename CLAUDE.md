@@ -32,7 +32,7 @@ Both agents read the same `skills/` tree; only the manifests are per agent. Clau
 | design | Product UI direction and craft, CSS and Tailwind references |
 | planning-products | Product definition before technical planning |
 | architecting-systems | Structure, boundaries, coupling, concurrency, observability |
-| writing-tests | Testing Trophy, waiting patterns, flaky-test diagnosis |
+| writing-tests | Testing Trophy, waiting patterns, flaky and slow test diagnosis |
 | handling-errors | Error propagation and logging without silent failures |
 | managing-databases | Postgres, DuckDB, Parquet, PGVector, Neo4j, SQL and index patterns |
 | effect | Effect 4 against the installed release: old-major renames, where the installed docs live, and per-topic references |

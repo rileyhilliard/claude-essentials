@@ -11,6 +11,7 @@ Run the failing test about ten times alone, then about ten times with the suite,
 | Same error every time with the suite, never alone | Shared state leaking between tests | Isolate state per test |
 | Different or random failures | Race: the test doesn't wait for async work | Wait for the condition, not a duration |
 | Port, file lock, or connection errors | Two tests or workers competing for one resource | Give each test or worker its own resource |
+| Timeouts only with the suite or on a small CI runner | The test does more work than it needs and loses the race for CPU | Remove the work; see [slow-tests.md](slow-tests.md) |
 
 Find the polluting test by bisecting the suite order (`pytest -p randomly` with a fixed seed, `jest --runInBand` with a subset) rather than guessing.
 

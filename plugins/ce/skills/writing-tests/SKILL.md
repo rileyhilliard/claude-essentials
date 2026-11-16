@@ -1,6 +1,6 @@
 ---
 name: writing-tests
-description: Writes behavior-focused tests using the Testing Trophy model with real dependencies and minimal mocking. Use when writing or reviewing tests, choosing between unit, integration and E2E, deciding what to mock, replacing sleeps with proper waits, or fixing flaky tests that fail only alongside other tests.
+description: Writes behavior-focused tests using the Testing Trophy model with real dependencies and minimal mocking. Use when writing or reviewing tests, choosing between unit, integration and E2E, deciding what to mock, replacing sleeps with proper waits, fixing flaky tests that fail only alongside other tests, or speeding up slow tests that time out under load or on CI.
 ---
 
 If the current repo has its own testing rules or skills (check .claude/rules/ and the repo CLAUDE.md), those take precedence. Apply this skill where they're silent.
@@ -57,3 +57,4 @@ Name tests after the behavior they check, and cover the error paths as well as t
 | Async waiting in TypeScript | [references/waiting-typescript.md](references/waiting-typescript.md) |
 | Async waiting in Python | [references/waiting-python.md](references/waiting-python.md) |
 | Tests that pass alone and fail in the suite, or fail intermittently | [references/flaky-tests.md](references/flaky-tests.md) |
+| Slow tests, or tests that time out only under load or on CI | [references/slow-tests.md](references/slow-tests.md) |
