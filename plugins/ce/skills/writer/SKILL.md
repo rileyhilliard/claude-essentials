@@ -1,6 +1,6 @@
 ---
 name: writer
-description: Writing style guide for prose that sounds like a specific person wrote it, with personas per format and a catalog of AI rhetorical tells to avoid. Use when writing or editing documentation, READMEs, commit messages, PR descriptions, blog posts, LinkedIn or social posts, outreach emails, UI copy, or other user-facing text, and when asked to rewrite a draft so it sounds less like AI.
+description: Writing style guide for prose that sounds like a specific person wrote it, with personas per format and a catalog of AI rhetorical tells to avoid. Use when writing or editing documentation, READMEs, commit messages, PR descriptions, blog posts, data-driven articles, LinkedIn or social posts, outreach emails, UI copy, or other user-facing text, and when asked to rewrite a draft so it sounds less like AI.
 ---
 
 # Writing Style Guide
@@ -34,6 +34,7 @@ Lock onto the cadence, sentence weight, word choices, and register of what they 
 | Error messages, UI copy, notifications, empty states         | **The UX Writer**       | `references/ux-writer.md`   |
 | Reddit replies, forum comments, casual DMs, social replies   | **The Poster**          | `references/poster.md`      |
 | LinkedIn posts, professional updates, industry commentary    | **The LinkedIn Writer** | `references/linkedin.md`    |
+| Data-driven articles, reports and analyses with numbers or charts | **The Data Journalist** | `references/data-journalist.md` |
 
 **Writing an article, essay, or long-form feature?** This skill handles voice and tone. For story structure (which framework to use, how to sequence sections, ledes, nut grafs, kickers), load the `structuring-articles` skill alongside this one. The `copywriter` agent loads both automatically.
 
@@ -94,6 +95,16 @@ For a long piece in the user's own voice (an article, essay, or post), ask for a
 ## Forbidden Patterns (All Personas)
 
 Read [references/forbidden-patterns.md](references/forbidden-patterns.md) before drafting anything longer than a few sentences, and again when rewriting a draft to remove AI tells. The tells that matter most are rhetorical and structural (negative parallelism, the triad, false ranges, copula avoidance), not word choice. Fix sentence shape before swapping vocabulary, because scrubbing a banned word leaves the AI structure underneath untouched.
+
+### Reviewing or rewriting a draft
+
+A lint pass for banned words and em dashes is a lead, not a review: it can't see an empty sentence, a callback with no antecedent or a register mismatch. Run three tests instead, on the paragraphs in scope:
+
+1. For each sentence, name the specific fact it adds. If you can't, cut it. A sentence that restates the one before it, restates a chart beside it, or gestures at a point already made shouldn't exist.
+2. Read each surviving sentence aloud as the intended reader. Flag subjects doing what they can't literally do, metaphors where a plain noun exists, not-X-but-Y flips, and terms that reader wouldn't know.
+3. For each paragraph, state its one point and confirm it arrives in the first sentence.
+
+Cut first, rewrite second: a rewrite that keeps the sentence skeleton with new words keeps the tell. In a style pass, never change a number, a source or a quote. When the user points at particular paragraphs, rewrite only those, and leave text they've already approved alone. A reviewer who didn't write the draft catches more, so hand a long piece to a fresh agent. Flag only defects you can quote; over-flagging sends good prose into a rewrite loop that produces new slop.
 
 ---
 

@@ -27,7 +27,7 @@ Both agents read the same `skills/` tree; only the manifests are per agent. Clau
 | build | Prompt to demo-ready branch fast: grill, phased plan, quick DA, parallel lanes checked and landed per phase, one final review |
 | executing-plans | Plan to merged result: DA review, grouped subagents, tests, code review, local merge |
 | post-mortem | Session and multi-session reviews; `scripts/extract-friction.py` builds the transcript digest |
-| writer | Voice guide, ten personas, AI-tell catalog in `references/forbidden-patterns.md` |
+| writer | Voice guide, eleven personas, AI-tell catalog in `references/forbidden-patterns.md` |
 | structuring-articles | Story structures for long-form prose |
 | design | Product UI direction and craft, CSS and Tailwind references |
 | planning-products | Product definition before technical planning |

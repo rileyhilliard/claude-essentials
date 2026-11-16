@@ -15,7 +15,7 @@ Skills load on their own when a request matches their description, and each one 
 | [ce:build](plugins/ce/skills/build/SKILL.md) | Takes a build request to a demo-ready branch quickly: grills for scope, plans phases with an MVP first, runs a fast devil's advocate pass, builds each phase in parallel worktree lanes, checks each lane before it merges, lands every phase green, and ends with one code review |
 | [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md) | Takes a plan or RFC through devil's advocate review, grouped subagent implementation, tests, code review and a local merge to main. Pushes only when asked |
 | [ce:post-mortem](plugins/ce/skills/post-mortem/SKILL.md) | Reviews one session or many and turns friction into concrete changes to docs, config, skills and tests |
-| [ce:writer](plugins/ce/skills/writer/SKILL.md) | Voice guide with ten personas (engineer, architect, PM, contributor, UX writer and others) plus a catalog of AI rhetorical tells |
+| [ce:writer](plugins/ce/skills/writer/SKILL.md) | Voice guide with eleven personas (engineer, architect, PM, data journalist, UX writer and others) plus a catalog of AI rhetorical tells |
 | [ce:structuring-articles](plugins/ce/skills/structuring-articles/SKILL.md) | Journalistic story structures (WSJ Formula, Inverted Pyramid, Hourglass, Tick-Tock and more) for long-form pieces |
 | [ce:design](plugins/ce/skills/design/SKILL.md) | Design direction and craft rules for product UIs, with CSS and Tailwind references |
 | [ce:planning-products](plugins/ce/skills/planning-products/SKILL.md) | Product definition before technical planning: discovery, jobs to be done, experience, scope |

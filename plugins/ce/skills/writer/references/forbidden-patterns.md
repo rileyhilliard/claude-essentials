@@ -74,6 +74,57 @@ These are the highest-frequency tells and the hardest to unsee once you've spott
   exempt: an anecdotal or delayed lede (see the `structuring-articles` skill) holds the point back
   by design, and the nut graf delivers it. Every body paragraph after the lede opens with its point.
 
+## Say it plainly (the most common correction)
+
+A claim that fits in one plain sentence, arranged across two. Every sentence carries a fact and
+nothing here matches a word list, yet the reader has to take the arrangement apart to recover the
+claim. Avoid these shapes while drafting; removing them on the fifth revision is what produces
+twenty-round correction sessions.
+
+- **Naming a fact instead of stating it.** Telling the reader a finding exists, or what status it
+  has, without giving it.
+  - Bad: "The two teams moved in opposite directions, which is the one thing this data can say."
+  - Fixed: "The support team grew. The sales team shrank."
+- **Announcing the answer.** A sentence whose only job is to say the next sentence matters.
+  - Bad: "That's the whole answer." / "I should be upfront about where I'm coming from."
+  - Fixed: cut it and keep the sentence that follows.
+- **Negation openers.** Denying something the reader never assumed.
+  - Bad: "Nobody designed these two systems to work together."
+  - Fixed: "The billing export and the CRM share a customer ID, though no one planned it."
+- **Setup, then reveal.** A first sentence that exists only to make the second sound earned.
+  - Bad: "The speedup was expected. What mattered was the design underneath it."
+  - Fixed: say what the design did.
+- **Clipped setup-resolve pairs.** Two short sentences that set up and resolve one idea. Chopping a
+  dense sentence in two trades one tell for another.
+  - Bad: "A review can find a bad contract. The company can only exit if the terms allow it."
+  - Fixed: "If a review finds a bad contract, the company can exit only when the terms allow it."
+- **Colon reveals.** A clause before the colon announcing that the fact after it matters.
+  - Bad: "That last one is personal for me: I run one of these teams."
+  - Fixed: "I run one of these teams."
+- **Research-log sentences.** What the writer checked or failed to find, or a status that will be
+  stale in days. Cut them unless the absence is the finding.
+  - Bad: "No pricing timeline appears in the sources reviewed here."
+- **Metaphor standing in for a noun.** A spatial or physical image, or a subject doing something it
+  can't literally do, where a plain noun exists.
+  - Bad: "The agency works one altitude below the national average."
+  - Fixed: "The agency spends less per person than the national average."
+- **Jargon standing in for the finding.** A statistic or term of art the reader can't interpret.
+  - Bad: "The correlation is -0.11, so the scatter has no line through it."
+  - Fixed: "Large teams miss deadlines about as often as small ones. Size doesn't predict it."
+
+None of these is a phrase. "Worth noting" and "the real question" appear legitimately in good
+writing; the defect is the phrase carrying no content. The test is the deletion test: name the
+specific fact the sentence adds, and cut it if you can't.
+
+### Paragraph density
+
+A paragraph can fail when every sentence in it passes: the point arrives in sentence three after
+two of windup, the same point is approached from three angles, or one sentence nests three
+clauses. The reader assembles the point the writer should have delivered. A sentence-by-sentence
+review clears every sentence and ships the paragraph, and no linter catches it, because a short
+opening sentence is usually good writing. Judge the paragraph: state its one point, confirm it
+arrives in the first sentence, and cut the sentences that re-explain instead of advance.
+
 ## Longform tells (articles, reports, analyses)
 
 These show up in sustained writing where the model has room to build habits across sections. They
