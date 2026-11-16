@@ -34,6 +34,8 @@ AI-generated UIs have a recognizable "median of the internet" feel. Polished but
 
 **Controlled imperfection creates character.** Perfect symmetry and uniform spacing everywhere reads as machine-generated. Human-designed interfaces have intentional asymmetry: a sidebar slightly narrower than expected, a headline that breaks the grid for emphasis, whitespace that breathes unevenly to create visual rhythm. These are deliberate choices, not sloppiness.
 
+For section headers, eyebrows, card grids, icons, motion and UI copy, and when auditing an existing page for a generic look, read [references/slop.md](references/slop.md). It has two quick tests, a catalog of patterns with greps to find them, and a page review checklist.
+
 ## Design Direction
 
 **Before writing code, commit to a direction.** Don't default. Think about what this specific product needs to feel like.
