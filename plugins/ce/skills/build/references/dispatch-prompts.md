@@ -11,7 +11,7 @@ Critique this build plan before implementation starts. Read only <plan path>; th
 
 Look for, in this order:
 1. Contradictions between the spec and phase 1's test-case list.
-2. Cases the in-scope list implies that the test-case list doesn't cover.
+2. Cases the in-scope list implies that the test-case list doesn't cover, including binary input, line endings, path separators and symlinks for code that handles files, paths or text.
 3. Phase 1 being too large to land by its checkpoint (<time>), or not demoable on its own.
 4. Lanes that would edit the same file, or depend on something not in the contracts section.
 

@@ -49,7 +49,7 @@ Test cases: one line per behavior and edge case, including every edge case the s
 
 - Goal: what this lane adds, in one or two sentences.
 - Interface: exact signatures, types and module paths it implements or calls, citing the contracts by name.
-- Behavior: one line per behavior and edge case, with exact outputs, error kinds and messages where the spec fixes them.
+- Behavior: one line per behavior and edge case, with exact outputs, error kinds and messages where the spec fixes them. For code that reads files, paths or text, name how it handles binary input, line endings, path separators and symlinks.
 - Decisions already made: answers from the grill and assumptions that touch this lane.
 - Out of scope: what the lane must not add, including things a reasonable engineer might add unprompted.
 - Done when: the tests that must pass and the commands that prove it.

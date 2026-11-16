@@ -115,13 +115,13 @@ While lanes run, do the phase's inline work, then write the next phase's briefs 
 
 Lanes skip the full suite because the landing gate repeats it. If the full gate takes under about 10 seconds, lanes can run it too.
 
-When `rr` is installed, run every test and typecheck command, yours and the lanes', through it so concurrent runs queue on a machine-wide lock instead of saturating the CPU: `rr run --local "<cmd>"` without a `.rr.yaml`, `rr run "<cmd>"` when `.rr.yaml` lists hosts. The lock is shared machine-wide, so a stuck run elsewhere blocks the build; `rr unlock --all` clears it.
+When `rr` is installed, run every test and typecheck command, yours and the lanes', through it so concurrent runs queue on a machine-wide lock instead of saturating the CPU: `rr run --local "<cmd>"` without a `.rr.yaml`, `rr run "<cmd>"` when `.rr.yaml` lists hosts. The lock is shared machine-wide, so a stuck run elsewhere blocks the build; `rr unlock --all` clears it. Before starting a run, stop any earlier run of yours that is still going, and don't start one mid-edit, since rr syncs the working tree as it stands.
 
 ## 5. Land a phase
 
 Check each lane inline as soon as it reports. The usual lane failures (an edit outside its files, a weakened test, an unrequested feature, a silent assumption) pass the gate, and the next phase builds on whatever merges.
 
-1. Mechanical, on `git diff <landing branch>...<lane branch>`: every changed path is owned; no test file changed unless it's a test-writing lane; no added `.skip`, `.only` or `todo`; no manifest or lockfile change; no new type or lint suppressions. Any hit sends the lane back.
+1. Mechanical, on `git diff <landing branch>...<lane branch>`: every changed path is owned; no test file changed unless it's a test-writing lane; no added `.skip`, `.only` or `todo`; no manifest or lockfile change; no new type or lint suppressions; no new export that only tests use. Any hit sends the lane back.
 2. Against the brief: nothing extra was added, and you accept each choice the lane reported. Log accepted choices in the plan.
 3. For shape, using "Checking a lane diff" in [references/code-shape.md](references/code-shape.md). Tests don't catch these, and they compound across phases, so send the lane back.
 

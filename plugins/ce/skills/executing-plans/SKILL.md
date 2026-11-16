@@ -44,7 +44,7 @@ When an agent fails, let it fix its own failure first, since it has the context.
 
 Nothing merges until these pass.
 
-Run the project's documented test command (from CLAUDE.md or the README, scoped to the changed packages if the project documents scoped runs). Don't guess a runner.
+Run the project's documented test command (from CLAUDE.md or the README, scoped to the changed packages if the project documents scoped runs). Don't guess a runner. Scale verification to what the change touches: a change to one unit gets a targeted check, not a full benchmark or a sweep of every package.
 
 Then exercise the change the way a user would, because passing tests don't show that the feature works:
 
