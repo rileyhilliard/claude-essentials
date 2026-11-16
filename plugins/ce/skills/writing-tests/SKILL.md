@@ -1,6 +1,6 @@
 ---
 name: writing-tests
-description: Writes behavior-focused tests using the Testing Trophy model with real dependencies and minimal mocking. Use when writing or reviewing tests, choosing between unit, integration and E2E, deciding what to mock, replacing sleeps with proper waits, fixing flaky tests that fail only alongside other tests, or speeding up slow tests that time out under load or on CI.
+description: Writes behavior-focused tests using the Testing Trophy model with real dependencies and minimal mocking. Use when writing or reviewing tests, choosing between unit, integration and E2E, deciding what to mock, replacing sleeps with proper waits, fixing flaky tests that fail only alongside other tests, speeding up slow tests that time out under load or on CI, or trimming a suite whose tests repeat each other.
 ---
 
 If the current repo has its own testing rules or skills (check .claude/rules/ and the repo CLAUDE.md), those take precedence. Apply this skill where they're silent.
@@ -47,6 +47,10 @@ Mock only what you don't own or can't control: external HTTP APIs, third-party s
 
 Name tests after the behavior they check, and cover the error paths as well as the happy path.
 
+## Size tests to the behavior
+
+Write one test per rule, branch or contract, with realistic input, plus one near miss per kind of false positive the code must not commit. Rows that run another spelling of the same input down the same path, or repeat every case across an independent dimension, add cost and make the behavior expensive to change. Before trimming a suite, prove each deleted test is redundant by breaking the code and its config one rule at a time and checking something still fails; [references/test-value.md](references/test-value.md) has the method.
+
 ## Keep tests fast
 
 A slow test is a flaky test waiting for a busy machine: the suite runs in parallel on small CI runners, and a test that takes seconds alone times out there. Write each test so its cost is what it asserts and nothing more:
@@ -71,3 +75,4 @@ Check the cost when you add tests: run the file with per-test durations shown an
 | Async waiting in Python | [references/waiting-python.md](references/waiting-python.md) |
 | Tests that pass alone and fail in the suite, or fail intermittently | [references/flaky-tests.md](references/flaky-tests.md) |
 | Slow tests, or tests that time out only under load or on CI | [references/slow-tests.md](references/slow-tests.md) |
+| How many tests a behavior needs, trimming a suite that repeats itself, sharding a slow one | [references/test-value.md](references/test-value.md) |
