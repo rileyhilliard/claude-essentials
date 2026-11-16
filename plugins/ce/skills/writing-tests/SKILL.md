@@ -9,6 +9,8 @@ If the current repo has its own testing rules or skills (check .claude/rules/ an
 
 Test what a user or caller can observe, using real dependencies, so tests survive refactoring and fail only when behavior breaks.
 
+The check for any test: a refactor that improves the code without changing what the app does must leave it passing, so the same test proves the behavior is unchanged before and after. A test that breaks on such a refactor hard-codes or stubs an assumption about the internals, which is the usual failure of unit tests.
+
 ## Which kind of test
 
 Most tests should be integration tests written as behavior tests (the Testing Trophy: integration is the widest layer, with fewer unit and E2E tests around it). Enter through an interface a user or caller really uses, such as an HTTP route, a CLI command, a rendered component or a service's public function. Run it against the real database and real internal modules, then assert on the observable result. Name each test for the behavior ("rejects a duplicate email"), not the function it calls.
@@ -49,9 +51,16 @@ Name tests after the behavior they check, and cover the error paths as well as t
 
 ## Cover behavior realistically
 
-A behavior test is not only the happy path. Drive the real entry point through the combinations and edge cases real use produces: inputs in the order and shapes callers send them, chained and mixed operations, state left over from an earlier step, failures of the things it depends on, and the near misses it must not get wrong. To reach an edge case, set up the state it starts from as the app would really have left it (rows in the real database, files on disk, a half-finished earlier run), then enter through the same interface. One realistic flow often exercises what several contrived single-function tests would, and it keeps doing so through a refactor. Give each realistic case its own row so a failure names it.
+A behavior test is not only the happy path. Drive the real entry point through the combinations and edge cases real use produces: inputs in the order and shapes callers send them, chained and mixed operations, state left over from an earlier step, failures of the things it depends on, and the near misses it must not get wrong. One realistic flow often exercises what several contrived single-function tests would, and it keeps doing so through a refactor. Give each realistic case its own row so a failure names it.
 
-Reach for a unit-style test only when a behavior test can't reach the edge case even with its state arranged, or when the combinations of a pure function are too many to run through the interface. Don't add one to repeat what a flow already covers.
+There are two ways to get a test to the state an edge case starts from:
+
+1. Reproduce the steps a user takes to get there: click the button, fill the form, submit, have the API fail, then check what the UI shows.
+2. Set the state up directly: give the component or function the realistic data those steps would have produced (rows in the real database, files on disk, the props a parent would pass), have the API fail, then check what the UI shows.
+
+Prefer the first. It survives a refactor of anything between the entry point and the state, because it knows only what the user does. Use the second when the steps are impractical to replay (they take days of simulated time, or need a system you can't drive), and keep the data as realistic as what the steps would produce.
+
+Reach for a unit-style test only when a behavior test can't reach the edge case either way, or when the combinations of a pure function are too many to run through the interface. Don't add one to repeat what a flow already covers.
 
 Size the suite to the behaviors, not the inputs: one case per rule, branch or contract, plus one near miss per kind of false positive. Rows that run another spelling of the same input down the same path, or repeat every case across an independent dimension, add cost and make the behavior expensive to change. Before trimming a suite, prove each deleted test is redundant by breaking the code and its config one rule at a time and checking something still fails; [references/test-value.md](references/test-value.md) has the method.
 
