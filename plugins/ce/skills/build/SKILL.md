@@ -25,6 +25,8 @@ Record the start time (`date +%s`) and the timebox, if any. Without one, skip th
 
 When a checkpoint slips, cut scope from later phases, never the gate or the review.
 
+Don't forecast how long work will take, and don't cut scope or warn the user on a forecast. Agents estimate their own work like a human team would, so they say days for what lanes finish in minutes, and a plan built on that cuts scope the timebox could hold. Size work by scope, using the table under "Sizing lanes", and compare elapsed time (`date +%s` minus the start) against the checkpoints. A checkpoint has slipped only when that clock has passed it. Phase 1's measured time is the best guide to how much the later phases can hold.
+
 While the first grill round is out, find these yourself:
 
 - The test runner and its filter syntax, the typecheck command, and how long the full gate takes (run it once).

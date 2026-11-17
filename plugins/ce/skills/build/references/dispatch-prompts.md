@@ -12,7 +12,7 @@ Critique this build plan before implementation starts. If you investigate claims
 Look for, in this order:
 1. Contradictions between the spec and phase 1's test-case list.
 2. Cases the in-scope list implies that the test-case list doesn't cover, including binary input, line endings, path separators and symlinks for code that handles files, paths or text.
-3. Phase 1 being too large to land by its checkpoint (<time>), or not demoable on its own.
+3. Phase 1 being larger than the plan's sizing rules allow (more than four lanes, or a lane spanning more than one capability or about five files), or not demoable on its own. Judge size by scope, not by how long you think it will take.
 4. Lanes that would edit the same file, or depend on something not in the contracts section.
 
 Return at most five findings, most important first, each as one or two sentences naming the plan section it concerns. Use this format instead of your default template, with no summary or mitigation essays. If the plan is sound, say so in one line.
