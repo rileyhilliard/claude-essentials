@@ -61,8 +61,8 @@ A lane is one brief handed to one subagent, which works in its own worktree and 
 | --- | --- | --- |
 | Tiny | A few lines, one small function, a config change | Inline |
 | S | 1 to 2 owned files, one function, endpoint or component, up to about 5 tests | Folded into a related lane, or grouped with other S units into one lane |
-| M | Up to ~5 owned files, one module or capability, up to ~20 tests | A lane |
-| L+ | More than one capability or more than ~5 files | Split by capability, or across two phases |
+| M | One module or capability, with no contract seam inside it. Usually under about 8 files and 20 tests | A lane |
+| L+ | More than one capability, or more code than you can check in one read (roughly 600+ lines outside tests) | Split by capability along a contract set in the scaffold, or across two phases |
 
 The L+ limit keeps lanes balanced and failures contained; a well-briefed 300-line module takes a lane minutes, not hours. Then check each phase:
 
