@@ -31,6 +31,7 @@ While the first grill round is out, find these yourself:
 
 - The test runner and its filter syntax, the typecheck command, and how long the full gate takes (run it once).
 - One setup command that makes a fresh worktree runnable without touching the lockfile: symlink the dependency directory from the main checkout (`ln -s <main checkout>/node_modules node_modules`) or a frozen-lockfile install.
+- Ports, databases or other services the tests share. Worktrees isolate files, not these, so concurrent lanes collide on them; have the setup command give each worktree its own, such as a port offset or a per-worktree database name.
 - Whether the repo has a wrapper that queues or offloads test runs, so concurrent lanes don't compete for one machine's CPU.
 - The branch and whether the tree is clean. Uncommitted changes would ride into the scaffold, so ask whether to commit, stash or include them. Worktrees need a commit, so with no repo or no commits, `git init` and commit.
 - Whether lanes can run tests, typecheck and `git add`/`git commit` without permission prompts. Background lanes can't answer one, so settle the permission mode before phase 1.
