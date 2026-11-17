@@ -7,7 +7,7 @@ Fill this in after the grill. Phase 1 gets full lane briefs and a test-case list
 
 Started: <time>. Timebox: <T or none>. Landing branch: build/<slug>.
 Gate: `<full gate command>` (<seconds>s). Filtered tests: `<command with a file or name filter>`. Typecheck: `<command>`.
-Runner: `rr run --local "<cmd>"` (no `.rr.yaml`), `rr run "<cmd>"` (hosts in `.rr.yaml`), or plain commands without rr.
+Runner: `<wrapper that queues or offloads test runs, if the repo uses one>`, or plain commands.
 Worktree setup: `<command that makes a fresh worktree runnable without changing the lockfile>`.
 Scaffold commits: phase 1 <sha>; phase 2 <sha>; ...
 

@@ -29,7 +29,7 @@ While the first grill round is out, find these yourself:
 
 - The test runner and its filter syntax, the typecheck command, and how long the full gate takes (run it once).
 - One setup command that makes a fresh worktree runnable without touching the lockfile: symlink the dependency directory from the main checkout (`ln -s <main checkout>/node_modules node_modules`) or a frozen-lockfile install.
-- Whether `rr` is on PATH and the repo has a `.rr.yaml` with hosts.
+- Whether the repo has a wrapper that queues or offloads test runs, so concurrent lanes don't compete for one machine's CPU.
 - The branch and whether the tree is clean. Uncommitted changes would ride into the scaffold, so ask whether to commit, stash or include them. Worktrees need a commit, so with no repo or no commits, `git init` and commit.
 - Whether lanes can run tests, typecheck and `git add`/`git commit` without permission prompts. Background lanes can't answer one, so settle the permission mode before phase 1.
 
@@ -117,9 +117,9 @@ While lanes run, do the phase's inline work, then write briefs and test-case lis
 | You | Each landing | Full gate: all tests, typecheck, build if any |
 | You | End of build | Full gate plus the demo |
 
-Lanes skip the full suite because the landing gate repeats it. If the full gate takes under about 10 seconds, lanes can run it too.
+Lanes skip the full test suite because the landing gate repeats it. If the full gate takes under about 10 seconds, lanes can run it too.
 
-When `rr` is installed, run every test and typecheck command, yours and the lanes', through it so concurrent runs queue on a machine-wide lock instead of saturating the CPU: `rr run --local "<cmd>"` without a `.rr.yaml`, `rr run "<cmd>"` when `.rr.yaml` lists hosts. The lock is shared machine-wide, so a stuck run elsewhere blocks the build; `rr unlock --all` clears it. Before starting a run, stop any earlier run of yours that is still going, and don't start one mid-edit, since rr syncs the working tree as it stands.
+Lanes run tests at the same time and compete for CPU, which slows every run and can push timing-sensitive tests into timeouts. When the repo has a wrapper that queues or offloads test runs, put every test and typecheck command through it, yours and the lanes', and write the wrapped commands into each brief. Before starting a run, stop any earlier run of yours that is still going.
 
 ## 5. Land a phase
 

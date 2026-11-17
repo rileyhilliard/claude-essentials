@@ -39,7 +39,7 @@ You own these files and may edit only them: <files>. If you need a change outsid
 
 If you hit a case the brief doesn't settle, pick the simplest option consistent with the contracts, keep going, and list every such choice in your report.
 
-Run `<filtered test command>` as you go and `<typecheck command>` before reporting, exactly as written (they may queue on an rr lock behind other lanes). Don't run the full suite; it runs when this lane lands.
+Run `<filtered test command>` as you go and `<typecheck command>` before reporting, exactly as written (they may queue behind other lanes). Don't run the full suite; it runs when this lane lands.
 
 Stage your owned files by path and commit on your branch when done. Don't merge, push or remove the worktree.
 
