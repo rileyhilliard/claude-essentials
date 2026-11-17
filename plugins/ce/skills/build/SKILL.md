@@ -85,7 +85,7 @@ Each lane's brief lets an engineer who never saw the conversation finish without
 
 Dispatch a `devils-advocate` plan review in the background with `model: sonnet` and the scoped prompt from [references/dispatch-prompts.md](references/dispatch-prompts.md). It reads the plan, checks the code only briefly, and caps findings at five, which is what keeps it fast on a greenfield build.
 
-Meanwhile (in parallel), create the landing branch and commit the scaffold:
+Meanwhile, create the landing branch and commit the scaffold:
 
 - The plan file.
 - Shared types and interfaces.
@@ -108,7 +108,7 @@ A phase that runs alongside another scaffolds on its own `build/<slug>-pN` branc
 
 Dispatch all lanes in one message as background `builder` agents, each in its own worktree, with the lane prompt from [references/dispatch-prompts.md](references/dispatch-prompts.md) and the code-shape block from [references/code-shape.md](references/code-shape.md). `builder` defaults to sonnet; pass `model: opus` per the routing above.
 
-While lanes run, do the phase's inline work, then write briefs and test-case lists for every phase that can start once this one lands. Commit inline work whenever it compiles, since lane merges land in the same checkout. Once the next phase's cases are listed, a background sonnet `builder` can write those tests; its branch waits for the next scaffold commit, and you read the tests before committing.
+While lanes run, do the phase's inline work, then write briefs and test-case lists for every phase that can start once this one lands. Commit inline work whenever it compiles, since lane merges land in the same checkout.
 
 | Who | When | Runs |
 | --- | --- | --- |
@@ -129,7 +129,7 @@ Check each lane inline as soon as it reports. The usual lane failures (an edit o
 2. Against the brief: nothing extra was added, and you accept each choice the lane reported. Log accepted choices in the plan.
 3. For shape, using "Checking a lane diff" in [references/code-shape.md](references/code-shape.md). Tests don't catch these, and they compound across phases, so send the lane back.
 
-For opus lanes, also dispatch `code-reviewer` in the background with the lane-check prompt, scoped to that lane's diff and brief. Fix its findings before the phase tag.
+For opus lanes, also dispatch a `code-reviewer` agent in the background with the lane-check prompt, scoped to that lane's diff and brief. Fix its findings before the phase tag.
 
 Merge each lane with `git merge --no-ff <lane branch>` as soon as it passes, then run the full gate after the last merge. Fix small failures yourself; otherwise dispatch a fresh opus `builder` with the failing output, the brief and the diff. A sonnet lane that reports failing tests, makes a choice you reject, or touches a contract or another lane's files is redispatched on opus, since it needed judgment the routing missed.
 
@@ -139,13 +139,13 @@ When the gate is green, commit any fixes as `phase N: fixes`, run the demo, tag 
 
 A phase on its own branch lands the same way, with its lanes merged into the phase branch. Once its gate is green there, merge the phase branch into the landing branch, run the full gate again, and tag on the landing branch. Start any phase whose dependencies are now all tagged.
 
-A lane past its checkpoint doesn't hold the phase. Land without it, then merge it early in the next phase or cut it.
+A lane past its checkpoint doesn't hold the phase. Land without it, then merge it at the start of the next phase to begin, or cut it. A phase that needs its code waits until it merges.
 
 ## 6. Review once, then finish
 
-At the 80% checkpoint or when the last phase lands, stop starting work. Dispatch `code-reviewer` in the background with `model: opus` and the final-review prompt, against the diff from the scaffold's parent to HEAD. Meanwhile, walk the demo and fix rough edges.
+At the 80% checkpoint or when the last phase lands, stop starting work. Dispatch a `code-reviewer` agent in the background with `model: opus` and the final-review prompt, against the diff from the scaffold's parent to HEAD. Meanwhile, walk the demo and fix rough edges. Leave structural cleanup to the review, since refactoring code under a running review makes its findings stale and leaves the refactor unreviewed.
 
-Readability findings (file and function size, module boundaries, comments) count like any other. Check each finding against the code, fix the ones that hold, run the full gate, commit, and move the last phase tag or add a `final` tag. Findings left unfixed for time go in the report.
+Readability findings (file and function size, module boundaries, duplication, comments) count like any other. Check each finding against the code, fix the ones that hold, run the full gate, commit, and move the last phase tag or add a `final` tag. Findings left unfixed for time go in the report.
 
 ## 7. Report
 
