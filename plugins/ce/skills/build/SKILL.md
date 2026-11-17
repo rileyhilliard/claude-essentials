@@ -35,7 +35,7 @@ While the first grill round is out, find these yourself:
 
 ## 1. Grill
 
-Question the user until phase 1's scope is settled. Treat the request as a tree of decisions (adapted from Matt Pocock's grilling skill) and each round ask every question whose prerequisites are answered.
+Question the user until phase 1's scope is settled. Treat the request as a tree of decisions and each round ask every question whose prerequisites are answered.
 
 Ask through the agent's native question tool (`AskUserQuestion` in Claude Code, `request_user_input` in Codex) so the user answers by picking options. Each question is a sentence or two with two to four concrete options, your recommendation first and marked "(Recommended)". When a round has more questions than one call allows, make several calls. Only without a question tool, fall back to a numbered list with a recommendation on each line. Facts you can look up are never questions.
 
@@ -47,7 +47,7 @@ Load `architecting-systems`, `writing-tests`, `handling-errors` and `writer`, an
 
 Lanes pass their tests by the shortest route, usually one large file, and can only split work across files the plan gave them. So the contracts section lists every module path with its single responsibility, and the spec states the error model (what fails, how it's reported, what a caller sees). A plan that names one implementation file for two responsibilities isn't ready.
 
-Write the plan to `plans/build-<slug>.md` from [references/plan-template.md](references/plan-template.md) and show the user the phase list in a few lines; they approve phases, not prose. Only phase 1 gets full lane briefs and a test-case list now. Later phases get one-line lane rows, with briefs written while the previous phase runs.
+Write the plan to `plans/build-<slug>.md` from [references/plan-template.md](references/plan-template.md) and show the user the phase list in a few lines; they approve phases, not prose. Only phase 1 gets full lane briefs and a test-case list now. Later phases get one-line lane rows and a `Depends on` line naming the phases they build on. Their briefs are written while those phases run, so phases that will start together are all briefed before dispatch.
 
 Phase 1 is the smallest end-to-end slice the user could watch work, and each later phase adds one demoable capability. Order phases by capability, not by layer, or there is nothing to demo until the end.
 
@@ -58,11 +58,11 @@ A phase takes as long as its slowest lane plus landing, and each lane has a fixe
 | Size | Scope | Where it goes |
 | --- | --- | --- |
 | Tiny | A few lines, one small function, a config change | Inline, or folded into a related lane |
-| S | 1 to 2 owned files, one function, endpoint or component, up to about 5 tests | A lane |
-| SM | Up to 3 or 4 owned files, one module or capability, up to about 12 tests | A lane |
-| Larger | More than one capability or more than 4 files | Split by capability, or across two phases |
+| S | 1 to 2 owned files, one function, endpoint or component, up to about 5 tests | A lane, or folded into a related lane |
+| M | Up to ~5 owned files, one module or capability, up to ~20 tests | A lane |
+| L+ | More than one capability or more than ~5 files | Split by capability, or across two phases |
 
-The Larger limit keeps lanes balanced and failures contained; a well-briefed 300-line module takes a lane minutes, not hours. Then check each phase:
+The L+ limit keeps lanes balanced and failures contained; a well-briefed 300-line module takes a lane minutes, not hours. Then check each phase:
 
 - Lanes own disjoint files. Two lanes that need the same file are one lane, or the shared part moves into the scaffold.
 - The scaffold owns registration files (the public index or barrel, routers, tests or docs that pin the public API) with every planned export stubbed, so no lane edits them.
@@ -73,7 +73,7 @@ The Larger limit keeps lanes balanced and failures contained; a well-briefed 300
 
 ### Choosing a lane's model
 
-Route by how much judgment a lane needs, not its size, since a wrong lane costs more to investigate than Sonnet saves. A lane goes to sonnet only when its contract and tests are settled in the scaffold, the spec answers every case it touches, it stays inside its owned files with no cross-module invariant, and a wrong implementation would fail its tests. Implementing against a contract, writing tests from a settled case list and mechanical edits usually qualify.
+Route by how much judgment a lane needs, not its size, since a wrong lane costs more to investigate. A lane goes to sonnet only when its contract and tests are settled in the scaffold, the spec answers every case it touches, it stays inside its owned files with no cross-module invariant, and a wrong implementation would fail its tests. Implementing against a contract, writing tests from a settled case list and mechanical edits usually qualify.
 
 Everything else goes to opus: designing a contract others depend on, filling a spec gap, invariants around state, ordering, caching, concurrency, security or money, cross-module changes, and debugging a failed lane.
 
@@ -83,9 +83,9 @@ Each lane's brief lets an engineer who never saw the conversation finish without
 
 ## 3. Scaffold and fast DA, in parallel
 
-Dispatch `devils-advocate` in the background with `model: sonnet` and the scoped prompt from [references/dispatch-prompts.md](references/dispatch-prompts.md). It reads only the plan and caps findings at five, which is what keeps it fast on a greenfield build.
+Dispatch a `devils-advocate` plan review in the background with `model: sonnet` and the scoped prompt from [references/dispatch-prompts.md](references/dispatch-prompts.md). It reads the plan, checks the code only briefly, and caps findings at five, which is what keeps it fast on a greenfield build.
 
-Meanwhile, create the landing branch and commit the scaffold:
+Meanwhile (in parallel), create the landing branch and commit the scaffold:
 
 - The plan file.
 - Shared types and interfaces.
@@ -102,9 +102,13 @@ When the DA returns, apply findings that change phase 1, move the rest to the ph
 
 Later phases start with their own scaffold commit of stubs and tests. Never merge a later phase's tests early, or the gate fails on tests nobody is meant to pass yet.
 
-Dispatch all lanes in one message as background `builder` agents, each in its own worktree, with the lane prompt from [references/dispatch-prompts.md](references/dispatch-prompts.md) and the code-shape block from [references/code-shape.md](references/code-shape.md). `builder` defaults to sonnet; pass `model: opus` per the routing above. If the user asked for Codex and the `foreman` skill is installed, a lane can go there with the same brief and code-shape block, a line pointing it at the ce `architecting-systems`, `writing-tests` and `handling-errors` skills, and a `--budget` that ends before the checkpoint.
+Phases run in dependency order, not number order. A phase can start once every phase in its `Depends on` line is tagged, so phases 2 and 3 that each depend only on phase 1 run together, while phase 4 that builds on phase 2 waits for `phase-2`. A phase depends on another if it imports, extends or demos on top of that phase's code, or if it needs one of that phase's files. Phase 1 always runs alone.
 
-While lanes run, do the phase's inline work, then write the next phase's briefs and test-case lists. Commit inline work whenever it compiles, since lane merges land in the same checkout. Once the next phase's cases are listed, a background sonnet `builder` can write those tests; its branch waits for the next scaffold commit, and you read the tests before committing.
+A phase that runs alongside another scaffolds on its own `build/<slug>-pN` branch cut from the landing tip, so its tests stay off the landing branch until it's green. Its lanes branch from that scaffold. When both phases add exports to a registration file, commit both phases' stubs to the landing branch before either starts; stubs don't fail the gate, only tests do. Keep about four lanes in flight across all phases, since each is a diff you check by hand.
+
+Dispatch all lanes in one message as background `builder` agents, each in its own worktree, with the lane prompt from [references/dispatch-prompts.md](references/dispatch-prompts.md) and the code-shape block from [references/code-shape.md](references/code-shape.md). `builder` defaults to sonnet; pass `model: opus` per the routing above.
+
+While lanes run, do the phase's inline work, then write briefs and test-case lists for every phase that can start once this one lands. Commit inline work whenever it compiles, since lane merges land in the same checkout. Once the next phase's cases are listed, a background sonnet `builder` can write those tests; its branch waits for the next scaffold commit, and you read the tests before committing.
 
 | Who | When | Runs |
 | --- | --- | --- |
@@ -132,6 +136,8 @@ Merge each lane with `git merge --no-ff <lane branch>` as soon as it passes, the
 A merge conflict means two lanes shared a file. Resolve it and note the file in the plan so later phases avoid it.
 
 When the gate is green, commit any fixes as `phase N: fixes`, run the demo, tag `phase-N`, tell the user in one line how to see it, and remove the phase's worktrees. Tags are the demo points; commits between them may be red.
+
+A phase on its own branch lands the same way, with its lanes merged into the phase branch. Once its gate is green there, merge the phase branch into the landing branch, run the full gate again, and tag on the landing branch. Start any phase whose dependencies are now all tagged.
 
 A lane past its checkpoint doesn't hold the phase. Land without it, then merge it early in the next phase or cut it.
 

@@ -7,7 +7,7 @@ Fill in the angle-bracketed parts and dispatch each in the background. Each prom
 Dispatch `devils-advocate` with `model: sonnet`.
 
 ```
-Critique this build plan before implementation starts. Read only <plan path>; the code and tests don't exist yet, so skip verifying claims against the codebase.
+Critique this build plan before implementation starts. If you investigate claims against the codebase, keep that investigation timeboxed/efficient.
 
 Look for, in this order:
 1. Contradictions between the spec and phase 1's test-case list.
