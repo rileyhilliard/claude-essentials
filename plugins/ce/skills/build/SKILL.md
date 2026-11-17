@@ -55,12 +55,12 @@ Phase 1 is the smallest end-to-end slice the user could watch work, and each lat
 
 ### Sizing lanes
 
-A phase takes as long as its slowest lane plus landing, and each lane has a fixed cost: agent startup and code reading, worktree setup, and about a minute of your time checking and merging. Keep lanes small, roughly equal and few. Size by scope, since time estimates are unreliable:
+A lane is one brief handed to one subagent, which works in its own worktree and branch on files no other lane touches. A phase takes as long as its slowest lane plus landing, and each lane has a fixed cost: agent startup and code reading, worktree setup, and about a minute of your time checking and merging. Keep lanes small, roughly equal and few. Size by scope, since time estimates are unreliable:
 
 | Size | Scope | Where it goes |
 | --- | --- | --- |
-| Tiny | A few lines, one small function, a config change | Inline, or folded into a related lane |
-| S | 1 to 2 owned files, one function, endpoint or component, up to about 5 tests | A lane, or folded into a related lane |
+| Tiny | A few lines, one small function, a config change | Inline |
+| S | 1 to 2 owned files, one function, endpoint or component, up to about 5 tests | Folded into a related lane, or grouped with other S units into one lane |
 | M | Up to ~5 owned files, one module or capability, up to ~20 tests | A lane |
 | L+ | More than one capability or more than ~5 files | Split by capability, or across two phases |
 
@@ -71,7 +71,7 @@ The L+ limit keeps lanes balanced and failures contained; a well-briefed 300-lin
 - The longest lane is at most about twice the shortest.
 - Two to four lanes. Each extra lane is another diff to check and merge.
 - Each lane has a reads list: contracts, owned files, its tests, and at most two pattern files. Code reading is the largest per-lane overhead.
-- A phase with one lane, or only tiny units, runs inline in your checkout. Small builds are often inline throughout, which is fine.
+- A phase with only one unit of work, or only tiny ones, runs inline in your checkout. Small builds are often inline throughout, which is fine.
 
 ### Choosing a lane's model
 
