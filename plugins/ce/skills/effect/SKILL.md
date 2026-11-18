@@ -78,7 +78,8 @@ Load the reference that matches the task; load several when work spans them.
 
 | Task | Read |
 | --- | --- |
-| Wrapping promises, callbacks or throwing code; tagged errors; `catch*`; `Result`, `Exit`, `Cause`; defects; interruption | [references/errors.md](references/errors.md) |
+| A growing `Effect.gen` body, where a decision or shared helper goes, refactoring a module for readability | [references/structure.md](references/structure.md) |
+| Wrapping promises, callbacks or throwing code; tagged errors and their per-tag policy; `catch*`; `Result`, `Exit`, `Cause`; defects; interruption | [references/errors.md](references/errors.md) |
 | `Context.Service`, layers, memoization, dependency capture, request-scoped values, `ManagedRuntime` | [references/services-layers.md](references/services-layers.md) |
 | Scopes, `acquireRelease`, forks, background workers, `Effect.cached`, `Ref`, locks, timeouts, schedules, retries, Clock, Random, DateTime | [references/resources-concurrency.md](references/resources-concurrency.md) |
 | Schema definitions, decoding, encoding, optional keys, transformations, brands, JSON Schema | [references/schema.md](references/schema.md) |
@@ -86,6 +87,6 @@ Load the reference that matches the task; load several when work spans them.
 | `HttpClient`, `HttpApi`, `HttpRouter`, middleware, web handlers | [references/http.md](references/http.md) |
 | `SqlClient`, `SqlSchema`, transactions | [references/sql.md](references/sql.md) |
 | `effect/cli` commands, flags, parser errors, help | [references/cli.md](references/cli.md) |
-| `Config`, `ConfigProvider`, `Redacted`, loggers, annotations, spans | [references/config-observability.md](references/config-observability.md) |
+| `Config`, `ConfigProvider`, `Redacted`, where defaults live, loggers, annotations, spans | [references/config-observability.md](references/config-observability.md) |
 
 For a topic not listed (streams, PubSub, batching, child processes, AI, cluster), start from the matching entry in `node_modules/effect/AGENTS.md`.

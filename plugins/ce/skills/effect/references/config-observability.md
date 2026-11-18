@@ -6,6 +6,8 @@ Read when adding settings, reading environment variables, installing or changing
 
 Config constructors are capitalized: `Config.String`, `Config.Int`, `Config.Number`, `Config.Boolean`, `Config.Port`, `Config.Literals`, `Config.LogLevel`, `Config.Redacted`, combined with `Config.all`, `Config.withDefault`, `Config.option`, and `Config.schema(S, name)` for a value decoded by a schema. Keep them in one module so every setting has one reader.
 
+Keep the defaults in a module of their own: every fallback URL, timeout, file name and directory as a named constant, each with a comment naming the setting or variable that overrides it. The config module reads overrides and falls back to those constants, and feature code takes an overridable value from config rather than from the constant. Then "where does this URL come from" has one answer, and a default buried in a feature module (a deadline literal in an HTTP call, a URL in a build script) has nowhere to hide. Build-time values (bundler defines, injected versions) stay in their own module, since they come from the build, not from a default.
+
 A `ConfigProvider` supplies values and is installed with `ConfigProvider.layer(provider)` at the composition boundary: `ConfigProvider.fromEnv()` in the process entry, `fromEnvRecord({...})` or `fromUnknown({...})` in tests so they never see the developer's environment. Observed in 4.0: an empty string is treated as missing unless the provider is built with `{ preserveEmptyStrings: true }`, so `FOO=` falls through to a default.
 
 Secrets are `Redacted` values (`Config.Redacted`); `Redacted.value` unwraps one only where the integration needs the raw string, and logging a `Redacted` prints a placeholder.

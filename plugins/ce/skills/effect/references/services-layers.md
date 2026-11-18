@@ -31,6 +31,8 @@ Don't capture request-scoped values (the current user, request id, authorization
 
 Let signatures tell the truth. Don't provide a hidden layer inside a method just to turn its requirements into `never`, and a method that returns a resource owned by its caller keeps `Scope` in its requirements.
 
+Give a service no computed fallbacks for its inputs. A default derived beside a field (a path from `import.meta.url`, a value from `process.cwd()`) hides a missing input and tends to break once the code is bundled or run from another directory. Make the field required, set it in the process entry where the facts are known, and give tests their value in the helper that builds the test layer.
+
 A service depends on another through the context. It never provides the other's layer itself, which would build a private copy.
 
 ## Composition and memoization

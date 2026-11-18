@@ -10,6 +10,28 @@ Expected failures live in the error channel and say what the caller can do about
 
 Translate a platform or driver error where its domain meaning becomes known (`mapError`, `catchTag`), choosing the tag by what the caller should do next. Report a failure once, at the boundary that owns it, not at every translation.
 
+## Policy on the class, tables derived
+
+When each error carries policy (an exit code, an HTTP status, whether a retry can help), put it on the error class as static fields and derive every lookup from one record of the classes. A hand-written table beside the classes repeats each tag and drifts the first time someone adds a tag to one and not the other.
+
+```ts
+class UpstreamUnavailable extends Schema.TaggedError<UpstreamUnavailable>()("UpstreamUnavailable", {
+  service: Schema.String,
+}) {
+  static readonly status = 503
+  static readonly retryable = true
+}
+
+export const errorClasses = { NotFound, BadInput, UpstreamUnavailable } as const
+export type AppError = InstanceType<(typeof errorClasses)[keyof typeof errorClasses]>
+export const errorTable = Record.map(errorClasses, (Class) => ({
+  status: Class.status,
+  retryable: "retryable" in Class && Class.retryable,
+}))
+```
+
+A required static (`status`) fails the build when a new class leaves it out, and an optional one (`retryable`) reads with an `in` check and a default. Derive the tag literal union, the error union type and the encoded union schema from the same record, so adding a tag is one class plus one entry. If the union's schema is published (a JSON Schema whose `anyOf` order clients see), list its members in an explicit order rather than relying on object key order.
+
 `mapError` is the default translator: observed in 4.0.6 it is `catchCause` plus `failCause(causeMap(cause, f))`, so it maps the Fail reasons and keeps Die and Interrupt reasons as they are. A hand-built branch over `Effect.exit` that picks one typed error for any failed `Exit` turns defects and interruption into that error; use it only at a boundary that owns all three outcomes.
 
 ## Constructors for foreign code
