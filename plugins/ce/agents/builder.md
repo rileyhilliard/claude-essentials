@@ -1,6 +1,6 @@
 ---
 name: builder
-description: Implements one scoped lane of a phased build plan from a complete brief, in its own worktree in the background, editing only the files it owns, running only its filtered tests and typecheck, and committing on its own branch. Use when the build skill dispatches a lane, or for any bounded implementation or test-writing task with an owned file list and a brief that defines done.
+description: Implements one scoped lane of a phased build plan from a complete brief, in its own worktree in the background, editing only the files it owns, running only its filtered tests and typecheck, and committing on its own branch. Use when the sprint or deliver skill dispatches a lane, or for any bounded implementation or test-writing task with an owned file list and a brief that defines done.
 tools: Bash, Glob, Grep, Read, Edit, Write, WebFetch
 model: sonnet
 skills: architecting-systems, writing-tests, handling-errors

@@ -14,18 +14,19 @@ plugins/ce/
   .claude-plugin/plugin.json        # Claude Code manifest: name, version, description, author, license
   .codex-plugin/plugin.json         # Codex manifest: same name and version, "skills": "./skills/", interface
   skills/<name>/SKILL.md            # 12 skills, each with optional references/, scripts/ and agents/openai.yaml
+  shared/                           # references and scripts used by more than one skill (sprint and deliver's lane DAG)
   agents/<name>.md                  # 5 agents (Claude Code only)
 scripts/check-manifests.sh          # Fails when the two manifests' name or version differ
 ```
 
-Both agents read the same `skills/` tree; only the manifests are per agent. Claude Code auto-discovers `skills/` and `agents/`, so the manifests don't list components. Codex reads `skills/` through its manifest and ignores `agents/`, whose frontmatter is Claude Code's; a Codex delegate can still run an agent's body as a plain prompt. A skill's optional `agents/openai.yaml` holds Codex-only settings: `policy: allow_implicit_invocation: false` keeps a workflow with side effects (`build`, `executing-plans`, `post-mortem`) from loading on its own in Codex, where a delegate must not commit or merge. The plugin name adds the `ce:` prefix; file names and frontmatter use bare names (`writing-tests`, not `ce:writing-tests`), including cross-references inside skills and in an agent's `skills:` field.
+Both agents read the same `skills/` tree; only the manifests are per agent. Claude Code auto-discovers `skills/` and `agents/`, so the manifests don't list components. Codex reads `skills/` through its manifest and ignores `agents/`, whose frontmatter is Claude Code's; a Codex delegate can still run an agent's body as a plain prompt. A skill's optional `agents/openai.yaml` holds Codex-only settings: `policy: allow_implicit_invocation: false` keeps a workflow with side effects (`sprint`, `deliver`, `post-mortem`) from loading on its own in Codex, where a delegate must not commit or merge. The plugin name adds the `ce:` prefix; file names and frontmatter use bare names (`writing-tests`, not `ce:writing-tests`), including cross-references inside skills and in an agent's `skills:` field.
 
 ## Inventory
 
 | Skill | Purpose |
 | --- | --- |
-| build | Prompt to demo-ready branch fast: grill, phased plan, quick DA, parallel lanes checked and landed per phase, one final review |
-| executing-plans | Plan to merged result: DA review, grouped subagents, tests, code review, local merge |
+| sprint | Prompt to demo-ready branch against the clock: grill, phased plan, quick DA, parallel lanes checked and landed per phase, one final review |
+| deliver | Plan, RFC or feature to production-ready code on main: DA against the code, contracts scaffold, lanes landed per phase with lane reviews, capped final review, merge after approval |
 | post-mortem | Session and multi-session reviews; `scripts/extract-friction.py` builds the transcript digest |
 | writer | Voice guide, eleven personas, AI-tell catalog in `references/forbidden-patterns.md` |
 | structuring-articles | Story structures for long-form prose |
@@ -39,7 +40,7 @@ Both agents read the same `skills/` tree; only the manifests are per agent. Clau
 
 | Agent | Model | Purpose |
 | --- | --- | --- |
-| builder | sonnet | One build-skill lane from a complete brief, background worktree, owned files only; preloads architecting-systems, writing-tests, handling-errors |
+| builder | sonnet | One sprint or deliver lane from a complete brief, background worktree, owned files only; preloads architecting-systems, writing-tests, handling-errors |
 | code-reviewer | opus | Flat fix list for a branch diff; preloads handling-errors, writing-tests, architecting-systems |
 | devils-advocate | opus | Plan and design critique checked against the code |
 | copywriter | opus | Long-form drafting; preloads structuring-articles and writer |
@@ -80,6 +81,7 @@ Versioning: `version` lives in both `plugins/ce/.claude-plugin/plugin.json` and 
 ## Writing skills
 
 - Keep SKILL.md under 500 lines and put detail in `references/`, linked directly from SKILL.md (one level deep). Give reference files over 100 lines a table of contents.
+- Files more than one skill needs go in `plugins/ce/shared/`, linked from each SKILL.md by a relative path (`../../shared/<file>`). Don't use `${CLAUDE_PLUGIN_ROOT}` in skill bodies: Claude Code substitutes it, but Codex passes it through literally (observed in codex-cli 0.170.0), while both resolve paths relative to the skill directory.
 - Write the description the way the user phrases the request. It is the only text the model sees when deciding whether to load the skill.
 - Include only what the model wouldn't do unaided: the user's taste, process, and project-specific gotchas. Generic engineering advice costs context and changes nothing.
 - Explain the reason behind a rule instead of emphasizing it. ALL-CAPS, "CRITICAL" and "MUST" over-trigger on current models, and self-verification checklists cause over-verification.
@@ -94,6 +96,7 @@ Versioning: `version` lives in both `plugins/ce/.claude-plugin/plugin.json` and 
 claude plugin validate --strict .            # marketplace.json
 claude plugin validate --strict plugins/ce   # plugin.json and components
 scripts/check-manifests.sh                   # Claude Code and Codex manifests agree
+python3 -m unittest plugins/ce/shared/scripts/test_plan_graph.py   # plan_graph.py, used by sprint and deliver
 ```
 
 Also check that each SKILL.md and agent has valid YAML frontmatter with `name` matching its file or directory, and grep for references to anything removed. Invalid skill frontmatter fails silently: the skill loads with no description and never triggers.

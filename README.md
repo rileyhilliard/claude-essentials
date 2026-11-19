@@ -1,6 +1,6 @@
 # Claude Essentials
 
-A Claude Code plugin with the skills and agents I use every day: executing plans with a devil's advocate pass and a code review, writing that doesn't read like AI, and a handful of engineering skills. Everything lives under the `ce` namespace. The skills also install in Codex from the same files.
+A Claude Code plugin with the skills and agents I use every day: building from a plan with parallel subagents, a devil's advocate pass and code review, writing that doesn't read like AI, and a handful of engineering skills. Everything lives under the `ce` namespace. The skills also install in Codex from the same files.
 
 <img src="/assets/hackerman.gif" width="100%" alt="hackerman">
 
@@ -12,8 +12,8 @@ Skills load on their own when a request matches their description, and each one 
 
 | Skill | What it does |
 | --- | --- |
-| [ce:build](plugins/ce/skills/build/SKILL.md) | Takes a build request to a demo-ready branch quickly: grills for scope, plans phases with an MVP first, runs a fast devil's advocate pass, builds each phase in parallel worktree lanes, checks each lane before it merges, lands every phase green, and ends with one code review |
-| [ce:executing-plans](plugins/ce/skills/executing-plans/SKILL.md) | Takes a plan or RFC through devil's advocate review, grouped subagent implementation, tests, code review and a local merge to main. Pushes only when asked |
+| [ce:sprint](plugins/ce/skills/sprint/SKILL.md) | Builds something against the clock: grills for scope, plans phases with an MVP first, runs a fast devil's advocate pass, builds each phase in parallel worktree lanes, checks each lane before it merges, tags every green phase, and ends with one code review |
+| [ce:deliver](plugins/ce/skills/deliver/SKILL.md) | Takes a plan, RFC or feature to production-ready code on main: plan critique against the code, contracts scaffold, parallel lanes landed and tagged per phase, a review of every lane, a capped final review, and a local merge after approval. Pushes only when asked |
 | [ce:post-mortem](plugins/ce/skills/post-mortem/SKILL.md) | Reviews one session or many and turns friction into concrete changes to docs, config, skills and tests |
 | [ce:writer](plugins/ce/skills/writer/SKILL.md) | Voice guide with eleven personas (engineer, architect, PM, data journalist, UX writer and others) plus a catalog of AI rhetorical tells |
 | [ce:structuring-articles](plugins/ce/skills/structuring-articles/SKILL.md) | Journalistic story structures (WSJ Formula, Inverted Pyramid, Hourglass, Tick-Tock and more) for long-form pieces |
@@ -29,7 +29,7 @@ Skills load on their own when a request matches their description, and each one 
 
 | Agent | Model | What it does |
 | --- | --- | --- |
-| [ce:builder](plugins/ce/agents/builder.md) | sonnet | Implements one lane of a `ce:build` plan from a complete brief, in the background in its own worktree, with the architecture, testing and error-handling skills preloaded |
+| [ce:builder](plugins/ce/agents/builder.md) | sonnet | Implements one lane of a `ce:sprint` or `ce:deliver` plan from a complete brief, in the background in its own worktree, with the architecture, testing and error-handling skills preloaded |
 | [ce:code-reviewer](plugins/ce/agents/code-reviewer.md) | opus | Reviews a branch diff and returns a flat list of fixes with file:line references |
 | [ce:devils-advocate](plugins/ce/agents/devils-advocate.md) | opus | Checks a plan or design against the real code and reports genuine flaws only |
 | [ce:copywriter](plugins/ce/agents/copywriter.md) | opus | Drafts articles and essays with the structuring-articles and writer skills preloaded |
@@ -55,12 +55,12 @@ codex plugin add ce@claude-essentials
 
 Most of the time you don't invoke anything. Ask for the work and the matching skill loads:
 
-- "Have DA review the plan, then implement it, run code review and merge to main" loads `ce:executing-plans`.
+- "Have DA review the plan, then implement it, run code review and merge to main" loads `ce:deliver`.
 - "Rewrite this README so it doesn't sound like AI" loads `ce:writer`.
 - "Why is this test flaky?" loads `ce:writing-tests`.
 - "Do a post-mortem on this session" loads `ce:post-mortem`.
 
-To run a skill by hand, type `/ce:build <what to build> [timebox]`, `/ce:executing-plans`, `/ce:post-mortem` and so on. Agents are dispatched by the model, or you can ask for one by name ("run ce:code-reviewer on this branch").
+To run a skill by hand, type `/ce:sprint <what to build> [timebox]`, `/ce:deliver <plan>`, `/ce:post-mortem` and so on. Agents are dispatched by the model, or you can ask for one by name ("run ce:code-reviewer on this branch").
 
 ## Customizing
 

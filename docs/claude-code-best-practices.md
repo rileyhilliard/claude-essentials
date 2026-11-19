@@ -12,6 +12,7 @@ Source: https://code.claude.com/docs/en/skills
 - `description` plus `when_to_use` are truncated at 1,536 characters in the skill listing.
 - Invalid YAML makes the skill load with no fields and no error, so a broken frontmatter block fails silently.
 - After compaction, the first 5k tokens of each loaded skill are re-attached, within a 25k combined budget. Use `${CLAUDE_SKILL_DIR}` for paths to bundled files.
+- `${CLAUDE_PLUGIN_ROOT}` is substituted in plugin skill bodies too, for files shared between a plugin's skills (docs checked 2026-11-19). Codex doesn't substitute it in skill bodies (codex-cli 0.170.0), so this repo links shared files by relative path from the skill directory instead, which both agents resolve.
 - `synced` and the `anthropic-skills` namespace are reserved for skills synced from a claude.ai account.
 
 The cross-product Agent Skills spec is stricter, and following it keeps skills portable to the API and claude.ai. Sources: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview and https://agentskills.io/specification

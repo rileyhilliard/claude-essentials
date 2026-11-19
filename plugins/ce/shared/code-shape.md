@@ -18,7 +18,7 @@ Files over about 250 lines and functions over about 40 usually hold two jobs. If
 
 ### Checking a lane diff
 
-Part of the inline check in SKILL.md section 5. Send a lane back for:
+Step 3 of "Landing a lane and a phase" in lane-dag.md. Send a lane back for:
 
 - A new file above the size limits, or a function that mixes parsing, decisions and I/O.
 - Logic in the entry point, or a new `utils`-style file.
