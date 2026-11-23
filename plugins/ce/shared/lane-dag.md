@@ -129,10 +129,11 @@ While lanes run, do the phase's inline work, then write briefs and test-case lis
 | --- | --- | --- |
 | Lane | While working | Tests for its own files, filtered |
 | Lane | Before reporting | Filtered tests, typecheck, `check-lane` |
+| Fixer (review or boundary findings) | Before reporting | Tests for the files it touched, filtered, plus any guard tests the plan names, typecheck |
 | You | Each phase landing | Full gate |
 | You | End of run | Full gate plus the demo |
 
-Lanes skip the full suite because the landing gate repeats it. If the full gate takes under about 10 seconds, lanes can run it too. When the repo has a wrapper that queues or offloads test runs, put every test and typecheck command through it, yours and the lanes', and write the wrapped commands into each brief. Before starting a run, stop any earlier run of yours that is still going.
+Lanes and fixers skip the full suite because the landing gate repeats it. Write the filtered commands into every dispatch, fix dispatches included: a prompt that only says "run the tests" gets the full suite, and several agents running it at once on one machine slow each other until tests time out. If the full gate takes under about 10 seconds, lanes can run it too. When the repo has a wrapper that queues or offloads test runs, put every test and typecheck command through it, yours and the lanes', and write the wrapped commands into each brief. Before starting a run, stop any earlier run of yours that is still going.
 
 ## Landing a lane and a phase
 
