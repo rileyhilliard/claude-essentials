@@ -137,6 +137,19 @@ class ValidateTests(TempDirTestCase):
         )
         self.assertEqual(run_cli("validate", self.write_plan(text)), (0, "ok\n", ""))
 
+    def test_merged_lanes_are_ignored_for_overlap(self):
+        text = (
+            phase(1, [("a", "src/x.ts", "merged")])
+            + phase(2, [("a", "src/x.ts", "pending")])
+        )
+        self.assertEqual(run_cli("validate", self.write_plan(text)), (0, "ok\n", ""))
+
+    def test_a_second_lane_table_in_a_phase_is_reported(self):
+        text = phase(1, [("a", "src/a.ts", "pending")]) + COLUMNS + "| b | src/b.ts |  | pending |  |\n"
+        lines = self.problems(text)
+        self.assertEqual(len(lines), 1)
+        self.assertIn("phase 1: a second lane table starts on line", lines[0])
+
     def test_cut_lanes_are_ignored_for_overlap(self):
         text = phase(1, [("a", "src/x.ts", "cut"), ("b", "src/x.ts", "pending")])
         self.assertEqual(run_cli("validate", self.write_plan(text)), (0, "ok\n", ""))
@@ -281,7 +294,12 @@ class CheckLaneTests(GitTestCase):
         self.commit("work")
         code, out, _ = self.check()
         self.assertEqual(
-            (code, out), (1, "phase 1 lane a: changed src/b.ts, which is not in its Owns files\n")
+            (code, out),
+            (
+                1,
+                "phase 1 lane a: changed src/b.ts, which is not in its Owns files\n"
+                "if those changes belong to this lane, widen its Owns files to: src/a/, src/b.ts\n",
+            ),
         )
 
     def test_edit_to_another_lanes_test_file_is_reported(self):
@@ -289,14 +307,14 @@ class CheckLaneTests(GitTestCase):
         self.commit("work")
         code, out, _ = self.check()
         self.assertEqual(code, 1)
-        self.assertEqual(out, "phase 1 lane a: changed src/b.test.ts, which is not in its Owns files\n")
+        self.assertEqual(out.splitlines()[0], "phase 1 lane a: changed src/b.test.ts, which is not in its Owns files")
 
     def test_rename_out_of_owned_directory_is_reported(self):
         self.git("mv", "src/a/one.ts", "src/moved.ts")
         self.commit("work")
         code, out, _ = self.check()
         self.assertEqual(code, 1)
-        self.assertEqual(out, "phase 1 lane a: changed src/moved.ts, which is not in its Owns files\n")
+        self.assertEqual(out.splitlines()[0], "phase 1 lane a: changed src/moved.ts, which is not in its Owns files")
 
     def test_lockfile_change_is_reported_even_when_owned(self):
         plan = self.write_plan(

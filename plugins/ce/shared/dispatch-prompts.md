@@ -52,6 +52,8 @@ Dispatch `builder` with the model from the plan's lane table, pasting the lane's
 ```
 Implement lane <phase>/<lane> of the plan at <absolute plan path>. Your brief below is the whole task.
 
+You start in your own worktree. Work only there, with repo-relative paths, and don't `cd` to any other checkout.
+
 Setup, first and in this order, one command at a time:
 1. `git branch -m <lane branch>`
 2. `git merge-base --is-ancestor <phase scaffold sha> HEAD`. If it fails, run `git merge --ff-only <phase base branch>` and check again; if it still fails, stop and report.

@@ -18,6 +18,8 @@ Before anything else, run the two setup steps in the prompt: confirm your branch
 - Edit only the files you own. If the work needs a change elsewhere, including the shared contracts or the tests, stop and report what and why.
 - In an implementation lane, the tests are read-only: they define done. In a test-writing lane, the tests are what you own.
 - Run commands exactly as the prompt gives them, one plain command at a time, without `cd` chains, loops or variable assignments around git. In a background worktree a refused command can't be approved, and test commands may wait on a lock behind other lanes.
+- Work only in the directory you start in. If the prompt or plan names another checkout path, don't `cd` into it or point git at it with `-C`; the guard refuses commands it can't prove stay in your worktree.
+- Read each file before editing it, scaffold stubs included. Write a multi-line script to a file and run it with one plain command instead of a heredoc, and copy any scratch path from the prompt verbatim.
 - Stage only your owned files by path, never `git add -A` or `git add .`, so setup artifacts such as a symlinked dependency directory stay out of the commit.
 
 Done for an implementation lane: its filtered tests and the typecheck pass. Done for a test-writing lane: the typecheck passes, the existing tests still pass, and every new test fails against the stubs for the expected reason (not implemented), not from a typo or a wrong import. Commit on your branch when done. Don't merge, push or remove the worktree.

@@ -249,8 +249,9 @@ def parse_phase_directives(lines: list[str], phase: Phase, problems: list[str]) 
             phase.tag, phase.tag_line = match.group(1), index
 
 
-def find_lane_table(lines: list[str], phase: Phase) -> tuple[int, int] | None:
-    """Line range [header, end) of the first table whose header has a Lane column."""
+def find_lane_tables(lines: list[str], phase: Phase) -> list[tuple[int, int]]:
+    """Line ranges [header, end) of every table in the phase whose header has a Lane column."""
+    found = []
     index = phase.start + 1
     while index < phase.end:
         if not is_table_line(lines[index]):
@@ -260,9 +261,9 @@ def find_lane_table(lines: list[str], phase: Phase) -> tuple[int, int] | None:
         while block_end < phase.end and is_table_line(lines[block_end]):
             block_end += 1
         if "lane" in (c.lower() for c in row_cells(lines[index])):
-            return index, block_end
+            found.append((index, block_end))
         index = block_end
-    return None
+    return found
 
 
 def parse_lane_row(
@@ -295,10 +296,15 @@ def parse_lane_row(
 
 def parse_lane_table(lines: list[str], phase: Phase, problems: list[str]) -> None:
     """Parse the phase's lane table, if any, into phase.lanes."""
-    found = find_lane_table(lines, phase)
-    if found is None:
+    tables = find_lane_tables(lines, phase)
+    if not tables:
         return
-    header, end = found
+    for extra, _ in tables[1:]:
+        problems.append(
+            f"phase {phase.number}: a second lane table starts on line {extra + 1}; "
+            "only the first is read, so move its rows into the first table"
+        )
+    header, end = tables[0]
     columns: dict[str, int] = {}
     for position, name in enumerate(row_cells(lines[header])):
         columns.setdefault(name.lower(), position)
@@ -447,9 +453,9 @@ def first_overlap(a: Lane, b: Lane) -> tuple[str, str] | None:
 
 
 def check_ownership(plan: Plan) -> list[str]:
-    """Report overlapping ownership between non-cut lanes that can run concurrently."""
+    """Report overlapping ownership between lanes that can still run concurrently (not cut or merged)."""
     graph = dependency_graph(plan)
-    lanes = [lane for phase in plan.phases for lane in phase.lanes if lane.status != "cut"]
+    lanes = [lane for phase in plan.phases for lane in phase.lanes if lane.status not in ("cut", "merged")]
     problems = []
     for later_index, later in enumerate(lanes):
         for earlier in lanes[:later_index]:
@@ -713,6 +719,11 @@ def cmd_check_lane(args: argparse.Namespace) -> int:
     diff = run_git(args.repo, "diff", "-U0", "--no-renames", "--no-color", "--no-ext-diff",
                    "--src-prefix=a/", "--dst-prefix=b/", range_spec)
     problems = lane_violations(plan, lane, paths, diff)
+    unowned = [p for p in paths if not is_owned(p, lane.owns)]
+    if unowned:
+        problems.append(
+            f"if those changes belong to this lane, widen its Owns files to: {', '.join(lane.owns + unowned)}"
+        )
     if problems:
         return report(problems)
     print("ok")
