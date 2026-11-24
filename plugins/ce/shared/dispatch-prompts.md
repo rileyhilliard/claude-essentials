@@ -55,9 +55,8 @@ Implement lane <phase>/<lane> of the plan at <absolute plan path>. Your brief be
 You start in your own worktree. Work only there, with repo-relative paths, and don't `cd` to any other checkout.
 
 Setup, first and in this order, one command at a time:
-1. `git branch -m <lane branch>`
-2. `git merge-base --is-ancestor <phase scaffold sha> HEAD`. If it fails, run `git merge --ff-only <phase base branch>` and check again; if it still fails, stop and report.
-3. `<worktree setup command>`
+1. `git checkout -B <lane branch> <phase scaffold sha>`
+2. `<worktree setup command>`
 
 <lane brief from the plan>
 
